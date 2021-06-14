@@ -84,192 +84,96 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
 <?php $this->beginBody() ?>
 
 <body id="collection-5b4767402b6a28f6ea5f9720" class="transparent-header enable-nav-button nav-button-style-outline nav-button-corner-style-square banner-button-style-outline banner-button-corner-style-square banner-slideshow-controls-arrows meta-priority-category center-entry-title--meta  hide-list-entry-footer    hide-blog-sidebar center-navigation--info     event-thumbnails event-thumbnail-size-32-standard event-date-label event-date-label-time event-list-show-cats event-list-date event-list-time event-list-address   event-icalgcal-links  event-excerpts  event-item-back-link    gallery-design-grid aspect-ratio-auto lightbox-style-light gallery-navigation-bullets gallery-info-overlay-show-on-hover gallery-aspect-ratio-32-standard gallery-arrow-style-no-background gallery-transitions-fade gallery-show-arrows gallery-auto-crop   product-list-titles-under product-list-alignment-center product-item-size-11-square product-image-auto-crop product-gallery-size-11-square  show-product-price show-product-item-nav product-social-sharing tweak-v1-related-products-image-aspect-ratio-11-square tweak-v1-related-products-details-alignment-center newsletter-style-dark  opentable-style-light small-button-style-solid small-button-shape-square medium-button-style-outline medium-button-shape-square large-button-style-outline large-button-shape-square image-block-poster-text-alignment-center image-block-card-dynamic-font-sizing image-block-card-content-position-center image-block-card-text-alignment-left image-block-overlap-dynamic-font-sizing image-block-overlap-content-position-center image-block-overlap-text-alignment-left image-block-collage-dynamic-font-sizing image-block-collage-content-position-top image-block-collage-text-alignment-left image-block-stack-dynamic-font-sizing image-block-stack-text-alignment-left button-style-solid button-corner-style-square tweak-product-quick-view-button-style-floating tweak-product-quick-view-button-position-bottom tweak-product-quick-view-lightbox-excerpt-display-truncate tweak-product-quick-view-lightbox-show-arrows tweak-product-quick-view-lightbox-show-close-button tweak-product-quick-view-lightbox-controls-weight-light native-currency-code-usd collection-type-index collection-layout-default collection-5b4767402b6a28f6ea5f9720 homepage view-list mobile-style-available has-banner-image index-page">
-    <a href="#" class="body-overlay"></a>
-    <div class="sqs-announcement-bar-dropzone"></div>
-    <div id="sidecarNav">
+
+<a href="#" class="body-overlay"></a>
+<div class="sqs-announcement-bar-dropzone"></div>
+<div id="sidecarNav">
       
 
   <div id="mobileNavWrapper" class="nav-wrapper" data-content-field="navigation-mobileNav">
     <nav id="mobileNavigation">
-      
-
-      
-        
-          
+           
           <div class="index active homepage">
             <a href="/">
               Home
             </a>
           </div>
-          
-        
 
-      
-        
-          
-
-          
-          <div class="folder">
-            <div class="folder-toggle" data-href="/programs-1">Programs</div>
-            <div class="subnav">
-            
-
-              
-              <div class="collection">
-                <a href="/programs">
-                  The Brandery
-                </a>
-              </div>
-              
-              
-            
-
-              
-              
-              <div class="external">
-                <a href="https://www.gbetaaccelerator.com/cincy" target="_blank">
-                  gBETA Cincy
-                </a>
-              </div>
-              
-            
-
-              
-              
-              <div class="external">
-                <a href="https://www.gener8tor.com/" target="_blank">
-                  gener8tor
-                </a>
-              </div>
-              
-            
-            </div>
-          </div>
-          
-        
-        
-
-      
-        
-          
-
-          
           <div class="folder">
             <div class="folder-toggle" data-href="/about">About</div>
             <div class="subnav">
-            
 
-              
               <div class="collection">
                 <a href="/team">
                   Team
                 </a>
               </div>
-              
-              
-            
 
-              
               <div class="collection">
                 <a href="/sponsorship">
                   Sponsorship
                 </a>
               </div>
-              
-              
             
             </div>
           </div>
-          
-        
-        
 
-      
-        
-          
-
-          
           <div class="folder">
+            <div class="folder-toggle" data-href="/programs-1">Portfolio</div>
+            <div class="subnav">
+
+             <!--  <div class="collection">
+                <a href="/programs">
+                  Bisnest
+                </a>
+              </div> -->
+
+             <!--  <div class="external">
+                <a href="https://www.gbetaaccelerator.com/cincy" target="_blank">
+                  gBETA Cincy
+                </a>
+              </div>
+              
+              <div class="external">
+                <a href="https://www.gener8tor.com/" target="_blank">
+                  gener8tor
+                </a>
+              </div> -->
+
+            </div>
+          </div>
+
+          
+          
+          <!-- <div class="folder">
             <div class="folder-toggle" data-href="/office-hours">Office Hours</div>
             <div class="subnav">
-            
 
-              
               <div class="collection">
                 <a href="/officehours">
                   Virtual Office Hours
                 </a>
               </div>
-              
-              
-            
+
             </div>
-          </div>
-          
-        
-        
+          </div> -->
 
-      
-        
-          
-
-          
-
-            
             <div class="collection">
-              <a href="/statistics">
-                Statistics
+              <a href="/blog">
+                Blog
               </a>
             </div>
-            
 
-          
-        
-        
-
-      
-        
-          
-
-          
-
-            
             <div class="collection">
-              <a href="/portfolio">
-                Portfolio
-              </a>
-            </div>
-            
-
-          
-        
-        
-
-      
-        
-          
-
-          
-
-            
-            <div class="collection">
-              <a href="/brandery-store">
+              <a href="/apply">
                 Apply
               </a>
             </div>
-            
-
-          
-        
-        
-
-      
     </nav>
   </div>
 
+</div>
 
-
-    </div>
     <div id="siteWrapper" class="clearfix">
 
       <div class="sqs-cart-dropzone"></div>
@@ -287,201 +191,91 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
   <div id="mainNavWrapper" class="nav-wrapper" data-content-field="navigation-mainNav">
     <nav id="mainNavigation" data-content-field="navigation-mainNav">
       
-
-      
-        
-          
           <div class="index active homepage">
             <a href="/">
               Home
             </a>
           </div>
-          
-        
 
-      
-        
-          
-
-          
-          <div class="folder">
-            <div class="folder-toggle" data-href="/programs-1">Programs</div>
-            <div class="subnav">
-            
-
-              
-              <div class="collection">
-                <a href="/programs">
-                  Bisnest
-                </a>
-              </div>
-              
-              
-            
-
-              
-              
-              <div class="external">
-                <a href="https://www.gbetaaccelerator.com/cincy" target="_blank">
-                  gBETA Cincy
-                </a>
-              </div>
-              
-            
-
-              
-              
-              <div class="external">
-                <a href="https://www.gener8tor.com/" target="_blank">
-                  gener8tor
-                </a>
-              </div>
-              
-            
-            </div>
-          </div>
-          
-        
-        
-
-      
-        
-          
-
-          
           <div class="folder">
             <div class="folder-toggle" data-href="/about">About</div>
             <div class="subnav">
-            
 
-              
               <div class="collection">
                 <a href="/team">
                   Team
                 </a>
               </div>
-              
-              
-            
 
-              
               <div class="collection">
                 <a href="/sponsorship">
                   Sponsorship
                 </a>
               </div>
-              
-              
             
             </div>
           </div>
-          
-        
-        
 
-      
-        
-          
-
-          
           <div class="folder">
+            <div class="folder-toggle" data-href="/programs-1">Portfolio</div>
+            <div class="subnav">
+
+             <!--  <div class="collection">
+                <a href="/programs">
+                  Bisnest
+                </a>
+              </div> -->
+
+             <!--  <div class="external">
+                <a href="https://www.gbetaaccelerator.com/cincy" target="_blank">
+                  gBETA Cincy
+                </a>
+              </div>
+              
+              <div class="external">
+                <a href="https://www.gener8tor.com/" target="_blank">
+                  gener8tor
+                </a>
+              </div> -->
+
+            </div>
+          </div>
+
+          
+          
+          <!-- <div class="folder">
             <div class="folder-toggle" data-href="/office-hours">Office Hours</div>
             <div class="subnav">
-            
 
-              
               <div class="collection">
                 <a href="/officehours">
                   Virtual Office Hours
                 </a>
               </div>
-              
-              
-            
+
             </div>
-          </div>
-          
-        
-        
+          </div> -->
 
-      
-        
-          
-
-          
-
-            
             <div class="collection">
-              <a href="/statistics">
-                Statistics
+              <a href="/blog">
+                Blog
               </a>
             </div>
-            
 
-          
-        
-        
-
-      
-        
-          
-
-          
-
-            
             <div class="collection">
-              <a href="/portfolio">
-                Portfolio
-              </a>
-            </div>
-            
-
-          
-        
-        
-
-      
-        
-          
-
-          
-
-            
-            <div class="collection">
-              <a href="/brandery-store">
+              <a href="/apply">
                 Apply
               </a>
             </div>
-            
 
-          
-        
-        
-
-      
     </nav>
   </div>
   <!-- style below blocks out the mobile nav toggle only when nav is loaded -->
   <style>.mobile-nav-toggle-label { display: inline-block !important; }</style>
-
-
 </div>
         </div>
       </header>
 
-      
-        
-          
-            
-            
-          
-        
-      
-
-
-      
-      
-      
 
       <main id="page" role="main">
         
@@ -493,26 +287,19 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
   
   <div id="intro" class="index-section" data-url-id="intro" data-collection-id="5b477a7c352f537741b5d0f0" data-edit-main-image="">
     <div class="promoted-gallery-wrapper"></div>
-    
-      
+
         <div class="banner-thumbnail-wrapper has-description" data-content-field="main-image">
         
           <figure id="thumbnail" class="loading content-fill" style="overflow: hidden;">
             <img data-src="bg.jpg" data-image="bg.jpg" data-image-dimensions="1152x534" data-image-focal-point="0.5,0.5" data-parent-ratio="2.7" alt="bg.jpg" class="" data-image-resolution="2500w" src="<?= $dirAssests?>/images/bg.jpg" style="font-size: 0px; left: 0px; top: -92.5599px; width: 1903px; height: 882.12px; position: relative;">
           </figure>
-          <div class="desc-wrapper" data-content-field="description"><p class="" style="white-space:pre-wrap;" id="yui_3_17_2_1_1617762541328_52"><strong data-shrink-original-size="86">THE BISNEST</strong> <br>A CONCIERGE STARTUP ACCELERATOR</p><p class="" style="white-space:pre-wrap;"><a href="#" target="">Learn More</a></p></div>
+          <div class="desc-wrapper" data-content-field="description"><p class="" style="white-space:pre-wrap;" id="yui_3_17_2_1_1617762541328_52"><strong data-shrink-original-size="86">BISNEST</strong> <br>ONLINE INCUBATION PLATFORM</p><p class="" style="white-space:pre-wrap;"><a href="#" target="">Learn More</a></p></div>
         </div>
-      
-    
 
     <div class="index-section-wrapper page-content" id="yui_3_17_2_1_1617087493649_148">
       <div class="content-inner has-content" data-content-field="main-content" id="yui_3_17_2_1_1617087493649_147">
-        <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1591027262856" id="page-5b477a7c352f537741b5d0f0"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412381143917_19852"><div class="sqs-block-content"><h2 style="text-align:center;white-space:pre-wrap;">BISNEST is a nationally-ranked accelerator that leverages the expertise of the Malaysian region, namely branding, marketing, and design. In addition to an elite mentor network, startups are paired with world-class creative agencies and have access to some of the biggest companies in the world. BISNEST runs one,12-week accelerator program a year for five companies.</h2><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;</p></div></div></div></div><div class="row sqs-row" id="yui_3_17_2_1_1617087493649_146"><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_145"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-89ba24c9b1b815930621"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_144">
+        <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1591027262856" id="page-5b477a7c352f537741b5d0f0"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412381143917_19852"><div class="sqs-block-content"><h2 style="text-align:center;white-space:pre-wrap;">BISNEST an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.</h2><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;</p></div></div></div></div><div class="row sqs-row" id="yui_3_17_2_1_1617087493649_146"><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_145"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-89ba24c9b1b815930621"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_144">
 
-
-
-    
-  
     <div class="image-block-outer-wrapper
           layout-caption-hidden
           design-layout-inline
@@ -521,9 +308,6 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
           individual-text-animation-none
          sqs-narrow-width" data-test="image-block-inline-outer-wrapper" id="yui_3_17_2_1_1617087493649_143">
 
-      
-
-      
         <figure class="
               sqs-block-image-figure
               intrinsic
@@ -531,44 +315,19 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
           
           <div style="padding-bottom: 75.0789%; overflow: hidden;" class="
                 image-block-wrapper
-                
-          
-        
+
                 has-aspect-ratio
               " data-animation-role="image" id="yui_3_17_2_1_1617087493649_141">
- 
-            
-            <img class="thumb-image loaded"  src="<?= $dirAssests?>/images/img1.jpg" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
-          </div>
-        
-          
-        
 
-        
-      
+            <img class="thumb-image loaded"  src="<?= $dirAssests?>/images/pic1.jpeg" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
+          </div>
+
         </figure>
-      
 
     </div>
-  
 
+</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_17982"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">startups</h3><p style="text-align:center;white-space:pre-wrap;" class="">Bisnest assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.</p></div></div></div><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_167"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="74.44794952681389" data-block-type="5" id="block-ba568cf1c993e4f05d25"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_166">
 
-  
-
-
-</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_17982"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">startups</h3><p style="text-align:center;white-space:pre-wrap;" class="">BISNEST offers financing,&nbsp;mentorship, amazing partnership opportunities and introductions to seed stage investors.</p></div></div></div><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_167"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="74.44794952681389" data-block-type="5" id="block-ba568cf1c993e4f05d25"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_166">
-
-
-
-
-
-
-
-
-  
-
-    
-  
     <div class="image-block-outer-wrapper
           layout-caption-hidden
           design-layout-inline
@@ -577,43 +336,27 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
           individual-text-animation-none
          sqs-narrow-width" data-test="image-block-inline-outer-wrapper" id="yui_3_17_2_1_1617087493649_165">
 
-      
-
-      
         <figure class="
               sqs-block-image-figure
               intrinsic
             " style="max-width:531px;" id="yui_3_17_2_1_1617087493649_164">
-          
-        
-        
-
-        
-          
-            
+ 
           <div style="padding-bottom: 74.448%; overflow: hidden;" class="
                 image-block-wrapper
-                
-          
-        
+
                 has-aspect-ratio
               " data-animation-role="image" id="yui_3_17_2_1_1617087493649_163">
 
-            
-            <img class="thumb-image loaded"  alt="framerii*1024xx640-359-0-36.png" data-image-resolution="500w" src="<?= $dirAssests?>/images/img3.png" style="left: -5.0583%; top: 0%; width: 110.117%; height: 100%; position: absolute;">
+            <img class="thumb-image loaded"  alt="framerii*1024xx640-359-0-36.png" data-image-resolution="500w" src="<?= $dirAssests?>/images/pic3.jpeg" style="left: -5.0583%; top: 0%; width: 110.117%; height: 100%; position: absolute;">
           </div>
 
-      
         </figure>
-      
 
     </div>
-  
-
 
 </div></div>
 
-<div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_26226"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">investors</h3><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;We turn great ideas into brands and then introduce them to those with the vision and means to help them grow.</p></div></div></div><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_185"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-31b1741607adf5cd88cf"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_184">
+<div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_26226"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">investors</h3><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;Bisnest connect with investment opportunities in Malaysia.</p></div></div></div><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_185"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-31b1741607adf5cd88cf"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_184">
 
 
     <div class="image-block-outer-wrapper
@@ -647,7 +390,7 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
               " data-animation-role="image" id="yui_3_17_2_1_1617087493649_181">
        
        
-       <img class="thumb-image loaded"  alt="DSC04377.jpg" data-image-resolution="500w" src="<?= $dirAssests?>/images/img2.jpg" style="left: -6.29789%; top: 0%; width: 112.596%; height: 100%; position: absolute;">
+       <img class="thumb-image loaded"  alt="DSC04377.jpg" data-image-resolution="500w" src="<?= $dirAssests?>/images/pic2.jpeg" style="left: -6.29789%; top: 0%; width: 112.596%; height: 100%; position: absolute;">
           </div>
         
           
@@ -665,149 +408,25 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
   
 
 
-</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_26996"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">Communty</h3><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;Our experts lead a series of classes geared towards fueling Cincinnati’s entrepreneurial ecosystem.</p></div></div></div></div><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block spacer-block sqs-block-spacer" data-aspect-ratio="2.156862745098039" data-block-type="21" id="block-yui_3_17_2_1_1571251032590_12502"><div class="sqs-block-content sqs-intrinsic" id="yui_3_17_2_1_1617087493649_280" style="padding-bottom: 2.15686%;">&nbsp;</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1544036262540_7945">
-
-<div class="sqs-block-content">
+</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_26996"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">ECOSYSTEM</h3><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;Bisnest create an entrepreneurial ecosystem focused on growing and sustaining the business and community.</p></div></div></div></div><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block spacer-block sqs-block-spacer" data-aspect-ratio="2.156862745098039" data-block-type="21" id="block-yui_3_17_2_1_1571251032590_12502"><div class="sqs-block-content sqs-intrinsic" id="yui_3_17_2_1_1617087493649_280" style="padding-bottom: 2.15686%;">&nbsp;</div></div>
 
 
-<h1 style="text-align:center;white-space:pre-wrap;"><strong>Agency Partners</strong></h1></div></div><div class="sqs-block gallery-block sqs-block-gallery" data-block-json="{&quot;hSize&quot;:null,&quot;floatDir&quot;:null,&quot;methodOption&quot;:&quot;transient&quot;,&quot;existingGallery&quot;:null,&quot;newWindow&quot;:false,&quot;aspect-ratio&quot;:&quot;anamorphic-widescreen&quot;,&quot;aspectRatio&quot;:null,&quot;auto-crop&quot;:true,&quot;blockAnimation&quot;:&quot;none&quot;,&quot;collectionId&quot;:&quot;5c08217421c67c2d9fb270a8&quot;,&quot;design&quot;:&quot;grid&quot;,&quot;lightbox&quot;:false,&quot;padding&quot;:1,&quot;show-meta&quot;:true,&quot;show-meta-basic&quot;:true,&quot;show-meta-only-title&quot;:false,&quot;show-meta-only-description&quot;:false,&quot;square-thumbs&quot;:false,&quot;thumbnails-per-row&quot;:3,&quot;vSize&quot;:null,&quot;transientGalleryId&quot;:&quot;5c08217421c67c2d9fb270a8&quot;}" data-block-type="8" id="block-yui_3_17_2_1_1544036447190_11088"><div class="sqs-block-content">
+<div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1544036262540_7945">
 
-
-
-
-  
-
-  
-
-
-<div class="
-  sqs-gallery-container
-  sqs-gallery-block-grid
-  sqs-gallery-aspect-ratio-anamorphic-widescreen
-  sqs-gallery-thumbnails-per-row-3
-  
-  
-
-  
-    
-    
-  
-  sqs-gallery-block-show-meta
-  
-  
-
-  
-  
-
-  
-  block-animation-none
-  clear" id="yui_3_17_2_1_1617087493649_283">
-  <div class="sqs-gallery sqs-gallery-design-grid" id="yui_3_17_2_1_1617087493649_300">
-    
-      
-
-        
-
-        
-
-        
-          
-            <div class="slide sqs-gallery-design-grid-slide sqs-active-slide" data-type="image" data-animation-role="image" id="yui_3_17_2_1_1617087493649_334">
-              <div class="margin-wrapper">
-                
-                <a href="#" class="
-                    image-slide-anchor
-                    
-                    content-fit
-                  ">
-                  
-           
-                  
-                  
-                  <img class="thumb-image loaded" src="<?= $dirAssests?>/images/Oda-Bazaar-W.png" style="left: 0px; top: 0px; width: 230px; position: relative;">
-                </a>
-                
-              </div>
-            </div>
-          
-
-          
-        
-
-      
-
-        
-
-        
-
-        
-          
-            <div class="slide sqs-gallery-design-grid-slide" data-type="image" data-animation-role="image" id="yui_3_17_2_1_1617087493649_335">
-              <div class="margin-wrapper">
-                
-                <a href="http://iconmc.com/" class="
-                    image-slide-anchor
-                    
-                    content-fit
-                  ">
-                  
-           
-                  <img class="thumb-image loaded" src="<?= $dirAssests?>/images/IbnAgroFarm-W.png" style="left: 0px; top: 0px; width: 180px;position: relative;">
-                </a>
-                
-              </div>
-            </div>
-          
-
-          
-        
-
-      
-
-        
-
-        
-
-        
-          
-            <div class="slide sqs-gallery-design-grid-slide" data-type="image" data-animation-role="image" id="yui_3_17_2_1_1617087493649_336">
-              <div class="margin-wrapper">
-                
-                <a role="presentation" class="
-                    image-slide-anchor
-                    
-                    content-fit
-                  ">
-                  
-         <img class="thumb-image loaded"  alt="GetLogoFile.png" data-image-resolution="500w" src="<?=$dirAssests?>/images/AyamGoreng-W.jpg" style="left: 0px; top: 0px; width: 150px; position: relative;">
-                </a>
-                
-              </div>
-            </div>
-          
-
-          
-        
-
-      
-    
-  </div>
-
-  
-
+    <div class="sqs-block-content">
+        <h1 style="text-align:center;white-space:pre-wrap;"><strong>PORTFOLIO</strong></h1>
+    </div>
 </div>
 
+<!-- Portfolio -->
+    <?=$this->render('portfolio', [
+            'dirAssests' => $dirAssests,
 
+        ]);
+        ?>
+<!-- End of Portfolio -->
 
-
-<style type="text/css" id="design-grid-css">
-#block-yui_3_17_2_1_1544036447190_11088 .sqs-gallery-block-grid .sqs-gallery-design-grid { margin-right: -1px; }
-#block-yui_3_17_2_1_1544036447190_11088 .sqs-gallery-block-grid .sqs-gallery-design-grid-slide .margin-wrapper { margin-right: 1px; margin-bottom: 1px; }
-</style>
-
-
-
-</div></div></div></div></div>
+</div></div></div>
       </div>
     </div>
   </div>
@@ -816,225 +435,31 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
         
       </main>
 
-      <div id="preFooter">
-        <div class="pre-footer-inner">
-          <div class="sqs-layout sqs-grid-12 columns-12" data-layout-label="Pre-Footer Content" data-type="block-field" data-updated-on="1571250276907" id="preFooterBlocks"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="row sqs-row"><div class="col sqs-col-3 span-3"><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1571248327237_5395"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">Proud Member:</h3></div></div><div class="sqs-block image-block sqs-block-image" data-block-type="5" id="block-yui_3_17_2_1_1531414292087_128180"><div class="sqs-block-content">
+        <!-- Pre Footer -->
+        <?=$this->render('prefooter', [
+            'dirAssests' => $dirAssests,
 
+        ]);
+        ?>
+        <!-- End of Pre Footer -->
 
+        <!-- Footer -->
 
+        <?=$this->render('footer', [
+            'dirAssests' => $dirAssests,
 
+        ]);
+        ?>
 
-
-
-
-  
-
-    
-  
-    <div
-        class="
-          image-block-outer-wrapper
-          layout-caption-hidden
-          design-layout-inline
-          combination-animation-none
-          individual-animation-none
-          individual-text-animation-none
-        "
-        data-test="image-block-inline-outer-wrapper"
-    >
-
-      
-
-      
-        <figure
-            class="
-              sqs-block-image-figure
-              intrinsic
-            "
-            style="max-width:378px;"
-        >
-          
-        
-        
-
-        
-          
-            
-         <div style="padding-bottom: 79.8942%; overflow: hidden;" class="
-                image-block-wrapper
-                
-          
-        
-                has-aspect-ratio
-              " data-animation-role="image" id="yui_3_17_2_1_1617087493649_199">
-           <img class="thumb-image loaded"   data-image-resolution="300w" src="<?= $dirAssests?>/images/bizventur.png" style="left: -0.00773658%; top: 0%;  position: absolute;">
-          </div>
-        
-          
-        
-
-        
-      
-        </figure>
-      
-
-    </div>
-  
-
-
-  
-
-
-</div></div></div><div class="col sqs-col-5 span-5"><div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-yui_3_17_2_1_1571248327237_12485"><div class="sqs-block-content">&nbsp;</div></div></div><div class="col sqs-col-4 span-4"><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1571248327237_11673"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">Program Sponsors:</h3></div></div><div class="sqs-block image-block sqs-block-image" data-block-type="5" id="block-yui_3_17_2_1_1571248327237_7061"><div class="sqs-block-content">
-
-
-
-
-
-
-
-
-  
-
-    
-  
-    <div
-        class="
-          image-block-outer-wrapper
-          layout-caption-hidden
-          design-layout-inline
-          combination-animation-none
-          individual-animation-none
-          individual-text-animation-none
-        "
-        data-test="image-block-inline-outer-wrapper"
-    >
-
-      
-
-      
-        <figure
-            class="
-              sqs-block-image-figure
-              intrinsic
-            "
-            style="max-width:478px;"
-        >
-          
-        
-        
-
-        
-          
-            
-           <div style="padding-bottom: 43.9331%; overflow: hidden;" class="
-                image-block-wrapper
-                
-          
-        
-                has-aspect-ratio
-              " data-animation-role="image" id="yui_3_17_2_1_1617087493649_221">
-           <img class="thumb-image loaded"  src="<?= $dirAssests?>/images/bizventur.png" style="left: 0%; top: -0.0160927%; position: absolute;">
-          </div>
-      
-        </figure>
-      
-
-    </div>
-  
-
-
-  
-
-
-</div></div></div></div></div></div></div>
-        </div>
-      </div>
-
-      <footer id="footer" role="contentinfo">
-        <div class="footer-inner" id="yui_3_17_2_1_1617087493649_247">
-          <div class="nav-wrapper back-to-top-nav"><nav><div class="back-to-top"><a href="https://www.bisnest.my/#header">Back to Top</a></div></nav></div>
-          
-
-
-          <div id="siteInfo"><a href="mailto:info@bisnest.my" class="site-email"><span>info@bisnest.my</span></a></div>
-          <div class="sqs-layout sqs-grid-12 columns-12" data-layout-label="Footer Content" data-type="block-field" data-updated-on="1611786550099" id="footerBlocks"><div class="row sqs-row" id="yui_3_17_2_1_1617087493649_246"><div class="col sqs-col-12 span-12" id="yui_3_17_2_1_1617087493649_245"><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1531414292087_59034"><div class="sqs-block-content"><p style="text-align:center;white-space:pre-wrap;" class=""><a href="https://www.bisnest.my/home">Home</a>&nbsp;|&nbsp;<a href="https://www.bisnest.my/programs">Programs</a>&nbsp;|&nbsp;<a href="https://www.bisnest.my/team">About</a>&nbsp;|&nbsp;<a href="https://www.bisnest.my/statistics">Statistics</a>&nbsp;|&nbsp;<a href="https://www.bisnest.my/portfolio">Portfolio</a></p><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;</p></div></div><div class="row sqs-row" id="yui_3_17_2_1_1617087493649_244"><div class="col sqs-col-4 span-4"><div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-yui_3_17_2_1_1532555004579_10259"><div class="sqs-block-content">&nbsp;</div></div></div><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_243"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-block-type="5" id="block-yui_3_17_2_1_1532555004579_9047"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_242">
-
-
-
-
-
-
-
-
-  
-
-    
-  
-    <div class="image-block-outer-wrapper
-          layout-caption-hidden
-          design-layout-inline
-          combination-animation-none
-          individual-animation-none
-          individual-text-animation-none
-         sqs-narrow-width" data-test="image-block-inline-outer-wrapper" id="yui_3_17_2_1_1617087493649_241">
-
-      
-
-      
-        <figure class="
-              sqs-block-image-figure
-              intrinsic
-            " style="max-width:2500px;" id="yui_3_17_2_1_1617087493649_240">
-          
-        
-        
-
-        
-          
-      
-        <img src="<?= $dirAssests?>/images/logo.png" alt="bisnest_logo" />
-          
-        
-
-        
-      
-        </figure>
-      
-
-    </div>
-  
-
-
-  
-
-
-</div></div></div>
-
-<div class="col sqs-col-4 span-4"><div class="sqs-block spacer-block sqs-block-spacer sized vsize-1" data-block-type="21" id="block-yui_3_17_2_1_1532555004579_11398">
-
-<div class="sqs-block-content">&nbsp;</div></div></div></div>
-
-<div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1531414292087_28418">
-
-<div class="sqs-block-content"><p style="text-align:center;white-space:pre-wrap;" class=""><br><strong>BISNEST</strong><br>Kota Bharu<br>Malaysia</p><p style="text-align:center;white-space:pre-wrap;" class=""><a href="http://info@bisnest.my/">info@bisnest.my</a></p></div></div>
-
-<div class="sqs-block horizontalrule-block sqs-block-horizontalrule" data-block-type="47" id="block-yui_3_17_2_1_1579564975439_14532"><div class="sqs-block-content"><hr></div></div>
-
-<div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1531414292087_93888"><div class="sqs-block-content"><p style="text-align:center;white-space:pre-wrap;" class="">Copyright © 2021 bisnest.my. All rights reserved.</p></div></div></div></div></div>
-        </div>
-      </footer>
+        <!-- End of Footer -->
 
     </div>
 
-    <script src="https://static1.squarespace.com/static/ta/52a74d9ae4b0253945d2aee9/1039/scripts/site-bundle.js" type="text/javascript"></script>
-    <script src="https://gener8toranalytics.com/js/squarespace.js"></script><script type="text/javascript" data-sqs-type="imageloader-bootstrapper">(function() {if(window.ImageLoader) { window.ImageLoader.bootstrap({}, document); }})();</script><script>Squarespace.afterBodyLoad(Y);</script><svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:none" data-usage="social-icons-svg"><symbol id="twitter-icon" viewBox="0 0 64 64"><path d="M48,22.1c-1.2,0.5-2.4,0.9-3.8,1c1.4-0.8,2.4-2.1,2.9-3.6c-1.3,0.8-2.7,1.3-4.2,1.6 C41.7,19.8,40,19,38.2,19c-3.6,0-6.6,2.9-6.6,6.6c0,0.5,0.1,1,0.2,1.5c-5.5-0.3-10.3-2.9-13.5-6.9c-0.6,1-0.9,2.1-0.9,3.3 c0,2.3,1.2,4.3,2.9,5.5c-1.1,0-2.1-0.3-3-0.8c0,0,0,0.1,0,0.1c0,3.2,2.3,5.8,5.3,6.4c-0.6,0.1-1.1,0.2-1.7,0.2c-0.4,0-0.8,0-1.2-0.1 c0.8,2.6,3.3,4.5,6.1,4.6c-2.2,1.8-5.1,2.8-8.2,2.8c-0.5,0-1.1,0-1.6-0.1c2.9,1.9,6.4,2.9,10.1,2.9c12.1,0,18.7-10,18.7-18.7 c0-0.3,0-0.6,0-0.8C46,24.5,47.1,23.4,48,22.1z"/></symbol><symbol id="twitter-mask" viewBox="0 0 64 64"><path d="M0,0v64h64V0H0z M44.7,25.5c0,0.3,0,0.6,0,0.8C44.7,35,38.1,45,26.1,45c-3.7,0-7.2-1.1-10.1-2.9 c0.5,0.1,1,0.1,1.6,0.1c3.1,0,5.9-1,8.2-2.8c-2.9-0.1-5.3-2-6.1-4.6c0.4,0.1,0.8,0.1,1.2,0.1c0.6,0,1.2-0.1,1.7-0.2 c-3-0.6-5.3-3.3-5.3-6.4c0,0,0-0.1,0-0.1c0.9,0.5,1.9,0.8,3,0.8c-1.8-1.2-2.9-3.2-2.9-5.5c0-1.2,0.3-2.3,0.9-3.3 c3.2,4,8.1,6.6,13.5,6.9c-0.1-0.5-0.2-1-0.2-1.5c0-3.6,2.9-6.6,6.6-6.6c1.9,0,3.6,0.8,4.8,2.1c1.5-0.3,2.9-0.8,4.2-1.6 c-0.5,1.5-1.5,2.8-2.9,3.6c1.3-0.2,2.6-0.5,3.8-1C47.1,23.4,46,24.5,44.7,25.5z"/></symbol><symbol id="instagram-icon" viewBox="0 0 64 64"><path d="M46.91,25.816c-0.073-1.597-0.326-2.687-0.697-3.641c-0.383-0.986-0.896-1.823-1.73-2.657c-0.834-0.834-1.67-1.347-2.657-1.73c-0.954-0.371-2.045-0.624-3.641-0.697C36.585,17.017,36.074,17,32,17s-4.585,0.017-6.184,0.09c-1.597,0.073-2.687,0.326-3.641,0.697c-0.986,0.383-1.823,0.896-2.657,1.73c-0.834,0.834-1.347,1.67-1.73,2.657c-0.371,0.954-0.624,2.045-0.697,3.641C17.017,27.415,17,27.926,17,32c0,4.074,0.017,4.585,0.09,6.184c0.073,1.597,0.326,2.687,0.697,3.641c0.383,0.986,0.896,1.823,1.73,2.657c0.834,0.834,1.67,1.347,2.657,1.73c0.954,0.371,2.045,0.624,3.641,0.697C27.415,46.983,27.926,47,32,47s4.585-0.017,6.184-0.09c1.597-0.073,2.687-0.326,3.641-0.697c0.986-0.383,1.823-0.896,2.657-1.73c0.834-0.834,1.347-1.67,1.73-2.657c0.371-0.954,0.624-2.045,0.697-3.641C46.983,36.585,47,36.074,47,32S46.983,27.415,46.91,25.816z M44.21,38.061c-0.067,1.462-0.311,2.257-0.516,2.785c-0.272,0.7-0.597,1.2-1.122,1.725c-0.525,0.525-1.025,0.85-1.725,1.122c-0.529,0.205-1.323,0.45-2.785,0.516c-1.581,0.072-2.056,0.087-6.061,0.087s-4.48-0.015-6.061-0.087c-1.462-0.067-2.257-0.311-2.785-0.516c-0.7-0.272-1.2-0.597-1.725-1.122c-0.525-0.525-0.85-1.025-1.122-1.725c-0.205-0.529-0.45-1.323-0.516-2.785c-0.072-1.582-0.087-2.056-0.087-6.061s0.015-4.48,0.087-6.061c0.067-1.462,0.311-2.257,0.516-2.785c0.272-0.7,0.597-1.2,1.122-1.725c0.525-0.525,1.025-0.85,1.725-1.122c0.529-0.205,1.323-0.45,2.785-0.516c1.582-0.072,2.056-0.087,6.061-0.087s4.48,0.015,6.061,0.087c1.462,0.067,2.257,0.311,2.785,0.516c0.7,0.272,1.2,0.597,1.725,1.122c0.525,0.525,0.85,1.025,1.122,1.725c0.205,0.529,0.45,1.323,0.516,2.785c0.072,1.582,0.087,2.056,0.087,6.061S44.282,36.48,44.21,38.061z M32,24.297c-4.254,0-7.703,3.449-7.703,7.703c0,4.254,3.449,7.703,7.703,7.703c4.254,0,7.703-3.449,7.703-7.703C39.703,27.746,36.254,24.297,32,24.297z M32,37c-2.761,0-5-2.239-5-5c0-2.761,2.239-5,5-5s5,2.239,5,5C37,34.761,34.761,37,32,37z M40.007,22.193c-0.994,0-1.8,0.806-1.8,1.8c0,0.994,0.806,1.8,1.8,1.8c0.994,0,1.8-0.806,1.8-1.8C41.807,22.999,41.001,22.193,40.007,22.193z"/></symbol><symbol id="instagram-mask" viewBox="0 0 64 64"><path d="M43.693,23.153c-0.272-0.7-0.597-1.2-1.122-1.725c-0.525-0.525-1.025-0.85-1.725-1.122c-0.529-0.205-1.323-0.45-2.785-0.517c-1.582-0.072-2.056-0.087-6.061-0.087s-4.48,0.015-6.061,0.087c-1.462,0.067-2.257,0.311-2.785,0.517c-0.7,0.272-1.2,0.597-1.725,1.122c-0.525,0.525-0.85,1.025-1.122,1.725c-0.205,0.529-0.45,1.323-0.516,2.785c-0.072,1.582-0.087,2.056-0.087,6.061s0.015,4.48,0.087,6.061c0.067,1.462,0.311,2.257,0.516,2.785c0.272,0.7,0.597,1.2,1.122,1.725s1.025,0.85,1.725,1.122c0.529,0.205,1.323,0.45,2.785,0.516c1.581,0.072,2.056,0.087,6.061,0.087s4.48-0.015,6.061-0.087c1.462-0.067,2.257-0.311,2.785-0.516c0.7-0.272,1.2-0.597,1.725-1.122s0.85-1.025,1.122-1.725c0.205-0.529,0.45-1.323,0.516-2.785c0.072-1.582,0.087-2.056,0.087-6.061s-0.015-4.48-0.087-6.061C44.143,24.476,43.899,23.682,43.693,23.153z M32,39.703c-4.254,0-7.703-3.449-7.703-7.703s3.449-7.703,7.703-7.703s7.703,3.449,7.703,7.703S36.254,39.703,32,39.703z M40.007,25.793c-0.994,0-1.8-0.806-1.8-1.8c0-0.994,0.806-1.8,1.8-1.8c0.994,0,1.8,0.806,1.8,1.8C41.807,24.987,41.001,25.793,40.007,25.793z M0,0v64h64V0H0z M46.91,38.184c-0.073,1.597-0.326,2.687-0.697,3.641c-0.383,0.986-0.896,1.823-1.73,2.657c-0.834,0.834-1.67,1.347-2.657,1.73c-0.954,0.371-2.044,0.624-3.641,0.697C36.585,46.983,36.074,47,32,47s-4.585-0.017-6.184-0.09c-1.597-0.073-2.687-0.326-3.641-0.697c-0.986-0.383-1.823-0.896-2.657-1.73c-0.834-0.834-1.347-1.67-1.73-2.657c-0.371-0.954-0.624-2.044-0.697-3.641C17.017,36.585,17,36.074,17,32c0-4.074,0.017-4.585,0.09-6.185c0.073-1.597,0.326-2.687,0.697-3.641c0.383-0.986,0.896-1.823,1.73-2.657c0.834-0.834,1.67-1.347,2.657-1.73c0.954-0.371,2.045-0.624,3.641-0.697C27.415,17.017,27.926,17,32,17s4.585,0.017,6.184,0.09c1.597,0.073,2.687,0.326,3.641,0.697c0.986,0.383,1.823,0.896,2.657,1.73c0.834,0.834,1.347,1.67,1.73,2.657c0.371,0.954,0.624,2.044,0.697,3.641C46.983,27.415,47,27.926,47,32C47,36.074,46.983,36.585,46.91,38.184z M32,27c-2.761,0-5,2.239-5,5s2.239,5,5,5s5-2.239,5-5S34.761,27,32,27z"/></symbol><symbol id="facebook-icon" viewBox="0 0 64 64"><path d="M34.1,47V33.3h4.6l0.7-5.3h-5.3v-3.4c0-1.5,0.4-2.6,2.6-2.6l2.8,0v-4.8c-0.5-0.1-2.2-0.2-4.1-0.2 c-4.1,0-6.9,2.5-6.9,7V28H24v5.3h4.6V47H34.1z"/></symbol><symbol id="facebook-mask" viewBox="0 0 64 64"><path d="M0,0v64h64V0H0z M39.6,22l-2.8,0c-2.2,0-2.6,1.1-2.6,2.6V28h5.3l-0.7,5.3h-4.6V47h-5.5V33.3H24V28h4.6V24 c0-4.6,2.8-7,6.9-7c2,0,3.6,0.1,4.1,0.2V22z"/></symbol></svg>
+    <script src="<?= $dirAssests?>/js/site-bundle.js" type="text/javascript"></script>
+    <!-- <script src="https://gener8toranalytics.com/js/squarespace.js"></script> -->
+    <script type="text/javascript" data-sqs-type="imageloader-bootstrapper">(function() {if(window.ImageLoader) { window.ImageLoader.bootstrap({}, document); }})();</script><script>Squarespace.afterBodyLoad(Y);</script><svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display:none" data-usage="social-icons-svg"><symbol id="twitter-icon" viewBox="0 0 64 64"><path d="M48,22.1c-1.2,0.5-2.4,0.9-3.8,1c1.4-0.8,2.4-2.1,2.9-3.6c-1.3,0.8-2.7,1.3-4.2,1.6 C41.7,19.8,40,19,38.2,19c-3.6,0-6.6,2.9-6.6,6.6c0,0.5,0.1,1,0.2,1.5c-5.5-0.3-10.3-2.9-13.5-6.9c-0.6,1-0.9,2.1-0.9,3.3 c0,2.3,1.2,4.3,2.9,5.5c-1.1,0-2.1-0.3-3-0.8c0,0,0,0.1,0,0.1c0,3.2,2.3,5.8,5.3,6.4c-0.6,0.1-1.1,0.2-1.7,0.2c-0.4,0-0.8,0-1.2-0.1 c0.8,2.6,3.3,4.5,6.1,4.6c-2.2,1.8-5.1,2.8-8.2,2.8c-0.5,0-1.1,0-1.6-0.1c2.9,1.9,6.4,2.9,10.1,2.9c12.1,0,18.7-10,18.7-18.7 c0-0.3,0-0.6,0-0.8C46,24.5,47.1,23.4,48,22.1z"/></symbol><symbol id="twitter-mask" viewBox="0 0 64 64"><path d="M0,0v64h64V0H0z M44.7,25.5c0,0.3,0,0.6,0,0.8C44.7,35,38.1,45,26.1,45c-3.7,0-7.2-1.1-10.1-2.9 c0.5,0.1,1,0.1,1.6,0.1c3.1,0,5.9-1,8.2-2.8c-2.9-0.1-5.3-2-6.1-4.6c0.4,0.1,0.8,0.1,1.2,0.1c0.6,0,1.2-0.1,1.7-0.2 c-3-0.6-5.3-3.3-5.3-6.4c0,0,0-0.1,0-0.1c0.9,0.5,1.9,0.8,3,0.8c-1.8-1.2-2.9-3.2-2.9-5.5c0-1.2,0.3-2.3,0.9-3.3 c3.2,4,8.1,6.6,13.5,6.9c-0.1-0.5-0.2-1-0.2-1.5c0-3.6,2.9-6.6,6.6-6.6c1.9,0,3.6,0.8,4.8,2.1c1.5-0.3,2.9-0.8,4.2-1.6 c-0.5,1.5-1.5,2.8-2.9,3.6c1.3-0.2,2.6-0.5,3.8-1C47.1,23.4,46,24.5,44.7,25.5z"/></symbol><symbol id="instagram-icon" viewBox="0 0 64 64"><path d="M46.91,25.816c-0.073-1.597-0.326-2.687-0.697-3.641c-0.383-0.986-0.896-1.823-1.73-2.657c-0.834-0.834-1.67-1.347-2.657-1.73c-0.954-0.371-2.045-0.624-3.641-0.697C36.585,17.017,36.074,17,32,17s-4.585,0.017-6.184,0.09c-1.597,0.073-2.687,0.326-3.641,0.697c-0.986,0.383-1.823,0.896-2.657,1.73c-0.834,0.834-1.347,1.67-1.73,2.657c-0.371,0.954-0.624,2.045-0.697,3.641C17.017,27.415,17,27.926,17,32c0,4.074,0.017,4.585,0.09,6.184c0.073,1.597,0.326,2.687,0.697,3.641c0.383,0.986,0.896,1.823,1.73,2.657c0.834,0.834,1.67,1.347,2.657,1.73c0.954,0.371,2.045,0.624,3.641,0.697C27.415,46.983,27.926,47,32,47s4.585-0.017,6.184-0.09c1.597-0.073,2.687-0.326,3.641-0.697c0.986-0.383,1.823-0.896,2.657-1.73c0.834-0.834,1.347-1.67,1.73-2.657c0.371-0.954,0.624-2.045,0.697-3.641C46.983,36.585,47,36.074,47,32S46.983,27.415,46.91,25.816z M44.21,38.061c-0.067,1.462-0.311,2.257-0.516,2.785c-0.272,0.7-0.597,1.2-1.122,1.725c-0.525,0.525-1.025,0.85-1.725,1.122c-0.529,0.205-1.323,0.45-2.785,0.516c-1.581,0.072-2.056,0.087-6.061,0.087s-4.48-0.015-6.061-0.087c-1.462-0.067-2.257-0.311-2.785-0.516c-0.7-0.272-1.2-0.597-1.725-1.122c-0.525-0.525-0.85-1.025-1.122-1.725c-0.205-0.529-0.45-1.323-0.516-2.785c-0.072-1.582-0.087-2.056-0.087-6.061s0.015-4.48,0.087-6.061c0.067-1.462,0.311-2.257,0.516-2.785c0.272-0.7,0.597-1.2,1.122-1.725c0.525-0.525,1.025-0.85,1.725-1.122c0.529-0.205,1.323-0.45,2.785-0.516c1.582-0.072,2.056-0.087,6.061-0.087s4.48,0.015,6.061,0.087c1.462,0.067,2.257,0.311,2.785,0.516c0.7,0.272,1.2,0.597,1.725,1.122c0.525,0.525,0.85,1.025,1.122,1.725c0.205,0.529,0.45,1.323,0.516,2.785c0.072,1.582,0.087,2.056,0.087,6.061S44.282,36.48,44.21,38.061z M32,24.297c-4.254,0-7.703,3.449-7.703,7.703c0,4.254,3.449,7.703,7.703,7.703c4.254,0,7.703-3.449,7.703-7.703C39.703,27.746,36.254,24.297,32,24.297z M32,37c-2.761,0-5-2.239-5-5c0-2.761,2.239-5,5-5s5,2.239,5,5C37,34.761,34.761,37,32,37z M40.007,22.193c-0.994,0-1.8,0.806-1.8,1.8c0,0.994,0.806,1.8,1.8,1.8c0.994,0,1.8-0.806,1.8-1.8C41.807,22.999,41.001,22.193,40.007,22.193z"/></symbol><symbol id="instagram-mask" viewBox="0 0 64 64"><path d="M43.693,23.153c-0.272-0.7-0.597-1.2-1.122-1.725c-0.525-0.525-1.025-0.85-1.725-1.122c-0.529-0.205-1.323-0.45-2.785-0.517c-1.582-0.072-2.056-0.087-6.061-0.087s-4.48,0.015-6.061,0.087c-1.462,0.067-2.257,0.311-2.785,0.517c-0.7,0.272-1.2,0.597-1.725,1.122c-0.525,0.525-0.85,1.025-1.122,1.725c-0.205,0.529-0.45,1.323-0.516,2.785c-0.072,1.582-0.087,2.056-0.087,6.061s0.015,4.48,0.087,6.061c0.067,1.462,0.311,2.257,0.516,2.785c0.272,0.7,0.597,1.2,1.122,1.725s1.025,0.85,1.725,1.122c0.529,0.205,1.323,0.45,2.785,0.516c1.581,0.072,2.056,0.087,6.061,0.087s4.48-0.015,6.061-0.087c1.462-0.067,2.257-0.311,2.785-0.516c0.7-0.272,1.2-0.597,1.725-1.122s0.85-1.025,1.122-1.725c0.205-0.529,0.45-1.323,0.516-2.785c0.072-1.582,0.087-2.056,0.087-6.061s-0.015-4.48-0.087-6.061C44.143,24.476,43.899,23.682,43.693,23.153z M32,39.703c-4.254,0-7.703-3.449-7.703-7.703s3.449-7.703,7.703-7.703s7.703,3.449,7.703,7.703S36.254,39.703,32,39.703z M40.007,25.793c-0.994,0-1.8-0.806-1.8-1.8c0-0.994,0.806-1.8,1.8-1.8c0.994,0,1.8,0.806,1.8,1.8C41.807,24.987,41.001,25.793,40.007,25.793z M0,0v64h64V0H0z M46.91,38.184c-0.073,1.597-0.326,2.687-0.697,3.641c-0.383,0.986-0.896,1.823-1.73,2.657c-0.834,0.834-1.67,1.347-2.657,1.73c-0.954,0.371-2.044,0.624-3.641,0.697C36.585,46.983,36.074,47,32,47s-4.585-0.017-6.184-0.09c-1.597-0.073-2.687-0.326-3.641-0.697c-0.986-0.383-1.823-0.896-2.657-1.73c-0.834-0.834-1.347-1.67-1.73-2.657c-0.371-0.954-0.624-2.044-0.697-3.641C17.017,36.585,17,36.074,17,32c0-4.074,0.017-4.585,0.09-6.185c0.073-1.597,0.326-2.687,0.697-3.641c0.383-0.986,0.896-1.823,1.73-2.657c0.834-0.834,1.67-1.347,2.657-1.73c0.954-0.371,2.045-0.624,3.641-0.697C27.415,17.017,27.926,17,32,17s4.585,0.017,6.184,0.09c1.597,0.073,2.687,0.326,3.641,0.697c0.986,0.383,1.823,0.896,2.657,1.73c0.834,0.834,1.347,1.67,1.73,2.657c0.371,0.954,0.624,2.044,0.697,3.641C46.983,27.415,47,27.926,47,32C47,36.074,46.983,36.585,46.91,38.184z M32,27c-2.761,0-5,2.239-5,5s2.239,5,5,5s5-2.239,5-5S34.761,27,32,27z"/></symbol><symbol id="facebook-icon" viewBox="0 0 64 64"><path d="M34.1,47V33.3h4.6l0.7-5.3h-5.3v-3.4c0-1.5,0.4-2.6,2.6-2.6l2.8,0v-4.8c-0.5-0.1-2.2-0.2-4.1-0.2 c-4.1,0-6.9,2.5-6.9,7V28H24v5.3h4.6V47H34.1z"/></symbol><symbol id="facebook-mask" viewBox="0 0 64 64"><path d="M0,0v64h64V0H0z M39.6,22l-2.8,0c-2.2,0-2.6,1.1-2.6,2.6V28h5.3l-0.7,5.3h-4.6V47h-5.5V33.3H24V28h4.6V24 c0-4.6,2.8-7,6.9-7c2,0,3.6,0.1,4.1,0.2V22z"/></symbol></svg>
 
 
-<!-- Footer -->
-<footer class="footer">
-    
-</footer>
 
 <?php $this->endBody() ?>
 </body>
