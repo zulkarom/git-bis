@@ -2,8 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use karpoff\icrop\CropImageUpload;
 use yii\helpers\Url;
+use specialist\icrop\CropImageUpload;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\website\models\Section */
 /* @var $form yii\widgets\ActiveForm */
@@ -27,7 +27,8 @@ use yii\helpers\Url;
 
 		    <div class="row">
 		        <div class="col-md-6">		    
-		  			<?= $form->field($model, 'image_url')->widget(CropImageUpload::className())?></th>    
+		  			
+		  			<?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
 		        </div>
 		    </div>
 

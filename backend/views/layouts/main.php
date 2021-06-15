@@ -21,7 +21,7 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@backend/views/myassets');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BizVentur - Admin Dashboard</title>
+    <title>Bisnet - Admin Dashboard</title>
 
     
     

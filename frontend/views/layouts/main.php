@@ -11,6 +11,7 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use backend\modules\website\models\Section;
 use backend\modules\website\models\Introduction;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 
@@ -298,7 +299,7 @@ $intro = Introduction::findOne(1);
           <figure id="thumbnail" class="loading content-fill" style="overflow: hidden;">
             <img data-src="bg.jpg" data-image="bg.jpg" data-image-dimensions="1152x534" data-image-focal-point="0.5,0.5" data-parent-ratio="2.7" alt="bg.jpg" class="" data-image-resolution="2500w" src="<?= $dirAssests?>/images/bg.jpg" style="font-size: 0px; left: 0px; top: -92.5599px; width: 1903px; height: 882.12px; position: relative;">
           </figure>
-          <div class="desc-wrapper" data-content-field="description"><p class="" style="white-space:pre-wrap;" id="yui_3_17_2_1_1617762541328_52"><strong data-shrink-original-size="86"><?=$intro->title?></strong> <br><?=$intro->title_content?></p><p class="" style="white-space:pre-wrap;"><a href="#" target=""><?=$intro->title_button?>/a></p></div>
+          <div class="desc-wrapper" data-content-field="description"><p class="" style="white-space:pre-wrap;" id="yui_3_17_2_1_1617762541328_52"><strong data-shrink-original-size="86"><?=$intro->title?></strong> <br><?=$intro->title_content?></p><p class="" style="white-space:pre-wrap;"><a href="#" target=""><?=$intro->title_button?></a></p></div>
         </div>
 
     <div class="index-section-wrapper page-content" id="yui_3_17_2_1_1617087493649_148">
@@ -334,7 +335,7 @@ $intro = Introduction::findOne(1);
                 has-aspect-ratio
               " data-animation-role="image" id="yui_3_17_2_1_1617087493649_141">
 
-            <img class="thumb-image loaded"  src="'.$dirAssests.'/images/pic1.jpeg" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
+            <img class="thumb-image loaded"  src="'.Url::to(['/section/section-image', 'id' => $sec->id]).'" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
           </div>
 
         </figure>

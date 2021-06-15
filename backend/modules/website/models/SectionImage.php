@@ -4,7 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\helpers\FileHelper;
-use karpoff\icrop\CropImageUploadBehavior;
+use specialist\icrop\CropImageUploadBehavior
 
 class SectionImage extends Section
 {

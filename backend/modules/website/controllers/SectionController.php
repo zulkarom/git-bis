@@ -8,7 +8,7 @@ use backend\modules\website\models\SectionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use backend\models\UploadFile;
 /**
  * SectionController implements the CRUD actions for Section model.
  */
@@ -93,6 +93,12 @@ class SectionController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionSectionImage($id){
+        $model = $this->findModel($id);
+        
+        UploadFile::sectionImage($model);
     }
 
     /**
