@@ -3,7 +3,8 @@
 namespace backend\modules\website\models;
 
 use Yii;
-
+use karpoff\icrop\CropImageUploadBehavior;
+use yii\helpers\FileHelper;
 /**
  * This is the model class for table "web_section".
  *
@@ -28,9 +29,12 @@ class Section extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'image_url'], 'required'],
+            [['title', 'content'], 'required'],
+
+            ['image_url', 'file', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+
             [['title'], 'string', 'max' => 50],
-            [['content', 'image_url'], 'string', 'max' => 255],
+            [['content'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,7 +47,7 @@ class Section extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'content' => 'Content',
-            'image_url' => 'Image Url',
+            'image_url' => 'Image',
         ];
     }
 }

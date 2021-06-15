@@ -9,10 +9,15 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use backend\modules\website\models\Section;
+use backend\modules\website\models\Introduction;
 
 AppAsset::register($this);
 
 $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets');
+$section = Section::find()->all();
+$intro = Introduction::findOne(1);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -47,7 +52,7 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
 
     <link rel="preconnect" href="https://images.squarespace-cdn.com/">
 
-    <title>BISNEST</title>
+    <title><?=$intro->title?></title>
 
 
 <script src="<?= $dirAssests?>/js/moment-js-vendor-26ddeab7fa5f90b6c8cb3-min.en-US.js" ></script>
@@ -293,12 +298,22 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
           <figure id="thumbnail" class="loading content-fill" style="overflow: hidden;">
             <img data-src="bg.jpg" data-image="bg.jpg" data-image-dimensions="1152x534" data-image-focal-point="0.5,0.5" data-parent-ratio="2.7" alt="bg.jpg" class="" data-image-resolution="2500w" src="<?= $dirAssests?>/images/bg.jpg" style="font-size: 0px; left: 0px; top: -92.5599px; width: 1903px; height: 882.12px; position: relative;">
           </figure>
-          <div class="desc-wrapper" data-content-field="description"><p class="" style="white-space:pre-wrap;" id="yui_3_17_2_1_1617762541328_52"><strong data-shrink-original-size="86">BISNEST</strong> <br>ONLINE INCUBATION PLATFORM</p><p class="" style="white-space:pre-wrap;"><a href="#" target="">Learn More</a></p></div>
+          <div class="desc-wrapper" data-content-field="description"><p class="" style="white-space:pre-wrap;" id="yui_3_17_2_1_1617762541328_52"><strong data-shrink-original-size="86"><?=$intro->title?></strong> <br><?=$intro->title_content?></p><p class="" style="white-space:pre-wrap;"><a href="#" target=""><?=$intro->title_button?>/a></p></div>
         </div>
 
     <div class="index-section-wrapper page-content" id="yui_3_17_2_1_1617087493649_148">
       <div class="content-inner has-content" data-content-field="main-content" id="yui_3_17_2_1_1617087493649_147">
-        <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1591027262856" id="page-5b477a7c352f537741b5d0f0"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412381143917_19852"><div class="sqs-block-content"><h2 style="text-align:center;white-space:pre-wrap;">BISNEST an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.</h2><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;</p></div></div></div></div><div class="row sqs-row" id="yui_3_17_2_1_1617087493649_146"><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_145"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-89ba24c9b1b815930621"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_144">
+        <div class="sqs-layout sqs-grid-12 columns-12" data-type="page" data-updated-on="1591027262856" id="page-5b477a7c352f537741b5d0f0"><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412381143917_19852"><div class="sqs-block-content"><h2 style="text-align:center;white-space:pre-wrap;"><?=$intro->intro_content?></h2><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;</p></div></div></div></div>
+
+
+        <div class="row sqs-row" id="yui_3_17_2_1_1617087493649_146">
+
+<!-- Picture 1 -->
+
+<?php
+    if($section){
+        foreach($section as $sec){
+            echo '<div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_145"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-89ba24c9b1b815930621"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_144">
 
     <div class="image-block-outer-wrapper
           layout-caption-hidden
@@ -319,96 +334,21 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@frontend/views/myassets')
                 has-aspect-ratio
               " data-animation-role="image" id="yui_3_17_2_1_1617087493649_141">
 
-            <img class="thumb-image loaded"  src="<?= $dirAssests?>/images/pic1.jpeg" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
+            <img class="thumb-image loaded"  src="'.$dirAssests.'/images/pic1.jpeg" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
           </div>
 
         </figure>
 
     </div>
 
-</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_17982"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">startups</h3><p style="text-align:center;white-space:pre-wrap;" class="">Bisnest assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.</p></div></div></div><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_167"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="74.44794952681389" data-block-type="5" id="block-ba568cf1c993e4f05d25"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_166">
-
-    <div class="image-block-outer-wrapper
-          layout-caption-hidden
-          design-layout-inline
-          combination-animation-none
-          individual-animation-none
-          individual-text-animation-none
-         sqs-narrow-width" data-test="image-block-inline-outer-wrapper" id="yui_3_17_2_1_1617087493649_165">
-
-        <figure class="
-              sqs-block-image-figure
-              intrinsic
-            " style="max-width:531px;" id="yui_3_17_2_1_1617087493649_164">
- 
-          <div style="padding-bottom: 74.448%; overflow: hidden;" class="
-                image-block-wrapper
-
-                has-aspect-ratio
-              " data-animation-role="image" id="yui_3_17_2_1_1617087493649_163">
-
-            <img class="thumb-image loaded"  alt="framerii*1024xx640-359-0-36.png" data-image-resolution="500w" src="<?= $dirAssests?>/images/pic3.jpeg" style="left: -5.0583%; top: 0%; width: 110.117%; height: 100%; position: absolute;">
-          </div>
-
-        </figure>
-
-    </div>
-
-</div></div>
-
-<div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_26226"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">investors</h3><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;Bisnest connect with investment opportunities in Malaysia.</p></div></div></div><div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_185"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-31b1741607adf5cd88cf"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_184">
+</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_17982"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">'.$sec->title.'</h3><p style="text-align:center;white-space:pre-wrap;" class="">'.$sec->content.'</p></div></div></div>';
+        }
+    }
+?>
+</div>
 
 
-    <div class="image-block-outer-wrapper
-          layout-caption-hidden
-          design-layout-inline
-          combination-animation-none
-          individual-animation-none
-          individual-text-animation-none
-         sqs-narrow-width" data-test="image-block-inline-outer-wrapper" id="yui_3_17_2_1_1617087493649_183">
-
-      
-
-      
-        <figure class="
-              sqs-block-image-figure
-              intrinsic
-            " style="max-width:2500px;" id="yui_3_17_2_1_1617087493649_182">
-          
-        
-        
-
-        
-          
-            
-          <div style="padding-bottom: 75.0789%; overflow: hidden;" class="
-                image-block-wrapper
-                
-          
-        
-                has-aspect-ratio
-              " data-animation-role="image" id="yui_3_17_2_1_1617087493649_181">
-       
-       
-       <img class="thumb-image loaded"  alt="DSC04377.jpg" data-image-resolution="500w" src="<?= $dirAssests?>/images/pic2.jpeg" style="left: -6.29789%; top: 0%; width: 112.596%; height: 100%; position: absolute;">
-          </div>
-        
-          
-        
-
-        
-      
-        </figure>
-      
-
-    </div>
-  
-
-
-  
-
-
-</div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_26996"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">ECOSYSTEM</h3><p style="text-align:center;white-space:pre-wrap;" class="">&nbsp;Bisnest create an entrepreneurial ecosystem focused on growing and sustaining the business and community.</p></div></div></div></div><div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block spacer-block sqs-block-spacer" data-aspect-ratio="2.156862745098039" data-block-type="21" id="block-yui_3_17_2_1_1571251032590_12502"><div class="sqs-block-content sqs-intrinsic" id="yui_3_17_2_1_1617087493649_280" style="padding-bottom: 2.15686%;">&nbsp;</div></div>
+<div class="row sqs-row"><div class="col sqs-col-12 span-12"><div class="sqs-block spacer-block sqs-block-spacer" data-aspect-ratio="2.156862745098039" data-block-type="21" id="block-yui_3_17_2_1_1571251032590_12502"><div class="sqs-block-content sqs-intrinsic" id="yui_3_17_2_1_1617087493649_280" style="padding-bottom: 2.15686%;">&nbsp;</div></div>
 
 
 <div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1544036262540_7945">

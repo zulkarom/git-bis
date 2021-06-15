@@ -7,34 +7,40 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\website\models\IntroductionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Introductions';
+$this->title = 'Introduction';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="introduction-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="card">
+    <div class="card-body">
+        <div class="introduction-index">
 
-    <p>
-        <?= Html::a('Create Introduction', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                    'title',
+                    'title_content',
+                    'title_button',
+                    'intro_content:ntext',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'title',
-            'title_content',
-            'title_button',
-            'intro_content:ntext',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn',
+                        'contentOptions' => ['style' => 'width: 10%'],
+                        'template' => '{update}',
+                        //'visible' => false,
+                        'buttons'=>[
+                            'update'=>function ($url, $model) {
+                                return Html::a('<span class="fa fa-edit"></span> UPDATE',['update', 'id' => $model->id],['class'=>'btn btn-warning btn-sm']);
+                            }
+                        ],
+                    
+                    ],   
+                ],
+            ]); ?>
 
 
+        </div>
+    </div>
 </div>

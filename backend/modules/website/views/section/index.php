@@ -7,33 +7,42 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\website\models\SectionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sections';
+$this->title = 'Section';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="section-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Section', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="card">
+    <div class="card-body">
+        <div class="section-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                //'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                    // 'id',
+                    'title',
+                    'content',
+                    'image_url:url',
 
-            'id',
-            'title',
-            'content',
-            'image_url:url',
+                    ['class' => 'yii\grid\ActionColumn',
+                        'contentOptions' => ['style' => 'width: 10%'],
+                        'template' => '{update}',
+                        //'visible' => false,
+                        'buttons'=>[
+                            'update'=>function ($url, $model) {
+                                return Html::a('<span class="fa fa-edit"></span> UPDATE',['update', 'id' => $model->id],['class'=>'btn btn-warning btn-sm']);
+                            }
+                        ],
+                    
+                    ],                
+                ],
+            ]); ?>
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
 
-
+        </div>
+    </div>
 </div>

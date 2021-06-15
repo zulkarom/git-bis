@@ -7,23 +7,42 @@ use yii\widgets\ActiveForm;
 /* @var $model backend\modules\website\models\Introduction */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<div class="card">
+    <div class="card-body">
+		<div class="introduction-form">
 
-<div class="introduction-form">
+		    <?php $form = ActiveForm::begin(); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+		    <div class="row">
+				<div class="col-md-6">
+		    		<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+		    	</div>
+		    </div>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+		    <div class="row">
+				<div class="col-md-6">
+		    		<?= $form->field($model, 'title_content')->textInput(['maxlength' => true]) ?>
+		    	</div>
+		    </div>
 
-    <?= $form->field($model, 'title_content')->textInput(['maxlength' => true]) ?>
+		    <div class="row">
+				<div class="col-md-6">
+		    		<?= $form->field($model, 'title_button')->textInput(['maxlength' => true]) ?>
+		    	</div>
+		    </div>
 
-    <?= $form->field($model, 'title_button')->textInput(['maxlength' => true]) ?>
+		    <div class="row">
+				<div class="col-md-6">
+		    		<?= $form->field($model, 'intro_content')->textarea(['rows' => 6]) ?>
+		    	</div>
+		    </div>
 
-    <?= $form->field($model, 'intro_content')->textarea(['rows' => 6]) ?>
+		    <div class="form-group">
+		        <?= Html::submitButton('Save Introduction', ['class' => 'btn btn-success']) ?>
+		    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+		    <?php ActiveForm::end(); ?>
 
-    <?php ActiveForm::end(); ?>
-
+		</div>
+	</div>
 </div>

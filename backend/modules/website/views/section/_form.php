@@ -2,26 +2,41 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use karpoff\icrop\CropImageUpload;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\website\models\Section */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<div class="card">
+    <div class="card-body">
+		<div class="section-form">
 
-<div class="section-form">
+		    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+		    <div class="row">
+				<div class="col-md-6">
+		    		<?= $form->field($model, 'title')->textInput(['maxlength' => true])?>
+		    	</div>
+		    </div>
 
-    <?php $form = ActiveForm::begin(); ?>
+		    <div class="row">
+				<div class="col-md-6">
+		    		<?= $form->field($model, 'content')->textarea(['rows' => '6'])?>
+		    	</div>
+		    </div>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+		    <div class="row">
+		        <div class="col-md-6">		    
+		  			<?= $form->field($model, 'image_url')->widget(CropImageUpload::className())?></th>    
+		        </div>
+		    </div>
 
-    <?= $form->field($model, 'content')->textInput(['maxlength' => true]) ?>
+		    <div class="form-group">
+		        <?= Html::submitButton('Save Content', ['class' => 'btn btn-success']) ?>
+		    </div>
 
-    <?= $form->field($model, 'image_url')->textInput(['maxlength' => true]) ?>
+		    <?php ActiveForm::end(); ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-
+		</div>
+	</div>
 </div>

@@ -19,8 +19,8 @@
                             <span class="nav-text">Website</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./uc-select2.html">Header</a></li>
-                            <li><a href="./uc-nestable.html">Content</a></li>
+                            <li><a href="./uc-select2.html">Introduction</a></li>
+                            <li><a href="website/section">Section</a></li>
                             <li><a href="./uc-noui-slider.html">Portfolio</a></li>
                         </ul>
                     </li>
