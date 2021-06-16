@@ -15,6 +15,12 @@ return [
         'website' => [
             'class' => 'backend\modules\website\Module',
         ],
+        'client' => [
+            'class' => 'backend\modules\client\Module',
+        ],
+        'expert' => [
+            'class' => 'backend\modules\expert\Module',
+        ],
     ],
     'components' => [
         'request' => [
