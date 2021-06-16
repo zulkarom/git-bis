@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2021 at 09:19 AM
+-- Generation Time: Jun 17, 2021 at 12:05 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -20,6 +20,42 @@ SET time_zone = "+00:00";
 --
 -- Database: `bisnet`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client`
+--
+
+CREATE TABLE `client` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `client_type` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `client_exper`
+--
+
+CREATE TABLE `client_exper` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
+  `expert_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expert`
+--
+
+CREATE TABLE `expert` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `expert_type` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -43,6 +79,17 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 ('m201221_083220_why_choose', 1608541584),
 ('m201222_023501_who_we_are', 1608604659),
 ('m201222_083600_header', 1608626268);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `service_type` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -129,10 +176,34 @@ INSERT INTO `web_section` (`id`, `title`, `content`, `image_url`) VALUES
 --
 
 --
+-- Indexes for table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `client_exper`
+--
+ALTER TABLE `client_exper`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expert`
+--
+ALTER TABLE `expert`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migration`
 --
 ALTER TABLE `migration`
   ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -164,6 +235,30 @@ ALTER TABLE `web_section`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `client`
+--
+ALTER TABLE `client`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `client_exper`
+--
+ALTER TABLE `client_exper`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `expert`
+--
+ALTER TABLE `expert`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
