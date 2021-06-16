@@ -19,9 +19,9 @@
                             <span class="nav-text">Website</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./uc-select2.html">Introduction</a></li>
+                            <li><a href="website/introduction">Introduction</a></li>
                             <li><a href="website/section">Section</a></li>
-                            <li><a href="./uc-noui-slider.html">Portfolio</a></li>
+                            <li><a href="website/portfolio">Portfolio</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
