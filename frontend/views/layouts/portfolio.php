@@ -6,33 +6,11 @@
   
 
   
-
-
-<div class="
-  sqs-gallery-container
-  sqs-gallery-block-grid
-  sqs-gallery-aspect-ratio-anamorphic-widescreen
-  sqs-gallery-thumbnails-per-row-3
-  
-  
-
-  
-    
-    
-  
-  sqs-gallery-block-show-meta
-  
-  
-
-  
-  
-
-  
-  block-animation-none
-  clear" id="yui_3_17_2_1_1617087493649_283">
+<center>
   <div class="sqs-gallery sqs-gallery-design-grid" id="yui_3_17_2_1_1617087493649_300">
           
-
+<div class="row sqs-row" id="yui_3_17_2_1_1617087493649_146">
+  <div class="col sqs-col-3 span-3">
             <div class="slide sqs-gallery-design-grid-slide sqs-active-slide" data-type="image" data-animation-role="image" id="yui_3_17_2_1_1617087493649_334">
               <div class="margin-wrapper">
                 
@@ -47,8 +25,9 @@
                 
               </div>
             </div>
+          </div>
           
-          
+          <div class="col sqs-col-3 span-3">
             <div class="slide sqs-gallery-design-grid-slide" data-type="image" data-animation-role="image" id="yui_3_17_2_1_1617087493649_335">
               <div class="margin-wrapper">
                 
@@ -64,6 +43,7 @@
                 
               </div>
             </div>
+          </div>
           
 
           
@@ -76,7 +56,7 @@
         
 
         
-          
+          <div class="col sqs-col-3 span-3">
             <div class="slide sqs-gallery-design-grid-slide" data-type="image" data-animation-role="image" id="yui_3_17_2_1_1617087493649_336">
               <div class="margin-wrapper">
                 
@@ -91,7 +71,9 @@
                 
               </div>
             </div>
+          </div>
 
+          <div class="col sqs-col-3 span-3">
             <div class="slide sqs-gallery-design-grid-slide" data-type="image" data-animation-role="image" id="yui_3_17_2_1_1617087493649_336">
               <div class="margin-wrapper">
                 
@@ -106,6 +88,7 @@
                 
               </div>
             </div>
+          </div>
           
 
           
@@ -117,7 +100,6 @@
 
   
 
-</div>
 
 
 
@@ -129,4 +111,6 @@
 
 
 
-</div></div>
+</div>
+</center>
+</div>
