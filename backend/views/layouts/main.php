@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use backend\assets\BisAsset;
 use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -11,6 +12,7 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 AppAsset::register($this);
+BisAsset::register($this);
 $dirAssests=Yii::$app->assetManager->getPublishedUrl('@backend/views/myassets');
 ?>
 <?php $this->beginPage() ?>

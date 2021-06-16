@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2021 at 11:56 PM
+-- Generation Time: Jun 16, 2021 at 09:19 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -84,6 +84,13 @@ CREATE TABLE `web_intro` (
   `intro_content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `web_intro`
+--
+
+INSERT INTO `web_intro` (`id`, `title`, `title_content`, `title_button`, `intro_content`) VALUES
+(1, 'BISNEST', 'ONLINE INCUBATION PLATFORM', 'LEARN MORE', 'BISNEST an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.');
+
 -- --------------------------------------------------------
 
 --
@@ -107,6 +114,15 @@ CREATE TABLE `web_section` (
   `content` varchar(255) NOT NULL,
   `image_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `web_section`
+--
+
+INSERT INTO `web_section` (`id`, `title`, `content`, `image_url`) VALUES
+(1, 'STARTUPS', 'Bisnest assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.', 'pic1.jpeg'),
+(2, 'INVESTORS', 'Bisnest connect with investment opportunities in Malaysia.', 'pic2.jpeg'),
+(3, 'ECOSYSTEM', ' Bisnest create an entrepreneurial ecosystem focused on growing and sustaining the business and community.', 'pic3.jpeg');
 
 --
 -- Indexes for dumped tables
@@ -159,7 +175,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `web_intro`
 --
 ALTER TABLE `web_intro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `web_portfolio`
@@ -171,7 +187,7 @@ ALTER TABLE `web_portfolio`
 -- AUTO_INCREMENT for table `web_section`
 --
 ALTER TABLE `web_section`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
