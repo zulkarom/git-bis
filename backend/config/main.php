@@ -21,6 +21,11 @@ return [
         'expert' => [
             'class' => 'backend\modules\expert\Module',
         ],
+        'chat' => [
+            'class' => 'slavkovrn\chat\ChatModule',
+            'numberLastMessages' => 30,
+        ],
+
     ],
     'components' => [
         'request' => [

@@ -3,6 +3,8 @@
 namespace backend\modules\website\models;
 
 use Yii;
+use specialist\icrop\CropImageUploadBehavior;
+use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "web_portfolio".
@@ -40,5 +42,28 @@ class Portfolio extends \yii\db\ActiveRecord
             'id' => 'ID',
             'image_url' => 'Image Url',
         ];
+    }
+
+
+    public function behaviors()
+    {
+
+        $directory = Yii::getAlias('@uploaded/website/portfolio/');
+        if (!is_dir($directory)) {
+            FileHelper::createDirectory($directory);
+        }
+
+        return [
+            [
+                'class' => CropImageUploadBehavior::className(),
+                'attribute' => 'image_url',
+                'scenarios' => ['insert', 'update'],
+                //'placeholder' => '@app/web/images/test.png',
+                'path' => $directory,
+                'url' => '',
+                'ratio' => 1,
+            ],
+        ];
+
     }
 }

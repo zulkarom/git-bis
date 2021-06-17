@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07e1b89cc56721f33d70922830777cf6",
+    "content-hash": "e27907ef81b750a0cc3d6d239fbae980",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1974,6 +1974,54 @@
                 "source": "https://github.com/select2/select2/tree/4.0.13"
             },
             "time": "2020-01-28T05:01:22+00:00"
+        },
+        {
+            "name": "slavkovrn/yii2-chat",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SlavKoVrn/yii2-chat.git",
+                "reference": "7d1479d6ee4f0767e1166ac719ab1f85933dbea7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SlavKoVrn/yii2-chat/zipball/7d1479d6ee4f0767e1166ac719ab1f85933dbea7",
+                "reference": "7d1479d6ee4f0767e1166ac719ab1f85933dbea7",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "slavkovrn\\chat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Viacheslav Kolesnikov",
+                    "email": "slavko.chita@gmail.com",
+                    "homepage": "http://yii2.kadastrcard.ru"
+                }
+            ],
+            "description": "The Yii2 extension module to chat registered users.",
+            "keywords": [
+                "Users",
+                "chat",
+                "extension",
+                "registered",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/SlavKoVrn/yii2-chat/issues",
+                "source": "https://github.com/SlavKoVrn/yii2-chat.git"
+            },
+            "time": "2017-08-29T00:10:40+00:00"
         },
         {
             "name": "specialist/yii2-crop-image-upload",

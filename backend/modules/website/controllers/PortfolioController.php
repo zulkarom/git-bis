@@ -38,12 +38,19 @@ class PortfolioController extends Controller
      */
     public function actionIndex()
     {
+        $model = new Portfolio();
+
         $searchModel = new PortfolioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->refresh();
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
 
