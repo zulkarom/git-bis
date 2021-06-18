@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\controllers;
+namespace website\controllers;
 
 use Yii;
 use backend\modules\website\models\Section;
