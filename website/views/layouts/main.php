@@ -314,7 +314,9 @@ $intro = Introduction::findOne(1);
 
 <?php
     if($section){
+        $i = 1;
         foreach($section as $sec){
+            $web = Yii::getAlias('@web');
             echo '<div class="col sqs-col-4 span-4" id="yui_3_17_2_1_1617087493649_145"><div class="sqs-block image-block sqs-block-image sqs-text-ready" data-aspect-ratio="75.0788643533123" data-block-type="5" id="block-89ba24c9b1b815930621"><div class="sqs-block-content" id="yui_3_17_2_1_1617087493649_144">
 
     <div class="image-block-outer-wrapper
@@ -336,7 +338,7 @@ $intro = Introduction::findOne(1);
                 has-aspect-ratio
               " data-animation-role="image" id="yui_3_17_2_1_1617087493649_141">
 
-            <img class="thumb-image loaded"  src="'.Url::to(['/section/section-image', 'id' => $sec->id]).'" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
+            <img class="thumb-image loaded"  src="'.$web.'/images/pic'.$i.'.jpeg" data-image-resolution="750w" src="Goodwipes%20header.jpg" style="left: -29.6291%; top: 0%; width: 159.258%; height: 100%; position: absolute;">
           </div>
 
         </figure>
@@ -344,6 +346,7 @@ $intro = Introduction::findOne(1);
     </div>
 
 </div></div><div class="sqs-block html-block sqs-block-html" data-block-type="2" id="block-yui_3_17_2_1_1412379595434_17982"><div class="sqs-block-content"><h3 style="text-align:center;white-space:pre-wrap;">'.$sec->title.'</h3><p style="text-align:center;white-space:pre-wrap;" class="">'.$sec->content.'</p></div></div></div>';
+            $i++;
         }
     }
 ?>
