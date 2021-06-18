@@ -1,6 +1,6 @@
 <?php
 
-namespace website\controllers;
+namespace frontend\controllers;
 
 use Yii;
 use backend\modules\website\models\Section;
@@ -27,7 +27,7 @@ class SectionController extends Controller
             ],
         ];
     }
-
+    
     public function actionSectionImage($id){
         $model = Section::findOne($id);
         
