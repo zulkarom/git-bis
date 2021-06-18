@@ -9,8 +9,24 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'bootstrap' => ['log'],
+    'modules' => [
+        'website' => [
+            'class' => 'frontend\modules\website\Module',
+        ],
+        'client' => [
+            'class' => 'frontend\modules\client\Module',
+        ],
+        'expert' => [
+            'class' => 'frontend\modules\expert\Module',
+        ],
+        'chat' => [
+            'class' => 'slavkovrn\chat\ChatModule',
+            'numberLastMessages' => 30,
+        ],
+
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -36,14 +52,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        
+        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        
+        */
     ],
     'params' => $params,
 ];

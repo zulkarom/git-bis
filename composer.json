@@ -18,6 +18,7 @@
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+        "yiisoft/yii2-bootstrap4": "~2.0.6",
         "kartik-v/yii2-widgets": "*",
         "karpoff/yii2-crop-image-upload": "*",
         "specialist/yii2-crop-image-upload": "@dev",

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\widgets\ActiveForm;
 use yii\helpers\Url;
 use specialist\icrop\CropImageUpload;
 /* @var $this yii\web\View */
