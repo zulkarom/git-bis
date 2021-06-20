@@ -3,7 +3,7 @@
 namespace backend\modules\website\models;
 
 use Yii;
-use specialist\icrop\CropImageUploadBehavior;
+use karpoff\icrop\CropImageUploadBehavior;
 use yii\helpers\FileHelper;
 
 /**
@@ -29,6 +29,7 @@ class Portfolio extends \yii\db\ActiveRecord
     {
         return [
             [['image_url'], 'required'],
+            ['image_url', 'file', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
             [['image_url'], 'string', 'max' => 255],
         ];
     }
@@ -48,7 +49,7 @@ class Portfolio extends \yii\db\ActiveRecord
     public function behaviors()
     {
 
-        $directory = Yii::getAlias('@uploaded/website/portfolio/');
+        $directory = Yii::getAlias('@uploaded/website/portfolio');
         if (!is_dir($directory)) {
             FileHelper::createDirectory($directory);
         }

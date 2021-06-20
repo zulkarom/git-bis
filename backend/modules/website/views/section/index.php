@@ -11,8 +11,6 @@ $this->title = 'Section';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<h1><?= Html::encode($this->title) ?></h1>
-
 <div class="card">
     <div class="card-body">
         <div class="section-index">

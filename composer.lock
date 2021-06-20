@@ -4,8 +4,23 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "feb71997533b5f1f2c494412400a733e",
+    "content-hash": "2c3a159864a2db5b7824fc503dc86747",
     "packages": [
+        {
+            "name": "bower-asset/autosize",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jackmoore/autosize.git",
+                "reference": "6ae70cd3d28888eb858eef1167e6ed75d25dff7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jackmoore/autosize/zipball/6ae70cd3d28888eb858eef1167e6ed75d25dff7f",
+                "reference": "6ae70cd3d28888eb858eef1167e6ed75d25dff7f"
+            },
+            "type": "bower-asset"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.4.1",
@@ -165,6 +180,57 @@
                 "source": "https://github.com/cebe/markdown"
             },
             "time": "2018-03-26T11:24:36+00:00"
+        },
+        {
+            "name": "djabiev/yii2-autosize-textarea",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/djabiev/yii2-autosize-textarea.git",
+                "reference": "510e367d380ac988a279749811e4a4dd4485e5c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/djabiev/yii2-autosize-textarea/zipball/510e367d380ac988a279749811e4a4dd4485e5c4",
+                "reference": "510e367d380ac988a279749811e4a4dd4485e5c4",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/autosize": "*",
+                "yiisoft/yii2": "~2"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "djabiev\\yii\\assets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Djabiev",
+                    "email": "djabiev@gmail.com",
+                    "homepage": "https://github.com/djabiev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An Yii2 Textarea Autosize extension based on Jack Moore's javascript library.",
+            "homepage": "https://github.com/djabiev/yii2-autosize-textarea",
+            "keywords": [
+                "javascript",
+                "textarea autosize",
+                "yii2",
+                "yii2-autosize-textarea"
+            ],
+            "support": {
+                "issues": "https://github.com/djabiev/yii2-autosize-textarea/issues",
+                "source": "https://github.com/djabiev/yii2-autosize-textarea/tree/master"
+            },
+            "time": "2017-09-28T00:00:00+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -465,16 +531,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v5.2.1",
+            "version": "v5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "277dc8dfd5e1a89888129a4d252efdab9751b738"
+                "reference": "c05214460c4f61fe34d9015a8939e3d3eb498435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/277dc8dfd5e1a89888129a4d252efdab9751b738",
-                "reference": "277dc8dfd5e1a89888129a4d252efdab9751b738",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/c05214460c4f61fe34d9015a8939e3d3eb498435",
+                "reference": "c05214460c4f61fe34d9015a8939e3d3eb498435",
                 "shasum": ""
             },
             "type": "library",
@@ -516,7 +582,7 @@
             ],
             "support": {
                 "issues": "https://github.com/kartik-v/bootstrap-fileinput/issues",
-                "source": "https://github.com/kartik-v/bootstrap-fileinput/tree/v5.2.1"
+                "source": "https://github.com/kartik-v/bootstrap-fileinput/tree/v5.2.2"
             },
             "funding": [
                 {
@@ -524,7 +590,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-05-19T12:58:26+00:00"
+            "time": "2021-06-19T08:30:18+00:00"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -5491,6 +5557,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-11-30T07:30:19+00:00"
         },
         {
@@ -6839,7 +6906,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "specialist/yii2-crop-image-upload": 20
+        "specialist/yii2-crop-image-upload": 20,
+        "djabiev/yii2-autosize-textarea": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
