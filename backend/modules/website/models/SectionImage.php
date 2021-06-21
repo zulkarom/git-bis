@@ -1,10 +1,10 @@
 <?php
 
-namespace backend\models;
+namespace backend\modules\website\models;
 
 use Yii;
 use yii\helpers\FileHelper;
-use specialist\icrop\CropImageUploadBehavior
+use specialist\icrop\CropImageUploadBehavior;
 
 class SectionImage extends Section
 {

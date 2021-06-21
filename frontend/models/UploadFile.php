@@ -18,12 +18,12 @@ class UploadFile
 		}
 		
 		if($customView){
-			$view = '@frontend/views/upload-tmpl/' . $customView;
+			$view = '@backend/views/upload-tmpl/' . $customView;
 		}else{
 			if($multiple){
-				$view = '@frontend/views/upload-tmpl/main-multiple';
+				$view = '@backend/views/upload-tmpl/main-multiple';
 			}else{
-				$view = '@frontend/views/upload-tmpl/main-file';
+				$view = '@backend/views/upload-tmpl/main-file';
 			}
 		}
 		
@@ -222,15 +222,15 @@ class UploadFile
 		return '';
 	}
 	
-	public static function sectionImage($model){
+	public static function download($model){
 		
-		$file = Yii::getAlias('@uploaded/website/section/' . $model->image_url);
+		$file = Yii::getAlias('@upload/frontend/' . $model->upload_image);
         
-        if($model->image_url){
+        if($model->upload_image){
             if (file_exists($file)) {
-            $ext = pathinfo($model->image_url, PATHINFO_EXTENSION);
+            $ext = pathinfo($model->upload_image, PATHINFO_EXTENSION);
 
-            $filename =  'section.' . $ext ;
+            $filename =  'profile.' . $ext ;
             
             self::sendFile($file, $filename, $ext);
             

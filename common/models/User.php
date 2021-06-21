@@ -58,6 +58,16 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function getChatname()
+    {
+        return User::find()->where(['id' => Yii::$app->user->id])->one()['username'];
+    }
+ 
+    public function getChaticon()
+    {
+        return User::find()->where(['id' => Yii::$app->user->id])->one()['username'];
+    }
+
     /**
      * {@inheritdoc}
      */

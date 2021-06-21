@@ -31,34 +31,13 @@ class Section extends \yii\db\ActiveRecord
         return [
             [['title', 'content'], 'required'],
 
-            ['image_url', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+            ['image_url', 'file', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['title'], 'string', 'max' => 50],
             [['content'], 'string', 'max' => 255],
         ];
     }
 
-    public function behaviors()
-    {
-
-        $directory = Yii::getAlias('@uploaded/website/section/');
-        if (!is_dir($directory)) {
-            FileHelper::createDirectory($directory);
-        }
-
-        return [
-            [
-                'class' => CropImageUploadBehavior::className(),
-                'attribute' => 'image_url',
-                'scenarios' => ['insert', 'update'],
-                //'placeholder' => '@app/web/images/test.png',
-                'path' => $directory,
-                'url' => '',
-                'ratio' => 1,
-            ],
-        ];
-
-    }
     /**
      * {@inheritdoc}
      */

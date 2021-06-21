@@ -29,6 +29,7 @@ use specialist\icrop\CropImageUpload;
 		        <div class="col-md-6">		    
 		  			
 		  			<?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
+		  			
 		        </div>
 		    </div>
 

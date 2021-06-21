@@ -11,18 +11,17 @@ use kartik\widgets\ActiveForm;
 $this->title = 'Portfolio';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="card">
     <div class="card-body">
         <div class="portfolio-form">
 
+            
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+                <?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
 
-            <?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
-
-            <div class="form-group">
-                <?= Html::submitButton('Add Image', ['class' => 'btn btn-success']) ?>
-            </div>
+                <div class="form-group">
+                    <?= Html::submitButton('Add Image', ['class' => 'btn btn-success']) ?>
+                </div>
 
             <?php ActiveForm::end(); ?>
 
@@ -73,3 +72,29 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+
+<?php
+$js = "function ajaxSubmit(){
+    $.ajax({url: '<?=Url::to(['/staff/submit-form'])?>', 
+    timeout: 1000,     // timeout milliseconds
+    type: 'POST',  // http method
+    data: { 
+        campaign: $('#con-campaign-id').val(),
+        product: $('#con-product-id').val(),
+        qty: $('#con-quantity-id').val(),
+        customer: $('#customer_id').val()
+    },
+    success: function(result){
+        $('#result-submit').html(result);
+    },
+    error: function (jqXhr, textStatus, errorMessage) { // error callback 
+        $('#result-submit').append('Error: ' + errorMessage);
+    }
+  
+  
+  });
+}
+";
+
+$this->registerJs($js);
+?>

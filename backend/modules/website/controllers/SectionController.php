@@ -4,6 +4,7 @@ namespace backend\modules\website\controllers;
 
 use Yii;
 use backend\modules\website\models\Section;
+use backend\modules\website\models\SectionImage;
 use backend\modules\website\models\SectionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -88,10 +89,20 @@ class SectionController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findSectionImage($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            echo "<pre>";
+            print_r(Yii::$app->request->post());
+            die();
+
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data saved.");
+               return $this->refresh(); 
+           }else{
+            return $model->flashError();
+           }
+            
         }
 
         return $this->render('update', [
@@ -132,6 +143,15 @@ class SectionController extends Controller
             return $model;
         }
 
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findSectionImage($id)
+    {
+        if (($model = SectionImage::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+        
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

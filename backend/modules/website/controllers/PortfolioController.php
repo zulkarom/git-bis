@@ -43,8 +43,15 @@ class PortfolioController extends Controller
         $searchModel = new PortfolioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->refresh();
+        if ($model->load(Yii::$app->request->post())) {
+
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data saved.");
+               return $this->refresh(); 
+           }else{
+            return $model->flashError();
+           }
+            
         }
 
         return $this->render('index', [

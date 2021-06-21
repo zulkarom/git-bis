@@ -8,34 +8,55 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+	'name'=>'frontend',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'frontend\controllers',
     'bootstrap' => ['log'],
+    'controllerNamespace' => 'frontend\controllers',
     'modules' => [
-        'website' => [
-            'class' => 'frontend\modules\website\Module',
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'controllerMap' => [
+                'registration' => 'frontend\controllers\user\RegistrationController',
+                'security' => 'frontend\controllers\user\SecurityController',
+                'recovery' => 'frontend\controllers\user\RecoveryController'
+            ],
+            'modelMap' => [
+                'RegistrationForm' => 'frontend\models\user\RegistrationForm',
+                'User' => 'common\models\User',
+                'LoginForm' => 'frontend\models\user\LoginForm',
+            ],
+            'enableConfirmation' => true,
+            'enableUnconfirmedLogin' => true,
+            'enableFlashMessages' => false,
         ],
-        'client' => [
-            'class' => 'frontend\modules\client\Module',
-        ],
-        'expert' => [
-            'class' => 'frontend\modules\expert\Module',
-        ],
-        'chat' => [
-            'class' => 'slavkovrn\chat\ChatModule',
-            'numberLastMessages' => 30,
-        ],
-
     ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+		
+		'urlManager' => [
+            'enablePrettyUrl' => true,
+             'showScriptName' => false,
+            'rules' => [
+			'<controller>/<action>' => '<controller>/<action>',
+			
+			
+            ],
         ],
+		
+		'view' => [
+			'theme' => [
+				'pathMap' => [
+					'@dektrium/user/views' => '@frontend/views/user'
+				],
+			],
+		],
+        // 'user' => [
+        //     'identityClass' => 'common\models\User',
+        //     'enableAutoLogin' => true,
+        //     'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+        // ], 
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
@@ -52,6 +73,19 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'profile/*',
+            //'application/*',
+            //'some-controller/some-action',
+            // The actions listed here will be allowed to everyone including guests.
+            // So, 'admin/*' should not appear here in the production, of course.
+            // But in the earlier stages of your development, you may probably want to
+            // add a lot of actions here until you finally completed setting up rbac,
+            // otherwise you may not even take a first step.
+            ]
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -61,5 +95,19 @@ return [
         ],
         */
     ],
+	
+	/* 'modules' => [
+        'supplier' => [
+            'class' => 'frontend\modules\supplier\Module',
+        ],
+		'catalog' => [
+            'class' => 'frontend\modules\catalog\Module',
+        ],
+		'client' => [
+            'class' => 'frontend\modules\client\Module',
+        ],
+    ], */
+	
+	
     'params' => $params,
 ];
