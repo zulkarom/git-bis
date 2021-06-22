@@ -11,16 +11,11 @@ use common\models\Common;
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/views/myasset');
 
-$this->title = 'Bisnet';
+$this->title = 'Briged Gayong';
 $this->params['breadcrumbs'][] = $this->title;
 
 
 $fieldOptionsRole = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
-];
-
-$fieldOptionsFullname = [
     'options' => ['class' => 'form-group has-feedback'],
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
 ];
@@ -30,15 +25,6 @@ $fieldOptionsUsername = [
     'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
 ];
 
-$fieldOptions1 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
-];
-
-$fieldOptions2 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
-];
 ?>
 
 <style type="text/css">
@@ -52,16 +38,9 @@ $fieldOptions2 = [
 
 
 
-            <?php $form = ActiveForm::begin([
-                    'id' => 'form-signup',
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                    'validateOnBlur' => false,
-                    'validateOnType' => false,
-                    'validateOnChange' => false,
-                ]); ?>
+ <?php $form = ActiveForm::begin()?>
 				
-				<div class="admin-form theme-info scroll" id="login1" style="position: fixed;
+<div class="admin-form theme-info scroll" id="login1" style="position: fixed;
     top: 0px;
     right: 0px;
     width: 300px;
@@ -84,11 +63,11 @@ $fieldOptions2 = [
 														<div class="section">
 				<?= $form
             ->field($model, 'role')
-            ->dropDownList(Common::role(), ['prompt' => 'Pilih Kategori Pengguna'])
+            ->dropDownList(Common::role(), ['prompt' => 'Pilih Kategori Pengguna' ])
             ->label(false)?>
 			</div>
 
-			<div class="section">
+							<div class="section">
 
                 <?= $form
 				->field($model, 'username')
@@ -96,38 +75,13 @@ $fieldOptions2 = [
 				->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
 				</div>
 
-							<div class="section">
-                <?= $form
-            ->field($model, 'fullname')
-            ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('fullname')]) ?>
-			</div>
-							
-							<div class="section">
-				<?= $form
-            ->field($model, 'email')
-            ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('email')]) ?>
-				</div>
-							<div class="section">
-				<?= $form
-				->field($model, 'password')
-				->label(false)
-				->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
-				</div>
-							<div class="section">
-				<?= $form
-				->field($model, 'password_repeat')
-				->label(false)
-				->passwordInput(['placeholder' => $model->getAttributeLabel('password_repeat')]) ?>
-				</div>
 				</div>
 				</div>
 			
 			<div class="panel-footer clearfix p10 ph15">
 
                 
-                    <?= Html::submitButton('DAFTAR', ['class' => 'button btn-primary mr10 pull-right', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('Next', ['class' => 'button btn-primary mr10 pull-right', 'name' => 'signup-button']) ?>
                 </div>
 				
 				

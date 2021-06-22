@@ -8,43 +8,31 @@ use dektrium\user\models\LoginForm as BaseLoginForm;
  */
 class LoginForm extends BaseLoginForm
 {
+	public $role;
 	
 	public function rules()
     {
         $rules = parent::rules();
-		
-		$rules['loginLength']  = ['login', 'string'];
-
+        $rules[]  = ['role', 'required'];
+       
+		$rules[]  = ['login', 'number', 'message' => '{attribute} mestilah dalam bentuk nombor tanpa "-"'];
+		$rules[]  = ['role', 'validateRole'];
         return $rules;
     }
 	
 	public function attributeLabels()
     {
 		$labels = parent::attributeLabels();
-		$labels['login'] = 'frontend Code';
+		$labels['login'] = 'No. Kad Pengenalan';
         return $labels;
     }
-	
-	public function login(){
-		
-		if(parent::login()){
-			if(true){
-				return true;
-			}else{
-				\Yii::$app->user->logout();
-				$this->addError('password', \Yii::t('user', 'Access Denied'));
-				return false;
-			}
-		}else{
-			return false;
-		}
-	}
-	
-	public function findUserByUsername($username){
-	    return User::findOne(['user_name' => $username]);
-	}
-	
-
-	
-	
+    
+    public function validateRole($attribute, $params, $validator)
+    {
+        if(!User::checkRoleExistByUsername($this->login, $this->role)){
+            $this->addError($attribute, 'Sila pilih fungsi yang berkenaan sahaja.');
+        }
+    }
+    
+    
 }

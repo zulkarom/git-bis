@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06139e3dc8646135f7d5590a2280cae2",
+    "content-hash": "ce387708a13569607e604d9e0c48e3a2",
     "packages": [
         {
             "name": "bower-asset/autosize",
@@ -26,7 +26,7 @@
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
+                "url": "git@github.com:twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -83,7 +83,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -213,63 +213,6 @@
                 "source": "https://github.com/cebe/markdown"
             },
             "time": "2018-03-26T11:24:36+00:00"
-        },
-        {
-            "name": "dektrium/yii2-rbac",
-            "version": "1.0.0-alpha",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dektrium/yii2-rbac.git",
-                "reference": "0943e66c450132b306584a37caefc2aa04258372"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dektrium/yii2-rbac/zipball/0943e66c450132b306584a37caefc2aa04258372",
-                "reference": "0943e66c450132b306584a37caefc2aa04258372",
-                "shasum": ""
-            },
-            "require": {
-                "kartik-v/yii2-widget-select2": "^2.0",
-                "yiisoft/yii2": "^2.0.8"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "bootstrap": "dektrium\\rbac\\Bootstrap",
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "dektrium\\rbac\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dmitry Erofeev",
-                    "email": "dmeroff@gmail.com",
-                    "homepage": "http://dmeroff.ru"
-                }
-            ],
-            "description": "RBAC management module for Yii2",
-            "keywords": [
-                "dektrium",
-                "rbac gui",
-                "rbac management",
-                "rbac module",
-                "yii rbac",
-                "yii2",
-                "yii2-rbac"
-            ],
-            "support": {
-                "issues": "https://github.com/dektrium/yii2-rbac/issues?state=open",
-                "source": "https://github.com/dektrium/yii2-rbac"
-            },
-            "time": "2016-08-15T15:49:54+00:00"
         },
         {
             "name": "dektrium/yii2-user",
@@ -5938,7 +5881,6 @@
                     "type": "github"
                 }
             ],
-            "abandoned": true,
             "time": "2020-11-30T07:30:19+00:00"
         },
         {
@@ -7287,7 +7229,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "dektrium/yii2-rbac": 20,
         "specialist/yii2-crop-image-upload": 20,
         "specialist/yii2-cropper": 20,
         "djabiev/yii2-autosize-textarea": 20

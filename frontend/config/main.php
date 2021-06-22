@@ -22,7 +22,7 @@ return [
             ],
             'modelMap' => [
                 'RegistrationForm' => 'frontend\models\user\RegistrationForm',
-                'User' => 'common\models\User',
+                'User' => 'frontend\models\user\User',
                 'LoginForm' => 'frontend\models\user\LoginForm',
             ],
             'enableConfirmation' => true,
