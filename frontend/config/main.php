@@ -35,16 +35,6 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
 		
-		'urlManager' => [
-            'enablePrettyUrl' => true,
-             'showScriptName' => false,
-            'rules' => [
-			'<controller>/<action>' => '<controller>/<action>',
-			
-			
-            ],
-        ],
-		
 		'view' => [
 			'theme' => [
 				'pathMap' => [

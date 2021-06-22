@@ -61,6 +61,16 @@ class PortfolioController extends Controller
         ]);
     }
 
+    public function actionAjax()
+    {
+        
+            $test = "Ajax Worked!";
+            echo $test;
+            die();
+            // do your query stuff here
+       
+    }
+
     /**
      * Displays a single Portfolio model.
      * @param integer $id

@@ -22,7 +22,7 @@ return [
             'class' => 'backend\modules\expert\Module',
         ],
         'chat' => [
-            'class' => 'slavkovrn\chat\ChatModule',
+            'class' => 'backend\modules\chat\ChatModule',
             'numberLastMessages' => 30,
         ],
 

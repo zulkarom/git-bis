@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use karpoff\icrop\CropImageUpload; 
 use kartik\widgets\ActiveForm;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\website\models\PortfolioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Add Image', ['class' => 'btn btn-success']) ?>
+                    <button type="button" class="btn btn-success" id="btn-run"><span class="fa fa-plus"></span>Add Image</button>
                 </div>
 
             <?php ActiveForm::end(); ?>
@@ -74,15 +75,14 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?php
-$js = "function ajaxSubmit(){
-    $.ajax({url: '<?=Url::to(['/staff/submit-form'])?>', 
+
+
+$js = "function ajaxSubmit(element){
+    $.ajax({url: '".Url::to(['/website/portfolio/ajax'])."', 
     timeout: 1000,     // timeout milliseconds
     type: 'POST',  // http method
     data: { 
-        campaign: $('#con-campaign-id').val(),
-        product: $('#con-product-id').val(),
-        qty: $('#con-quantity-id').val(),
-        customer: $('#customer_id').val()
+        image: $('#portfolio-image_url').val(),
     },
     success: function(result){
         $('#result-submit').html(result);
@@ -97,4 +97,15 @@ $js = "function ajaxSubmit(){
 ";
 
 $this->registerJs($js);
+
+$this->registerJs("
+$('#btn-run').click(function(){
+    $('#btn-action').val(1);
+    if(confirm('Are you sure to run this autoload?')){
+        ajaxSubmit();
+    }
+    
+});
+");
+
 ?>
