@@ -1,154 +1,80 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \frontend\models\SignupForm */
-
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use common\models\Common;
 
-$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@frontend/views/myasset');
 
-$this->title = 'Bisnet';
+$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/assets/frontLogin');
+
+$this->title = 'Sign Up Form by Bisnet';
 $this->params['breadcrumbs'][] = $this->title;
 
-
-$fieldOptionsRole = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
-];
-
-$fieldOptionsFullname = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
-];
-
-$fieldOptionsUsername = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-user form-control-feedback'></span>"
-];
-
-$fieldOptions1 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
-];
-
-$fieldOptions2 = [
-    'options' => ['class' => 'form-group has-feedback'],
-    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
-];
 ?>
 
 <style type="text/css">
-    
-    .scroll {
-    overflow-y: auto;
+.loginhere {
+    margin-top: 31px !important ;
 }
-
+h2 {
+    font-size: 16px !important;
+    margin-bottom: 15px !important;
+    margin-top: 15px !important;
+}
+.signup-content {
+    padding: 25px 85px !important;
+}
 </style>
 
 
+<div class="main">
 
+    <section class="signup">
+        <!-- <img src="images/signup-bg.jpg" alt=""> -->
+        <div class="container">
+            <div class="signup-content">
 
-            <?php $form = ActiveForm::begin([
-                    'id' => 'form-signup',
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                    'validateOnBlur' => false,
-                    'validateOnType' => false,
-                    'validateOnChange' => false,
-                ]); ?>
-				
-				<div class="admin-form theme-info scroll" id="login1" style="position: fixed;
-    top: 0px;
-    right: 0px;
-    width: 300px;
-    height: 100%;
-    margin-top: 0px;
-    background-color: #fff;">
+                <?php $form = ActiveForm::begin(); ?>
+                <center><img src="<?= $directoryAsset ?>/images/logo.png" title="Bisnet" class="img-responsive " style="width:55%;margin:auto"></center>
+                    <h2 class="form-title">Create account</h2>
+                        <?= $form
+			            ->field($model, 'role')
+			            ->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'form-input'])
+			            ->label(false)
+			           ?>
+                        <?= $form
+				            ->field($model, 'email')
+				            ->label(false)
+				            ->textInput(['placeholder' => 'Your Email', 'class' => 'form-input']) 
+				         ?>
+                        <?= $form
+				            ->field($model, 'fullname')
+				            ->label(false)
+				            ->textInput(['placeholder' => 'Your Name', 'class' => 'form-input']) 
+				        ?>
+                        <?= $form
+							->field($model, 'password')
+							->label(false)
+							->passwordInput(['placeholder' => 'Password', 'class' => 'form-input'])
+						?>
+                        <?= $form
+							->field($model, 'password_repeat')
+							->label(false)
+							->passwordInput(['placeholder' => 'Repeat your password', 'class' => 'form-input']) 
+						?>
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"></span></span>I agree all statements in  <a href="#" class="term-service"><u>Terms of service</u></a></label>
 
-		
-			
-		<div class="panel panel-info mt10 br-n" style="box-shadow: none">
-		
-
-			<a href="<?=Url::to(['/../home'])?>"><img src="<?= $directoryAsset ?>/img/logo_transparent.png" title="E-FASI" class="img-responsive " style="width:65%;margin:auto"></a>
-			<font size="4px"><center><b>PENDAFTARAN</b></center></font>
-			<!-- end .form-header section -->
-			
-				<div class="panel-body bg-light p30">
-					<div class="row">
-						<div class="col-sm-12 pr30">
-														<div class="section">
-				<?= $form
-            ->field($model, 'role')
-            ->dropDownList(Common::role(), ['prompt' => 'Pilih Kategori Pengguna'])
-            ->label(false)?>
-			</div>
-
-			<div class="section">
-
-                <?= $form
-				->field($model, 'username')
-				->label(false)
-				->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
-				</div>
-
-							<div class="section">
-                <?= $form
-            ->field($model, 'fullname')
-            ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('fullname')]) ?>
-			</div>
-							
-							<div class="section">
-				<?= $form
-            ->field($model, 'email')
-            ->label(false)
-            ->textInput(['placeholder' => $model->getAttributeLabel('email')]) ?>
-				</div>
-							<div class="section">
-				<?= $form
-				->field($model, 'password')
-				->label(false)
-				->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
-				</div>
-							<div class="section">
-				<?= $form
-				->field($model, 'password_repeat')
-				->label(false)
-				->passwordInput(['placeholder' => $model->getAttributeLabel('password_repeat')]) ?>
-				</div>
-				</div>
-				</div>
-			
-			<div class="panel-footer clearfix p10 ph15">
-
+                        <?= Html::submitButton('Sign up', ['class' => 'form-submit', 'name' => 'submit']) ?>
+                   
+                     <?php ActiveForm::end(); ?>
                 
-                    <?= Html::submitButton('DAFTAR', ['class' => 'button btn-primary mr10 pull-right', 'name' => 'signup-button']) ?>
-                </div>
-				
-				
-				
+                <p class="loginhere">
+                    Already have an account ? <?= Html::a('Login here', ['/user/security/login'], ['class' => 'loginhere-link']) ?>
+                </p>
+            </div>
+        </div>
+    </section>
 
-            <?php ActiveForm::end(); ?>
-			
-			
-         <div class="panel-footer clearfix p10 ph15">
-		 <p>
-                <?= Html::a('HALAMAN LOG MASUK',
-                           ['/user/login'],['class' => 'field-label text-muted mb10 pull-right', 'tabindex' => '5']
-                                ) ?>
-            </p>
-            <p>
-                <?= Html::a('KEMBALI HALAMAN UTAMA',
-                           ['/../home'],['class' => 'field-label text-muted mb10 pull-right', 'tabindex' => '5']
-                                ) ?>
-            </p>
-		 </div>
-			
-			</div>
-			
-		</div>
+</div>

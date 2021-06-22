@@ -15,7 +15,7 @@ class LoginForm extends BaseLoginForm
         $rules = parent::rules();
         $rules[]  = ['role', 'required'];
        
-		$rules[]  = ['login', 'number', 'message' => '{attribute} mestilah dalam bentuk nombor tanpa "-"'];
+		$rules[]  = ['login', 'email'];
 		$rules[]  = ['role', 'validateRole'];
         return $rules;
     }
@@ -23,7 +23,7 @@ class LoginForm extends BaseLoginForm
 	public function attributeLabels()
     {
 		$labels = parent::attributeLabels();
-		$labels['login'] = 'No. Kad Pengenalan';
+		$labels['login'] = 'Email';
         return $labels;
     }
     

@@ -158,18 +158,20 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
+        }else{
+             return $this->redirect(['user/security/login']);
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            //return $this->goBack();
-			return $this->goHome();
-        } else {
-			$this->layout = "//main-login";
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
+   //      $model = new LoginForm();
+   //      if ($model->load(Yii::$app->request->post()) && $model->login()) {
+   //          //return $this->goBack();
+			// return $this->goHome();
+   //      } else {
+			// $this->layout = "//main-login";
+   //          return $this->render('login', [
+   //              'model' => $model,
+   //          ]);
+   //      }
     }
 
 

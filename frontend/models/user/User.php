@@ -2,9 +2,8 @@
 
 namespace frontend\models\user; 
 
-use backend\models\Fasi;
-use backend\models\Kadet;
-use backend\modules\staff\models\Staff;
+use backend\modules\client\models\Client;
+use backend\modules\expert\models\Expert;
 
 class User extends \dektrium\user\models\User
 {
@@ -43,16 +42,12 @@ class User extends \dektrium\user\models\User
 		return $arr;
 	}
 	
-	public function getFasi(){
-		return $this->hasOne(Fasi::className(), ['user_id' => 'id']);
+	public function getClient(){
+		return $this->hasOne(Client::className(), ['user_id' => 'id']);
 	}
 	
-	public function getStaff(){
-		return $this->hasOne(Staff::className(), ['user_id' => 'id']);
-	}
-
-	public function getKadet(){
-		return $this->hasOne(Kadet::className(), ['user_id' => 'id']);
+	public function getExpert(){
+		return $this->hasOne(Expert::className(), ['user_id' => 'id']);
 	}
 	
 	public function register(){
@@ -76,16 +71,10 @@ class User extends \dektrium\user\models\User
 	private static function getRoleTable($role_id){
 	    switch($role_id){
 	        case 1:
-	            return 'kadet';
+	            return 'client';
 	            break;
 	        case 2:
-	            return 'fasi';
-	            break;
-	        case 3:
-	            return 'jurulatih';
-	            break;
-	        case 4:
-	            return 'anak_gyg';
+	            return 'expert';
 	    }
 	    return false;
 	}

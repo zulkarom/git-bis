@@ -3,7 +3,6 @@
 namespace frontend\controllers\user;
 
 use Yii;
-use common\models\User;
 use dektrium\user\models\RegistrationForm;
 use dektrium\user\controllers\RegistrationController as BaseRegistrationController;
 

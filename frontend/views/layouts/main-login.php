@@ -2,25 +2,26 @@
 use common\widgets\Alert;
 use yii\helpers\Html;
 use backend\assets\AdminPress;
-use backend\assets\AppAsset;
+use backend\assets\FrontLogin;
 use kartik\widgets\ActiveForm;
 
 AdminPress::register($this);
-AppAsset::register($this);
-
+FrontLogin::register($this);
 
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="en">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= Html::encode($this->title) ?></title>
+
+    <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
 </head>
-<body class="login-page" style="justify-content:normal">
+<body>
 
 <?php $this->beginBody() ?>
 <?=$content?>

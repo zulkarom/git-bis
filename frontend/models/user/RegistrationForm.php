@@ -4,8 +4,8 @@ namespace frontend\models\user;
 //use dektrium\user\models\User;
 use Yii;
 use dektrium\user\models\RegistrationForm as BaseRegistrationForm;
-use backend\models\Kadet;
-use backend\models\Fasi;
+use backend\modules\client\models\Client;
+use backend\modules\expert\models\Expert;
 
 /**
  * Signup form
@@ -15,9 +15,6 @@ class RegistrationForm extends BaseRegistrationForm
 	public $fullname;
 	public $role;
 	public $password_repeat;
-
-	public $ic;
-	public $rol;
 	
 	public function rules()
     {
@@ -43,7 +40,7 @@ class RegistrationForm extends BaseRegistrationForm
     {
 		$label = parent::attributeLabels();
 		$label['role'] = 'Pilih Kategori Pengguna';
-		$label['username'] = 'No. Kad Pengenalan';
+		$label['username'] = 'Email';
 		$label['fullname'] = 'Nama Penuh';
 		$label['password'] = 'Kata Laluan';
 		$label['password_repeat'] = 'Ulang Kata Laluan';
@@ -52,6 +49,8 @@ class RegistrationForm extends BaseRegistrationForm
 	
 	public function register()
     {
+    	echo $this->password;
+    	die();
         if (!$this->validate()) {
             return false;
         }
@@ -65,23 +64,17 @@ class RegistrationForm extends BaseRegistrationForm
             return false;
         }
 	        
-       	$user->role = $this->rol;
+       	// $user->role = $this->rol;
         if($user->role == 1){
-				$kadet = new Kadet;
-				$kadet->scenario = "signup";
-				$kadet->user_id = $user->id;
-				$kadet->nric = $user->username;
-				$kadet->year_register = date('Y');
-				$kadet->profile_file = 'user.png';
-				$kadet->save(); 
+				$client = new Client;
+				$client->scenario = "signup";
+				$client->user_id = $user->id;
+				$client->save(); 
 			}else if($user->role == 2){
-				$pegawai = new Fasi;
-				$pegawai->scenario = "signup";
-				$pegawai->user_id = $user->id;
-				$pegawai->nric = $user->username;
-				$pegawai->year_register = date('Y');
-				$pegawai->profile_file = 'user.png';
-				$pegawai->save();
+				$expert = new Expert;
+				$expert->scenario = "signup";
+				$expert->user_id = $user->id;
+				$expert->save(); 
 			}
 			
 	        Yii::$app->session->setFlash(
