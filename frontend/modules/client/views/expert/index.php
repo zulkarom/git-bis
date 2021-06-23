@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\expert\models\ExpertSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -28,8 +28,8 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                                             <div class="el-card-avatar el-overlay-1"> <img src="'.$dirAssests.'/images/users/1.jpg" alt="user" />
                                                 <div class="el-overlay">
                                                     <ul class="el-info">
-                                                        <li><a class="btn default btn-outline image-popup-vertical-fit" href="<?= $dirAssests?>/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
-                                                        <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li>
+                                                        <li><a class="btn default btn-outline image-popup-vertical-fit" href="'.$dirAssests.'/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
+                                                        <li><a class="btn default btn-outline"href="'.Url::to(['/chat/', 'id' => $clientEx->expert_id]).'"><i class="icon-link"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
