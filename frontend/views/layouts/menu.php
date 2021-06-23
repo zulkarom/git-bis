@@ -9,11 +9,11 @@ use common\widgets\Menu;
                     	<li class="nav-devider"></li>
                         <?=Menu::widget(
 	[
-			['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => 'mdi mdi-gauge', 'children' => []],
+			['label' => 'Dashboard', 'level' => 1, 'url' => ['/dashboard/index'], 'icon' => 'mdi mdi-gauge', 'children' => []],
 			
 			//['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
 
-			['label' => 'Consultation', 'level' => 1, 'url' => ['class-session/index'], 'icon' => 'fa fa-book', 'children' => []],
+			['label' => 'Consultation', 'level' => 1, 'url' => ['/client/expert/index'], 'icon' => 'fa fa-book', 'children' => []],
 			
 			// ['label' => 'Claims', 'level' => 1, 'url' => ['frontend-claim/index'], 'icon' => 'fa fa-list'],
 			

@@ -29,6 +29,16 @@ return [
             'enableUnconfirmedLogin' => true,
             'enableFlashMessages' => false,
         ],
+        'chat' => [
+            'class' => 'frontend\modules\chat\ChatModule',
+            'numberLastMessages' => 30,
+        ],
+        'client' => [
+            'class' => 'frontend\modules\client\Module',
+        ],
+        'expert' => [
+            'class' => 'frontend\modules\expert\Module',
+        ],
     ],
     'components' => [
         'request' => [

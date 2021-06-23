@@ -59,7 +59,7 @@ function reloadchat(button,sendMessage) {
     if (sendMessage)
         $('#ajax-loader').show();
     $.ajax({
-        url: '/training/git-bis/backend/web/chat/default/send-message',
+        url: '/training/git-bis/frontend/web/chat/default/send-message',
         type: "POST",
         data: {
             'sendMessage':sendMessage,

@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\chat;
+namespace frontend\modules\chat;
 
 use Yii;
 use yii\i18n\PhpMessageSource;
@@ -15,7 +15,7 @@ class ChatModule extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'backend\modules\chat\controllers';
+    public $controllerNamespace = 'frontend\modules\chat\controllers';
 
     /**
      * {@inheritdoc}

@@ -2,6 +2,7 @@
 
 namespace frontend\models\user; 
 
+use Yii;
 use backend\modules\client\models\Client;
 use backend\modules\expert\models\Expert;
 
@@ -54,6 +55,16 @@ class User extends \dektrium\user\models\User
 		$this->status = self::STATUS_ACTIVE;
 		return parent::register();
 	}
+
+	public function getChatname()
+    {
+        return User::find()->where(['id' => Yii::$app->user->id])->one()['fullname'];
+    }
+ 
+    public function getChaticon()
+    {
+        return User::find()->where(['id' => Yii::$app->user->id])->one()['username'];
+    }
 	
 	public static function checkRoleExistByUsername($username, $role_id){
 	    $role_table = self::getRoleTable($role_id);
