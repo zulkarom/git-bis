@@ -139,8 +139,8 @@ class Common {
 		return [1 => 'Client', 2 => 'Expert'];
 	}
 	
-	public static function status(){
-		return [10 => 'Submit', 20 => 'Approved', 30 => 'Disapproved'];
+	public static function expertType(){
+		return [10 => 'Industry Expert', 20 => 'Academician', 30 => 'Mentor'];
 	}
 
 	public static function reportStatus(){

@@ -14,7 +14,7 @@ class FrontendPress extends AssetBundle
     public $sourcePath = '@backend/assets/adminpress';
     public $css = [
 
-        'css/colors/megna.css',
+        'css/colors/blue.css',
         
     ];
 

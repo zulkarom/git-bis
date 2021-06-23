@@ -5,6 +5,8 @@ namespace frontend\modules\client\controllers;
 use Yii;
 use backend\modules\expert\models\Expert;
 use frontend\modules\client\models\ExpertSearch;
+use backend\modules\client\models\Client;
+use backend\models\ClientExpert;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,12 +37,13 @@ class ExpertController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ExpertSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $client = Client::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
+        // echo $client->id;
+        // die();
+        $clientExpert = ClientExpert::find()->where(['client_id' => $client->id])->all();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'clientExpert' => $clientExpert,
         ]);
     }
 
