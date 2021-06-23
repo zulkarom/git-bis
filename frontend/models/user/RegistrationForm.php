@@ -20,7 +20,7 @@ class RegistrationForm extends BaseRegistrationForm
     {
         $rules = parent::rules();
 		
-		$rules['usernameLength']  = ['username', 'number', 'message' => '{attribute} mestilah dalam bentuk nombor tanpa "-"'];
+		$rules['usernameLength']  = ['username', 'email'];
 		
         $rules['fullnameRequired'] = ['fullname', 'required'];
 
@@ -49,8 +49,9 @@ class RegistrationForm extends BaseRegistrationForm
 	
 	public function register()
     {
-    	echo $this->password;
-    	die();
+    	// echo $this->password_repeat;
+    	// die();
+    	$this->email = $this->username;
         if (!$this->validate()) {
             return false;
         }
@@ -59,6 +60,7 @@ class RegistrationForm extends BaseRegistrationForm
         $user = Yii::createObject(User::className());
         $user->setScenario('register');
         $this->loadAttributes($user);
+        $this->email = $this->username;
 
         if (!$user->register()) {
             return false;
@@ -67,12 +69,12 @@ class RegistrationForm extends BaseRegistrationForm
        	// $user->role = $this->rol;
         if($user->role == 1){
 				$client = new Client;
-				$client->scenario = "signup";
+				// $client->scenario = "register";
 				$client->user_id = $user->id;
 				$client->save(); 
 			}else if($user->role == 2){
 				$expert = new Expert;
-				$expert->scenario = "signup";
+				// $expert->scenario = "register";
 				$expert->user_id = $user->id;
 				$expert->save(); 
 			}

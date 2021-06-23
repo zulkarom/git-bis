@@ -15,6 +15,7 @@ AdminPress::register($this);
 FrontendPress::register($this);
 AppAsset::register($this);
 
+
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpress');
 
 
@@ -40,7 +41,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 </head>
 
-<body class="fix-header card-no-border mini-sidebar">
+<body class="fix-header fix-sidebar card-no-border mini-sidebar">
 <?php $this->beginBody() ?>
 
     <!-- ============================================================== -->
@@ -69,7 +70,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                             <!-- Dark Logo icon -->
                             <img src="<?= $dirAssests?>/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="<?= $dirAssests?>/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <!-- <img src="<?= $dirAssests?>/images/logo-light-icon.png" alt="homepage" class="light-logo" /> -->
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
@@ -115,43 +116,40 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                     <ul class="navbar-nav my-lg-0">
                       
                         <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                            <form class="app-search" action="<?= Url::to(['/client/client/index'])?>" method="get">
+                                <input type="text" name="Client[cl_name]" class="form-control" placeholder="Search Clients"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
                         </li>
-                   
-                       <li class="nav-item dropdown">
+                      
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-my"></i></a>
                             <div class="dropdown-menu dropdown-menu-right scale-up"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
                         </li>
                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            
-                             <?php if(Yii::$app->user->identity->upload_image): ?>
+                                <?php if(Yii::$app->user->identity->username == '1a'): ?>
                                     <img src="<?= Url::to(['profile/profile-image', 'id' => Yii::$app->user->identity->id])?>" alt="user" class="profile-pic" />
                                 <?php else: ?>
                                     <img src="<?= $dirAssests?>/images/users/user.png" alt="user" class="profile-pic" />
                                 <?php endif; ?>
-                            
-</a>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
                                             <div class="u-img">
-                                                <?php if(Yii::$app->user->identity->upload_image): ?>
+                                                <?php if(Yii::$app->user->identity->username == '1a'): ?>
                                                 <img src="<?= Url::to(['profile/profile-image', 'id' => Yii::$app->user->identity->id])?>" alt="user" class="profile-pic" />
                                                 <?php else: ?>
                                                     <img src="<?= $dirAssests?>/images/users/user.png" alt="user" class="profile-pic" />
                                                 <?php endif; ?>
                                             </div>
                                             <div class="u-text">
-                                                <h4><?=Yii::$app->user->identity->frontend_name?> - Admin</h4>
+                                                <h4><?=Yii::$app->user->identity->fullname?></h4>
                                                 <p class="text-muted"><small>Member since Nov. 2012</small></p><?= Html::a('<i class="ti-user"></i> View Profile',['/profile/update'],['class' => 'btn btn-rounded btn-danger btn-sm']) ?></div>
                                         </div>
                                     </li>
-                                    <li role="separator" class="divider"></li>
-
+                                    
                                   
                                     <li role="separator" class="divider"></li>
                                     <li><?= Html::a('<i class="ti-power-off"></i> Sign out',['/site/logout'],['data-method' => 'post', 'class' => 'btn btn-default btn-flat float-left']) ?></li>
@@ -170,7 +168,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                 <div class="user-profile">
                     <!-- User profile image -->
                     <div class="profile-img"> 
-                        <?php if(Yii::$app->user->identity->upload_image): ?>
+                         <?php if(Yii::$app->user->identity->username == '1a'): ?>
                             <img src="<?= Url::to(['profile/profile-image', 'id' => Yii::$app->user->identity->id])?>" alt="user" class="profile-pic" />
                         <?php else: ?>
                             <img src="<?= $dirAssests?>/images/users/user.png" alt="user" class="profile-pic" />
@@ -180,22 +178,25 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                     </div>
                     <!-- User profile text-->
                     <div class="profile-text">
-                        <h5><?=Yii::$app->user->identity->frontend_name?></h5>
+                        <h5><?=Yii::$app->user->identity->fullname?></h5>
                         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="mdi mdi-settings"></i></a>
-                        <a href="#" class="" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
-                       
-                        <?= Html::a('<i class="mdi mdi-power"></i>',['/site/logout'],['data-method' => 'post', 'data-toggle' => 'tooltip']) ?>
-                        
+                        <a href="app-email.html" class="" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+                        <a href="pages-login.html" class="" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
                         <div class="dropdown-menu animated flipInY">
                             <!-- text-->
                             <?= Html::a('<i class="ti-user"></i> My Profile',['/profile/update'],['class' => 'btn btn-default btn-flat float-left']) ?>
                             <!-- text-->
-                           
-            
+                            <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
+                            <!-- text-->
+                            <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
                             <!-- text-->
                             <div class="dropdown-divider"></div>
                             <!-- text-->
-                            <li><?= Html::a('<i class="ti-power-off"></i> Sign out',['/site/logout'],['data-method' => 'post', 'class' => 'btn btn-default btn-flat float-left']) ?></li>
+                            <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                            <!-- text-->
+                            <div class="dropdown-divider"></div>
+                            <!-- text-->
+                            <?= Html::a('<i class="ti-power-off"></i> Sign out',['/site/logout'],['data-method' => 'post', 'class' => 'btn btn-default btn-flat float-left']) ?>
                             <!-- text-->
                         </div>
                     </div>
@@ -216,12 +217,12 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                     <h3 class="text-themecolor"><?=$this->title?></h3>
                 </div>
                 <div class="col-md-7 align-self-center">
-                      <?php
-        // Breadcrumbs::widget(
-        //     [
-        //         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        //     ]
-        // ) 
+                      <?php echo
+         Breadcrumbs::widget(
+             [
+                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+             ]
+         ) 
         ?>
                 </div>
                 
@@ -243,7 +244,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                <strong>&copy; My Company <?= date('Y') ?></strong> All rights reserved.
+                <strong>&copy; Bisnet <?= date('Y') ?></strong> All rights reserved.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->

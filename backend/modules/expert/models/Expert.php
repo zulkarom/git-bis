@@ -27,7 +27,7 @@ class Expert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'expert_type'], 'required'],
+            [['user_id'], 'required'],
             [['user_id', 'expert_type'], 'integer'],
         ];
     }

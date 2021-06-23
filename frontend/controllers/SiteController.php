@@ -73,81 +73,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $events = [];
-		if(Yii::$app->user->isGuest){
-			return $this->redirect(['login']);
-		}else{
-		    
-		    $modelfrontend = frontend::findOne(['user_id' => Yii::$app->user->identity->id]);
-		    $position = $modelfrontend->jawatan;
-		    
-            $type = [0];
-            if(in_array($position, [4,5])){//guru sepenuh masa/separuh masa
-               $type = [1,2,3];
-            }else if($position == 3){
-                $type = [1,2,4];
-            }
-            
-            $modelAnnounce = Announcement::find()
-            ->where(['status' => 1, 'type_id' => $type])
-            ->andWhere(['<=', 'start_date', date('Y-m-d')])
-            ->andWhere(['>=', 'end_date', date('Y-m-d')])
-            ->all();
-
-            
-
-            $sessions = ClassSession::find()
-            ->where(['frontend_id' => Yii::$app->user->identity->id ])
-            ->all();
-			$events = [];
-            foreach ($sessions as $sess) {
-                $event = new \yii2fullcalendar\models\Event();
-                $event->id = $sess->id;
-                                
-                $event->title = $sess->client->cl_name;
-                
-                
-                if($sess->plan_status == 10 || $sess->plan_status == 20){
-                    $event->start = $sess->plan_date;
-                    if($sess->plan_date < date('Y-m-d')){
-                        $event->backgroundColor = '#1976d2';
-                    }
-                    else{
-                        $event->backgroundColor = '#ffb22b';
-                    }
-                }
-                else{
-                    $event->start = $sess->session_date;
-                    if($sess->session_date < date('Y-m-d')){
-                        $event->backgroundColor = '#1976d2';
-                    }
-                    else{
-                        $event->backgroundColor = '#ffb22b';
-                    }
-                }
-
-                $event->url = Url::to(['/calendar/index', 'id' => $sess->id ]);
-
-                $events[] = $event;
-            }
-
-            $category = $modelfrontend->category;
-            if($category == 1){
-                $type = 4;
-            }else if($category == 2){
-                $type = 3;
-            }
-
-			return $this->render('member', [
-                'events' => $events,
-                'modelAnnounce' => $modelAnnounce,
-                'type' => $type,
-			]);
-		}
+       return $this->redirect('user/login');
         
     }
-
-
 
     /**
      * Logs in a user.
@@ -158,20 +86,18 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
-        }else{
-             return $this->redirect(['user/security/login']);
         }
 
-   //      $model = new LoginForm();
-   //      if ($model->load(Yii::$app->request->post()) && $model->login()) {
-   //          //return $this->goBack();
-			// return $this->goHome();
-   //      } else {
-			// $this->layout = "//main-login";
-   //          return $this->render('login', [
-   //              'model' => $model,
-   //          ]);
-   //      }
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            //return $this->goBack();
+			return $this->goHome();
+        } else {
+			$this->layout = "//main-login";
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        }
     }
 
 

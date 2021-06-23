@@ -35,7 +35,14 @@ h2 {
         <div class="container">
             <div class="signup-content">
 
-                <?php $form = ActiveForm::begin(); ?>
+                <?php $form = ActiveForm::begin([
+                    'id' => 'signup-form',
+                    'enableAjaxValidation' => true,
+                    'enableClientValidation' => false,
+                    'validateOnBlur' => false,
+                    'validateOnType' => false,
+                    'validateOnChange' => false,
+                ]); ?>
                 <center><img src="<?= $directoryAsset ?>/images/logo.png" title="Bisnet" class="img-responsive " style="width:55%;margin:auto"></center>
                     <h2 class="form-title">Create account</h2>
                         <?= $form
@@ -44,7 +51,7 @@ h2 {
 			            ->label(false)
 			           ?>
                         <?= $form
-				            ->field($model, 'email')
+				            ->field($model, 'username')
 				            ->label(false)
 				            ->textInput(['placeholder' => 'Your Email', 'class' => 'form-input']) 
 				         ?>
@@ -63,16 +70,17 @@ h2 {
 							->label(false)
 							->passwordInput(['placeholder' => 'Repeat your password', 'class' => 'form-input']) 
 						?>
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"></span></span>I agree all statements in  <a href="#" class="term-service"><u>Terms of service</u></a></label>
+                        <!-- <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"></span></span>I agree all statements in  <a href="#" class="term-service"><u>Terms of service</u></a></label> -->
 
                         <?= Html::submitButton('Sign up', ['class' => 'form-submit', 'name' => 'submit']) ?>
                    
-                     <?php ActiveForm::end(); ?>
+                     
                 
                 <p class="loginhere">
                     Already have an account ? <?= Html::a('Login here', ['/user/security/login'], ['class' => 'loginhere-link']) ?>
                 </p>
+                <?php ActiveForm::end(); ?>
             </div>
         </div>
     </section>
