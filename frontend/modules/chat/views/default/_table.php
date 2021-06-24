@@ -1,25 +1,23 @@
-<div class="table-responsive"> 
-<table class="table table table-striped table-bordered table-hover table-condensed">
-    <caption><h3><?= Yii::t('chat','Chat') ?></h3></caption>
-    <thead>
-        <tr class="success">
-           <th style="width:20%"><?= Yii::t('chat','Time') ?></th>
-           <th style="width:10%"><?= Yii::t('chat','Icon') ?></th>
-           <th style="width:20%"><?= Yii::t('chat','Username') ?></th>
-           <th><?= Yii::t('chat','Message') ?></th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="chat-rbox">
+    <ul class="chat-list p-20">
         <?php foreach ($messages as $message) : ?>
-        <tr>
-            <td><?= $message['rfc822'] ?></td>
-            <td>
-                <img src="" width="50px" />
-            </td>
-            <td><?= $message['name'] ?></td>
-            <td><?= $message['message'] ?></td>
-        </tr>
+        <!--chat Row -->
+        <?php if($message['recipient_id'] == $user_id): ?>
+        <li>
+            <div class="chat-content">
+                <div class="box bg-light-info"><?= $message['message'] ?>&nbsp <font size="1"><?=date("h:i: A", strtotime($message['rfc822']));?></font></div>
+            </div>
+        </li>
+        <!--chat Row -->
+        <?php else: ?>
+        <!--chat Row -->
+        <li class="reverse">
+            <div class="chat-content">
+                <div class="box bg-light-inverse"><?= $message['message'] ?>&nbsp <font size="1"><?=date("h:i: A", strtotime($message['rfc822']));?></font></div>
+            </div>
+        </li>
+        <?php endif; ?>
         <?php endforeach; ?>
-    </tbody>
-</table>
+        <!--chat Row -->
+    </ul>
 </div>

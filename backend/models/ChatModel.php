@@ -56,7 +56,9 @@ class ChatModel extends \yii\db\ActiveRecord
         $messages = self::find()
             ->orderBy('time DESC')
             ->limit($numberLastMessages)
-            ->where(['sender_id' => Yii::$app->user->identity->id])
+            ->andFilterWhere(['or', 'sender_id', Yii::$app->user->identity->id])
+            ->andFilterWhere(['or', 'recipient_id', Yii::$app->user->identity->id])
+            ->orderBy(['time'=>SORT_ASC])
             ->all();
         $out=[];
         foreach ($messages as $message)
@@ -66,6 +68,8 @@ class ChatModel extends \yii\db\ActiveRecord
                     'name' => $message['name'],
                     'icon' => $message['icon'],
                     'message' => $message['message'],
+                    'sender_id' => $message['sender_id'],
+                    'recipient_id' => $message['recipient_id'],
                 ];
         }
         ksort($out);
