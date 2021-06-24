@@ -2,9 +2,70 @@
 use backend\assets\ChatAsset;
 $assets = ChatAsset::register($this); 
 
+
+$this->title = 'Chat Message';
+$this->params['breadcrumbs'][] = $this->title;
+
 $dirAssests=Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpress');
 
 ?>
+
+<div class="row">
+                    <div class="col-12">
+                        <div class="card m-b-0">
+                            <!-- .chat-row -->
+                            <div class="chat-main-box">
+                                
+                                <!-- .chat-right-panel -->
+                                <div class="chat-right-aside">
+                                    <div class="chat-main-header">
+                                        <div class="p-20 b-b">
+                                            <h3 class="box-title"><?=$expert->user->fullname?></h3>
+                                        </div>
+                                    </div>
+                                    <div class="chat-rbox">
+                                        <ul class="chat-list p-20">
+                                            <!--chat Row -->
+                                            <?php foreach ($messages as $message) : ?>
+                                            <li>
+                                                <div class="chat-img"><img src="<?=$dirAssests?>/images/users/1.jpg" alt="user" /></div>
+                                                <div class="chat-content">
+                                                    <div class="box bg-light-info"><?= $message['message'] ?></div>
+                                                </div>
+                                                <div class="chat-time">10:56 am</div>
+                                            </li>
+                                            <?php endforeach; ?>
+                                            <!--chat Row -->
+                                            
+                                            <!--chat Row -->
+                                            <li class="reverse">
+                                                <div class="chat-content">
+                                                    <div class="box bg-light-inverse">It’s Great opportunity to work.</div>
+                                                </div>
+                                                <div class="chat-img"><img src="<?=$dirAssests?>/images/users/5.jpg" alt="user" /></div>
+                                                <div class="chat-time">10:57 am</div>
+                                            </li>
+                                            <!--chat Row -->
+                                        </ul>
+                                    </div>
+                                    <div class="card-body b-t">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <textarea placeholder="Type your message here" class="form-control b-0"></textarea>
+                                            </div>
+                                            <div class="col-2 text-right">
+                                                <button type="button" class="btn btn-info btn-circle btn-lg"><i class="mdi mdi-send"></i> </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- .chat-right-panel -->
+                            </div>
+                            <!-- /.chat-row -->
+                        </div>
+                    </div>
+                </div>
+
 <div class="chat-default-index content">
     <div class="row">
         <div id="chat-box" class="col-sm-12">
@@ -50,6 +111,7 @@ $dirAssests=Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpress
             </table>
             </div>
         </div>
+        <input type="hidden" id="recipient" value=<?=$expert->user->id?>>
 <?php endif; ?>
     </div>
 </div>
@@ -63,7 +125,8 @@ function reloadchat(button,sendMessage) {
         type: "POST",
         data: {
             'sendMessage':sendMessage,
-            'ChatModel[user_id]': $(button).data('id'),
+            'ChatModel[sender_id]': $(button).data('id'),
+            'ChatModel[recipient_id]': $('#recipient').val(),
             'ChatModel[name]': $(button).data('name'),
             'ChatModel[icon]': $(button).data('icon'),
             'ChatModel[message]': $('#chat-message').val(),

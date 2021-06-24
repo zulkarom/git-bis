@@ -6,7 +6,8 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-
+use backend\modules\client\models\Client;
+use backend\modules\expert\models\Expert;
 /**
  * User model
  *
@@ -56,6 +57,14 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
+    }
+
+    public function getClient(){
+        return $this->hasOne(Client::className(), ['user_id' => 'id']);
+    }
+    
+    public function getExpert(){
+        return $this->hasOne(Expert::className(), ['user_id' => 'id']);
     }
 
     public function getChatname()

@@ -5,7 +5,8 @@ namespace frontend\modules\chat\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\ChatModel;
-
+use backend\modules\expert\models\Expert;
+use backend\modules\client\models\Client;
 /**
  * Default controller for the `chat` module
  */
@@ -15,15 +16,22 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
+        // $sender_id = Yii::$app->user->identity->id;
+        $client = Client::find()->where(['user_id' => Yii::$app->user->identity->id]);
+        $expert = Expert::findOne($id);
         $className = Yii::$app->getUser()->identityClass;
         $model = new $className;
         $user=$model->find()->where(['id'=>Yii::$app->user->id])->one();
 
         $messages = ChatModel::getMessages($this->module->numberLastMessages);
 
-        return $this->render('index',compact('user','messages'));
+        return $this->render('index', [
+            'user' => $user,
+            'messages' => $messages,
+            'expert' => $expert,
+        ]);
     }
 
     public function actionSendMessage()

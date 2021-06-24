@@ -30,7 +30,7 @@ class ChatModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id','user_id','time'], 'integer'],
+            [['id','user_id','time','recipient_id','sender_id'], 'integer'],
             [['rfc822'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 255],
             [['icon'], 'string', 'max' => 255],
@@ -56,6 +56,7 @@ class ChatModel extends \yii\db\ActiveRecord
         $messages = self::find()
             ->orderBy('time DESC')
             ->limit($numberLastMessages)
+            ->where(['sender_id' => Yii::$app->user->identity->id])
             ->all();
         $out=[];
         foreach ($messages as $message)
