@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2021 at 05:18 AM
+-- Generation Time: Jun 26, 2021 at 11:32 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -44,12 +44,10 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`id`, `sender_id`, `recipient_id`, `user_id`, `time`, `rfc822`, `name`, `icon`, `message`) VALUES
-(37, 7, 9, NULL, 1624502789, 'Thu, 24 Jun 21 04:46:29 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'test'),
-(38, 7, 9, NULL, 1624502836, 'Thu, 24 Jun 21 04:47:16 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'test2'),
-(39, 7, 9, NULL, 1624503027, 'Thu, 24 Jun 21 04:50:27 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'test'),
-(40, 7, 9, NULL, 1624503044, 'Thu, 24 Jun 21 04:50:44 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'test333'),
-(41, 7, 9, NULL, 1624503299, 'Thu, 24 Jun 21 04:54:59 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'fghfgh'),
-(42, 7, 9, NULL, 1624503303, 'Thu, 24 Jun 21 04:55:03 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'dfgdf');
+(156, 7, 9, NULL, 1624571920, 'Fri, 25 Jun 21 00:02:26 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'test'),
+(158, 9, 7, NULL, 1624572146, 'Thu, 24 Jun 21 23:58:40 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'sdfsdfsd'),
+(161, 7, 9, NULL, 1624573811, 'Fri, 25 Jun 21 00:30:11 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'xcxzczx'),
+(162, 7, 9, NULL, 1624575593, 'Fri, 25 Jun 21 00:59:53 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'dfgd');
 
 -- --------------------------------------------------------
 
@@ -249,9 +247,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1624467474, 0, 1624477918, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1624467474, 0, 1624564824, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
-(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$goxdKCZQPMIZlylAv.B26O9cvfEiS57quDyo.l0upvVpQzQR97F3i', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1624484446, 0, 1624484468, 10, '');
+(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$goxdKCZQPMIZlylAv.B26O9cvfEiS57quDyo.l0upvVpQzQR97F3i', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1624484446, 0, 1624532900, 10, '');
 
 -- --------------------------------------------------------
 
@@ -272,7 +270,7 @@ CREATE TABLE `web_intro` (
 --
 
 INSERT INTO `web_intro` (`id`, `title`, `title_content`, `title_button`, `intro_content`) VALUES
-(1, 'BISNEST', 'ONLINE INCUBATION PLATFORM', 'LEARN MOREee', 'BISNEST an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.');
+(1, 'HATCHNIAGA', 'Online Incubation Platform', 'LEARN MORE', 'Hatchniaga an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.');
 
 -- --------------------------------------------------------
 
@@ -334,9 +332,9 @@ CREATE TABLE `web_section` (
 --
 
 INSERT INTO `web_section` (`id`, `title`, `content`, `image_url`) VALUES
-(1, 'STARTUPS', 'Bisnest assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.', ''),
-(2, 'INVESTORS', 'Bisnest connect with investment opportunities in Malaysia.', 'pic2.jpeg'),
-(3, 'ECOSYSTEM', ' Bisnest create an entrepreneurial ecosystem focused on growing and sustaining the business and community.', 'pic3.jpeg');
+(1, 'Startups', 'Hatchniaga assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.', ''),
+(2, 'Investors', 'Hatchniaga connect with investment opportunities in Malaysia.', 'pic2.jpeg'),
+(3, 'Ecosystem', ' Hatchniaga create an entrepreneurial ecosystem focused on growing and sustaining the business and community.', 'pic3.jpeg');
 
 --
 -- Indexes for dumped tables
@@ -433,7 +431,7 @@ ALTER TABLE `web_section`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT for table `client`
