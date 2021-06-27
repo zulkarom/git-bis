@@ -302,7 +302,7 @@
          <div data-collapse="small" data-animation="default" data-duration="400" data-no-scroll="1" data-doc-height="1" role="banner" class="navbar w-nav">
             <div class="container container-header w-container">
                <a href="" aria-current="page" class="brand w-nav-brand w--current">
-                  <div class="html-embed w-embed"><img src="<?= $dirAssests?>/pictures/logo-menu.png" alt="" class="heading" width="150" ></div>
+                  <div class="html-embed w-embed"><img src="<?= $dirAssests?>/pictures/logo-top.png" alt="" class="heading" width="220" ></div>
                </a>
                <nav role="navigation" class="nav-menu w-nav-menu">
                   <a href="#" class="mobile-nav-link w-nav-link">HOME</a>
@@ -320,7 +320,7 @@
       </header>
 
        <div class="row-section padding-tb-xxl homepage-first-row">
-         <img src="<?= $dirAssests?>/pictures/logo-hatchniaga.png" alt="" class="heading" width="500"><br/>
+         <img src="<?= $dirAssests?>/pictures/logo-big.png" alt="" class="heading" width="700"><br/>
          
          <h2 class="heading-2"><?=Html::encode($intro->title_content)?><br/></h2>
          <p class="paragraph font-size-small text-grey text-center"><?=Html::encode($intro->intro_content)?><br/></p>

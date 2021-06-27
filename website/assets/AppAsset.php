@@ -13,7 +13,7 @@ class AppAsset extends AssetBundle
 
     public $css = [
         
-        'css/webflow.css',
+        'css/webflow2.css',
         'map/style.css',
         'map/rgs.css',
         'map/style(1).css',

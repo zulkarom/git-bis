@@ -497,12 +497,12 @@ strong {
 }
 
 .row-section.padding-tb-xxl {
-  padding-top: 120px;
+  padding-top: 20px;
   padding-bottom: 120px;
 }
 
 .row-section.padding-tb-xxl.homepage-first-row {
-  max-width: 470px;
+  max-width: 600px;
   min-height: 75vh;
 }
 
