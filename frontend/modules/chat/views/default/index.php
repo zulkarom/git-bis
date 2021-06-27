@@ -28,7 +28,7 @@ $user_id = Yii::$app->user->identity->id;
 </div>
 
 <?php else :?>
-
+    <?= $this->render('_table',compact('messages', 'dirAssests', 'expert', 'user_id')) ?>
     <input type="hidden" id="recipient" value=<?=$expert->user->id?>>
     
     <div class="row">
@@ -44,7 +44,7 @@ $user_id = Yii::$app->user->identity->id;
                             <h3 class="box-title"><?=$expert->user->fullname?></h3>
                         </div>
                     </div>
-                    <?= $this->render('_table',compact('messages', 'dirAssests', 'expert', 'user_id')) ?>
+                    
                     <div class="card-body b-t">
                         <div class="row">
                             <div class="col-11">
