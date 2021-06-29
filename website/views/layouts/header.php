@@ -308,8 +308,8 @@
                   <a href="#" class="mobile-nav-link w-nav-link">HOME</a>
                   <a href="#" class="mobile-nav-link w-nav-link">ABOUT</a>
                   <a href="#" class="mobile-nav-link investors w-nav-link">PORTFOLIO</a>
-                  <a href="#" class="mobile-nav-link w-nav-link">BLOG</a>
-                  <a href="#" class="mobile-nav-link w-nav-link">APPLY</a>
+                  <a href="#" class="mobile-nav-link w-nav-link">SIGN UP</a>
+                  <a href="#" class="mobile-nav-link w-nav-link">LOG IN</a>
                </nav>
                <div class="menu-button text-uppercase w-nav-button">
                   <div class="text-block">menu</div>
