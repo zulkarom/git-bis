@@ -22,7 +22,7 @@
                           <span></span>
                         </div>
                         <div class="nttip" data-tooltip-position="top" style="height: auto; width:  100px;">
-                          <div class="inner"><b>Vietnam
+                          <div class="inner"><b>Vietnam</b>
                           </div>
                         </div>
                       </div>
@@ -34,7 +34,7 @@
                         <div class="nttip" data-tooltip-position="top" style="height: auto; width: 110px;">
                           <div class="inner">
               
-              <b>Malaysia:</b> (HQ): BizVentur has a strong network with the innovation ecosystem. 
+              <b>Malaysia</b>
               
                           </div>
                         </div>
@@ -45,7 +45,7 @@
                           <span></span>
                         </div>
                         <div class="nttip" data-tooltip-position="top" style="height: auto; width: 100px;">
-                          <div class="inner"><b>Indonesia
+                          <div class="inner"><b>Indonesia</b>
                           </div>
                         </div>
                       </div>
