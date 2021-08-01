@@ -8,7 +8,7 @@ use common\models\Common;
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/assets/frontLogin');
 
-$this->title = 'Sign Up Form by Bisnet';
+$this->title = 'Sign Up Form by Hatchniaga';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
