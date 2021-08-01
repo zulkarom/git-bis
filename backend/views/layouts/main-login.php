@@ -1,29 +1,69 @@
 <?php
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
 use common\widgets\Alert;
 use yii\helpers\Html;
-use backend\assets\AdminPress;
+use yii\helpers\Url;
+use yii\bootstrap4\Breadcrumbs;
+use backend\assets\CryptoAsset;
 use backend\assets\AppAsset;
-use kartik\widgets\ActiveForm;
 
-AdminPress::register($this);
 AppAsset::register($this);
+CryptoAsset::register($this);
 
+
+$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
 
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="zxx">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- <title>BitCrypto</title> -->
     <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-</head>
-<body class="login-page" style="justify-content:normal">
 
+    <link rel="icon" href="<?= $dirAssests?>/img/mini_logo.png" type="image/png">
+
+    <?= Html::csrfMetaTags() ?>
+    <?php $this->head() ?>
+
+</head>
+
+<body class="crm_body_bg">
 <?php $this->beginBody() ?>
-<?=$content?>
+
+<section class="main_content dashboard_part large_header_bg full_main_content">
+
+<div class="main_content_iner">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12">
+                <?= Alert::widget() ?>
+                <?=$content?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer part -->
+    <?=$this->render('footer', [    
+        'dirAssests' => $dirAssests,
+    ]);
+    ?>
+<!-- end of footer part -->    
+</section>
+
+<div id="back-top" style="display: none;">
+    <a title="Go to Top" href="#">
+        <i class="ti-angle-up"></i>
+    </a>
+</div>
 
 <?php $this->endBody() ?>
 </body>

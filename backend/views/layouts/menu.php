@@ -1,67 +1,80 @@
 <?php 
 
 use yii\helpers\Url;
-use common\widgets\Menu;
+use common\widgets\Menu_crypto;
 
 ?> 
-  <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                    	<li class="nav-devider"></li>
-                        <?=Menu::widget([
-			['label' => 'Dashboard', 'level' => 1, 'url' => ['/site/index'], 'icon' => 'mdi mdi-gauge', 'children' => []],
-			
-			['label' => 'WEBSITE', 'level' => 0],
-                            
-            ['label' => 'Introduction', 'level' => 1, 'url' => ['/website/introduction/index'], 'icon' => 'mdi mdi-file-check', 'children' => []],
-                            
-             ['label' => 'Section', 'level' => 1, 'url' => ['/website/section/index'], 'icon' => 'mdi mdi-currency-usd', 'children' => []],
-                            
-          ['label' => 'Portfolio', 'level' => 1, 'url' => ['/website/portfolio/index'], 'icon' => 'mdi mdi-credit-card', 'children' => []],
+<!-- <nav class="sidebar dark_sidebar"> -->
+<nav class="sidebar">
+    <div class="logo d-flex justify-content-between">
+        <a class="large_logo" href="index.html"><img src="<?= $dirAssests?>/pictures/logo-top.png" alt=""></a>
+        <a class="small_logo" href="index.html"><img src="<?= $dirAssests?>/pictures/mini-logo.png" alt=""></a>
+        <div class="sidebar_close_icon d-lg-none">
+            <i class="ti-close"></i>
+        </div>
+    </div>
+    <ul id="sidebar_menu"> 
+                
 
-				
-	
-			
-			
-			
-	/* 		['label' => 'Reports', 'level' => 2 , 'icon' => 'mdi mdi-currency-usd', 'children' => [
-				['label' => 'Chart of Account', 'url' => ['/account/chart'], 'icon' => 'fa fa-plus'],
-				['label' => 'Income Statement', 'url' => ['/account/income-statement'], 'icon' => 'fa fa-list'],
-				['label' => 'Financial Position', 'url' => ['/account/financial-position'], 'icon' => 'fa fa-list'],
-			
-			]], */
-			
-			['label' => 'CLIENTS', 'level' => 0],
-			['label' => 'Clients', 'level' => 1 , 'url' => ['/client/client/index'], 'icon' => 'mdi mdi-account-check'],
+    <?=Menu_crypto::widget(
+    [
+            
+            ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/site/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
+            
+            // ['label' => 'Announcement', 'level' => 1, 'url' => ['/announcement/index'], 'icon' => 'fa fa-bullhorn', 'children' => []],
+            
+            ['label' => \Yii::t('app', 'Website'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/Pages.svg', 'children' => [
+                ['label' => \Yii::t('app', 'Introduction'), 'url' => ['/website/introduction/index'], 'icon' => 'fa fa-circle'],
+                ['label' => \Yii::t('app', 'Section'), 'url' => ['/website/section/index'], 'icon' => 'fa fa-circle'],
+                ['label' => \Yii::t('app', 'Portfolio'), 'url' => ['/website/portfolio/index'], 'icon' => 'fa fa-circle'],
+            ]],
+            
+            ['label' => \Yii::t('app', 'Clients'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
+                ['label' => \Yii::t('app', 'List of Client'), 'url' => ['/client/client/index'], 'icon' => 'fa fa-circle'],
+            ]],
 
-			['label' => 'EXPERTS', 'level' => 0],
-			['label' => 'Experts',  'level' => 1 , 'url' => ['/staff/staff/index'], 'icon' => 'mdi mdi-account-box'],
-			
-			
-			['label' => 'OTHERS', 'level' => 0],
-			
-			['label' => 'General Setting', 'level' => 1,'url' => ['/setting/update', 'id' => 1], 'icon' => 'mdi mdi-settings-box'],
-			
-			[
-                'label' => 'User Management',
-                'level' => 2,
-                'icon' => 'mdi mdi-account-multiple',
-                'children' => [
-				
-					['label' => 'User List', 'icon' => 'user', 'url' => ['/user/index'],],
-					
-					['label' => 'User Assignment', 'icon' => 'user', 'url' => ['/admin'],],
-				
-                    ['label' => 'User Role List', 'icon' => 'user', 'url' => ['/admin/role'],],
-					
-					['label' => 'Route List', 'icon' => 'user', 'url' => ['/admin/route'],],
+            ['label' => \Yii::t('app', 'Experts'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
+                ['label' => \Yii::t('app', 'List of Expert'), 'url' => ['/expert/expert/index'], 'icon' => 'fa fa-circle'],
+            ]],
+        
+        ]
+    
+    )?>
 
-                ],
-            ],
-			
-		
-		]
-	
-	)?>
-                       
-                    </ul>
-                </nav>
+                    
+                    
+                    
+<br /><br /><br /><br /><br /><br />
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+    </ul>
+</nav>
+<?php 
+/* 
+$this->registerJs('
+
+$(".has-treeview").click(function(){
+    
+    if($(this.hasClass("menu-open") == false){
+        $(".has-treeview").each(function(i, obj) {
+            $(this).removeClass("menu-open");
+        });
+    }
+    
+    
+});
+
+');
+
+
+ */
+?>
