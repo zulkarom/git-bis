@@ -8,7 +8,7 @@ use dektrium\user\widgets\Connect;
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/assets/frontLogin');
 
-$this->title = 'Sign In Form by Bisnet';
+$this->title = 'Sign Up Form by Hatchniaga';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -27,7 +27,7 @@ h2 {
 }
 </style>
 
-
+<br/><br/><br/><br/><br/><br/>
 <div class="main">
 
     <section class="signup">
@@ -36,7 +36,7 @@ h2 {
             <div class="signup-content">
 
                 <?php $form = ActiveForm::begin(); ?>
-                <center><img src="<?= $directoryAsset ?>/images/logo.png" title="Bisnet" class="img-responsive " style="width:55%;margin:auto"></center>
+                <center><img src="<?= $directoryAsset ?>/pictures/logo-top.png" title="Bisnet" class="img-responsive " style="width:55%;margin:auto"></center>
                     <h2 class="form-title">Login account</h2>
                         <?= $form
                         ->field($model, 'role')

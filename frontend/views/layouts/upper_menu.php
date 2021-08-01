@@ -105,7 +105,7 @@ use yii\helpers\Html;
                             </div>
                             <div class="author_name">
                                 <h4 class="f_s_15 f_w_500 mb-0"><?=Yii::$app->user->identity->fullname?></h4>
-                                <p class="f_s_12 f_w_400">Admin</p>
+                                <p class="f_s_12 f_w_400">Client</p>
                             </div>
                             <div class="profile_info_iner">
                                 <div class="profile_author_name">

@@ -1,5 +1,5 @@
 <?php
-namespace frontend\modules\client\controllers;
+namespace frontend\modules\expert\controllers;
 
 use Yii;
 use yii\web\Controller;
@@ -11,7 +11,7 @@ use yii\web\ForbiddenHttpException;
  */
 class DashboardController extends Controller
 {
-    public $layout = '//main';
+    public $layout = '//main-expert';
     /**
      * @inheritdoc
      */

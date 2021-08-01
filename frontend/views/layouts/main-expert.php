@@ -39,14 +39,14 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
 <?php $this->beginBody() ?>
 
 
-    <?=$this->render('menu', [    
+    <?=$this->render('menu-expert', [    
         'dirAssests' => $dirAssests,
     ]);
     ?>
 
     <section class="main_content dashboard_part large_header_bg">
     <!-- menu  -->
-        <?=$this->render('upper_menu', [    
+        <?=$this->render('upper_menu_expert', [    
             'dirAssests' => $dirAssests,
         ]);
         ?>

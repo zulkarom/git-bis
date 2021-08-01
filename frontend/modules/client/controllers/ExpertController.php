@@ -16,6 +16,7 @@ use yii\filters\VerbFilter;
  */
 class ExpertController extends Controller
 {
+    public $layout = '//main';
     /**
      * {@inheritdoc}
      */

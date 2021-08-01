@@ -43,7 +43,7 @@ h2 {
                     'validateOnType' => false,
                     'validateOnChange' => false,
                 ]); ?>
-                <center><img src="<?= $directoryAsset ?>/images/logo.png" title="Bisnet" class="img-responsive " style="width:55%;margin:auto"></center>
+                <center><img src="<?= $directoryAsset ?>/pictures/logo-top.png" title="Hatchniaga" class="img-responsive " style="width:55%;margin:auto"></center>
                     <h2 class="form-title">Create account</h2>
                         <?= $form
 			            ->field($model, 'role')
