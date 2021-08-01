@@ -29,6 +29,12 @@ return [
             'enableUnconfirmedLogin' => true,
             'enableFlashMessages' => false,
         ],
+        'client' => [
+            'class' => 'frontend\modules\client\Module',
+        ],
+        'expert' => [
+            'class' => 'frontend\modules\expert\Module',
+        ],
     ],
     'components' => [
         'request' => [

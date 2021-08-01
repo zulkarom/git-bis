@@ -10,7 +10,7 @@ use yii\helpers\Url;
 $this->title = 'Consultation';
 $this->params['breadcrumbs'][] = $this->title;
 
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpress');
+$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
 ?>
 <div class="expert-index">
 
@@ -22,23 +22,19 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                     <?php
                         if($clientExpert){
                             foreach($clientExpert as $clientEx){
-                                echo'<div class="col-lg-3 col-md-6">
-                                    <div class="card">
-                                        <div class="el-card-item">
-                                            <div class="el-card-avatar el-overlay-1"> <img src="'.$dirAssests.'/images/users/1.jpg" alt="user" />
-                                                <div class="el-overlay">
-                                                    <ul class="el-info">
-                                                        <li><a class="btn default btn-outline image-popup-vertical-fit" href="'.$dirAssests.'/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
-                                                        <li><a class="btn default btn-outline"href="'.Url::to(['/chat/', 'id' => $clientEx->expert_id]).'"><i class="icon-link"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="el-card-content">
-                                                <h3 class="box-title">'.$clientEx->expert->user->fullname.'</h3> <small>'.$clientEx->expert->expertText.'</small>
-                                                <br/> </div>
-                                        </div>
+                                echo '
+                                <a href="'.Url::to(['/chat/', 'id' => $clientEx->expert_id]).'">
+                                <div class="col-md-6 col-lg-6 col-xl-4 box-col-6">
+                                  <div class="card custom-card">
+                                    <div class="card-header"><img class="img-fluid" src="'.$dirAssests.'/img/profilebox/2.jpg" alt="" data-original-title="" title=""></div>
+                                    <div class="card-profile"><img class="rounded-circle" src="'.$dirAssests.'/img/profilebox/8.jpg" alt="" data-original-title="" title=""></div>
+                                    <div class="text-center profile-details">
+                                      <h4>'.$clientEx->expert->user->fullname.'</h4>
+                                      <h6>'.$clientEx->expert->expertText.'</h6>
                                     </div>
-                                </div>';
+                                  </div>
+                              </div>
+                              </a>';
                             }
                         }
                     ?>
