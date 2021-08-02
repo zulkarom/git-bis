@@ -4,12 +4,12 @@ namespace frontend\modules\client\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\expert\models\Expert;
+use backend\models\BcKeyParner;
 
 /**
- * ExpertSearch represents the model behind the search form of `backend\modules\expert\models\Expert`.
+ * BcKeyParnerSearch represents the model behind the search form of `backend\models\BcKeyParner`.
  */
-class ExpertSearch extends Expert
+class BcKeyParnerSearch extends BcKeyParner
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,8 @@ class ExpertSearch extends Expert
     public function rules()
     {
         return [
-            [['id', 'user_id', 'expert_type'], 'integer'],
+            [['id', 'biz_canvas_id'], 'integer'],
+            [['description'], 'safe'],
         ];
     }
 
@@ -39,14 +40,12 @@ class ExpertSearch extends Expert
      */
     public function search($params)
     {
-        $query = Expert::find()
-        ->where(['user_id' => Yii::$app->user->identity->id]);
+        $query = BcKeyParner::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['created_at'=>SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -60,9 +59,10 @@ class ExpertSearch extends Expert
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'expert_type' => $this->expert_type,
+            'biz_canvas_id' => $this->biz_canvas_id,
         ]);
+
+        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

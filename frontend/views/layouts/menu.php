@@ -22,6 +22,8 @@ use common\widgets\Menu_crypto;
             ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
 
             ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/expert/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+
+            ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => $dirAssests.'/img/menu-icon/18.svg', 'children' => []],
     
         
         ]
