@@ -1,15 +1,15 @@
 <?php
 
-namespace frontend\models;
+namespace frontend\modules\client\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\BcKeyParner;
+use backend\models\BcCostStructure;
 
 /**
- * BcKeyParnerSearch represents the model behind the search form of `backend\models\BcKeyParner`.
+ * BcCostStructureSearch represents the model behind the search form of `backend\models\BcCostStructure`.
  */
-class BcKeyParnerSearch extends BcKeyParner
+class BcCostStructureSearch extends BcCostStructure
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class BcKeyParnerSearch extends BcKeyParner
      */
     public function search($params)
     {
-        $query = BcKeyParner::find();
+        $query = BcCostStructure::find();
 
         // add conditions that should always apply here
 

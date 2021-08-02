@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\BcKeyParner */
+/* @var $model backend\models\BcKeyActivity */
 
-$this->title = 'Create Bc Key Parner';
-$this->params['breadcrumbs'][] = ['label' => 'Bc Key Parners', 'url' => ['index']];
+$this->title = 'Create Bc Key Activity';
+$this->params['breadcrumbs'][] = ['label' => 'Bc Key Activities', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="bc-key-parner-create">
+<div class="bc-key-activity-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

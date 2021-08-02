@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\BcKeyParner */
+/* @var $model backend\models\BcKeyResource */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="bc-key-parner-form">
+<div class="bc-key-resource-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
