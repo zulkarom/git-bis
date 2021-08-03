@@ -67,46 +67,23 @@ class BcKeyParnerController extends Controller
     {
         $model = new BcKeyParner();
 
-        $model = new Kursus();
-
         if ($model->load(Yii::$app->request->post())) {
             $model->biz_canvas_id = $pid;
-            if($model->save()){
+
+             if($model->save()){
 
                 Yii::$app->session->addFlash('success', "Key Partner Added");
                 
             }else{
                 $model->flashError();
             }
-            return $this->redirect(['/biz-canvas/view', 'id' => $pid]);
+            return $this->redirect(['/client/biz-canvas/view', 'id' => $cid]);
         }
 
         return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }
-
-    public function actionCreate($pid)
-    {
-        $model = new Kursus();
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->kategori_id = $pid;
-            if($model->save()){
-
-                Yii::$app->session->addFlash('success', "New Kursus Added");
-                
-            }else{
-                $model->flashError();
-            }
-            return $this->redirect(['/kursus-kategori/view', 'id' => $pid]);
-        }
-
-        return $this->renderAjax('create', [
-            'model' => $model,
-        ]);
-    }
-
     /**
      * Updates an existing BcKeyParner model.
      * If update is successful, the browser will be redirected to the 'view' page.

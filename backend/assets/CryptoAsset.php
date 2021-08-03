@@ -13,7 +13,7 @@ class CryptoAsset extends AssetBundle
 {
     public $sourcePath = '@backend/assets/crypto';
     public $css = [
-		// 'css/bootstrap.min.css',
+		'css/bootstrap.min.css',
         'vendors/themefy_icon/themify-icons.css',
         'vendors/niceselect/css/nice-select.css',
         'vendors/owl_carousel/css/owl.carousel.css',
@@ -36,7 +36,6 @@ class CryptoAsset extends AssetBundle
 
     public $js = [
         
-        'js/main.js',
         //footer//
         // 'js/jquery-3.4.1.min.js',
         //popper js -->

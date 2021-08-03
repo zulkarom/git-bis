@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use backend\assets\CanvasAsset;
-use yii\bootstrap\Modal;
+use yii\bootstrap4\Modal;
 use yii\helpers\Url;
 
 CanvasAsset::register($this);
@@ -26,28 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class ="row">
               <div class ="col-10">Key Partners</div> 
               <div class ="col-2">
-                <?php echo Html::button('<span class="fa fa-plus"></span>',['value' => Url::to(['/client/bc-key-parner/create','pid' => $model->id]), 'class' => 'btn btn-outline-secondary btn-sm', 'id' => 'modalBttnPartner']);
-
-                    Modal::begin([
-                            'header' => '<h4>Add Key Partner</h4>',
-                            'id' =>'createPartner',
-                            'size' => 'modal-lg'
-                        ]);
-
-                    echo '<div id="formCreatePartner"></div>';
-
-                    Modal::end();
-
-                    $this->registerJs('
-                    $(function(){
-                      $("#modalBttnPartner").click(function(){
-                          $("#createPartner").modal("show")
-                            .find("#formCreatePartner")
-                            .load($(this).attr("value"));
-                      });
-                    });
-                    ');
-                
+                <?php 
+                echo '<a class="modalBttnPartner" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-parner/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                     ?>
               </div>
@@ -165,3 +145,25 @@ $this->params['breadcrumbs'][] = $this->title;
     
   </div>
 </div>
+
+<?php
+Modal::begin([
+      'title' => '<h4>Add Key Partner</h4>',
+      'id' =>'createPartner',
+      'size' => 'modal-md'
+  ]);
+
+echo '<div id="formCreatePartner"></div>';
+
+Modal::end();
+
+$this->registerJs('
+$(function(){
+  $(".modalBttnPartner").click(function(){
+      $("#createPartner").modal("show")
+        .find("#formCreatePartner")
+        .load($(this).attr("value"));
+  });
+});
+');
+?>

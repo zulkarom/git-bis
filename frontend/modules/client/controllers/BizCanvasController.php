@@ -14,6 +14,7 @@ use yii\db\Expression;
  */
 class BizCanvasController extends Controller
 {
+    public $layout = '//main';
     /**
      * {@inheritdoc}
      */
@@ -35,10 +36,13 @@ class BizCanvasController extends Controller
      */
     public function actionIndex()
     {
+        $model = new BizCanvas();
+
         $searchModel = new BizCanvasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -77,7 +81,7 @@ class BizCanvasController extends Controller
             return $this->redirect(['index', 'id' => $model->id]);
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }

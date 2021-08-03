@@ -202,7 +202,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/adminpre
                     </div>
                 </div>
 
-                 <?=$this->render('menu')?>
+                 <?=$this->render('menu_press')?>
 
             </div>
             <!-- End Sidebar scroll-->

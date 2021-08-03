@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2021 at 11:32 PM
+-- Generation Time: Aug 03, 2021 at 07:25 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -20,6 +20,155 @@ SET time_zone = "+00:00";
 --
 -- Database: `bisnet`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_biz_canvas`
+--
+
+CREATE TABLE `bc_biz_canvas` (
+  `id` int(11) NOT NULL,
+  `title` varchar(225) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_biz_canvas`
+--
+
+INSERT INTO `bc_biz_canvas` (`id`, `title`, `user_id`, `created_at`) VALUES
+(1, 'Business Canvas Title Example', 7, '2021-08-02 15:22:09'),
+(2, 'dfgdfgdfgdfg', 7, '2021-08-03 12:31:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_brainstorm`
+--
+
+CREATE TABLE `bc_brainstorm` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_channel`
+--
+
+CREATE TABLE `bc_channel` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_cost_structure`
+--
+
+CREATE TABLE `bc_cost_structure` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_cust_relation`
+--
+
+CREATE TABLE `bc_cust_relation` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_cust_segment`
+--
+
+CREATE TABLE `bc_cust_segment` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_key_activity`
+--
+
+CREATE TABLE `bc_key_activity` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_key_parner`
+--
+
+CREATE TABLE `bc_key_parner` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_key_parner`
+--
+
+INSERT INTO `bc_key_parner` (`id`, `biz_canvas_id`, `description`) VALUES
+(1, 0, 'sdsfsdfsdf'),
+(2, 1, 'dfgdfgdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_key_resource`
+--
+
+CREATE TABLE `bc_key_resource` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_rev_stream`
+--
+
+CREATE TABLE `bc_rev_stream` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bc_val_proposition`
+--
+
+CREATE TABLE `bc_val_proposition` (
+  `id` int(11) NOT NULL,
+  `biz_canvas_id` int(11) NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -44,10 +193,8 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`id`, `sender_id`, `recipient_id`, `user_id`, `time`, `rfc822`, `name`, `icon`, `message`) VALUES
-(156, 7, 9, NULL, 1624571920, 'Fri, 25 Jun 21 00:02:26 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'test'),
-(158, 9, 7, NULL, 1624572146, 'Thu, 24 Jun 21 23:58:40 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'sdfsdfsd'),
-(161, 7, 9, NULL, 1624573811, 'Fri, 25 Jun 21 00:30:11 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'xcxzczx'),
-(162, 7, 9, NULL, 1624575593, 'Fri, 25 Jun 21 00:59:53 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'dfgd');
+(168, 7, 9, NULL, 1624755870, 'Sun, 27 Jun 21 03:04:30 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'sfsdfsdfsdf'),
+(169, 7, 9, NULL, 1624755903, 'Sun, 27 Jun 21 03:05:03 +0200', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -209,13 +356,6 @@ CREATE TABLE `token` (
   `type` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `token`
---
-
-INSERT INTO `token` (`user_id`, `code`, `created_at`, `type`) VALUES
-(9, 'HPUsm40ofwKUJScvPL23ya2WOWSdRrGU', 1624484446, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -247,9 +387,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1624467474, 0, 1624564824, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1624467474, 0, 1627958319, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
-(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$goxdKCZQPMIZlylAv.B26O9cvfEiS57quDyo.l0upvVpQzQR97F3i', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1624484446, 0, 1624532900, 10, '');
+(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$goxdKCZQPMIZlylAv.B26O9cvfEiS57quDyo.l0upvVpQzQR97F3i', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1624484446, 0, 1627848627, 10, '');
 
 -- --------------------------------------------------------
 
@@ -341,6 +481,72 @@ INSERT INTO `web_section` (`id`, `title`, `content`, `image_url`) VALUES
 --
 
 --
+-- Indexes for table `bc_biz_canvas`
+--
+ALTER TABLE `bc_biz_canvas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_brainstorm`
+--
+ALTER TABLE `bc_brainstorm`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_channel`
+--
+ALTER TABLE `bc_channel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_cost_structure`
+--
+ALTER TABLE `bc_cost_structure`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_cust_relation`
+--
+ALTER TABLE `bc_cust_relation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_cust_segment`
+--
+ALTER TABLE `bc_cust_segment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_key_activity`
+--
+ALTER TABLE `bc_key_activity`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_key_parner`
+--
+ALTER TABLE `bc_key_parner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_key_resource`
+--
+ALTER TABLE `bc_key_resource`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_rev_stream`
+--
+ALTER TABLE `bc_rev_stream`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bc_val_proposition`
+--
+ALTER TABLE `bc_val_proposition`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `chat`
 --
 ALTER TABLE `chat`
@@ -428,10 +634,76 @@ ALTER TABLE `web_section`
 --
 
 --
+-- AUTO_INCREMENT for table `bc_biz_canvas`
+--
+ALTER TABLE `bc_biz_canvas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `bc_brainstorm`
+--
+ALTER TABLE `bc_brainstorm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_channel`
+--
+ALTER TABLE `bc_channel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_cost_structure`
+--
+ALTER TABLE `bc_cost_structure`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_cust_relation`
+--
+ALTER TABLE `bc_cust_relation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_cust_segment`
+--
+ALTER TABLE `bc_cust_segment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_key_activity`
+--
+ALTER TABLE `bc_key_activity`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_key_parner`
+--
+ALTER TABLE `bc_key_parner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `bc_key_resource`
+--
+ALTER TABLE `bc_key_resource`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_rev_stream`
+--
+ALTER TABLE `bc_rev_stream`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bc_val_proposition`
+--
+ALTER TABLE `bc_val_proposition`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `client`

@@ -1,16 +1,14 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\modules\client\models\BizCanvasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 ?>
 
 
-<div class="white_card card_height_100 mb_30">
-  <div class="white_card_header">
-    <div class="supplier-form">
+<div class="supplier-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

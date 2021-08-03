@@ -3,7 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use backend\assets\CanvasAsset;
-
+use yii\bootstrap4\Modal;
+use yii\helpers\Url;
+\yii\web\YiiAsset::register($this);
 CanvasAsset::register($this);
 
 /* @var $this yii\web\View */
@@ -14,9 +16,31 @@ $this->title = 'Business Canvas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<p>
-    <?= Html::a('Create Business Canvas', ['create'], ['class' => 'btn btn-success']) ?>
-</p>
+
+    <p>
+     <?php echo Html::button('<span class="fa fa-plus"></span> Create Business Canvas',['value' => Url::to(['/client/biz-canvas/create']), 'class' => 'btn btn-success btn-sm', 'id' => 'modalBttnPartner']);
+
+            Modal::begin([
+                    'title' => '<h4>Add Key Partner</h4>',
+                    'id' =>'createPartner',
+                    'size' => 'modal-lg',
+                ]);
+
+            echo '<div id="formCreatePartner"></div>';
+
+            Modal::end();
+
+            $this->registerJs('
+            $(function(){
+              $("#modalBttnPartner").click(function(){
+                  $("#createPartner").modal("show")
+                    .find("#formCreatePartner")
+                    .load($(this).attr("value"));
+              });
+            });
+            ');
+        ?>
+    </p>
 <br/>
 
 <div class="biz-canvas-index">
