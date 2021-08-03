@@ -20,16 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
      <?php echo Html::button('<span class="fa fa-plus"></span> Create Business Canvas',['value' => Url::to(['/client/biz-canvas/create']), 'class' => 'btn btn-success btn-sm', 'id' => 'modalBttnPartner']);
 
-            Modal::begin([
-                    'title' => '<h4>Add Key Partner</h4>',
-                    'id' =>'createPartner',
-                    'size' => 'modal-lg',
-                ]);
-
-            echo '<div id="formCreatePartner"></div>';
-
-            Modal::end();
-
             $this->registerJs('
             $(function(){
               $("#modalBttnPartner").click(function(){

@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\models\BizCanvas;
 
 /**
  * This is the model class for table "bc_brainstorm".
@@ -43,5 +44,9 @@ class BcBrainstorm extends \yii\db\ActiveRecord
             'biz_canvas_id' => 'Biz Canvas ID',
             'description' => 'Description',
         ];
+    }
+
+    public function getBizCanvas(){
+        return $this->hasOne(BizCanvas::className(), ['id' => 'biz_canvas_id']);
     }
 }

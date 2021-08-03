@@ -106,19 +106,119 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
     </a>
 </div>
 
+<?php
+Modal::begin([
+        'title' => '<h4>Add Key Partner</h4>',
+        'id' =>'createPartner',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formCreatePartner"></div>';
+
+Modal::end();
+?>
 
 <?php
 Modal::begin([
     'title' => '<h4>Add Key Partner</h4>',
     'id' =>'createPartner',
-    'size' => 'modal-md'
+    'size' => 'modal-lg'
 ]);
-
 echo '<div id="formCreatePartner"></div>';
-
 Modal::end();
-
 ?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Key Activities</h4>',
+    'id' =>'createActivity',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateActivity"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Key Resources</h4>',
+    'id' =>'createResources',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateResources"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Value Proposition</h4>',
+    'id' =>'createProposition',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateProposition"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Customer Relationship</h4>',
+    'id' =>'createRelationship',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateRelationship"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Channels</h4>',
+    'id' =>'createChannel',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateChannel"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Customer Segments
+</h4>',
+    'id' =>'createSegment',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateSegment"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Cost Structure</h4>',
+    'id' =>'createStructure',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateStructure"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Revenue Streams</h4>',
+    'id' =>'createStream',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateStream"></div>';
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Brainstorming Space</h4>',
+    'id' =>'createSpace',
+    'size' => 'modal-lg'
+]);
+echo '<div id="formCreateSpace"></div>';
+Modal::end();
+?>
+
 
 
 <?php $this->endBody() ?>

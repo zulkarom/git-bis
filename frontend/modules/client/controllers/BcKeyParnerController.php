@@ -77,7 +77,7 @@ class BcKeyParnerController extends Controller
             }else{
                 $model->flashError();
             }
-            return $this->redirect(['/client/biz-canvas/view', 'id' => $cid]);
+            return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
         return $this->renderAjax('create', [

@@ -5,6 +5,8 @@ namespace frontend\modules\client\controllers;
 use Yii;
 use backend\models\BizCanvas;
 use frontend\modules\client\models\BizCanvasSearch;
+use backend\models\BcKeyParner;
+use backend\models\BcBrainstorm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -56,7 +58,19 @@ class BizCanvasController extends Controller
      */
     public function actionView($id)
     {
+        $partner = BcKeyParner::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->one();
+
+        $space = BcBrainstorm::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->one();
+
         return $this->render('view', [
+            'partner' => $partner,
+            'space' => $space,
             'model' => $this->findModel($id),
         ]);
     }

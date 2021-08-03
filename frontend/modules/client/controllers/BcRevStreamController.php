@@ -62,15 +62,24 @@ class BcRevStreamController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($pid)
     {
         $model = new BcRevStream();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->biz_canvas_id = $pid;
+
+             if($model->save()){
+
+                Yii::$app->session->addFlash('success', "Revenue Streams Added");
+                
+            }else{
+                $model->flashError();
+            }
+            return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
     }
