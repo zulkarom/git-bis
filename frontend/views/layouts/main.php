@@ -7,6 +7,7 @@ use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
+use yii\bootstrap4\Modal;
 use backend\assets\CryptoAsset;
 use backend\assets\AppAsset;
 
@@ -104,6 +105,21 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
         <i class="ti-angle-up"></i>
     </a>
 </div>
+
+
+<?php
+Modal::begin([
+    'title' => '<h4>Add Key Partner</h4>',
+    'id' =>'createPartner',
+    'size' => 'modal-md'
+]);
+
+echo '<div id="formCreatePartner"></div>';
+
+Modal::end();
+
+?>
+
 
 <?php $this->endBody() ?>
 </body>

@@ -22,6 +22,7 @@ Thumbs.db
 
 # composer itself is not needed
 composer.phar
+composer.json
 composer.lock
 
 # Mac DS_Store Files
@@ -40,5 +41,6 @@ backend/web/
 frontend/web/
 website/web/
 frontend/web/
+frontend/config/
 backend/config/
 website/config/

@@ -147,15 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?php
-Modal::begin([
-      'title' => '<h4>Add Key Partner</h4>',
-      'id' =>'createPartner',
-      'size' => 'modal-md'
-  ]);
 
-echo '<div id="formCreatePartner"></div>';
-
-Modal::end();
 
 $this->registerJs('
 $(function(){
