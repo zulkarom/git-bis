@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="white_card card_height_100 mb_30">
   <div class="white_card_header">
     
-    <div class="container">
+    
       <!-- <h1>The Business Model Canvas</h1> -->
       <!-- Canvas -->
       <table id="bizcanvas" cellspacing="0" border="3">
@@ -230,17 +230,9 @@ $this->params['breadcrumbs'][] = $this->title;
           </td>
         </tr>
       </table>
-    </div>
-    <div class ="row">
-      <div class ="col-1">
-      </div>
-      <div class ="col-10">
-        <hr>
-      </div>
-      <div class ="col-1">
-      </div>
-    </div>
-    <div class="container">
+    
+    <hr>
+    
       <table id="bizcanvas" cellspacing="0" border="3">
         <tr>
           <td colspan="5">
@@ -266,7 +258,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </tr>
       </table>
       <!-- /Canvas -->
-    </div>
+    
 
     </div>
   </div>
