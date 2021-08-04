@@ -15,7 +15,7 @@ class SecurityController extends BaseSecurityController
         $this->layout = "//main-login";
         if (!\Yii::$app->user->isGuest) {
             //$this->goHome();
-            $this->redirect(['/dashboard/index']);
+            return $this->user_redirect();
         }
 
         /** @var LoginForm $model */
@@ -55,5 +55,13 @@ class SecurityController extends BaseSecurityController
         $this->trigger(self::EVENT_AFTER_LOGOUT, $event);
 
         return $this->redirect(['/user/login']);
+    }
+
+    private function user_redirect(){
+        if(Yii::$app->user->identity->role == 1){
+            return $this->redirect(['/client/dashboard/index']);
+        }else if(Yii::$app->user->identity->role == 2){
+            return $this->redirect(['/expert/dashboard/index']);
+        }
     }
 }

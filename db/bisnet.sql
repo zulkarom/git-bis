@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2021 at 07:25 AM
+-- Generation Time: Aug 04, 2021 at 04:35 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -39,8 +39,7 @@ CREATE TABLE `bc_biz_canvas` (
 --
 
 INSERT INTO `bc_biz_canvas` (`id`, `title`, `user_id`, `created_at`) VALUES
-(1, 'Business Canvas Title Example', 7, '2021-08-02 15:22:09'),
-(2, 'dfgdfgdfgdfg', 7, '2021-08-03 12:31:10');
+(4, 'Business Canvas', 7, '2021-08-04 11:24:46');
 
 -- --------------------------------------------------------
 
@@ -51,8 +50,17 @@ INSERT INTO `bc_biz_canvas` (`id`, `title`, `user_id`, `created_at`) VALUES
 CREATE TABLE `bc_brainstorm` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_brainstorm`
+--
+
+INSERT INTO `bc_brainstorm` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(2, 4, 'brainstorming space title ', 'brainstorming description', 'blue');
 
 -- --------------------------------------------------------
 
@@ -63,8 +71,17 @@ CREATE TABLE `bc_brainstorm` (
 CREATE TABLE `bc_channel` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_channel`
+--
+
+INSERT INTO `bc_channel` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'Add Channels', 'Add Channels\r\n', 'red');
 
 -- --------------------------------------------------------
 
@@ -75,8 +92,19 @@ CREATE TABLE `bc_channel` (
 CREATE TABLE `bc_cost_structure` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_cost_structure`
+--
+
+INSERT INTO `bc_cost_structure` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'brainstorming title', 'brainstorming details', 'red'),
+(2, 4, 'Cost Structure', 'Cost Structure', 'green'),
+(3, 4, 'brainstorming title', 'sdsds', 'yellow');
 
 -- --------------------------------------------------------
 
@@ -87,8 +115,17 @@ CREATE TABLE `bc_cost_structure` (
 CREATE TABLE `bc_cust_relation` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_cust_relation`
+--
+
+INSERT INTO `bc_cust_relation` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'Add Customer Relationship', 'Add Customer Relationship', 'green');
 
 -- --------------------------------------------------------
 
@@ -99,8 +136,17 @@ CREATE TABLE `bc_cust_relation` (
 CREATE TABLE `bc_cust_segment` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_cust_segment`
+--
+
+INSERT INTO `bc_cust_segment` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'Add Customer Segments', 'Add Customer Segments', 'yellow');
 
 -- --------------------------------------------------------
 
@@ -111,8 +157,18 @@ CREATE TABLE `bc_cust_segment` (
 CREATE TABLE `bc_key_activity` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_key_activity`
+--
+
+INSERT INTO `bc_key_activity` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'activity title', 'activity description', 'green'),
+(2, 4, 'activity title 2', 'activity description 2', 'yellow');
 
 -- --------------------------------------------------------
 
@@ -123,16 +179,19 @@ CREATE TABLE `bc_key_activity` (
 CREATE TABLE `bc_key_parner` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bc_key_parner`
 --
 
-INSERT INTO `bc_key_parner` (`id`, `biz_canvas_id`, `description`) VALUES
-(1, 0, 'sdsfsdfsdf'),
-(2, 1, 'dfgdfgdf');
+INSERT INTO `bc_key_parner` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(6, 4, 'test', 'test ', 'blue'),
+(7, 4, 'test 2', 'test 2', 'red'),
+(8, 4, 'test 3', 'test 3', 'green');
 
 -- --------------------------------------------------------
 
@@ -143,8 +202,17 @@ INSERT INTO `bc_key_parner` (`id`, `biz_canvas_id`, `description`) VALUES
 CREATE TABLE `bc_key_resource` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_key_resource`
+--
+
+INSERT INTO `bc_key_resource` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'Key Resources Title', 'Key Resources Description', 'grey');
 
 -- --------------------------------------------------------
 
@@ -155,8 +223,17 @@ CREATE TABLE `bc_key_resource` (
 CREATE TABLE `bc_rev_stream` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_rev_stream`
+--
+
+INSERT INTO `bc_rev_stream` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'Add Revenue Streams', 'Add Revenue Streams', 'grey');
 
 -- --------------------------------------------------------
 
@@ -167,8 +244,17 @@ CREATE TABLE `bc_rev_stream` (
 CREATE TABLE `bc_val_proposition` (
   `id` int(11) NOT NULL,
   `biz_canvas_id` int(11) NOT NULL,
-  `description` text NOT NULL
+  `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
+  `color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bc_val_proposition`
+--
+
+INSERT INTO `bc_val_proposition` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
+(1, 4, 'test 1', 'test 1', 'yellow');
 
 -- --------------------------------------------------------
 
@@ -387,7 +473,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1624467474, 0, 1627958319, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1624467474, 0, 1628087297, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
 (9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$goxdKCZQPMIZlylAv.B26O9cvfEiS57quDyo.l0upvVpQzQR97F3i', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1624484446, 0, 1627848627, 10, '');
 
@@ -637,67 +723,67 @@ ALTER TABLE `web_section`
 -- AUTO_INCREMENT for table `bc_biz_canvas`
 --
 ALTER TABLE `bc_biz_canvas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `bc_brainstorm`
 --
 ALTER TABLE `bc_brainstorm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bc_channel`
 --
 ALTER TABLE `bc_channel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bc_cost_structure`
 --
 ALTER TABLE `bc_cost_structure`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `bc_cust_relation`
 --
 ALTER TABLE `bc_cust_relation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bc_cust_segment`
 --
 ALTER TABLE `bc_cust_segment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bc_key_activity`
 --
 ALTER TABLE `bc_key_activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bc_key_parner`
 --
 ALTER TABLE `bc_key_parner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `bc_key_resource`
 --
 ALTER TABLE `bc_key_resource`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bc_rev_stream`
 --
 ALTER TABLE `bc_rev_stream`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bc_val_proposition`
 --
 ALTER TABLE `bc_val_proposition`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `chat`

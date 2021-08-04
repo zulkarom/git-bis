@@ -15,13 +15,24 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<style type="text/css">
+  hr {
+    border: none;
+    height: 1px;
+    width: 100%;
+    /* Set the hr color */
+    color: #333; /* old IE */
+    background-color: #333; /* Modern Browsers */
+}
+</style>
+
 <div class="white_card card_height_100 mb_30">
   <div class="white_card_header">
     
     <div class="container">
       <!-- <h1>The Business Model Canvas</h1> -->
       <!-- Canvas -->
-      <table id="bizcanvas" cellspacing="0" border="1">
+      <table id="bizcanvas" cellspacing="0" border="3">
         <!-- Upper part -->
         <tr>
           <td colspan="2" rowspan="2">
@@ -219,22 +230,31 @@ $this->params['breadcrumbs'][] = $this->title;
           </td>
         </tr>
       </table>
-
-      <table>
-      <tr>
-        <td>
-          <h4>
-            <div class ="row">
+    </div>
+    <div class ="row">
+      <div class ="col-1">
+      </div>
+      <div class ="col-10">
+        <hr>
+      </div>
+      <div class ="col-1">
+      </div>
+    </div>
+    <div class="container">
+      <table id="bizcanvas" cellspacing="0" border="3">
+        <tr>
+          <td colspan="5">
+            <h4>
+              <div class ="row">
               <div class ="col-11">Brainstorming Space</div> 
               <div class ="col-1" align="right">
                 <?php 
                   echo '<a class="modalBttnSpace" href="javascript:void(0)" value="' . Url::to(['/client/bc-brainstorm/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
-                
                 ?>
               </div>
-            </div>
-          </h4>
-          <p>
+              </div>
+            </h4>
+            <p>
               <?php if($spaces){
                 foreach($spaces as $space){
                   echo '<div class = "note '.$space->color.'">'.$space->title.'</div>
@@ -242,9 +262,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
               }?>
             </p>
-        </td>
-      </tr>
-    </table>
+          </td>
+        </tr>
+      </table>
       <!-- /Canvas -->
     </div>
 
