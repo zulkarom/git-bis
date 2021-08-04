@@ -28,9 +28,9 @@ class BcBrainstorm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['biz_canvas_id', 'description'], 'required'],
+            [['biz_canvas_id', 'description', 'title', 'color'], 'required'],
             [['biz_canvas_id'], 'integer'],
-            [['description'], 'string'],
+            [['description', 'title', 'color'], 'string'],
         ];
     }
 

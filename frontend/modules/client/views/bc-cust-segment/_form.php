@@ -12,7 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'title')->textInput()->label('Title') ?>
+
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'color')->dropDownList( ['blue' => 'Blue' , 'green' => 'Green', 'yellow' => 'Yellow', 'red' => 'Red', 'grey' => 'Grey'] ) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

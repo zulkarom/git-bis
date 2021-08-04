@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use backend\models\BizCanvas;
 /**
  * This is the model class for table "bc_key_activity".
  *
@@ -27,9 +27,9 @@ class BcKeyActivity extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['biz_canvas_id', 'description'], 'required'],
+            [['biz_canvas_id', 'description', 'title', 'color'], 'required'],
             [['biz_canvas_id'], 'integer'],
-            [['description'], 'string'],
+            [['description', 'title', 'color'], 'string'],
         ];
     }
 
@@ -43,5 +43,9 @@ class BcKeyActivity extends \yii\db\ActiveRecord
             'biz_canvas_id' => 'Biz Canvas ID',
             'description' => 'Description',
         ];
+    }
+
+    public function getBizCanvas(){
+        return $this->hasOne(BizCanvas::className(), ['id' => 'biz_canvas_id']);
     }
 }

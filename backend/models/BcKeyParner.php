@@ -27,9 +27,9 @@ class BcKeyParner extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'required'],
+            [['biz_canvas_id', 'description', 'title', 'color'], 'required'],
             [['biz_canvas_id'], 'integer'],
-            [['description'], 'string'],
+            [['description', 'title', 'color'], 'string'],
         ];
     }
 
@@ -47,5 +47,18 @@ class BcKeyParner extends \yii\db\ActiveRecord
 
     public function getBizCanvas(){
         return $this->hasOne(BizCanvas::className(), ['id' => 'biz_canvas_id']);
+    }
+
+    public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+
     }
 }

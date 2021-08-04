@@ -7,6 +7,14 @@ use backend\models\BizCanvas;
 use frontend\modules\client\models\BizCanvasSearch;
 use backend\models\BcKeyParner;
 use backend\models\BcBrainstorm;
+use backend\models\BcChannel;
+use backend\models\BcRevStream;
+use backend\models\BcCustSegment;
+use backend\models\BcKeyActivity;
+use backend\models\BcKeyResource;
+use backend\models\BcCostStructure;
+use backend\models\BcCustRelation;
+use backend\models\BcValProposition;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -58,19 +66,67 @@ class BizCanvasController extends Controller
      */
     public function actionView($id)
     {
-        $partner = BcKeyParner::find()
+        $partners = BcKeyParner::find()
         ->joinWith('bizCanvas')
         ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->one();
+        ->all();
 
-        $space = BcBrainstorm::find()
+        $spaces = BcBrainstorm::find()
         ->joinWith('bizCanvas')
         ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->one();
+        ->all();
+
+        $activities = BcKeyActivity::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
+
+        $propositions = BcValProposition::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
+
+        $relationships = BcCustRelation::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
+
+        $channels = BcChannel::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
+
+        $revenues = BcRevStream::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
+
+        $structures = BcCostStructure::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
+
+        $resources = BcKeyResource::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
+
+        $segments = BcCustSegment::find()
+        ->joinWith('bizCanvas')
+        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
+        ->all();
 
         return $this->render('view', [
-            'partner' => $partner,
-            'space' => $space,
+            'partners' => $partners,
+            'spaces' => $spaces,
+            'activities' => $activities,
+            'propositions' => $propositions,
+            'relationships' => $relationships,
+            'segments' => $segments,
+            'resources' => $resources,
+            'structures' => $structures,
+            'revenues' => $revenues,
+            'channels' => $channels,
             'model' => $this->findModel($id),
         ]);
     }
