@@ -35,6 +35,9 @@ return [
         'expert' => [
             'class' => 'frontend\modules\expert\Module',
         ],
+        'chat' => [
+            'class' => 'frontend\modules\chat\ChatModule',
+        ],
     ],
     'components' => [
         'request' => [
@@ -73,6 +76,7 @@ return [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'profile/*',
+            'chat/*'
             //'application/*',
             //'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.
