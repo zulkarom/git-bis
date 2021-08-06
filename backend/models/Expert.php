@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use common\models\User;
 /**
  * This is the model class for table "expert".
  *
@@ -14,6 +14,8 @@ use Yii;
  */
 class Expert extends \yii\db\ActiveRecord
 {
+    public $fullname;
+    public $email;
     /**
      * {@inheritdoc}
      */
@@ -28,14 +30,14 @@ class Expert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fullname', 'email', 'personal_updated_at'], 'required', 'on' => 'profile_personal'],
+            [['fullname', 'email', 'personal_updated_at'], 'required', 'on' => 'insert'],
 
             ['email', 'email'],
 
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['user_id', 'expert_type'], 'integer'],
-            [['profile_file', 'fullname', 'email'], 'string', 'max' => 225],
+            [['fullname', 'email'], 'string', 'max' => 225],
         ];
     }
 
@@ -50,5 +52,9 @@ class Expert extends \yii\db\ActiveRecord
             'expert_type' => 'Expert Type',
             'profile_file' => 'Profile File',
         ];
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

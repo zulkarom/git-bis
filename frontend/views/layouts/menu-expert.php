@@ -21,6 +21,8 @@ use common\widgets\Menu_crypto;
             
             ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/expert/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
 
+            ['label' => \Yii::t('app', 'My Profile'), 'level' => 1, 'url' => ['/expert/profile/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+
             ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/expert/expert/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
     
         
