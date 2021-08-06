@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2021 at 04:35 PM
+-- Generation Time: Aug 06, 2021 at 02:44 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -254,7 +254,9 @@ CREATE TABLE `bc_val_proposition` (
 --
 
 INSERT INTO `bc_val_proposition` (`id`, `biz_canvas_id`, `title`, `description`, `color`) VALUES
-(1, 4, 'test 1', 'test 1', 'yellow');
+(1, 4, 'test 1', 'test 1', 'yellow'),
+(2, 4, 'test 1', 'test 2', 'yellow'),
+(3, 4, 'test 1  test 1 test 1 test 1 test 1 test 1 test 1 test 1 ', 'test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 test 1 ', 'blue');
 
 -- --------------------------------------------------------
 
@@ -291,15 +293,17 @@ INSERT INTO `chat` (`id`, `sender_id`, `recipient_id`, `user_id`, `time`, `rfc82
 CREATE TABLE `client` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `client_type` tinyint(2) NOT NULL
+  `client_type` tinyint(2) NOT NULL,
+  `profile_file` varchar(225) NOT NULL,
+  `personal_updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`id`, `user_id`, `client_type`) VALUES
-(5, 7, 0);
+INSERT INTO `client` (`id`, `user_id`, `client_type`, `profile_file`, `personal_updated_at`) VALUES
+(5, 7, 0, '610c772edccfe.jpg', '2021-08-06 08:26:52');
 
 -- --------------------------------------------------------
 
@@ -329,15 +333,17 @@ INSERT INTO `client_exper` (`id`, `client_id`, `expert_id`) VALUES
 CREATE TABLE `expert` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `expert_type` tinyint(2) NOT NULL
+  `expert_type` tinyint(2) NOT NULL,
+  `profile_file` varchar(225) NOT NULL,
+  `personal_updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `expert`
 --
 
-INSERT INTO `expert` (`id`, `user_id`, `expert_type`) VALUES
-(1, 9, 20);
+INSERT INTO `expert` (`id`, `user_id`, `expert_type`, `profile_file`, `personal_updated_at`) VALUES
+(1, 9, 20, '610c842fdbabb.png', '2021-08-06 08:37:03');
 
 -- --------------------------------------------------------
 
@@ -473,9 +479,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1624467474, 0, 1628087297, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'IQRAM RAFIEN', 'iqramrafien21@gmail.com', 1, '$2y$10$ROS1EaY6SHxLLJhzgQFn3Oum9zbjt/.o42fofZCW7LOyW75zbEY96', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1628209404, 0, 1628209396, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
-(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$10$goxdKCZQPMIZlylAv.B26O9cvfEiS57quDyo.l0upvVpQzQR97F3i', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1624484446, 0, 1627848627, 10, '');
+(9, 'iqramrafien29@gmail.com', 'Fakhrul Iqram Bin Rafien', 'iqramrafien29@gmail.com', 2, '$2y$10$goxdKCZQPMIZlylAv.B26O9cvfEiS57quDyo.l0upvVpQzQR97F3i', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1628210214, 0, 1628210234, 10, '');
 
 -- --------------------------------------------------------
 
@@ -576,61 +582,71 @@ ALTER TABLE `bc_biz_canvas`
 -- Indexes for table `bc_brainstorm`
 --
 ALTER TABLE `bc_brainstorm`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `biz_canvas_id` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_channel`
 --
 ALTER TABLE `bc_channel`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_channel_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_cost_structure`
 --
 ALTER TABLE `bc_cost_structure`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_cost_structure_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_cust_relation`
 --
 ALTER TABLE `bc_cust_relation`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_cust_relation_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_cust_segment`
 --
 ALTER TABLE `bc_cust_segment`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_cust_segment_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_key_activity`
 --
 ALTER TABLE `bc_key_activity`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_key_activity_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_key_parner`
 --
 ALTER TABLE `bc_key_parner`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_key_parner_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_key_resource`
 --
 ALTER TABLE `bc_key_resource`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_key_resource_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_rev_stream`
 --
 ALTER TABLE `bc_rev_stream`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_rev_stream_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `bc_val_proposition`
 --
 ALTER TABLE `bc_val_proposition`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bc_val_proposition_ibfk_1` (`biz_canvas_id`);
 
 --
 -- Indexes for table `chat`
@@ -648,7 +664,9 @@ ALTER TABLE `client`
 -- Indexes for table `client_exper`
 --
 ALTER TABLE `client_exper`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `client_exper_ibfk_1` (`client_id`),
+  ADD KEY `client_exper_ibfk_2` (`expert_id`);
 
 --
 -- Indexes for table `expert`
@@ -783,7 +801,7 @@ ALTER TABLE `bc_rev_stream`
 -- AUTO_INCREMENT for table `bc_val_proposition`
 --
 ALTER TABLE `bc_val_proposition`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `chat`
@@ -848,6 +866,73 @@ ALTER TABLE `web_section`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `bc_brainstorm`
+--
+ALTER TABLE `bc_brainstorm`
+  ADD CONSTRAINT `bc_brainstorm_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_channel`
+--
+ALTER TABLE `bc_channel`
+  ADD CONSTRAINT `bc_channel_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_cost_structure`
+--
+ALTER TABLE `bc_cost_structure`
+  ADD CONSTRAINT `bc_cost_structure_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_cust_relation`
+--
+ALTER TABLE `bc_cust_relation`
+  ADD CONSTRAINT `bc_cust_relation_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_cust_segment`
+--
+ALTER TABLE `bc_cust_segment`
+  ADD CONSTRAINT `bc_cust_segment_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_key_activity`
+--
+ALTER TABLE `bc_key_activity`
+  ADD CONSTRAINT `bc_key_activity_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_key_parner`
+--
+ALTER TABLE `bc_key_parner`
+  ADD CONSTRAINT `bc_key_parner_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_key_resource`
+--
+ALTER TABLE `bc_key_resource`
+  ADD CONSTRAINT `bc_key_resource_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_rev_stream`
+--
+ALTER TABLE `bc_rev_stream`
+  ADD CONSTRAINT `bc_rev_stream_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `bc_val_proposition`
+--
+ALTER TABLE `bc_val_proposition`
+  ADD CONSTRAINT `bc_val_proposition_ibfk_1` FOREIGN KEY (`biz_canvas_id`) REFERENCES `bc_biz_canvas` (`id`);
+
+--
+-- Constraints for table `client_exper`
+--
+ALTER TABLE `client_exper`
+  ADD CONSTRAINT `client_exper_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
+  ADD CONSTRAINT `client_exper_ibfk_2` FOREIGN KEY (`expert_id`) REFERENCES `expert` (`id`);
 
 --
 -- Constraints for table `profile`
