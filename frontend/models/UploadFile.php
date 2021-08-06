@@ -222,26 +222,68 @@ class UploadFile
 		return '';
 	}
 	
-	public static function download($model){
+	public static function download($type, $model){
+	    if($type == 1){
+	        $file = Yii::getAlias('@uploaded/kadet/profile/'.$model->user_id.'/'. $model->profile_file);
+	    }else if($type == 2){
+	        $file = Yii::getAlias('@uploaded/pegawai/profile/'.$model->user_id.'/'. $model->profile_file);
+	    }
 		
-		$file = Yii::getAlias('@upload/frontend/' . $model->upload_image);
+		// echo $file;
+		// die();
+		$default = Yii::getAlias('@bgm/views/myasset/img/'. $model->profile_file);
         
-        if($model->upload_image){
+        if($model->profile_file != 'user.png'){
             if (file_exists($file)) {
-            $ext = pathinfo($model->upload_image, PATHINFO_EXTENSION);
+            $ext = pathinfo($model->profile_file, PATHINFO_EXTENSION);
 
             $filename =  'profile.' . $ext ;
             
             self::sendFile($file, $filename, $ext);
             
-            
-            }else{
+            }
+
+            else{
                 echo 'file not exist!';
             }
         }else{
-            echo 'file not exist!';
+            if (file_exists($default)) {
+            $ext = pathinfo($model->profile_file, PATHINFO_EXTENSION);
+
+            $filename =  'profile.' . $ext ;
+            
+            self::sendFile($default, $filename, $ext);
+            
+            }
+
+            else{
+                echo 'file not exist!';
+            }
         }
 		
+	}
+	
+	public static function profileImage($type, $model){
+	    $file = Yii::getAlias('@frontend/views/myasset/img/user.png');
+	    if($type == 1){
+	        $file = Yii::getAlias('@uploaded/client/profile/'.$model->user_id.'/'. $model->profile_file);
+	    }else if($type == 2){
+	        $file = Yii::getAlias('@uploaded/expert/profile/'.$model->user_id.'/'. $model->profile_file);
+	    }
+	    
+	    if($model->profile_file){
+	        if (file_exists($file)) {
+	            $ext = pathinfo($model->profile_file, PATHINFO_EXTENSION);
+	            
+	            $filename =  'profile.' . $ext ;
+	            
+	            self::sendFile($file, $filename, $ext);
+	            
+	        }
+	    }
+	    
+	    $file = Yii::getAlias('@frontend/views/myasset/img/user.png');
+	    self::sendFile($file, 'profile.png', '.png');
 	}
 	
 	public static function sendFile($file, $filename, $ext){

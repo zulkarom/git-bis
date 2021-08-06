@@ -112,7 +112,7 @@ use yii\helpers\Html;
                                     <h5><?=Yii::$app->user->identity->fullname?></h5>
                                 </div>
                                 <div class="profile_info_details">
-                                    <a href="#">My Profile </a>
+                                    <?= Html::a('My Profile',['/expert/profile/index']) ?>
                                     <a href="#">Settings</a>
                                     <?= Html::a('Log Out',['/site/logout'],['data-method' => 'post']) ?>
                                 </div>

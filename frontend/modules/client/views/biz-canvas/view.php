@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 }
 </style>
 
-<div class="white_card card_height_100 mb_30">
+<div class="white_card card_height_100 mb_30" style="overflow-x: scroll;">
   <div class="white_card_header">
     
     
@@ -79,8 +79,8 @@ $this->params['breadcrumbs'][] = $this->title;
           <td colspan="2" rowspan="2">
             <h4>
               <div class ="row">
-              <div class ="col-10">Value Proposition</div> 
-              <div class ="col-2">
+              <div class ="col-9">Value Proposition</div> 
+              <div class ="col-3">
                 <?php 
                   echo '<a class="modalBttnProposition" href="javascript:void(0)" value="' . Url::to(['/client/bc-val-proposition/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
@@ -235,7 +235,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
       <table id="bizcanvas" cellspacing="0" border="3">
         <tr>
-          <td colspan="5">
+          <td colspan="10">
             <h4>
               <div class ="row">
               <div class ="col-11">Brainstorming Space</div> 

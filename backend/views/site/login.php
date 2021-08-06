@@ -15,19 +15,19 @@ use kartik\widgets\ActiveForm;
             <!-- sign_in  -->
             <div class="modal-content cs_modal">
                 <div class="modal-header justify-content-center theme_bg_1">
-                    <h5 class="modal-title text_white">Sign in to start your session</h5>
+                    <h5 class="modal-title text_white">Log in</h5>
                 </div>
                 <div class="modal-body">
                   <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
                     
                         <div class="form-group">
                              <?= $form
-                              ->field($model, 'username', ['addon' => ['append' => ['content'=>'<i class="fa fa-user"></i>']]])
+                              ->field($model, 'username')
                               ->label(false)
-                              ->textInput(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('username')]) ?>
+                              ->textInput(['class' => 'form-control', 'placeholder' => 'Enter your username']) ?>
                         </div>
                             <?= $form
-                            ->field($model, 'password', ['addon' => ['append' => ['content'=>'<i class="fa fa-lock"></i>']]])
+                            ->field($model, 'password')
                             ->label(false)
                             ->passwordInput(['class' => 'form-group', 'placeholder' => $model->getAttributeLabel('password')]) ?>
                      
