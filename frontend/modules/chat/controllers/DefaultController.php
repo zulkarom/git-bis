@@ -27,7 +27,7 @@ class DefaultController extends Controller
 
         $messages = ChatModel::getMessages($this->module->numberLastMessages);
 
-        return $this->render('index', [
+        return $this->render('index_copy', [
             'user' => $user,
             'messages' => $messages,
             'expert' => $expert,

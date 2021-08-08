@@ -11574,10 +11574,10 @@ a.pswp__share--download:hover {
 
 /* line 84, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
 .CHAT_MESSAGE_POPUPBOX {
-  width: 360px;
+  /*width: 360px;*/
   background: #FFFFFF;
   border-radius: 0px;
-  position: fixed;
+  /*position: fixed;*/
   bottom: 40px;
   right: 30px;
   z-index: 99999;
