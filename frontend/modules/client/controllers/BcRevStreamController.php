@@ -7,7 +7,7 @@ use backend\models\BcRevStream;
 use frontend\modules\client\models\BcRevStreamSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * BcRevStreamController implements the CRUD actions for BcRevStream model.
@@ -20,10 +20,13 @@ class BcRevStreamController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -91,31 +94,41 @@ class BcRevStreamController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $pid)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+             if($model->save()){
+
+                Yii::$app->session->addFlash('success', "Revenue Stream Updated");
+                
+            }else{
+                $model->flashError();
+            }
+            return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }
 
     /**
-     * Deletes an existing BcRevStream model.
+     * Deletes an existing BcKeyParner model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $pid)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        Yii::$app->session->addFlash('success', "Revenue Deleted");
+
+        return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
     }
 
     /**

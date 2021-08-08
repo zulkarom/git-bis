@@ -7,7 +7,7 @@ use backend\models\BcCustRelation;
 use frontend\modules\client\models\BcCustRelationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * BcCustRelationController implements the CRUD actions for BcCustRelation model.
@@ -20,10 +20,13 @@ class BcCustRelationController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -91,31 +94,41 @@ class BcCustRelationController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $pid)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+             if($model->save()){
+
+                Yii::$app->session->addFlash('success', "Customer Relationship Updated");
+                
+            }else{
+                $model->flashError();
+            }
+            return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }
 
     /**
-     * Deletes an existing BcCustRelation model.
+     * Deletes an existing BcKeyParner model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $pid)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        Yii::$app->session->addFlash('success', "Customer Relationship Deleted");
+
+        return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
     }
 
     /**

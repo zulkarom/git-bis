@@ -116,15 +116,15 @@ Modal::begin([
 echo '<div id="formCreatePartner"></div>';
 
 Modal::end();
-?>
 
-<?php
 Modal::begin([
-    'title' => '<h4>Add Key Partner</h4>',
-    'id' =>'createPartner',
-    'size' => 'modal-lg'
-]);
-echo '<div id="formCreatePartner"></div>';
+        'title' => '<h4>Update Key Partner</h4>',
+        'id' =>'updtPartner',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdatePartner"></div>';
+
 Modal::end();
 ?>
 
@@ -136,6 +136,16 @@ Modal::begin([
 ]);
 echo '<div id="formCreateActivity"></div>';
 Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Key Activities</h4>',
+        'id' =>'updtActivity',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateActivity"></div>';
+
+Modal::end();
 ?>
 
 <?php
@@ -145,6 +155,16 @@ Modal::begin([
     'size' => 'modal-lg'
 ]);
 echo '<div id="formCreateResources"></div>';
+Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Key Resources</h4>',
+        'id' =>'updtResource',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateResource"></div>';
+
 Modal::end();
 ?>
 
@@ -156,6 +176,16 @@ Modal::begin([
 ]);
 echo '<div id="formCreateProposition"></div>';
 Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Value Proposition</h4>',
+        'id' =>'updtProposition',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateProposition"></div>';
+
+Modal::end();
 ?>
 
 <?php
@@ -166,6 +196,16 @@ Modal::begin([
 ]);
 echo '<div id="formCreateRelationship"></div>';
 Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Customer Relationship</h4>',
+        'id' =>'updtRelationship',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateRelationship"></div>';
+
+Modal::end();
 ?>
 
 <?php
@@ -175,6 +215,16 @@ Modal::begin([
     'size' => 'modal-lg'
 ]);
 echo '<div id="formCreateChannel"></div>';
+Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Channels</h4>',
+        'id' =>'updtChannel',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateChannel"></div>';
+
 Modal::end();
 ?>
 
@@ -187,6 +237,16 @@ Modal::begin([
 ]);
 echo '<div id="formCreateSegment"></div>';
 Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Customer Segments</h4>',
+        'id' =>'updtSegment',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateSegment"></div>';
+
+Modal::end();
 ?>
 
 <?php
@@ -196,6 +256,16 @@ Modal::begin([
     'size' => 'modal-lg'
 ]);
 echo '<div id="formCreateStructure"></div>';
+Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Cost Structure</h4>',
+        'id' =>'updtStructure',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateStructure"></div>';
+
 Modal::end();
 ?>
 
@@ -207,6 +277,16 @@ Modal::begin([
 ]);
 echo '<div id="formCreateStream"></div>';
 Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Revenue Streams</h4>',
+        'id' =>'updtStream',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateStream"></div>';
+
+Modal::end();
 ?>
 
 <?php
@@ -216,6 +296,16 @@ Modal::begin([
     'size' => 'modal-lg'
 ]);
 echo '<div id="formCreateSpace"></div>';
+Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Update Brainstorming Space</h4>',
+        'id' =>'updtSpace',
+        'size' => 'modal-lg',
+    ]);
+
+echo '<div id="formUpdateSpace"></div>';
+
 Modal::end();
 ?>
 

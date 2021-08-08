@@ -17,7 +17,7 @@ use backend\models\BcCustRelation;
 use backend\models\BcValProposition;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\db\Expression;
 /**
  * BizCanvasController implements the CRUD actions for BizCanvas model.
@@ -31,10 +31,13 @@ class BizCanvasController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];

@@ -7,7 +7,7 @@ use backend\models\BcKeyParner;
 use frontend\modules\client\models\BcKeyParnerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * BcKeyParnerController implements the CRUD actions for BcKeyParner model.
@@ -21,10 +21,13 @@ class BcKeyParnerController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -91,15 +94,23 @@ class BcKeyParnerController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $pid)
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+             if($model->save()){
+
+                Yii::$app->session->addFlash('success', "Partner Updated");
+                
+            }else{
+                $model->flashError();
+            }
+            return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
         ]);
     }
@@ -111,11 +122,13 @@ class BcKeyParnerController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $pid)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        Yii::$app->session->addFlash('success', "Key Partner Deleted");
+
+        return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
     }
 
     /**
