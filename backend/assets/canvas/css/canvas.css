@@ -30,14 +30,16 @@ H1 {font-weight: 900;}
 }
 
 .note {
-  padding: 15px;
+  padding: 3px;
   background: #F33C61;
   /*color: #fff;*/
   font-size: 14px;
   display: flex;
+  /*box-shadow: 0 10px 20px 1px rgba(.10,.10,.10,.10);*/
   /*align-items: center;
   justify-content: center;*/
   box-shadow: 0 2px 6px 1px rgba(0,0,0,.2);
+
 }
 
 .note.blue {

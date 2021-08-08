@@ -25,15 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
     background-color: #333; /* Modern Browsers */
 }
 
-.hide {
-  display: none;
-}
-    
-.myDIV:hover + .hide {
-  display: block;
-  color: red;
-}
-
 .dropdown {
   position: relative;
   /*display: inline-block;*/
@@ -57,34 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
 a {
    margin:0 auto;    
    display:block;
-}
-
-.note-hover-accessories {
-    position: absolute;
-    z-index: 30;
-}
-.note-hover-accessories .bottom-container, .note-hover-accessories .right-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
-    cursor: pointer;
-}
-
-.note-color-pick {
-    display: flex;
-    padding: .5em .25em;
-    background-color: #fff;
-    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
-    width: 100%;
-}
-
-.note-color-pick>.note-edit-button {
-    margin-left: auto;
-    color: #bbb;
-    font-weight: 800;
-    cursor: pointer;
-    padding-right: .5rem;
 }
 </style>
 
@@ -112,8 +75,8 @@ a {
             <p>
               <?php if($partners){
                 foreach($partners as $partner){
-                  echo '<div class="dropdown"><div class = "note '.$partner->color.'">'.$partner->title.'</div>
-                  <div class = "note '.$partner->color.'">'.$partner->description.'</div>
+                  echo '<div class="dropdown"><div class = "note '.$partner->color.' title">'.$partner->title.'</div>
+                  <div class = "note '.$partner->color.' desc"><p style="font-size:12px; color:#000000;">'.$partner->description.'</p></div>
                   
                   
                   <div class="dropdown-content">
@@ -142,8 +105,8 @@ a {
             <p>
               <?php if($activities){
                 foreach($activities as $activity){
-                  echo '<div class="dropdown"><div class = "note '.$activity->color.'">'.$activity->title.'</div>
-                  <div class = "note '.$activity->color.'">'.$activity->description.'</div>
+                  echo '<div class="dropdown"><div class = "note '.$activity->color.' title">'.$activity->title.'</div>
+                  <div class = "note '.$activity->color.' desc"><p style="font-size:12px; color:#000000;">'.$activity->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateActivity" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-activity/update', 'id' => $activity->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -172,7 +135,7 @@ a {
               <?php if($propositions){
                 foreach($propositions as $proposition){
                   echo '<div class="dropdown"><div class = "note '.$proposition->color.'">'.$proposition->title.'</div>
-                  <div class = "note '.$proposition->color.'">'.$proposition->description.'</div>
+                  <div class = "note '.$proposition->color.'"><p style="font-size:12px; color:#000000;">'.$proposition->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateProposition" href="javascript:void(0)" value="' . Url::to(['/client/bc-val-proposition/update', 'id' => $proposition->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -201,7 +164,7 @@ a {
               <?php if($relationships){
                 foreach($relationships as $relationship){
                   echo '<div class="dropdown"><div class = "note '.$relationship->color.'">'.$relationship->title.'</div>
-                  <div class = "note '.$relationship->color.'">'.$relationship->description.'</div>
+                  <div class = "note '.$relationship->color.'"><p style="font-size:12px; color:#000000;">'.$relationship->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateRelationship" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-relation/update', 'id' => $relationship->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -230,7 +193,7 @@ a {
               <?php if($segments){
                 foreach($segments as $segment){
                   echo '<div class="dropdown"><div class = "note '.$segment->color.'">'.$segment->title.'</div>
-                  <div class = "note '.$segment->color.'">'.$segment->description.'</div>
+                  <div class = "note '.$segment->color.'"><p style="font-size:12px; color:#000000;">'.$segment->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateSegment" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-segment/update', 'id' => $segment->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -263,7 +226,7 @@ a {
               <?php if($resources){
                 foreach($resources as $resource){
                   echo '<div class="dropdown"><div class = "note '.$resource->color.'">'.$resource->title.'</div>
-                  <div class = "note '.$resource->color.'">'.$resource->description.'</div>
+                  <div class = "note '.$resource->color.'"><p style="font-size:12px; color:#000000;">'.$resource->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateResource" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-resource/update', 'id' => $resource->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -292,7 +255,7 @@ a {
               <?php if($channels){
                 foreach($channels as $channel){
                   echo '<div class="dropdown"><div class = "note '.$channel->color.'">'.$channel->title.'</div>
-                  <div class = "note '.$channel->color.'">'.$channel->description.'</div>
+                  <div class = "note '.$channel->color.'"><p style="font-size:12px; color:#000000;">'.$channel->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateChannel" href="javascript:void(0)" value="' . Url::to(['/client/bc-channel/update', 'id' => $channel->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -322,7 +285,7 @@ a {
               <?php if($structures){
                 foreach($structures as $structure){
                   echo '<div class="dropdown"><div class = "note '.$structure->color.'">'.$structure->title.'</div>
-                  <div class = "note '.$structure->color.'">'.$structure->description.'</div>
+                  <div class = "note '.$structure->color.'"><p style="font-size:12px; color:#000000;">'.$structure->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateStructure" href="javascript:void(0)" value="' . Url::to(['/client/bc-cost-structure/update', 'id' => $structure->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -351,7 +314,7 @@ a {
               <?php if($revenues){
                 foreach($revenues as $revenue){
                   echo '<div class="dropdown"><div class = "note '.$revenue->color.'">'.$revenue->title.'</div>
-                  <div class = "note '.$revenue->color.'">'.$revenue->description.'</div>
+                  <div class = "note '.$revenue->color.'"><p style="font-size:12px; color:#000000;">'.$revenue->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateStream" href="javascript:void(0)" value="' . Url::to(['/client/bc-rev-stream/update', 'id' => $revenue->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -386,7 +349,7 @@ a {
               <?php if($spaces){
                 foreach($spaces as $space){
                   echo '<div class="dropdown"><div class = "note '.$space->color.'">'.$space->title.'</div>
-                  <div class = "note '.$space->color.'">'.$space->description.'</div>
+                  <div class = "note '.$space->color.'"><p style="font-size:12px; color:#000000;">'.$space->description.'</p></div>
                   <div class="dropdown-content">
                     <a class="updateSpace" href="javascript:void(0)" value="' . Url::to(['/client/bc-brainstorm/update', 'id' => $space->id, 'pid' => $model->id]) . '" >
                     <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
