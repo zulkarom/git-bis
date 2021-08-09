@@ -1,9 +1,3 @@
-<style type="text/css">
-    .chat-main-box .chat-right-aside {
-    width: calc(100%) !important;
-}
-</style>
-
 <?php
 use backend\assets\ChatAsset;
 $assets = ChatAsset::register($this); 
@@ -30,39 +24,60 @@ $user_id = Yii::$app->user->identity->id;
 <?php else :?>
 
     <input type="hidden" id="recipient" value=<?=$expert->user->id?>>
-    
     <div class="row">
-    <div id="chat-box" class="col-sm-12">
-        <div class="card m-b-0">
-            <!-- .chat-row -->
-            <div class="chat-main-box">
-                
-                <!-- .chat-right-panel -->
-                <div class="chat-right-aside">
-                    <div class="chat-main-header">
-                        <div class="p-20 b-b">
-                            <h3 class="box-title"><?=$expert->user->fullname?></h3>
+        <div class="col-lg-12">
+            <div class="messages_box_area">
+                <div class="messages_list">
+                    <div class="white_box ">
+                        <div class="white_box_tittle list_header">
+                            <h4>Chat List</h4>
                         </div>
+                        <div class="serach_field_2">
+                            <div class="search_inner">
+                                <form active="#">
+                                    <div class="search_field">
+                                        <input type="text" placeholder="Search content here...">
+                                    </div>
+                                    <button type="submit"> <i class="ti-search"></i> </button>
+                                </form>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <div class="message_pre_left">
+                                        <div class="message_preview_thumb">
+                                            <img src="img/messages/1.jpg" alt="">
+                                            <span class="round-10 bg-danger"></span>
+                                        </div>
+                                        <div class="messges_info">
+                                            <h4>Travor James</h4>
+                                            <p>i know you are doing great</p>
+                                        </div>
+                                    </div>
+                                    <div class="messge_time">
+                                        <span>28th Nov</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <?= $this->render('_table',compact('messages', 'dirAssests', 'expert', 'user_id')) ?>
-                    <div class="card-body b-t">
-                        <div class="row">
-                            <div class="col-11">
-                                <textarea placeholder="Type your message here" id="chat-message" class="form-control b-0" aria-invalid="false""></textarea>
-                                <img id="ajax-loader" src="<?= $assets->baseUrl.'/images/loader.gif' ?>" style="display:none" />
-                            </div>
-                            <div class="col-1">
-                                <button type="submit"  id="send-message" class="btn btn-info btn-circle btn-lg" data-id="<?= $user->id ?>" data-name="<?= $user->chatname ?>" data-icon="<?= $user->chaticon ?>"><i class="mdi mdi-send"></i> </button>
-                            </div>
+
+                </div>
+                <div class="messages_chat mb_30">
+                    <div class="white_box ">
+                        <?= $this->render('_table',compact('messages', 'dirAssests', 'expert', 'user_id')) ?>
+                        <div class="message_send_field">
+                            <input type="text" id="chat-message" placeholder="Write your message" value="">
+                            <button class="btn_1" type="submit" id="send-message" data-id="<?= $user->id ?>" data-name="<?= $user->chatname ?>" data-icon="<?= $user->chaticon ?>">Send
+                            </button>
+                            
                         </div>
                     </div>
                 </div>
-                <!-- .chat-right-panel -->
             </div>
-            <!-- /.chat-row -->
         </div>
-    </div>
-</div>
+        </div>
 <?php endif; ?>
 
 <?php

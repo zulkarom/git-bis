@@ -1,4 +1,8 @@
-<div class="row">
+<?php
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+?>
+
 <div class="col-lg-12">
     <div class="messages_box_area">
         <div class="messages_list">
@@ -40,6 +44,7 @@
         </div>
         <div class="messages_chat mb_30">
             <div class="white_box ">
+                <?php foreach ($chat as $ch) : ?>
                 <div class="single_message_chat">
                     <div class="message_pre_left">
                         <div class="message_preview_thumb">
@@ -52,22 +57,10 @@
                     </div>
                     <div class="message_content_view red_border">
                         <p>
-                            Dear KK,
-                            <br>
-                            Thank you for your update.
-                            <br>
-
-                            <span>
-                                We do not sell or share your details without your permission. Find
-                                out
-                                more
-                                in our Privacy Policy. Your username, email and password can be
-                                updated
-                                via
-                                your Codepixar Account settings.
-                                <br>
-                            </span>
-                            Regards,
+                             <?php if($ch->recipient_id == Yii::$app->user->id): ?>
+                                <span id="receive">
+                                    <?=$ch->messasge?>
+                                </span>
                         </p>
                     </div>
                 </div>
@@ -83,31 +76,53 @@
                     </div>
                     <div class="message_content_view">
                         <p>
-                            Dear KK,
-                            <br>
-                            Thank you for your update.
-                            <br>
-
-                            <span>
-                                We do not sell or share your details without your permission. Find
-                                out
-                                more
-                                in our Privacy Policy. Your username, email and password can be
-                                updated
-                                via
-                                your Codepixar Account settings.
-                                <br>
+                        <?php elseif($ch->sender_id == Yii::$app->user->id): ?>
+                            <span id="send">
+                                <?=$ch->message?>
                             </span>
-                            Regards,
+                        <?php endif; ?>
                         </p>
                     </div>
                 </div>
+                <?php endforeach; ?>
                 <div class="message_send_field">
-                    <input type="text" placeholder="Write your message" value="">
-                    <button class="btn_1" type="submit">Send</button>
+                    <input type="text" placeholder="Write your message" id="chat-message" value="">
+                    <button class="btn_1" type="submit" id="send-message">Send</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+
+<?php
+
+$js = <<<'EOD'
+
+$('#send-message').click(function(){
+    getTargetId($(this));
+});
+
+
+EOD;
+$this->registerJs($js);
+
+$js = "function getTargetId(element){
+
+    var val = $('#chat-message').val()
+
+
+
+      $.ajax({url: '".Url::to(['/client/chat/send-message', 'id' => ''])."' + val , success: function(result){
+        var str = '';
+        
+
+    }
+    });
+
+}
+
+
+";
+
+$this->registerJs($js);
+?>
