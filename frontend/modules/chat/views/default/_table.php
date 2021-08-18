@@ -1,17 +1,76 @@
 <?php
 use yii\helpers\Url;
-?>
+/* echo '<pre>';
+print_r($messages);
+echo '</pre>';
+echo Yii::$app->user->identity->id; */
+$show_name = true;
+$sender = 0;
+foreach ($messages as $message){
+    
+    $show_name = $message['sender_id'] == $sender  ? false : true;
+    echo showMessage($message, $show_name);
+    $sender = $message['sender_id'];
+}
 
-<?php foreach ($messages as $message) : ?>
+function showMessage($message, $show_name){
+    if($message['sender_id'] == Yii::$app->user->identity->id){
+        $client = true;
+        $role = 'profile';
+        
+    }else{
+        $client = false;
+        $role = 'expert';
+    }
+    
+    if($client){
+        ?>
+
+<div class="single_message_chat sender_message">
+    <div class="message_pre_left">
+        
+        <?php if($show_name){?>
+        <div class="messges_info">
+            <h4><?=$message['sender_name']?></h4>
+            <p><?=date("d/m/Y h:i: A", $message['time']);?></p>
+        </div>
+        <div class="message_preview_thumb">
+            <img src="<?=Url::to(['/client/profile/'.$role.'-image', 'id' => $message['sender_id']])?>" alt="">
+        </div>
+        <?php }else{
+            
+            echo '<p>' . date("h:i: A", $message['time']). '</p>';
+        }
+            ?>
+    </div>
+    <div class="message_content_view">
+        <p>
+            <?= $message['message'] ?>
+        </p>
+    </div>
+</div>
+
+    
+    
+<?php 
+    }else{
+        ?>
+
 <div class="single_message_chat">
     <div class="message_pre_left">
+     <?php if($show_name){?>
         <div class="message_preview_thumb">
-            <img src="<?=Url::to(['/expert/profile/profile-image', 'id' => $expert->user->id])?>" alt="">
+            <img src="<?=Url::to(['/client/profile/'.$role.'-image', 'id' => $message['sender_id']])?>" alt="">
         </div>
         <div class="messges_info">
-            <h4><?=$expert->user->fullname?></h4>
-            <p><?=date("h:i: A", strtotime($message['rfc822']));?></p>
+            <h4><?=$message['sender_name']?></h4>
+            <p><?=date("d/m/Y h:i: A", $message['time']);?></p>
         </div>
+        <?php }else{
+            
+            echo '<p>' . date("h:i: A", $message['time']). '</p>';
+        }
+            ?>
     </div>
     <div class="message_content_view red_border">
         <p>
@@ -19,20 +78,12 @@ use yii\helpers\Url;
         </p>
     </div>
 </div>
-<div class="single_message_chat sender_message">
-    <div class="message_pre_left">
-        <div class="messges_info">
-            <h4><?=Yii::$app->user->identity->fullname?> </h4>
-            <p><?=date("h:i: A", strtotime($message['rfc822']));?></p>
-        </div>
-        <div class="message_preview_thumb">
-            <img src="<?=Url::to(['/client/profile/profile-image', 'id' => Yii::$app->user->identity->id])?>" alt="">
-        </div>
-    </div>
-    <div class="message_content_view" align="right">
-        <p>
-            <?= $message['message'] ?>
-        </p>
-    </div>
-</div>
-<?php endforeach; ?>
+
+    
+    
+<?php 
+    }
+
+}
+?>
+

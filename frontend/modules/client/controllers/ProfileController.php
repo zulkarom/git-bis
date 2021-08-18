@@ -4,15 +4,11 @@ namespace frontend\modules\client\controllers;
 
 use Yii;
 use common\models\User;
-use yii\helpers\ArrayHelper;
-use yii\helpers\FileHelper;
-use yii\db\Exception;
 use yii\db\Expression;
 use yii\filters\AccessControl;
 use backend\models\Client;
 use backend\models\ClientProfile;
-use common\models\Model;
-use common\models\Upload;
+use backend\models\Expert;
 use frontend\models\UploadFile;
 use yii\web\NotFoundHttpException;
 
@@ -80,6 +76,21 @@ class ProfileController extends \yii\web\Controller
         $model = $this->findClient($id);
         
         UploadFile::profileImage(1, $model);
+    }
+    
+    public function actionExpertImage($id){
+        $model = $this->findExpert($id);
+        
+        UploadFile::profileImage(2, $model);
+    }
+    
+    protected function findExpert($id)
+    {
+        if (($model = Expert::findOne(['user_id' => $id])) !== null) {
+            return $model;
+        }
+        
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 	
 	protected function findClient($id)

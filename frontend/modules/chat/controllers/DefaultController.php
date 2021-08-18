@@ -6,26 +6,38 @@ use Yii;
 use yii\web\Controller;
 use backend\models\ChatModel;
 use backend\modules\expert\models\Expert;
-use backend\modules\client\models\Client;
+use yii\filters\AccessControl;
 /**
  * Default controller for the `chat` module
  */
 class DefaultController extends Controller
 {
+    
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
     /**
      * Renders the index view for the module
      * @return string
      */
     public function actionIndex($id)
     {
-        // $sender_id = Yii::$app->user->identity->id;
-        $client = Client::find()->where(['user_id' => Yii::$app->user->identity->id]);
         $expert = Expert::findOne($id);
-        $className = Yii::$app->getUser()->identityClass;
-        $model = new $className;
-        $user=$model->find()->where(['id'=>Yii::$app->user->id])->one();
+        $user = Yii::$app->user->identity;
 
-        $messages = ChatModel::getMessages($this->module->numberLastMessages);
+        $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages);
 
         return $this->render('index', [
             'user' => $user,
@@ -36,27 +48,35 @@ class DefaultController extends Controller
 
     public function actionSendMessage()
     {
-        if (Yii::$app->user->isGuest)
-            return Yii::t('app','Registered can chat only');
-
+        if (Yii::$app->user->isGuest){
+            return '';
+        }
+        
         $post = Yii::$app->request->post();
+        //return json_encode($post) ;
 
-      
-
+     
         if ($post['sendMessage']=='true')
         {
             $model = new ChatModel();
-            if ($model->load(Yii::$app->request->post()) and $model->validate())
+            
+            if ($model->load(Yii::$app->request->post()))
             {
+               // return 'xxxxxxxxx' . $model->recipient_id;
                 $model->time = time();
                 $model->rfc822 = date(DATE_RFC822,$model->time);
-                $model->save();
+                $model->message = strip_tags($model->message);
+                if($model->save()){
+                    $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages);
+                    
+                    return $this->renderPartial('_table',compact('messages'));
+                }
+            }else{
+                return json_encode($model->errors);
             }
         }
 
-        $messages = ChatModel::getMessages($this->module->numberLastMessages);
-
-        return $this->renderPartial('_table',compact('messages'));
+        
     }
 }
 

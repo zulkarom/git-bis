@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use frontend\models\user\User;
 use Yii;
 
 /**
@@ -15,6 +16,9 @@ use Yii;
  */
 class ChatModel extends \yii\db\ActiveRecord
 {
+    public $sender_name;
+    
+    public $recipient_name;
 
     /**
      * @inheritdoc
@@ -30,12 +34,10 @@ class ChatModel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id','user_id','time','recipient_id','sender_id'], 'integer'],
+            [['time','recipient_id','sender_id', 'message'], 'required'],
+            [['time','recipient_id','sender_id'], 'integer'],
             [['rfc822'], 'string', 'max' => 50],
-            [['name'], 'string', 'max' => 255],
-            [['icon'], 'string', 'max' => 255],
             [['message'], 'string'],
-            [['name','icon','message'], 'safe'],
         ];
     }
 
@@ -50,26 +52,47 @@ class ChatModel extends \yii\db\ActiveRecord
             'message' => Yii::t('chat', 'Message'),
         ];
     }
+    
+    public function getSender(){
+         return $this->hasOne(User::className(), ['id' => 'sender_id']);
+    }
+    
+    public function getRecipient(){
+        return $this->hasOne(User::className(), ['id' => 'recipient_id']);
+    }
 
-    public static function getMessages($numberLastMessages)
+
+    public static function getMessages($expert, $numberLastMessages)
     {
         $messages = self::find()
-            ->orderBy('time DESC')
+        ->alias('a')
+        ->select('a.*, s.fullname as sender_name, r.fullname as recipient_name')
+        ->joinWith(['sender s', 'recipient r'])
             ->limit($numberLastMessages)
-            ->andFilterWhere(['or', 'sender_id', Yii::$app->user->identity->id])
-            ->andFilterWhere(['or', 'recipient_id', Yii::$app->user->identity->id])
+            
+            ->orFilterWhere(['and',
+                ['sender_id' => Yii::$app->user->identity->id],
+                ['recipient_id' => $expert]
+            ])
+            
+            ->orFilterWhere(['and',
+                ['sender_id' => $expert],
+                ['recipient_id' => Yii::$app->user->identity->id]
+            ])
+            
             ->orderBy(['time'=>SORT_ASC])
             ->all();
+        
         $out=[];
         foreach ($messages as $message)
         {
-            $out[$message['time']]=[
-                    'rfc822' => $message['rfc822'],
-                    'name' => $message['name'],
-                    'icon' => $message['icon'],
-                    'message' => $message['message'],
-                    'sender_id' => $message['sender_id'],
-                    'recipient_id' => $message['recipient_id'],
+            $out[$message->id]=[
+                    'time' => $message->time,
+                    'sender_name' => $message->sender_name,
+                    'recipient_name' => $message->recipient_name,
+                    'message' => $message->message,
+                    'sender_id' => $message->sender_id,
+                    'recipient_id' => $message->recipient_id,
                 ];
         }
         ksort($out);

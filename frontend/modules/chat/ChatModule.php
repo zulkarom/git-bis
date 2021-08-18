@@ -11,7 +11,7 @@ use yii\i18n\PhpMessageSource;
 class ChatModule extends \yii\base\Module
 {
     public $table = 'chat';
-    public $numberLastMessages = 22;
+    public $numberLastMessages = 20;
     /**
      * {@inheritdoc}
      */
@@ -26,8 +26,6 @@ class ChatModule extends \yii\base\Module
 
         $this->registerTranslations();
 
-        $this->checkTable();
-
        // custom initialization code goes here
     }
 
@@ -41,27 +39,4 @@ class ChatModule extends \yii\base\Module
         ];
     }
 
-    protected function checkTable()
-    {
-        if (isset(Yii::$app->db->schema->db->tablePrefix))
-            $this->table = Yii::$app->db->schema->db->tablePrefix.$this->table;
-        
-        if (Yii::$app->db->schema->getTableSchema($this->table, true) === null) {
-            Yii::$app->db->createCommand()
-                ->createTable(
-                    $this->table,
-                    array(
-                        'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY',
-                        'user_id' => 'int(10) unsigned DEFAULT NULL',
-                        'time' => 'int(10) unsigned DEFAULT NULL',
-                        'rfc822' => 'varchar(50) DEFAULT NULL',
-                        'name' => 'varchar(255) DEFAULT NULL',
-                        'icon' => 'varchar(255) DEFAULT NULL',
-                        'message' => 'text',
-                    ),
-                    'ENGINE=InnoDB DEFAULT CHARSET=utf8'
-                )
-                ->execute();
-        }
-    }
 }

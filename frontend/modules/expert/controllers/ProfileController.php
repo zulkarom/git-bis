@@ -4,15 +4,11 @@ namespace frontend\modules\expert\controllers;
 
 use Yii;
 use common\models\User;
-use yii\helpers\ArrayHelper;
-use yii\helpers\FileHelper;
-use yii\db\Exception;
 use yii\db\Expression;
 use yii\filters\AccessControl;
 use backend\models\Expert;
 use backend\models\ExpertProfile;
-use common\models\Model;
-use common\models\Upload;
+
 use frontend\models\UploadFile;
 use yii\web\NotFoundHttpException;
 

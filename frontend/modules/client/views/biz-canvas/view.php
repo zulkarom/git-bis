@@ -16,13 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <style type="text/css">
-  hr {
-    border: none;
-    height: 1px;
-    width: 100%;
-    /* Set the hr color */
-    color: #333; /* old IE */
-    background-color: #333; /* Modern Browsers */
+hr {
+bottom-top:0px;
+bottom-bottom:0px;
+width:80%;
 }
 
 .dropdown {
@@ -49,6 +46,10 @@ a {
    margin:0 auto;    
    display:block;
 }
+#bizcanvas th{
+border-left:#ffffff;
+border-right:#ffffff;
+}
 </style>
 
 <div class="white_card card_height_100 mb_30" style="overflow-x: scroll;">
@@ -57,7 +58,13 @@ a {
     
       <!-- <h1>The Business Model Canvas</h1> -->
       <!-- Canvas -->
-      <table id="bizcanvas" cellspacing="0" border="3">
+      <table id="bizcanvas" cellspacing="0" border="1">
+      <tr>
+      <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+      
+      </tr>
+
+  
         <!-- Upper part -->
         <tr>
           <td colspan="2" rowspan="2">
@@ -73,22 +80,15 @@ a {
             </div>
             </h4>
             <p>
+            <div class ="row">
               <?php if($partners){
                 foreach($partners as $partner){
-                  echo '<div class="dropdown"><div class = "note '.$partner->color.' title">'.$partner->title.'</div>
-                  <div class = "note '.$partner->color.' desc"><p style="font-size:12px; color:#000000;">'.$partner->description.'</p></div>
-                  
-                  
-                  <div class="dropdown-content">
-                    <a class="updatePartner" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-parner/update', 'id' => $partner->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-key-parner/delete', 'id' => $partner->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    echo stickynote($partner, 'key-parner', $model->id);
+                    
+ 
                 }
               }?>
+              </div>
             </p>
           </td>
           <td colspan="2">
@@ -103,20 +103,14 @@ a {
               </div>
             </h4>
             <p>
+            <div class ="row">
               <?php if($activities){
                 foreach($activities as $activity){
-                  echo '<div class="dropdown"><div class = "note '.$activity->color.' title">'.$activity->title.'</div>
-                  <div class = "note '.$activity->color.' desc"><p style="font-size:12px; color:#000000;">'.$activity->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateActivity" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-activity/update', 'id' => $activity->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-key-activity/delete', 'id' => $activity->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    echo stickynote($activity, 'key-activity', $model->id);
+ 
                 }
               }?>
+              </div>
             </p>
           </td>
           <td colspan="2" rowspan="2">
@@ -132,20 +126,14 @@ a {
             </div>
             </h4>
             <p>
+             <div class ="row">
               <?php if($propositions){
                 foreach($propositions as $proposition){
-                  echo '<div class="dropdown"><div class = "note '.$proposition->color.'">'.$proposition->title.'</div>
-                  <div class = "note '.$proposition->color.'"><p style="font-size:12px; color:#000000;">'.$proposition->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateProposition" href="javascript:void(0)" value="' . Url::to(['/client/bc-val-proposition/update', 'id' => $proposition->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-val-proposition/delete', 'id' => $proposition->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    echo stickynote($proposition, 'val-proposition', $model->id);
+                    
                 }
               }?>
+              </div>
             </p>
           </td>
           <td colspan="2">
@@ -161,20 +149,15 @@ a {
               </div>
             </h4>
             <p>
+            <div class ="row">
               <?php if($relationships){
                 foreach($relationships as $relationship){
-                  echo '<div class="dropdown"><div class = "note '.$relationship->color.'">'.$relationship->title.'</div>
-                  <div class = "note '.$relationship->color.'"><p style="font-size:12px; color:#000000;">'.$relationship->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateRelationship" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-relation/update', 'id' => $relationship->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-cust-relation/delete', 'id' => $relationship->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    echo stickynote($relationship, 'cust-relation', $model->id);
+                    
+  
                 }
               }?>
+              </div>
             </p>
           </td>
           <td colspan="2" rowspan="2">
@@ -190,20 +173,15 @@ a {
               </div>
             </h4>
             <p>
+            <div class ="row">
               <?php if($segments){
                 foreach($segments as $segment){
-                  echo '<div class="dropdown"><div class = "note '.$segment->color.'">'.$segment->title.'</div>
-                  <div class = "note '.$segment->color.'"><p style="font-size:12px; color:#000000;">'.$segment->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateSegment" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-segment/update', 'id' => $segment->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-cust-segment/delete', 'id' => $segment->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    
+                    echo stickynote($segment, 'cust-segment', $model->id);
+
                 }
               }?>
+              </div>
             </p>
           </td>
         </tr>
@@ -223,20 +201,16 @@ a {
               </div>
             </h4>
             <p>
+            <div class ="row">
               <?php if($resources){
                 foreach($resources as $resource){
-                  echo '<div class="dropdown"><div class = "note '.$resource->color.'">'.$resource->title.'</div>
-                  <div class = "note '.$resource->color.'"><p style="font-size:12px; color:#000000;">'.$resource->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateResource" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-resource/update', 'id' => $resource->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-key-resource/delete', 'id' => $resource->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    
+                    echo stickynote($resource, 'key-resource', $model->id);
+                    
+     
                 }
               }?>
+              </div>
             </p>
           </td>
           <td colspan="2">
@@ -252,20 +226,15 @@ a {
               </div>
             </h4>
             <p>
+             <div class ="row">
               <?php if($channels){
                 foreach($channels as $channel){
-                  echo '<div class="dropdown"><div class = "note '.$channel->color.'">'.$channel->title.'</div>
-                  <div class = "note '.$channel->color.'"><p style="font-size:12px; color:#000000;">'.$channel->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateChannel" href="javascript:void(0)" value="' . Url::to(['/client/bc-channel/update', 'id' => $channel->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-channel/delete', 'id' => $channel->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    
+                    echo stickynote($channel, 'channel', $model->id);
+                    
                 }
               }?>
+              </div>
             </p>
           </td>
         </tr>
@@ -282,20 +251,15 @@ a {
               </div>
             </h4>
             <p>
+            <div class ="row">
               <?php if($structures){
                 foreach($structures as $structure){
-                  echo '<div class="dropdown"><div class = "note '.$structure->color.'">'.$structure->title.'</div>
-                  <div class = "note '.$structure->color.'"><p style="font-size:12px; color:#000000;">'.$structure->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateStructure" href="javascript:void(0)" value="' . Url::to(['/client/bc-cost-structure/update', 'id' => $structure->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-cost-structure/delete', 'id' => $structure->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    
+                    echo stickynote($structure, 'cost-structure', $model->id, 6);
+                    
                 }
               }?>
+              </div>
             </p>
           </td>
           <td colspan="5">
@@ -311,20 +275,13 @@ a {
               </div>
             </h4>
             <p>
+            <div class="row">
               <?php if($revenues){
                 foreach($revenues as $revenue){
-                  echo '<div class="dropdown"><div class = "note '.$revenue->color.'">'.$revenue->title.'</div>
-                  <div class = "note '.$revenue->color.'"><p style="font-size:12px; color:#000000;">'.$revenue->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateStream" href="javascript:void(0)" value="' . Url::to(['/client/bc-rev-stream/update', 'id' => $revenue->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-rev-stream/delete', 'id' => $revenue->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    echo stickynote($revenue, 'rev-stream', $model->id, 6);
                 }
               }?>
+              </div>
             </p>
           </td>
         </tr>
@@ -335,31 +292,29 @@ a {
       <table id="bizcanvas" cellspacing="0" border="3">
         <tr>
           <td colspan="10">
-            <h4>
+            
               <div class ="row">
-              <div class ="col-11">Brainstorming Space</div> 
+              <div class ="col-11"><h4>Brainstorming Space</h4></div> 
               <div class ="col-1" align="right">
                 <?php 
                   echo '<a class="modalBttnSpace" href="javascript:void(0)" value="' . Url::to(['/client/bc-brainstorm/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 ?>
               </div>
               </div>
-            </h4>
+            
             <p>
+            <div class="row">
+            	
+            
               <?php if($spaces){
                 foreach($spaces as $space){
-                  echo '<div class="dropdown"><div class = "note '.$space->color.'">'.$space->title.'</div>
-                  <div class = "note '.$space->color.'"><p style="font-size:12px; color:#000000;">'.$space->description.'</p></div>
-                  <div class="dropdown-content">
-                    <a class="updateSpace" href="javascript:void(0)" value="' . Url::to(['/client/bc-brainstorm/update', 'id' => $space->id, 'pid' => $model->id]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-brainstorm/delete', 'id' => $space->id, 'pid' => $model->id]) . '" ><span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-                  
-                  </div>
-                  <br/>';
+                    echo stickynote($space, 'brainstorm', $model->id, 3);
+                 
                 }
               }?>
+              
+              
+              </div>
             </p>
           </td>
         </tr>
@@ -371,6 +326,32 @@ a {
   </div>
 
 <?php
+
+function stickynote($space, $item, $pid, $col = 12){
+    return '<div class="col-md-'.$col.'"><div class="dropdown" style="margin-bottom:7px">
+    
+                  <div class = "note '.$space->color.'">
+    
+<p style="font-size:12px; color:#000000;border-bottom:1px solid rgba(0, 0, 0, 0.07);">'.Html::encode($space->title).'</p>
+    
+<p style="font-size:11px; color:#000000;">'. nl2br(Html::encode($space->description)).'</p>
+    
+    
+    
+    
+</div>
+    
+                  <div class="dropdown-content">
+                    <a class="updateSpace" href="javascript:void(0)" value="' . Url::to(['/client/bc-'.$item.'/update', 'id' => $space->id, 'pid' => $pid]) . '" >
+                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <a href="' . Url::to(['/client/bc-'.$item.'/delete', 'id' => $space->id, 'pid' => $pid]) . '" >
+<span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
+                  </div>
+      
+                  </div>
+</div>
+                  ';
+}
 
 
 $this->registerJs('
