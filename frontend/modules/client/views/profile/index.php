@@ -13,7 +13,7 @@ use kartik\select2\Select2;
 /* @var $form ActiveForm */
 
 $this->title = "My Profile";
-
+$model->email = $user->email;
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     
@@ -25,15 +25,73 @@ $this->title = "My Profile";
     
 
     <div class="row">
-<div class="col-md-5"><?= $form->field($model, 'fullname')->textInput(['value' => $model->user->fullname])->label('Client Name')?></div>
+<div class="col-md-6"><?= $form->field($model, 'fullname')->textInput(['value' => $model->user->fullname])->label('Client Name')?></div>
 
 <div class="col-md-3">
-<?= $form->field($model, 'email')->textInput(['value' => $model->user->email]) ?>
+<?= $form->field($model, 'email')->textInput(['readonly' => 'readonly']) ?>
  </div>
 
 </div>
 
+ <div class="row">
+<div class="col-md-6"><?= $form->field($model, 'biz_name')->textInput()?></div>
 
+<div class="col-md-6">
+<?= $form->field($model, 'biz_type')->textInput() ?>
+ </div>
+
+</div>
+
+   <div class="row">
+<div class="col-md-4">
+    <?= $form->field($model, 'biz_phone')->textInput() ?>
+</div>
+
+<div class="col-md-4">
+<?= $form->field($model, 'biz_fax')->textInput() ?>
+ </div>
+
+ <div class="col-md-4">
+<?= $form->field($model, 'biz_email')->textInput() ?>
+ </div>
+
+</div>
+
+<div class="row">
+<div class="col-md-4">
+    <?= $form->field($model, 'biz_main_activity')->textInput() ?>
+</div>
+
+<div class="col-md-4">
+<?= $form->field($model, 'biz_reg_no')->textInput() ?>
+ </div>
+
+ <div class="col-md-2">
+<?php if($model->isNewRecord){$model->biz_date_execution = date('Y-m-d');}?>
+         <?=$form->field($model, 'biz_date_execution')->widget(DatePicker::classname(), [
+        'removeButton' => false,
+        'pickerIcon' => '<i class="fa fa-calendar"></i>',
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-mm-dd',
+            'todayHighlight' => true,   
+        ],
+    ]);
+?>
+ </div>
+
+  <div class="col-md-2">
+    <?php if($model->biz_capital == 0){$model->biz_capital = "";}?>
+        <?= $form->field($model, 'biz_capital')->textInput() ?>
+ </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <?= $form->field($model, 'biz_address')->textArea(['rows' => '3']) ?>
+    </div>
+</div>
    
 
 <div class="row">

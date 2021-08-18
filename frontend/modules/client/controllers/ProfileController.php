@@ -55,7 +55,8 @@ class ProfileController extends \yii\web\Controller
 				    if($model->save() && $user->save()){
 				        Yii::$app->session->addFlash('success', "Profile updated");
 				        return $this->refresh();
-				        
+				    }else{
+				    	$model->flashError();
 				    }
 			    }
 			    
@@ -64,6 +65,7 @@ class ProfileController extends \yii\web\Controller
 
 	        return $this->render('index', [
 	            'model' => $model,
+	            'user' => $user,
 	        ]);
 
 

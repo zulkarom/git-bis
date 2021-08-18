@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\FileHelper;
 use karpoff\icrop\CropImageUploadBehavior;
 use yii\helpers\Url;
+use backend\models\Client;
 
 class ClientProfile extends Client
 {

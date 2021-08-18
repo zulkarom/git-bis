@@ -22,9 +22,9 @@ h2 {
     margin-bottom: 15px !important;
     margin-top: 15px !important;
 }
-.signup-content {
+/*.signup-content {
     padding: 25px 85px !important;
-}
+}*/
 </style>
 
 

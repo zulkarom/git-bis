@@ -22,12 +22,12 @@ h2 {
     margin-bottom: 15px !important;
     margin-top: 15px !important;
 }
-.signup-content {
+/*.signup-content {
     padding: 25px 85px !important;
-}
+}*/
 </style>
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/>
 <div class="main">
 
     <section class="signup">
@@ -60,7 +60,10 @@ h2 {
                 
                 <p class="loginhere">
                     Dont have an account ? <?= Html::a('Register here', ['/user/register'], ['class' => 'loginhere-link']) ?>
+                    <br/>
+                    Forgot password ? <?= Html::a('Click here', ['/user/register'], ['class' => 'loginhere-link']) ?>
                 </p>
+                <br/>
             </div>
         </div>
     </section>
