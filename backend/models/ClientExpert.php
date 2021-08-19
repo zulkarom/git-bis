@@ -3,8 +3,8 @@
 namespace backend\models;
 
 use Yii;
-use backend\modules\expert\models\Expert;
-use backend\modules\client\models\Client;
+use backend\models\Expert;
+use backend\models\Client;
 
 /**
  * This is the model class for table "client_exper".

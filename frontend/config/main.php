@@ -38,6 +38,9 @@ return [
         'chat' => [
             'class' => 'frontend\modules\chat\ChatModule',
         ],
+        'chatExpert' => [
+            'class' => 'frontend\modules\chatExpert\ChatModule',
+        ],
     ],
     'components' => [
         'request' => [

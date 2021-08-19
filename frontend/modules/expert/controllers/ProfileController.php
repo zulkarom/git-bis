@@ -6,6 +6,7 @@ use Yii;
 use common\models\User;
 use yii\db\Expression;
 use yii\filters\AccessControl;
+use backend\models\Client;
 use backend\models\Expert;
 use backend\models\ExpertProfile;
 
@@ -77,6 +78,12 @@ class ProfileController extends \yii\web\Controller
         
         UploadFile::profileImage(2, $model);
     }
+
+    public function actionClientImage($id){
+        $model = $this->findClient($id);
+        
+        UploadFile::profileImage(1, $model);
+    }
 	
 	protected function findExpert($id)
     {
@@ -90,6 +97,15 @@ class ProfileController extends \yii\web\Controller
     protected function findExpertProfile($id)
     {
         if (($model = ExpertProfile::findOne(['user_id' => $id])) !== null) {
+            return $model;
+        }
+        
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findClient($id)
+    {
+        if (($model = Client::findOne(['user_id' => $id])) !== null) {
             return $model;
         }
         

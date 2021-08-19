@@ -1,22 +1,21 @@
 <?php
 
-namespace frontend\modules\client\controllers;
+namespace frontend\modules\expert\controllers;
 
 use Yii;
 use backend\models\Expert;
-use frontend\modules\client\models\ExpertSearch;
-use backend\models\Client;
 use backend\models\ClientExpert;
+use frontend\modules\expert\models\ClientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 
 /**
- * ExpertController implements the CRUD actions for Expert model.
+ * ClientController implements the CRUD actions for Client model.
  */
-class ExpertController extends Controller
+class ClientController extends Controller
 {
-    public $layout = '//main';
+    public $layout = '//main-expert';
     /**
      * {@inheritdoc}
      */
@@ -36,15 +35,16 @@ class ExpertController extends Controller
     }
 
     /**
-     * Lists all Expert models.
+     * Lists all Client models.
      * @return mixed
      */
+
     public function actionIndex()
     {
-        $client = Client::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
+        $expert = Expert::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
         // echo $client->id;
         // die();
-        $clientExpert = ClientExpert::find()->where(['client_id' => $client->id])->all();
+        $clientExpert = ClientExpert::find()->where(['expert_id' => $expert->id])->all();
 
         return $this->render('index', [
             'clientExpert' => $clientExpert,
@@ -52,7 +52,7 @@ class ExpertController extends Controller
     }
 
     /**
-     * Displays a single Expert model.
+     * Displays a single Client model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,13 +65,13 @@ class ExpertController extends Controller
     }
 
     /**
-     * Creates a new Expert model.
+     * Creates a new Client model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Expert();
+        $model = new Client();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -83,7 +83,7 @@ class ExpertController extends Controller
     }
 
     /**
-     * Updates an existing Expert model.
+     * Updates an existing Client model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -103,7 +103,7 @@ class ExpertController extends Controller
     }
 
     /**
-     * Deletes an existing Expert model.
+     * Deletes an existing Client model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +117,15 @@ class ExpertController extends Controller
     }
 
     /**
-     * Finds the Expert model based on its primary key value.
+     * Finds the Client model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Expert the loaded model
+     * @return Client the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Expert::findOne($id)) !== null) {
+        if (($model = Client::findOne($id)) !== null) {
             return $model;
         }
 
