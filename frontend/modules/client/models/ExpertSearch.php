@@ -4,12 +4,12 @@ namespace frontend\modules\client\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\expert\models\Expert;
-
+use backend\models\ClientExpert;
+use Yii;
 /**
  * ExpertSearch represents the model behind the search form of `backend\modules\expert\models\Expert`.
  */
-class ExpertSearch extends Expert
+class ExpertSearch extends ClientExpert
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class ExpertSearch extends Expert
     public function rules()
     {
         return [
-            [['id', 'user_id', 'expert_type'], 'integer'],
+            [['id', 'client_id', 'expert_id'], 'integer'],
         ];
     }
 
@@ -39,14 +39,13 @@ class ExpertSearch extends Expert
      */
     public function search($params)
     {
-        $query = Expert::find()
-        ->where(['user_id' => Yii::$app->user->identity->id]);
+        $query = ClientExpert::find()
+        ->where(['client_id' => Yii::$app->user->identity->client->id]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['created_at'=>SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -60,8 +59,6 @@ class ExpertSearch extends Expert
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'expert_type' => $this->expert_type,
         ]);
 
         return $dataProvider;

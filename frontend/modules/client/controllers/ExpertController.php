@@ -41,14 +41,25 @@ class ExpertController extends Controller
      */
     public function actionIndex()
     {
-        $client = Client::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
-        // echo $client->id;
-        // die();
-        $clientExpert = ClientExpert::find()->where(['client_id' => $client->id])->all();
 
+        $searchModel = new ExpertSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
         return $this->render('index', [
-            'clientExpert' => $clientExpert,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'dirAssests' => $dirAssests,
         ]);
+
+
+        // $client = Client::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
+        // // echo $client->id;
+        // // die();
+        // $clientExpert = ClientExpert::find()->where(['client_id' => $client->id])->all();
+
+        // return $this->render('index', [
+        //     'clientExpert' => $clientExpert,
+        // ]);
     }
 
     /**
