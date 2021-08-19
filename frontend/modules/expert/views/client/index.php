@@ -26,25 +26,27 @@ $this->params['breadcrumbs'][] = $this->title;
               'contentOptions' => ['style' => 'width: 2%']
             ],
             [
-                'format' => 'html',
+                'format' => 'raw',
+                'attribute' => 'client_name',
                 'label' => 'Client Name',
                 // 'contentOptions' => ['style' => 'width: 5%'],
                 'value' => function($model){
-                    return '<div class="profile_info d-flex align-items-center">
-                                <img class="rounded-circle" src="'. Url::to(['/expert/profile/client-image', 'id' => $model->user->id]) .'" alt="" data-original-title="" title=""><div class="mr_left">'.$model->user->fullname.'</div></div>';
+                    return Html::a('<div class="profile_info d-flex align-items-center">
+                                <img class="rounded-circle" src="'. Url::to(['/expert/profile/client-image', 'id' => $model->user->id]) .'" alt="" data-original-title="" title=""><div class="mr_left">'.$model->user->fullname.'</div></div>',['/chatExpert/', 'id' => $model->id]);
+                    return ;
                 }
             ],
-            ['class' => 'yii\grid\ActionColumn',
-                // 'contentOptions' => ['style' => 'width: 10%'],
-                'template' => '{view}',
-                //'visible' => false,
-                'buttons'=>[
-                    'view'=>function ($url, $model) {
-                        return Html::a('View',['/chatExpert/', 'id' => $model->id],['class'=>'btn btn-primary btn-sm']);
-                    },
-                ],
+            // ['class' => 'yii\grid\ActionColumn',
+            //     // 'contentOptions' => ['style' => 'width: 10%'],
+            //     'template' => '{view}',
+            //     //'visible' => false,
+            //     'buttons'=>[
+            //         'view'=>function ($url, $model) {
+            //             return Html::a('View',['/chatExpert/', 'id' => $model->id],['class'=>'btn btn-primary btn-sm']);
+            //         },
+            //     ],
             
-            ],
+            // ],
         ],
     ]); ?>
 
