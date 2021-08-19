@@ -41,14 +41,22 @@ class ClientController extends Controller
 
     public function actionIndex()
     {
-        $expert = Expert::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
-        // echo $client->id;
-        // die();
-        $clientExpert = ClientExpert::find()->where(['expert_id' => $expert->id])->all();
+        $searchModel = new ClientSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'clientExpert' => $clientExpert,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
+        
+        // $expert = Expert::find()->where(['user_id' => Yii::$app->user->identity->id])->one();
+        // // echo $client->id;
+        // // die();
+        // $clientExpert = ClientExpert::find()->where(['expert_id' => $expert->id])->all();
+
+        // return $this->render('index', [
+        //     'clientExpert' => $clientExpert,
+        // ]);
     }
 
     /**

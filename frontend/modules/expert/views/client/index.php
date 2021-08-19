@@ -4,41 +4,49 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
-/* @var $searchModel backend\modules\expert\models\ExpertSearch */
+/* @var $searchModel frontend\modules\expert\models\ClientSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Consultation';
+$this->title = 'Clients';
 $this->params['breadcrumbs'][] = $this->title;
-
-
 ?>
 
-  <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <div class="row el-element-overlay">
-                    <?php
-                    $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
-                        if($clientExpert){
-                            foreach($clientExpert as $clientEx){
-                                echo '
-                                <a href="'.Url::to(['/chatExpert/', 'id' => $clientEx->client_id]).'">
-                                <div class="col-md-2 col-lg-2 col-xl-2 box-col-2">
-                                  <div class="card custom-card">
-                                    <div class="card-header"><img class="img-fluid" src="'.$dirAssests.'/img/profilebox/2.jpg" alt="" data-original-title="" title=""></div>
-                                    <div class="card-profile"><img class="rounded-circle" src="'.$dirAssests.'/img/profilebox/8.jpg" alt="" data-original-title="" title=""></div>
-                                    <div class="text-center profile-details">
-                                      <h4>'.$clientEx->client->user->fullname.'</h4>
-                                    </div>
-                                  </div>
-                              </div>
-                              </a>';
-                            }
-                        }
-                    ?>
+<style type="text/css">
+    .mr_left {
+     margin-left: 10px; 
+    }
+</style>
+<div class="client-index">
 
-                    
-                </div>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn',
+              'contentOptions' => ['style' => 'width: 2%']
+            ],
+            [
+                'format' => 'html',
+                'label' => 'Client Name',
+                // 'contentOptions' => ['style' => 'width: 5%'],
+                'value' => function($model){
+                    return '<div class="profile_info d-flex align-items-center">
+                                <img class="rounded-circle" src="'. Url::to(['/expert/profile/client-image', 'id' => $model->user->id]) .'" alt="" data-original-title="" title=""><div class="mr_left">'.$model->user->fullname.'</div></div>';
+                }
+            ],
+            ['class' => 'yii\grid\ActionColumn',
+                // 'contentOptions' => ['style' => 'width: 10%'],
+                'template' => '{view}',
+                //'visible' => false,
+                'buttons'=>[
+                    'view'=>function ($url, $model) {
+                        return Html::a('View',['/chatExpert/', 'id' => $model->id],['class'=>'btn btn-primary btn-sm']);
+                    },
+                ],
+            
+            ],
+        ],
+    ]); ?>
+
 
 </div>

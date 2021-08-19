@@ -54,35 +54,6 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
             </div>
         </div>
         </div>
-". Url::to(['/chat/default/send-message\])."
-/training/git-bis/frontend/web/chat/default/send-message
-
-function reloadchat(button,sendMessage) {
-        var url = '". Url::to(['/chat/default/send-message'])."';
-    if (sendMessage)
-        $('#ajax-loader').show();
-    $.ajax({
-        url: ,
-        type: 'POST',
-        data: {
-            'sendMessage':sendMessage,
-            'ChatModel[sender_id]': $(button).data('id'),
-            'ChatModel[recipient_id]': $('#recipient').val(),
-            'ChatModel[name]': $(button).data('name'),
-            'ChatModel[icon]': $(button).data('icon'),
-            'ChatModel[message]': $('#chat-message').val(),
-        },
-        success: function (html) {
-            console.log(html);
-            if (sendMessage)
-            {
-                $('#ajax-loader').hide();
-                $('#chat-message').val('')
-            }
-            $('#chat-box').html(html);
-        }
-    });
-}
 <?php
 $script="
 function reloadchat(button,sendMessage) {

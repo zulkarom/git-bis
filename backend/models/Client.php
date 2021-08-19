@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use common\models\User;
+use backend\models\ClientExpert;
 /**
  * This is the model class for table "client".
  *
@@ -96,9 +97,9 @@ class Client extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getClientExpers()
+    public function getClientExperts()
     {
-        return $this->hasMany(ClientExper::className(), ['client_id' => 'id']);
+        return $this->hasMany(ClientExpert::className(), ['client_id' => 'id']);
     }
 
     public function flashError(){

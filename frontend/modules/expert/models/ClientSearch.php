@@ -5,7 +5,7 @@ namespace frontend\modules\expert\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\Client;
-
+use Yii;
 /**
  * ClientSearch represents the model behind the search form of `backend\models\Client`.
  */
@@ -40,7 +40,9 @@ class ClientSearch extends Client
      */
     public function search($params)
     {
-        $query = Client::find();
+        $query = Client::find()
+        ->joinWith(['clientExperts'])
+        ->where(['expert_id' => Yii::$app->user->identity->expert->id]);
 
         // add conditions that should always apply here
 

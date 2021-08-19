@@ -12,7 +12,7 @@ use yii\filters\AccessControl;
  */
 class DefaultController extends Controller
 {
-    
+    public $layout = '//main-expert';
 
     public function behaviors()
     {

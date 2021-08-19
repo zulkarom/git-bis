@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use common\models\User;
+use common\models\Common;
 /**
  * This is the model class for table "expert".
  *
@@ -54,7 +55,22 @@ class Expert extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getUser(){
+    public function expertType(){
+        return Common::expertType();
+    }
+
+    public function getExpertText(){
+        $label = Common::expertType();
+        return $label[$this->expert_type];
+    }
+
+    public function getUser()
+    {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getClientExpert()
+    {
+        return $this->hasMany(ClientExpert::className(), ['expert_id' => 'id']);
     }
 }
