@@ -27,7 +27,7 @@ h2 {
 }*/
 </style>
 
-<br/><br/><br/><br/>
+<br/><br/>
 <div class="main">
 
     <section class="signup">
@@ -61,11 +61,12 @@ h2 {
                 <p class="loginhere">
                     Dont have an account ? <?= Html::a('Register here', ['/user/register'], ['class' => 'loginhere-link']) ?>
                     <br/>
-                    Forgot password ? <?= Html::a('Click here', ['/user/register'], ['class' => 'loginhere-link']) ?>
+                    Forgot password ? <?= Html::a('Click here', ['/user/recovery/request'], ['class' => 'loginhere-link']) ?>
                 </p>
                 <br/>
             </div>
         </div>
+        <br/><br/>
     </section>
 
 </div>
