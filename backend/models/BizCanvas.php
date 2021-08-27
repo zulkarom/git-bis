@@ -46,6 +46,14 @@ class BizCanvas extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
         ];
     }
+    
+    public function itemsByCategory($category){
+        return BcItem::find()->where(['biz_canvas_id' => $this->id, 'category_id' => $category])->all();
+    }
+    
+    public function getCategory($category){
+        return BcCategory::findOne($category);
+    }
 
     public function flashError(){
         if($this->getErrors()){

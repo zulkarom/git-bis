@@ -19,6 +19,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use yii\db\Expression;
+use backend\models\BcItem;
 /**
  * BizCanvasController implements the CRUD actions for BizCanvas model.
  */
@@ -69,68 +70,12 @@ class BizCanvasController extends Controller
      */
     public function actionView($id)
     {
-        $partners = BcKeyParner::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $spaces = BcBrainstorm::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $activities = BcKeyActivity::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $propositions = BcValProposition::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $relationships = BcCustRelation::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $channels = BcChannel::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $revenues = BcRevStream::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $structures = BcCostStructure::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $resources = BcKeyResource::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
-        $segments = BcCustSegment::find()
-        ->joinWith('bizCanvas')
-        ->where(['user_id' => Yii::$app->user->identity->id, 'biz_canvas_id' => $id])
-        ->all();
-
+        $model = $this->findModel($id);
+        //print_r($model->itemsByCategory(1));
+        //die();
+        
         return $this->render('view', [
-            'partners' => $partners,
-            'spaces' => $spaces,
-            'activities' => $activities,
-            'propositions' => $propositions,
-            'relationships' => $relationships,
-            'segments' => $segments,
-            'resources' => $resources,
-            'structures' => $structures,
-            'revenues' => $revenues,
-            'channels' => $channels,
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -192,6 +137,68 @@ class BizCanvasController extends Controller
 
         return $this->redirect(['index']);
     }
+    
+    public function actionCreateItem($pid, $cat)
+    {
+        $model = new BcItem();
+        
+        if ($model->load(Yii::$app->request->post())) {
+            $model->biz_canvas_id = $pid;
+            $model->category_id = $cat;
+            
+            if($model->save()){
+                
+               //Yii::$app->session->addFlash('success', "Key Resources Added");
+                
+            }else{
+                $model->flashError();
+            }
+            return $this->redirect(['view', 'id' => $pid]);
+        }
+        
+        return $this->renderAjax('_form', [
+            'model' => $model,
+            'cat' => $cat
+        ]);
+    }
+    
+    public function actionUpdateItem($id, $pid, $cat)
+    {
+        $model = $this->findItem($id, $pid, $cat);
+        
+        if ($model->load(Yii::$app->request->post())) {
+            
+            if($model->save()){
+                
+                //Yii::$app->session->addFlash('success', "Key Resource Updated");
+                
+            }else{
+                $model->flashError();
+            }
+            return $this->redirect(['view', 'id' => $pid]);
+        }
+        
+        return $this->renderAjax('_form', [
+            'model' => $model,
+            'cat' => $cat
+        ]);
+    }
+    
+    /**
+     * Deletes an existing BcKeyParner model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDeleteItem($id, $pid, $cat)
+    {
+        $this->findItem($id, $pid, $cat)->delete();
+        
+        //Yii::$app->session->addFlash('success', "Key Resource Deleted");
+        
+        return $this->redirect(['view', 'id' => $pid]);
+    }
 
     /**
      * Finds the BizCanvas model based on its primary key value.
@@ -206,6 +213,15 @@ class BizCanvasController extends Controller
             return $model;
         }
 
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    
+    protected function findItem($id, $bc, $cat)
+    {
+        if (($model = BcItem::findOne(['id' => $id, 'biz_canvas_id' => $bc, 'category_id' => $cat])) !== null) {
+            return $model;
+        }
+        
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

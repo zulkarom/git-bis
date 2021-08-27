@@ -9,7 +9,7 @@ CanvasAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\modules\client\models\BizCanvasSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model backend\models\BizCanvas */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = $this->title;
@@ -117,6 +117,18 @@ font-weight:bold;
 margin-bottom:6px;
 }
 
+#bizcanvas tr td{
+position:relative;
+}
+
+div.bc-guide {
+  position: absolute;
+  bottom: 0px;
+  width:100%;
+  padding-right:15px;
+  text-align:right;
+} 
+
 </style>
 
 
@@ -144,7 +156,8 @@ margin-bottom:6px;
               <div class ="col-md-10"><div class="titlebc">Key Partners</div></div> 
               <div class ="col-md-2">
                 <?php 
-                echo '<a class="bc-add-item" data-title="Add Key Partners" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-parner/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                
+                echo addItemLink($model, 1);
                 
                     ?>
               </div>
@@ -152,8 +165,8 @@ margin-bottom:6px;
             
             <p>
             <div class ="row">
-              <?php if($partners){
-                foreach($partners as $partner){
+              <?php if($model->itemsByCategory(1)){
+                  foreach($model->itemsByCategory(1) as $partner){
                     echo stickynote($partner, $model->id);
                     
  
@@ -161,6 +174,8 @@ margin-bottom:6px;
               }?>
               </div>
             </p>
+            <br />
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
           <td colspan="2">
 
@@ -168,15 +183,15 @@ margin-bottom:6px;
               <div class ="col-md-10"><div class="titlebc">Key Activities</div></div> 
               <div class ="col-md-2">
                 <?php
-                echo '<a class="bc-add-item" data-title="Add Key Activities" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-activity/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 2);
                     ?>
               </div>
               </div>
 
             <p>
             <div class ="row">
-              <?php if($activities){
-                foreach($activities as $activity){
+              <?php if($model->itemsByCategory(2)){
+                  foreach($model->itemsByCategory(2) as $activity){
                     echo stickynote($activity, $model->id);
  
                 }
@@ -190,16 +205,15 @@ margin-bottom:6px;
               <div class ="col-md-10"><div class="titlebc">Value Proposition</div> </div>
               <div class ="col-md-2">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Value Proposition" href="javascript:void(0)" value="' . Url::to(['/client/bc-val-proposition/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
-                
+                echo addItemLink($model, 3);
                 ?>
               </div>
             </div>
  
             <p>
              <div class ="row">
-              <?php if($propositions){
-                foreach($propositions as $proposition){
+              <?php if($model->itemsByCategory(3)){
+                  foreach($model->itemsByCategory(3) as $proposition){
                     echo stickynote($proposition, $model->id);
                     
                 }
@@ -213,7 +227,7 @@ margin-bottom:6px;
               <div class ="col-md-10"><div class="titlebc">Customer Relationship</div> </div>
               <div class ="col-md-2">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Customer Relationship" value="' . Url::to(['/client/bc-cust-relation/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 4);
                 
                 ?>
               </div>
@@ -221,8 +235,8 @@ margin-bottom:6px;
 
             <p>
             <div class ="row">
-              <?php if($relationships){
-                foreach($relationships as $relationship){
+              <?php if($model->itemsByCategory(4)){
+                  foreach($model->itemsByCategory(4) as $relationship){
                     echo stickynote($relationship, $model->id);
                     
   
@@ -237,7 +251,7 @@ margin-bottom:6px;
               <div class ="col-md-10"><div class="titlebc">Customers Segments</div> </div>
               <div class ="col-md-2">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Customers Segments" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-segment/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 5);
                 
                 ?>
               </div>
@@ -245,8 +259,8 @@ margin-bottom:6px;
     
             <p>
             <div class ="row">
-              <?php if($segments){
-                foreach($segments as $segment){
+              <?php if($model->itemsByCategory(5)){
+                  foreach($model->itemsByCategory(5) as $segment){
                     
                     echo stickynote($segment, $model->id);
 
@@ -265,7 +279,7 @@ margin-bottom:6px;
               <div class ="col-md-10"><div class="titlebc">Key Resources</div></div> 
               <div class ="col-md-2">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Key Resources" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-resource/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 6);
                 
                 ?>
               </div>
@@ -273,8 +287,8 @@ margin-bottom:6px;
             
             <p>
             <div class ="row">
-              <?php if($resources){
-                foreach($resources as $resource){
+              <?php if($model->itemsByCategory(6)){
+                  foreach($model->itemsByCategory(6) as $resource){
                     
                     echo stickynote($resource,  $model->id);
                     
@@ -290,7 +304,7 @@ margin-bottom:6px;
               <div class ="col-md-10"><div class="titlebc">Channels</div></div> 
               <div class ="col-md-2">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Channels" href="javascript:void(0)" value="' . Url::to(['/client/bc-channel/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 7);
                 
                 ?>
               </div>
@@ -298,8 +312,8 @@ margin-bottom:6px;
             
             <p>
              <div class ="row">
-              <?php if($channels){
-                foreach($channels as $channel){
+              <?php if($model->itemsByCategory(7)){
+                  foreach($model->itemsByCategory(7) as $channel){
                     
                     echo stickynote($channel, $model->id);
                     
@@ -316,15 +330,15 @@ margin-bottom:6px;
               <div class ="col-md-11"><div class="titlebc">Cost Structure </div></div> 
               <div class ="col-md-1">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Cost Structure" href="javascript:void(0)" value="' . Url::to(['/client/bc-cost-structure/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 8);
                 ?>
               </div>
               </div>
            
             <p>
             <div class ="row">
-              <?php if($structures){
-                foreach($structures as $structure){
+              <?php if($model->itemsByCategory(8)){
+                  foreach($model->itemsByCategory(8) as $structure){
                     
                     echo stickynote($structure,  $model->id, 6);
                     
@@ -339,7 +353,7 @@ margin-bottom:6px;
               <div class ="col-md-11"><div class="titlebc">Revenue Streams </div></div> 
               <div class ="col-md-1">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Revenue Streams" href="javascript:void(0)" value="' . Url::to(['/client/bc-rev-stream/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 9);
                 
                 ?>
               </div>
@@ -347,8 +361,8 @@ margin-bottom:6px;
            
             <p>
             <div class="row">
-              <?php if($revenues){
-                foreach($revenues as $revenue){
+              <?php if($model->itemsByCategory(9)){
+                  foreach($model->itemsByCategory(9) as $revenue){
                     echo stickynote($revenue,  $model->id, 6);
                 }
               }?>
@@ -365,10 +379,10 @@ margin-bottom:6px;
           <td colspan="10">
             
               <div class ="row">
-              <div class ="col-md-11"><div class="titlebc">Brainstorming Space</div></div> 
-              <div class ="col-md-1" align="right">
+              <div class ="col-md-10"><div class="titlebc">Brainstorming Space</div></div> 
+              <div class ="col-md-2" align="right">
                 <?php 
-                  echo '<a class="bc-add-item" data-title="Add Brainstorming Space" href="javascript:void(0)" value="' . Url::to(['/client/bc-brainstorm/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo addItemLink($model, 10);
                 ?>
               </div>
               </div>
@@ -377,8 +391,8 @@ margin-bottom:6px;
             <div class="row">
             	
             
-              <?php if($spaces){
-                foreach($spaces as $space){
+              <?php if($model->itemsByCategory(10)){
+                  foreach($model->itemsByCategory(10) as $space){
                     echo stickynote($space,  $model->id, 3);
                  
                 }
@@ -398,8 +412,14 @@ margin-bottom:6px;
 
 <?php
 
+function addItemLink($model, $cat){
+    $category = $model->getCategory($cat)->category_name;
+    return '<a class="bc-add-item" data-title="Add '. $category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/create-item', 'pid' => $model->id, 'cat' => $cat]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+    
+}
+
 function stickynote($element, $pid, $col = 12){
-    $item = $element->bc_key;
+    $item = $element->category->category_key;
     $html = '<div class="col-md-'.$col.'"><div class="dropdown" style="margin-bottom:7px">
                   <div class = "note '.$element->color.'">';
     if($element->title){
@@ -410,9 +430,9 @@ $html .= '<p style="font-size:11px; color:#000000;">'. nl2br(Html::encode($eleme
 
 </div>
         <div class="dropdown-content">
-        <a class="bc-update-item" data-title="Update '.$element->bc_label .'" href="javascript:void(0)" value="' . Url::to(['/client/bc-'.$item.'/update', 'id' => $element->id, 'pid' => $pid]) . '" >
+        <a class="bc-update-item" data-title="Update '.$element->category->category_name .'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/update-item', 'id' => $element->id, 'pid' => $pid, 'cat' => $element->category_id]) . '" >
         <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-        <a href="' . Url::to(['/client/bc-'.$item.'/delete', 'id' => $element->id, 'pid' => $pid]) . '" >
+        <a href="' . Url::to(['/client/biz-canvas/delete-item', 'id' => $element->id, 'pid' => $pid, 'cat' => $element->category_id]) . '" >
 <span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
         </div> </div>
 </div>

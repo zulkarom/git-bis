@@ -11,7 +11,7 @@ use kartik\widgets\ActiveForm;
 
 
 <?php Pjax::begin() ?>
-    <?php $form = ActiveForm::begin(['id' => 'form-' . $model->bc_key, 'options' => ['data-pjax' => true]]); ?>
+    <?php $form = ActiveForm::begin(['id' => 'form-' . $cat, 'options' => ['data-pjax' => true]]); ?>
 
     <?= $form->field($model, 'title')->textInput()->label('Title') ?>
 
