@@ -76,14 +76,12 @@ class BcKeyParnerController extends Controller
              if($model->save()){
 
                 Yii::$app->session->addFlash('success', "Key Partner Added");
+                return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
                 
-            }else{
-                $model->flashError();
             }
-            return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->renderAjax('create', [
+        return $this->renderAjax('../biz-canvas/_form', [
             'model' => $model,
         ]);
     }
@@ -110,7 +108,7 @@ class BcKeyParnerController extends Controller
             return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->renderAjax('update', [
+        return $this->renderAjax('../biz-canvas/_form', [
             'model' => $model,
         ]);
     }

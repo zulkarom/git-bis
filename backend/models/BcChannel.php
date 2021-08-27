@@ -13,6 +13,8 @@ use backend\models\BizCanvas;
  */
 class BcChannel extends \yii\db\ActiveRecord
 {
+    public $bc_label = 'Channels';
+    public $bc_key = 'channel';
     /**
      * {@inheritdoc}
      */
@@ -27,7 +29,7 @@ class BcChannel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['biz_canvas_id', 'description', 'title', 'color'], 'required'],
+            [['biz_canvas_id', 'description', 'color'], 'required'],
             [['biz_canvas_id'], 'integer'],
             [['description', 'title', 'color'], 'string'],
         ];
@@ -48,4 +50,18 @@ class BcChannel extends \yii\db\ActiveRecord
     public function getBizCanvas(){
         return $this->hasOne(BizCanvas::className(), ['id' => 'biz_canvas_id']);
     }
+    
+    public function flashError(){
+        if($this->getErrors()){
+            foreach($this->getErrors() as $error){
+                if($error){
+                    foreach($error as $e){
+                        Yii::$app->session->addFlash('error', $e);
+                    }
+                }
+            }
+        }
+
+    }
+
 }

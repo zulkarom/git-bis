@@ -13,6 +13,8 @@ use backend\models\BizCanvas;
  */
 class BcKeyParner extends \yii\db\ActiveRecord
 {
+    public $bc_label = 'Key Partners';
+    public $bc_key = 'key-parner';
     /**
      * {@inheritdoc}
      */
@@ -27,7 +29,7 @@ class BcKeyParner extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['biz_canvas_id', 'description', 'title', 'color'], 'required'],
+            [['biz_canvas_id', 'description', 'color'], 'required'],
             [['biz_canvas_id'], 'integer'],
             [['description', 'title', 'color'], 'string'],
         ];

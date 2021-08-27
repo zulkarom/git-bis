@@ -5,6 +5,7 @@ namespace frontend\modules\client\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use backend\models\BcBrainstorm;
+use Yii;
 
 /**
  * BcBrainstormSearch represents the model behind the search form of `backend\models\BcBrainstorm`.
@@ -66,4 +67,6 @@ class BcBrainstormSearch extends BcBrainstorm
 
         return $dataProvider;
     }
+    
+
 }

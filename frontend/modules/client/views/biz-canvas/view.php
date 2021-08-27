@@ -50,7 +50,78 @@ a {
 border-left:#ffffff;
 border-right:#ffffff;
 }
+
+
+
+input[type=radio] {
+  display: none;
+}
+input[type=radio]:checked + label span {
+  transform: scale(1.25);
+}
+input[type=radio]:checked + label .red {
+  border: 2px solid #711313;
+}
+
+input[type=radio]:checked + label .yellow {
+  border: 2px solid #816102;
+}
+input[type=radio]:checked + label .grey {
+  border: 2px solid #505a0b;
+}
+input[type=radio]:checked + label .green {
+  border: 2px solid #0e4e1d;
+}
+input[type=radio]:checked + label .blue {
+  border: 2px solid #103f62;
+}
+
+label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  
+}
+label:hover span {
+  transform: scale(1.25);
+}
+label span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+  border: 1px solid #c0c0c0;
+}
+label span.red {
+  background: #fca18e;
+}
+
+label span.yellow {
+  background: #fef993;
+}
+label span.grey {
+  background: #c0c0c0;
+}
+label span.green {
+  background: #d1eb9c;
+}
+
+label span.blue {
+  background: #bad9f9;
+}
+
+.titlebc{
+font-weight:bold;
+margin-bottom:6px;
+}
+
 </style>
+
+
+
+
 
 <div class="white_card card_height_100 mb_30" style="overflow-x: scroll;">
   <div class="white_card_header">
@@ -68,22 +139,22 @@ border-right:#ffffff;
         <!-- Upper part -->
         <tr>
           <td colspan="2" rowspan="2">
-            <h4>
+            
             <div class ="row">
-              <div class ="col-10">Key Partners</div> 
-              <div class ="col-2"><font class="text-align"></font>
+              <div class ="col-md-10"><div class="titlebc">Key Partners</div></div> 
+              <div class ="col-md-2">
                 <?php 
-                echo '<a class="modalBttnPartner" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-parner/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo '<a class="bc-add-item" data-title="Add Key Partners" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-parner/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                     ?>
               </div>
             </div>
-            </h4>
+            
             <p>
             <div class ="row">
               <?php if($partners){
                 foreach($partners as $partner){
-                    echo stickynote($partner, 'key-parner', $model->id);
+                    echo stickynote($partner, $model->id);
                     
  
                 }
@@ -92,21 +163,21 @@ border-right:#ffffff;
             </p>
           </td>
           <td colspan="2">
-            <h4>
+
               <div class ="row">
-              <div class ="col-10">Key Activities</div> 
-              <div class ="col-2">
+              <div class ="col-md-10"><div class="titlebc">Key Activities</div></div> 
+              <div class ="col-md-2">
                 <?php
-                echo '<a class="modalBttnActivity" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-activity/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                echo '<a class="bc-add-item" data-title="Add Key Activities" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-activity/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                     ?>
               </div>
               </div>
-            </h4>
+
             <p>
             <div class ="row">
               <?php if($activities){
                 foreach($activities as $activity){
-                    echo stickynote($activity, 'key-activity', $model->id);
+                    echo stickynote($activity, $model->id);
  
                 }
               }?>
@@ -114,22 +185,22 @@ border-right:#ffffff;
             </p>
           </td>
           <td colspan="2" rowspan="2">
-            <h4>
+
               <div class ="row">
-              <div class ="col-9">Value Proposition</div> 
-              <div class ="col-3">
+              <div class ="col-md-10"><div class="titlebc">Value Proposition</div> </div>
+              <div class ="col-md-2">
                 <?php 
-                  echo '<a class="modalBttnProposition" href="javascript:void(0)" value="' . Url::to(['/client/bc-val-proposition/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Value Proposition" href="javascript:void(0)" value="' . Url::to(['/client/bc-val-proposition/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                 ?>
               </div>
             </div>
-            </h4>
+ 
             <p>
              <div class ="row">
               <?php if($propositions){
                 foreach($propositions as $proposition){
-                    echo stickynote($proposition, 'val-proposition', $model->id);
+                    echo stickynote($proposition, $model->id);
                     
                 }
               }?>
@@ -137,22 +208,22 @@ border-right:#ffffff;
             </p>
           </td>
           <td colspan="2">
-            <h4>
+
               <div class ="row">
-              <div class ="col-10">Customer Relationship</div> 
-              <div class ="col-2">
+              <div class ="col-md-10"><div class="titlebc">Customer Relationship</div> </div>
+              <div class ="col-md-2">
                 <?php 
-                  echo '<a class="modalBttnRelationship" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-relation/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Customer Relationship" value="' . Url::to(['/client/bc-cust-relation/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                 ?>
               </div>
               </div>
-            </h4>
+
             <p>
             <div class ="row">
               <?php if($relationships){
                 foreach($relationships as $relationship){
-                    echo stickynote($relationship, 'cust-relation', $model->id);
+                    echo stickynote($relationship, $model->id);
                     
   
                 }
@@ -161,23 +232,23 @@ border-right:#ffffff;
             </p>
           </td>
           <td colspan="2" rowspan="2">
-            <h4>
+
               <div class ="row">
-              <div class ="col-10">Customers Segments</div> 
-              <div class ="col-2">
+              <div class ="col-md-10"><div class="titlebc">Customers Segments</div> </div>
+              <div class ="col-md-2">
                 <?php 
-                  echo '<a class="modalBttnSegment" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-segment/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Customers Segments" href="javascript:void(0)" value="' . Url::to(['/client/bc-cust-segment/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                 ?>
               </div>
               </div>
-            </h4>
+    
             <p>
             <div class ="row">
               <?php if($segments){
                 foreach($segments as $segment){
                     
-                    echo stickynote($segment, 'cust-segment', $model->id);
+                    echo stickynote($segment, $model->id);
 
                 }
               }?>
@@ -189,23 +260,23 @@ border-right:#ffffff;
         <!-- Lower part -->
         <tr>
           <td colspan="2">
-            <h4>
+            
               <div class ="row">
-              <div class ="col-10">Key Resources</div> 
-              <div class ="col-2">
+              <div class ="col-md-10"><div class="titlebc">Key Resources</div></div> 
+              <div class ="col-md-2">
                 <?php 
-                  echo '<a class="modalBttnResources" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-resource/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Key Resources" href="javascript:void(0)" value="' . Url::to(['/client/bc-key-resource/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                 ?>
               </div>
               </div>
-            </h4>
+            
             <p>
             <div class ="row">
               <?php if($resources){
                 foreach($resources as $resource){
                     
-                    echo stickynote($resource, 'key-resource', $model->id);
+                    echo stickynote($resource,  $model->id);
                     
      
                 }
@@ -214,23 +285,23 @@ border-right:#ffffff;
             </p>
           </td>
           <td colspan="2">
-            <h4>
+            
               <div class ="row">
-              <div class ="col-10">Channels</div> 
-              <div class ="col-2">
+              <div class ="col-md-10"><div class="titlebc">Channels</div></div> 
+              <div class ="col-md-2">
                 <?php 
-                  echo '<a class="modalBttnChannel" href="javascript:void(0)" value="' . Url::to(['/client/bc-channel/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Channels" href="javascript:void(0)" value="' . Url::to(['/client/bc-channel/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                 ?>
               </div>
               </div>
-            </h4>
+            
             <p>
              <div class ="row">
               <?php if($channels){
                 foreach($channels as $channel){
                     
-                    echo stickynote($channel, 'channel', $model->id);
+                    echo stickynote($channel, $model->id);
                     
                 }
               }?>
@@ -240,22 +311,22 @@ border-right:#ffffff;
         </tr>
         <tr>
           <td colspan="5">
-            <h4>
+            
               <div class ="row">
-              <div class ="col-11">Cost Structure</div> 
-              <div class ="col-1">
+              <div class ="col-md-11"><div class="titlebc">Cost Structure </div></div> 
+              <div class ="col-md-1">
                 <?php 
-                  echo '<a class="modalBttnStructure" href="javascript:void(0)" value="' . Url::to(['/client/bc-cost-structure/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Cost Structure" href="javascript:void(0)" value="' . Url::to(['/client/bc-cost-structure/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 ?>
               </div>
               </div>
-            </h4>
+           
             <p>
             <div class ="row">
               <?php if($structures){
                 foreach($structures as $structure){
                     
-                    echo stickynote($structure, 'cost-structure', $model->id, 6);
+                    echo stickynote($structure,  $model->id, 6);
                     
                 }
               }?>
@@ -263,22 +334,22 @@ border-right:#ffffff;
             </p>
           </td>
           <td colspan="5">
-            <h4>
+            
               <div class ="row">
-              <div class ="col-11">Revenue Streams</div> 
-              <div class ="col-1">
+              <div class ="col-md-11"><div class="titlebc">Revenue Streams </div></div> 
+              <div class ="col-md-1">
                 <?php 
-                  echo '<a class="modalBttnStream" href="javascript:void(0)" value="' . Url::to(['/client/bc-rev-stream/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Revenue Streams" href="javascript:void(0)" value="' . Url::to(['/client/bc-rev-stream/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 
                 ?>
               </div>
               </div>
-            </h4>
+           
             <p>
             <div class="row">
               <?php if($revenues){
                 foreach($revenues as $revenue){
-                    echo stickynote($revenue, 'rev-stream', $model->id, 6);
+                    echo stickynote($revenue,  $model->id, 6);
                 }
               }?>
               </div>
@@ -294,10 +365,10 @@ border-right:#ffffff;
           <td colspan="10">
             
               <div class ="row">
-              <div class ="col-11"><h4>Brainstorming Space</h4></div> 
-              <div class ="col-1" align="right">
+              <div class ="col-md-11"><div class="titlebc">Brainstorming Space</div></div> 
+              <div class ="col-md-1" align="right">
                 <?php 
-                  echo '<a class="modalBttnSpace" href="javascript:void(0)" value="' . Url::to(['/client/bc-brainstorm/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+                  echo '<a class="bc-add-item" data-title="Add Brainstorming Space" href="javascript:void(0)" value="' . Url::to(['/client/bc-brainstorm/create', 'pid' => $model->id]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
                 ?>
               </div>
               </div>
@@ -308,7 +379,7 @@ border-right:#ffffff;
             
               <?php if($spaces){
                 foreach($spaces as $space){
-                    echo stickynote($space, 'brainstorm', $model->id, 3);
+                    echo stickynote($space,  $model->id, 3);
                  
                 }
               }?>
@@ -327,163 +398,46 @@ border-right:#ffffff;
 
 <?php
 
-function stickynote($space, $item, $pid, $col = 12){
-    return '<div class="col-md-'.$col.'"><div class="dropdown" style="margin-bottom:7px">
-    
-                  <div class = "note '.$space->color.'">
-    
-<p style="font-size:12px; color:#000000;border-bottom:1px solid rgba(0, 0, 0, 0.07);">'.Html::encode($space->title).'</p>
-    
-<p style="font-size:11px; color:#000000;">'. nl2br(Html::encode($space->description)).'</p>
-    
-    
-    
-    
+function stickynote($element, $pid, $col = 12){
+    $item = $element->bc_key;
+    $html = '<div class="col-md-'.$col.'"><div class="dropdown" style="margin-bottom:7px">
+                  <div class = "note '.$element->color.'">';
+    if($element->title){
+        $html .= '<p style="font-size:12px; color:#000000;border-bottom:1px solid rgba(0, 0, 0, 0.07);">'.Html::encode($element->title).'</p>';
+    }
+ 
+$html .= '<p style="font-size:11px; color:#000000;">'. nl2br(Html::encode($element->description)).'</p>
+
 </div>
-    
-                  <div class="dropdown-content">
-                    <a class="updateSpace" href="javascript:void(0)" value="' . Url::to(['/client/bc-'.$item.'/update', 'id' => $space->id, 'pid' => $pid]) . '" >
-                    <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="' . Url::to(['/client/bc-'.$item.'/delete', 'id' => $space->id, 'pid' => $pid]) . '" >
+        <div class="dropdown-content">
+        <a class="bc-update-item" data-title="Update '.$element->bc_label .'" href="javascript:void(0)" value="' . Url::to(['/client/bc-'.$item.'/update', 'id' => $element->id, 'pid' => $pid]) . '" >
+        <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+        <a href="' . Url::to(['/client/bc-'.$item.'/delete', 'id' => $element->id, 'pid' => $pid]) . '" >
 <span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-                  </div>
-      
-                  </div>
+        </div> </div>
 </div>
                   ';
+    return $html;
 }
 
 
 $this->registerJs('
-$(function(){
-  $(".modalBttnPartner").click(function(){
-      $("#createPartner").modal("show")
-        .find("#formCreatePartner")
-        .load($(this).attr("value"));
-  });
-  $(".updatePartner").click(function(){
-      $("#updtPartner").modal("show")
-        .find("#formUpdatePartner")
-        .load($(this).attr("value"));
-  });
-});
 
 $(function(){
-  $(".modalBttnActivity").click(function(){
-      $("#createActivity").modal("show")
-        .find("#formCreateActivity")
+  $(".bc-add-item, .bc-update-item").click(function(){
+
+    var title = $(this).data("title");
+        $("#bc-title").text(title);
+      $("#bc-modal-canvas").modal("show")
+        .find("#bc-form")
         .load($(this).attr("value"));
+
+
   });
-  $(".updateActivity").click(function(){
-      $("#updtActivity").modal("show")
-        .find("#formUpdateActivity")
-        .load($(this).attr("value"));
-  });
+
 });
 
-$(function(){
-  $(".modalBttnResources").click(function(){
-      $("#createResources").modal("show")
-        .find("#formCreateResources")
-        .load($(this).attr("value"));
-  });
-  $(".updateResource").click(function(){
-      $("#updtResource").modal("show")
-        .find("#formUpdateResource")
-        .load($(this).attr("value"));
-  });
-});
 
-$(function(){
-  $(".modalBttnProposition").click(function(){
-      $("#createProposition").modal("show")
-        .find("#formCreateProposition")
-        .load($(this).attr("value"));
-  });
-  $(".updateProposition").click(function(){
-      $("#updtProposition").modal("show")
-        .find("#formUpdateProposition")
-        .load($(this).attr("value"));
-  });
-});
-
-$(function(){
-  $(".modalBttnRelationship").click(function(){
-      $("#createRelationship").modal("show")
-        .find("#formCreateRelationship")
-        .load($(this).attr("value"));
-  });
-  $(".updateRelationship").click(function(){
-      $("#updtRelationship").modal("show")
-        .find("#formUpdateRelationship")
-        .load($(this).attr("value"));
-  });
-});
-
-$(function(){
-  $(".modalBttnChannel").click(function(){
-      $("#createChannel").modal("show")
-        .find("#formCreateChannel")
-        .load($(this).attr("value"));
-  });
-  $(".updateChannel").click(function(){
-      $("#updtChannel").modal("show")
-        .find("#formUpdateChannel")
-        .load($(this).attr("value"));
-  });
-});
-
-$(function(){
-  $(".modalBttnSegment").click(function(){
-      $("#createSegment").modal("show")
-        .find("#formCreateSegment")
-        .load($(this).attr("value"));
-  });
-  $(".updateSegment").click(function(){
-      $("#updtSegment").modal("show")
-        .find("#formUpdateSegment")
-        .load($(this).attr("value"));
-  });
-});
-
-$(function(){
-  $(".modalBttnStructure").click(function(){
-      $("#createStructure").modal("show")
-        .find("#formCreateStructure")
-        .load($(this).attr("value"));
-  });
-  $(".updateStructure").click(function(){
-      $("#updtStructure").modal("show")
-        .find("#formUpdateStructure")
-        .load($(this).attr("value"));
-  });
-});
-
-$(function(){
-  $(".modalBttnStream").click(function(){
-      $("#createStream").modal("show")
-        .find("#formCreateStream")
-        .load($(this).attr("value"));
-  });
-  $(".updateStream").click(function(){
-      $("#updtStream").modal("show")
-        .find("#formUpdateStream")
-        .load($(this).attr("value"));
-  });
-});
-
-$(function(){
-  $(".modalBttnSpace").click(function(){
-      $("#createSpace").modal("show")
-        .find("#formCreateSpace")
-        .load($(this).attr("value"));
-  });
-  $(".updateSpace").click(function(){
-      $("#updtSpace").modal("show")
-        .find("#formUpdateSpace")
-        .load($(this).attr("value"));
-  });
-});
 
 ');
 ?>

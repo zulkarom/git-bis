@@ -55,30 +55,30 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
         </div>
 <?php
 $script="
-function reloadchat(button,sendMessage) {
-    console.log('starting');
+function sendchat(button,sendMessage) {
     
     $.ajax({
-        url: $(button).data('url'),
+        url: $('#send-message').data('url'),
         type: 'POST',
         data: {
             'sendMessage':sendMessage,
-            'ChatModel[sender_id]': $(button).data('id'),
-            'ChatModel[recipient_id]': $(button).data('recipient'),
+            'ChatModel[sender_id]': $('#send-message').data('id'),
+            'ChatModel[recipient_id]': $('#send-message').data('recipient'),
             'ChatModel[message]': $('#chat-message').val()
         },
         success: function (html) {
-            console.log(html);
         $('#chat-message').val('')
         $('#chat-box').html(html);
         }
     });
 }
+    
 $('#send-message').click(function(){
-    console.log('button click');
-    reloadchat(this,true);
+    sendchat(this,true);
 });
-//setInterval(function () { reloadchat(null,false); }, 5000 );
+    
+setInterval(function () { sendchat(null,false); }, 5000 );
+    
 ";
 $this->registerJs($script,$this::POS_READY);
 ?>

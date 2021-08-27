@@ -82,7 +82,7 @@ class BcChannelController extends Controller
             return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->renderAjax('create', [
+        return $this->renderAjax('../biz-canvas/_form', [
             'model' => $model,
         ]);
     }
@@ -110,7 +110,7 @@ class BcChannelController extends Controller
             return $this->redirect(['/client/biz-canvas/view', 'id' => $pid]);
         }
 
-        return $this->renderAjax('update', [
+        return $this->renderAjax('../biz-canvas/_form', [
             'model' => $model,
         ]);
     }

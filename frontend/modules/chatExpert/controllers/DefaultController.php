@@ -54,28 +54,28 @@ class DefaultController extends Controller
         
         $post = Yii::$app->request->post();
         //return json_encode($post) ;
-
-     
-        if ($post['sendMessage']=='true')
+        
+        
+        
+        $model = new ChatModel();
+        
+        if ($model->load(Yii::$app->request->post()))
         {
-            $model = new ChatModel();
-            
-            if ($model->load(Yii::$app->request->post()))
-            {
-               // return 'xxxxxxxxx' . $model->recipient_id;
+            // return 'xxxxxxxxx' . $model->recipient_id;
+            if ($post['sendMessage']=='true'){
                 $model->time = time();
                 $model->rfc822 = date(DATE_RFC822,$model->time);
                 $model->message = strip_tags($model->message);
-                if($model->save()){
-                    $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages);
-                    
-                    return $this->renderPartial('_table',compact('messages'));
+                if(!$model->save()){
+                    return json_encode($model->errors);
                 }
-            }else{
-                return json_encode($model->errors);
             }
+            
+            $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages);
+            return $this->renderPartial('_table',compact('messages'));
+            
         }
-
+        
         
     }
 }
