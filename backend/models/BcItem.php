@@ -33,7 +33,7 @@ class BcItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['biz_canvas_id', 'category_id'], 'required'],
+            [['biz_canvas_id', 'category_id', 'description', 'color'], 'required'],
             [['biz_canvas_id', 'category_id'], 'integer'],
             [['description'], 'string'],
             [['title'], 'string', 'max' => 255],

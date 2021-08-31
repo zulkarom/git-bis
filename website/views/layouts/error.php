@@ -131,121 +131,24 @@ div.d {
    <body class="body-3">
     <?php $this->beginBody() ?>
 
-    <!-- Header -->
+
     <?=$this->render('header', [    
         'dirAssests' => $dirAssests,
         'intro' => $intro,
     ]);
     ?>
     
-    
-       <div class="row-section padding-tb-xxl homepage-first-row">
-         <img src="<?= $dirAssests?>/pictures/logo-big.png" alt="" class="heading" width="700"><br/>
-         
-         <h2 class="heading-2"><?=Html::encode($intro->title_content)?><br/></h2>
-         <p class="paragraph font-size-small text-grey text-center"><?=Html::encode($intro->intro_content)?><br/></p>
-         
-      </div>
-      
-      
-    <!-- Header -->
+    <br /><br /><br /><br />
+    <?php echo $content?>
+<br /><br /><br />
 
-      <div class="section-divider animated shake">
-         <div>Who we are<br/></div>
-      </div>
-      <div class="row-section padding-tb-xxl homepage-second-row">
-         <div class="container no-padding">
-            <div class="columns w-row">
-            <?php foreach ($section as $sec) : ?>
-               <div class="column w-col w-col-4 w-col-stack">
-                  <img src="https://global-uploads.webflow.com/5e998d8310343e62a9e92ada/5ec136a248097607fd6ef656_homepage-incubation.svg" alt="" class="homepage-second-row-image"/>
-                  <h4 class="text-grey"><?= Html::encode($sec->title)?></h4>
-                  <div class="grid-container"> 
-                  <p class="paragraph-2 text-grey"><?= Html::encode($sec->content)?></p>
-                  </div>
-                  <a href="" class="ghost-button w-button"><?= Html::encode($sec->title)?></a>
-               </div>
-            <?php endforeach; ?>
-            </div>
-         </div>
-      </div>
-      
-
-        <!-- Companies  -->
-        <?=$this->render('companies', [
-                'dirAssests' => $dirAssests,
-
-        ]);
-        ?>
-        <!-- Companies -->
-         </div>
-      </div>
-
-
-        <!-- Services -->
-        <?=$this->render('services', [    
-                'dirAssests' => $dirAssests,
-        ]);
-        ?>
-        <!-- Services -->
-
-      
-            <em class="text-light-grey font-small"></em><br/>
-         </p>
-      </div>
-      <div class="section-divider animated shake">
-         <div>Where we are<br/></div>
-      </div>
-      
-
-        <!-- Map  -->
-        <?=$this->render('map', [
-                'dirAssests' => $dirAssests,
-
-        ]);
-        ?>
-        <!-- Map -->
-      
-        
-      
-      <!-- Footer -->
        <?=$this->render('footer', [    
 
        ]);
        ?>
-      <!-- Footer -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
 
-      <!--[if lte IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-  
-      <script>
-         AOS.init();
-         
-         var $prevButton = $('#carousel-prev');
-         var $nextButton = $('#carousel-next');
-         
-         var $wfPrevButton = $('#wf-carousel-prev');
-         var $wfNextButton = $('#wf-carousel-next');
-         
-         $prevButton.on('click', function () {
-          $wfPrevButton.trigger('tap');
-         });
-         
-         $nextButton.on('click', function () {
-          $wfNextButton.trigger('tap');
-         });
-      </script>
      
       <?php $this->endBody() ?>
    </body>

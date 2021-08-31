@@ -1,6 +1,7 @@
     <?php
     use backend\models\Header;
     use yii\helpers\Html;
+use yii\helpers\Url;
     ?>
 
     <header id="header" class="section">
@@ -305,11 +306,11 @@
                   <div class="html-embed w-embed"><img src="<?= $dirAssests?>/pictures/logo-top.png" alt="" class="heading" width="220" ></div>
                </a>
                <nav role="navigation" class="nav-menu w-nav-menu">
-                  <a href="#" class="mobile-nav-link w-nav-link">HOME</a>
+                  <a href="<?php echo Url::to(['/'])?>" class="mobile-nav-link w-nav-link">HOME</a>
                   <a href="#" class="mobile-nav-link w-nav-link">ABOUT</a>
                   <a href="#" class="mobile-nav-link investors w-nav-link">PORTFOLIO</a>
                   <a href="#" class="mobile-nav-link w-nav-link">SIGN UP</a>
-                  <a href="#" class="mobile-nav-link w-nav-link">LOG IN</a>
+                  <a href="<?php echo Url::to(['/member'])?>" class="mobile-nav-link w-nav-link">LOG IN</a>
                </nav>
                <div class="menu-button text-uppercase w-nav-button">
                   <div class="text-block">menu</div>
@@ -318,11 +319,3 @@
          </div>
 
       </header>
-
-       <div class="row-section padding-tb-xxl homepage-first-row">
-         <img src="<?= $dirAssests?>/pictures/logo-big.png" alt="" class="heading" width="700"><br/>
-         
-         <h2 class="heading-2"><?=Html::encode($intro->title_content)?><br/></h2>
-         <p class="paragraph font-size-small text-grey text-center"><?=Html::encode($intro->intro_content)?><br/></p>
-         
-      </div>
