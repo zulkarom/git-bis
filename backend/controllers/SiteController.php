@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'error'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -71,7 +71,7 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['index']);
         }
 
         $this->layout = 'main-login';

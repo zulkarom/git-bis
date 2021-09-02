@@ -90,14 +90,6 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
 <!-- end of footer part -->    
 </section>
 
-<!-- ### CHAT_MESSAGE_BOX   ### -->
-
-    <?=$this->render('chat_message', [    
-        'dirAssests' => $dirAssests,
-    ]);
-    ?>
-
-<!--/### CHAT_MESSAGE_BOX  ### -->
 
 <div id="back-top" style="display: none;">
     <a title="Go to Top" href="#">
