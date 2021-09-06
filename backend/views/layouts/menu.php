@@ -28,14 +28,10 @@ use common\widgets\Menu_crypto;
                 ['label' => \Yii::t('app', 'Section'), 'url' => ['/website/section/index'], 'icon' => 'fa fa-circle'],
                 ['label' => \Yii::t('app', 'Portfolio'), 'url' => ['/website/portfolio/index'], 'icon' => 'fa fa-circle'],
             ]],
-            
-            ['label' => \Yii::t('app', 'Clients'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
-                ['label' => \Yii::t('app', 'List of Client'), 'url' => ['/client/client/index'], 'icon' => 'fa fa-circle'],
-            ]],
 
-            ['label' => \Yii::t('app', 'Experts'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [
-                ['label' => \Yii::t('app', 'List of Expert'), 'url' => ['/expert/expert/index'], 'icon' => 'fa fa-circle'],
-            ]],
+            ['label' => \Yii::t('app', 'Clients'), 'level' => 1, 'url' => ['/client/client/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+
+            ['label' => \Yii::t('app', 'Experts'), 'level' => 1, 'url' => ['/expert/expert/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
         
         ]
     

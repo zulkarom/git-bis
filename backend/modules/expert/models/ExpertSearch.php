@@ -11,6 +11,8 @@ use backend\modules\expert\models\Expert;
  */
 class ExpertSearch extends Expert
 {
+    public $name;
+    public $email;
     /**
      * {@inheritdoc}
      */
@@ -18,6 +20,7 @@ class ExpertSearch extends Expert
     {
         return [
             [['id', 'user_id', 'expert_type'], 'integer'],
+            [['email', 'name'], 'string'],
         ];
     }
 
@@ -39,7 +42,8 @@ class ExpertSearch extends Expert
      */
     public function search($params)
     {
-        $query = Expert::find();
+        $query = Expert::find()
+        ->joinWith(['user']);
 
         // add conditions that should always apply here
 
@@ -57,10 +61,11 @@ class ExpertSearch extends Expert
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
             'expert_type' => $this->expert_type,
         ]);
+
+        $query->andFilterWhere(['like', 'user.fullname', $this->name])
+            ->andFilterWhere(['like', 'user.email', $this->email]);
 
         return $dataProvider;
     }

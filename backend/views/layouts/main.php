@@ -9,6 +9,7 @@ use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
 use backend\assets\CryptoAsset;
 use backend\assets\AppAsset;
+use yii\bootstrap4\Modal;
 
 AppAsset::register($this);
 CryptoAsset::register($this);
@@ -96,6 +97,18 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
         <i class="ti-angle-up"></i>
     </a>
 </div>
+
+<?php
+    Modal::begin([
+            'title' => '<h4>Assign Expert</h4>',
+            'id' =>'assign',
+            'size' => 'modal-lg'
+        ]);
+
+    echo '<div id="formAssign"></div>';
+
+    Modal::end();
+?>
 
 <?php $this->endBody() ?>
 </body>

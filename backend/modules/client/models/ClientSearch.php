@@ -4,20 +4,23 @@ namespace backend\modules\client\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\client\models\Client;
+use backend\models\Client;
 
 /**
- * ClientSearch represents the model behind the search form of `backend\modules\client\models\Client`.
+ * ClientSearch represents the model behind the search form of `backend\models\Client`.
  */
 class ClientSearch extends Client
 {
+    public $name;
+    public $email;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'user_id', 'client_type'], 'integer'],
+            [['id', 'user_id', 'client_type', 'biz_capital'], 'integer'],
+            [['biz_name', 'biz_address', 'biz_phone', 'biz_fax', 'biz_email', 'biz_type', 'biz_main_activity', 'biz_date_execution', 'biz_reg_no', 'profile_file', 'personal_updated_at', 'email', 'name'], 'safe'],
         ];
     }
 
@@ -39,7 +42,8 @@ class ClientSearch extends Client
      */
     public function search($params)
     {
-        $query = Client::find();
+        $query = Client::find()
+        ->joinWith(['user']);
 
         // add conditions that should always apply here
 
@@ -56,11 +60,11 @@ class ClientSearch extends Client
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
-            'client_type' => $this->client_type,
-        ]);
+
+        $query->andFilterWhere(['like', 'biz_name', $this->biz_name])
+            ->andFilterWhere(['like', 'user.fullname', $this->name])
+            ->andFilterWhere(['like', 'user.email', $this->email])
+            ->andFilterWhere(['like', 'biz_reg_no', $this->biz_reg_no]);
 
         return $dataProvider;
     }

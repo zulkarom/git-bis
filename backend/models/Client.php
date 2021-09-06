@@ -48,6 +48,8 @@ class Client extends \yii\db\ActiveRecord
         return [
             [['fullname', 'email', 'user_id', 'biz_name', 'biz_address', 'biz_phone', 'biz_fax', 'biz_email', 'biz_type', 'biz_main_activity', 'biz_reg_no', 'biz_capital', 'personal_updated_at', 'biz_date_execution'], 'required', 'on' => 'insert'],
 
+
+
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['user_id', 'client_type', 'biz_capital'], 'integer'],
@@ -101,6 +103,26 @@ class Client extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ClientExpert::className(), ['client_id' => 'id']);
     }
+
+    public function getListOfExperts($client_id){
+        $query = ClientExpert::find()
+        ->where(['client_id' => $client_id])
+        ->all();
+
+        if($query){
+            foreach($query as $ce){
+                $expert [] =  $ce->expert->user->fullname;
+            }
+        }
+
+        return '   
+            <div class="row">
+                <div class="col-12">
+                    '.implode('<br/> ', $expert).'
+                </div>
+            </div>';
+    }
+
 
     public function flashError(){
         if($this->getErrors()){

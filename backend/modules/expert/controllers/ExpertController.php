@@ -3,12 +3,13 @@
 namespace backend\modules\expert\controllers;
 
 use Yii;
-use backend\modules\expert\models\Expert;
+use backend\models\Expert;
 use backend\modules\expert\models\ExpertSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use frontend\models\UploadFile;
 /**
  * ExpertController implements the CRUD actions for Expert model.
  */
@@ -112,6 +113,12 @@ class ExpertController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionProfileImage($id){
+        $model = $this->findExpert($id);
+        
+        UploadFile::profileImage(2, $model);
+    }
+
     /**
      * Finds the Expert model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -125,6 +132,15 @@ class ExpertController extends Controller
             return $model;
         }
 
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findExpert($id)
+    {
+        if (($model = Expert::findOne(['user_id' => $id])) !== null) {
+            return $model;
+        }
+        
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

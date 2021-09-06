@@ -12,27 +12,44 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="expert-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Expert', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+<div class="white_card card_height_100 mb_30">
+<div class="white_card_header">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
-            'expert_type',
+            [
+                'label' => 'Name',
+                'attribute' => 'name',
+                'value' => function($model){
+                    return $model->user->fullname;
+                }
+            ],
+            [
+                'label' => 'Email',
+                'attribute' => 'email',
+                'value' => function($model){
+                    return $model->user->email;
+                }
+            ],
+            [
+                'label' => 'Expert Type',
+                'format' => 'html',
+                'attribute' => 'expert_type',
+                'filter' => Html::activeDropDownList($searchModel, 'expert_type', $searchModel->expertType() ,['class'=> 'form-control','prompt' => 'Choose Type']),
+                'value' => function($model){
+                    return $model->expertText;
+                }
+            ],           
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+</div>
+</div>
 
 
 </div>

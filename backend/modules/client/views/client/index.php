@@ -10,29 +10,65 @@ use yii\grid\GridView;
 $this->title = 'Clients';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="client-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Create Client', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <br/>
+<div class="client-index">
+<div class="white_card card_height_100 mb_30">
+<div class="white_card_header">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'user_id',
-            'client_type',
+            [
+                'label' => 'Name',
+                'attribute' => 'name',
+                'value' => function($model){
+                    return $model->user->fullname;
+                }
+            ],
+            [
+                'label' => 'Email',
+                'attribute' => 'email',
+                'value' => function($model){
+                    return $model->user->email;
+                }
+            ],
+            [
+                'label' => 'Business Name',
+                'attribute' => 'biz_name',
+                'value' => function($model){
+                    return $model->biz_name;
+                }
+            ],
+            [
+                'format' => 'html',
+                'label' => 'List of Experts',
+                'value' => function($model){
+                    return $model->getListOfExperts($model->id);
+                } 
+            ],
+            // [
+            //     'label' => 'List of Experts',
+            //     'value' => function($model){
+            //         if($model->clientExperts){
+            //             foreach($model->clientExperts as $clientEx){
+            //                return $clientEx->expert->user->fullname; 
+            //             }
+            //         }
+                    
+            //     }
+            // ],
+            
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
-
+</div>
+</div>
 </div>
