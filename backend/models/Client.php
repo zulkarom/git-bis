@@ -113,14 +113,15 @@ class Client extends \yii\db\ActiveRecord
             foreach($query as $ce){
                 $expert [] =  $ce->expert->user->fullname;
             }
-        }
-
-        return '   
+            return '   
             <div class="row">
                 <div class="col-12">
                     '.implode('<br/> ', $expert).'
                 </div>
             </div>';
+        }else{
+            return '';
+        }
     }
 
 

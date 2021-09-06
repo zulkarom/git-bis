@@ -117,20 +117,33 @@ class ClientController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionAssignDelete($id,$cid)
+    {
+        $this->findClientExpert($id)->delete();
+        Yii::$app->session->addFlash('success', "Expert Removed");
+
+        return $this->redirect(['/client/client/view', 'id' => $cid]);
+    }
+
     public function actionAssign($cid)
     {
         $model = new ClientExpert();
 
         if ($model->load(Yii::$app->request->post())) {
-            $model->client_id = $cid;
 
-             if($model->save()){
-
-                Yii::$app->session->addFlash('success', "New Expert Added");
-                
+            $check = ClientExpert::find()->where(['expert_id' => $model->expert_id])->one();
+            if($check){
+                Yii::$app->session->addFlash('warning', "Expert Already Exist");
             }else{
-                $model->flashError();
+                $model->client_id = $cid;
+
+                 if($model->save()){
+                    Yii::$app->session->addFlash('success', "Expert Assign"); 
+                }else{
+                    $model->flashError();
+                }
             }
+            
             return $this->redirect(['/client/client/view', 'id' => $cid]);
         }
 
@@ -155,6 +168,15 @@ class ClientController extends Controller
     protected function findModel($id)
     {
         if (($model = Client::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findClientExpert($id)
+    {
+        if (($model = ClientExpert::findOne($id)) !== null) {
             return $model;
         }
 

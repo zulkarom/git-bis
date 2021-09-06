@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <td>'.$i.'</td>
                                     <td>'.$clientEx->expert->user->fullname.'</td>
                                     <td>'.$clientEx->expert->expertText.'</td>
-                                    <td><a href="' . Url::to(['/client/client/delete', 'id' => $model->id, 'cid' => $model->id]) . '" data-confirm="Are you to delete this product from this client?"><span class="fa fa-trash fa-xs"></span></a></td>
+                                    <td><a href="' . Url::to(['/client/client/assign-delete', 'id' => $clientEx->id, 'cid' => $model->id]) . '" data-confirm="Are you sure to remove this expert from this client?"><span class="fa fa-trash fa-xs"></span></a></td>
 
                                 </tr>';
                                 $i++;

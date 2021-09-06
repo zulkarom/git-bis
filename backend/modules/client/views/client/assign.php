@@ -2,11 +2,9 @@
 
 use yii\helpers\Html;
 use kartik\widgets\ActiveForm;
-use kartik\date\DatePicker;
-use kartik\select2\Select2;
 use yii\helpers\ArrayHelper;
-use backend\modules\account\models\Product;
-
+use backend\models\Expert;
+use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\client\models\ClientProduct */
 ?>
@@ -15,7 +13,15 @@ use backend\modules\account\models\Product;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    
+    <?= $form->field($model, 'expert_id')->widget(Select2::classname(), [
+                    'data' =>  ArrayHelper::map(Expert::find()->joinWith('user')->all(),'id', 'user.fullname'),
+                    'options' => ['placeholder' => 'Select...'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                    ]);?>
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Add Expert', ['class' => 'btn btn-info']) ?>
