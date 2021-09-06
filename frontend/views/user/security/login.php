@@ -8,7 +8,7 @@ use dektrium\user\widgets\Connect;
 
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@backend/assets/frontLogin');
 
-$this->title = 'Sign Up Form by Hatchniaga';
+$this->title = 'Sign In Form by Hatchniaga';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
