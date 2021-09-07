@@ -12,24 +12,22 @@ use yii\helpers\Url;
 $this->title = 'Portfolio';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="card">
-    <div class="card-body">
-        <div class="portfolio-form">
 
-            
-            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-                <?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
+<p>
+    <?php echo Html::button('Add Portfolio Image', ['value' => Url::to(['/website/portfolio/create']), 'class' => 'btn btn-success', 'id' => 'modalBttnPortfolio']);
 
-                <div class="form-group">
-                    <button type="button" class="btn btn-success" id="btn-run"><span class="fa fa-plus"></span>Add Image</button>
-                </div>
-
-            <?php ActiveForm::end(); ?>
-
-        </div>
-    </div>
-</div>
-
+    $this->registerJs('
+        $(function(){
+          $("#modalBttnPortfolio").click(function(){
+              $("#portfolio").modal("show")
+                .find("#formPortfolio")
+                .load($(this).attr("value"));
+          });
+        });
+    ');
+    ?>
+</p>
+<br/>
 
 <div class="card">
     <div class="card-body">
@@ -56,13 +54,30 @@ $this->params['breadcrumbs'][] = $this->title;
                             return '';
                         }
                     ],
+                    [
+                        'format' => 'html',
+                        'label' => 'Portfolio Image',
+                        'value' => function($model){
+                            return '<img src="'.Url::to(['/website/portfolio/portfolio-image', 'id' => $model->id]).'" width="90" height="90">';
+                        }
+                    ],
                     ['class' => 'yii\grid\ActionColumn',
                         'contentOptions' => ['style' => 'width: 10%'],
-                        'template' => '{update}',
+                        'template' => '{update} {delete}',
                         //'visible' => false,
                         'buttons'=>[
                             'update'=>function ($url, $model) {
                                 return Html::a('<span class="fa fa-edit"></span> UPDATE',['update', 'id' => $model->id],['class'=>'btn btn-warning btn-sm']);
+                            },
+                            'delete'=>function ($url, $model) {
+                                return Html::a('<span class="fa fa-trash"></span>', ['delete', 'id' => $model->id], [
+                                'class' => 'btn btn-danger btn-sm',
+                                'data' => [
+                                    'confirm' => 'Are you sure you want to delete this image?',
+                                    'method' => 'post',
+                                ],
+                            ]) 
+        ;
                             }
                         ],
                     

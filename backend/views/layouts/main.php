@@ -108,6 +108,16 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
     echo '<div id="formAssign"></div>';
 
     Modal::end();
+
+    Modal::begin([
+            'title' => '<h4>Portfolio Image</h4>',
+            'id' =>'portfolio',
+            'size' => 'modal-lg'
+        ]);
+
+    echo '<div id="formPortfolio"></div>';
+
+    Modal::end();
 ?>
 
 <?php $this->endBody() ?>

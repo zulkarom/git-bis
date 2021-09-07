@@ -28,9 +28,7 @@ class Portfolio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['image_url'], 'required'],
             ['image_url', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
-            // [['image_url'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,29 +41,6 @@ class Portfolio extends \yii\db\ActiveRecord
             'id' => 'ID',
             'image_url' => 'Image Url',
         ];
-    }
-
-
-    public function behaviors()
-    {
-
-        $directory = Yii::getAlias('@uploaded/website/portfolio');
-        if (!is_dir($directory)) {
-            FileHelper::createDirectory($directory);
-        }
-
-        return [
-            [
-                'class' => CropImageUploadBehavior::className(),
-                'attribute' => 'image_url',
-                'scenarios' => ['insert', 'update'],
-                //'placeholder' => '@app/web/images/test.png',
-                'path' => $directory,
-                'url' => '',
-                'ratio' => 1,
-            ],
-        ];
-
     }
 
      public function flashError(){

@@ -1,4 +1,6 @@
-
+<?php
+   $portfolio = Portfolio::find()->all();
+?>
       <div class="row text-center">
          <div class="container-layout padding-tb-xl margin-auto">
             <div class="title-with-doubleborder"></div>
@@ -9,6 +11,7 @@
 
           
             <div class="companies-wrapper">
+               <?php foreach ($portfolio as $port) : ?>
                <div class="grid-containerCol w-col-3 w-col-stack">
                      <div class="company-item">
                         <a data-modal-id="agencasa" target="_blank" href="https://www.facebook.com/bisnestofficial" class="company-link w-inline-block">
@@ -17,6 +20,7 @@
                         </a>
                      </div>
                    </div>
+               <?php endforeach; ?>
                    
                   
                    <div class="grid-containerCol w-col-3 w-col-stack img-container">

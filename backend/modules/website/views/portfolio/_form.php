@@ -7,12 +7,11 @@ use karpoff\icrop\CropImageUpload;
 /* @var $model backend\modules\website\models\Portfolio */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
 <div class="portfolio-form">
 
+    
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
-
-     <?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
+        <?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

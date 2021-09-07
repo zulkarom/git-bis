@@ -48,6 +48,7 @@ class Client extends \yii\db\ActiveRecord
         return [
             [['fullname', 'email', 'user_id', 'biz_name', 'biz_address', 'biz_phone', 'biz_fax', 'biz_email', 'biz_type', 'biz_main_activity', 'biz_reg_no', 'biz_capital', 'personal_updated_at', 'biz_date_execution'], 'required', 'on' => 'insert'],
 
+            [['user_id', 'biz_name', 'biz_address', 'biz_phone', 'biz_fax', 'biz_email', 'biz_type', 'biz_main_activity', 'biz_reg_no', 'biz_capital', 'personal_updated_at', 'biz_date_execution'], 'required', 'on' => 'admin_update'],
 
 
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],

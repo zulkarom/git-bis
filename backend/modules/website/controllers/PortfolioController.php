@@ -4,7 +4,9 @@ namespace backend\modules\website\controllers;
 
 use Yii;
 use backend\modules\website\models\Portfolio;
+use backend\modules\website\models\PortfolioImage;
 use backend\modules\website\models\PortfolioSearch;
+use backend\models\UploadFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,26 +40,12 @@ class PortfolioController extends Controller
      */
     public function actionIndex()
     {
-        $model = new Portfolio();
-
         $searchModel = new PortfolioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        if ($model->load(Yii::$app->request->post())) {
-
-            if($model->save()){
-                Yii::$app->session->addFlash('success', "Data saved.");
-               return $this->refresh(); 
-           }else{
-            return $model->flashError();
-           }
-            
-        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'model' => $model,
         ]);
     }
 
@@ -91,15 +79,29 @@ class PortfolioController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Portfolio();
+        $model = new PortfolioImage();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->setScenario('insert');
+        if ($model->load(Yii::$app->request->post())) {
+
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data saved.");
+                return $this->redirect(['index']);
+           }else{
+                return $model->flashError();
+           }
+            
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
         ]);
+    }
+
+    public function actionPortfolioImage($id){
+        $model = $this->findModel($id);
+        
+        UploadFile::portfolioImage($model);
     }
 
     /**
@@ -111,10 +113,18 @@ class PortfolioController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = $this->findPortfolio($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->setScenario('insert');
+        if ($model->load(Yii::$app->request->post())) {
+
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data updated.");
+                return $this->redirect(['index']);
+           }else{
+                return $model->flashError();
+           }
+            
         }
 
         return $this->render('update', [
@@ -131,7 +141,15 @@ class PortfolioController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $file =  Yii::getAlias('@uploaded/website/portfolio/'.$model->image_url);
+        if($model->delete()){
+            if (is_file($file)) {
+                unlink($file);    
+            }
+        }else{
+            Yii::$app->session->addFlash('error', "Delete Failed");
+        }
 
         return $this->redirect(['index']);
     }
@@ -146,6 +164,15 @@ class PortfolioController extends Controller
     protected function findModel($id)
     {
         if (($model = Portfolio::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findPortfolio($id)
+    {
+        if (($model = PortfolioImage::findOne($id)) !== null) {
             return $model;
         }
 

@@ -243,6 +243,27 @@ class UploadFile
         }
 		
 	}
+
+	public static function portfolioImage($model){
+	    
+	    $file = Yii::getAlias('@uploaded/website/portfolio/' . $model->image_url);
+	    
+	    if($model->image_url){
+            if (file_exists($file)) {
+            $ext = pathinfo($model->image_url, PATHINFO_EXTENSION);
+
+            $filename =  'section.' . $ext ;
+            
+            self::sendFile($file, $filename, $ext);
+            
+            
+            }else{
+                echo 'file not exist!';
+            }
+        }else{
+            echo 'file not exist!';
+        }
+	}
 	
 	public static function sendFile($file, $filename, $ext){
 		header("Cache-Control: public");
