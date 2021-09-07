@@ -246,11 +246,11 @@ class UploadFile
 
 	public static function portfolioImage($model){
 	    
-	    $file = Yii::getAlias('@uploaded/website/portfolio/' . $model->image_url);
+	    $file = Yii::getAlias('@uploaded/website/portfolio/' . $model->image_file);
 	    
-	    if($model->image_url){
+	    if($model->image_file){
             if (file_exists($file)) {
-            $ext = pathinfo($model->image_url, PATHINFO_EXTENSION);
+            $ext = pathinfo($model->image_file, PATHINFO_EXTENSION);
 
             $filename =  'section.' . $ext ;
             

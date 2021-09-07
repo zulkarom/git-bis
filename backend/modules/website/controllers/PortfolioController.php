@@ -142,7 +142,7 @@ class PortfolioController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $file =  Yii::getAlias('@uploaded/website/portfolio/'.$model->image_url);
+        $file =  Yii::getAlias('@uploaded/website/portfolio/'.$model->image_file);
         if($model->delete()){
             if (is_file($file)) {
                 unlink($file);    

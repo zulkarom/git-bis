@@ -20,9 +20,14 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <div class="row">
         <div class="col-md-12">
+            <?= $form->field($model, 'image_url')->textInput(['maxlength' => true])?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <table class="table">
                 <tbody><tr>
-                  <th style="width: 900px"><?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?></th>
+                  <th style="width: 900px"><?= $form->field($model, 'image_file')->widget(CropImageUpload::className()) ?></th>
                   <th><img src="<?=Url::to(['/website/portfolio/portfolio-image', 'id' => $model->id])?>" width="90" height="90"></th>
                 </tr>
               </tbody></table>

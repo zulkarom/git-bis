@@ -18,7 +18,7 @@ class PortfolioSearch extends Portfolio
     {
         return [
             [['id'], 'integer'],
-            [['image_url'], 'safe'],
+            [['image_file'], 'safe'],
         ];
     }
 
@@ -61,7 +61,7 @@ class PortfolioSearch extends Portfolio
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'image_url', $this->image_url]);
+        $query->andFilterWhere(['like', 'image_file', $this->image_file]);
 
         return $dataProvider;
     }

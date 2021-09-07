@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'image_url:url',
+            'image_file:url',
         ],
     ]) ?>
 

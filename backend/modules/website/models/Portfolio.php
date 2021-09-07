@@ -10,7 +10,7 @@ use yii\helpers\FileHelper;
  * This is the model class for table "web_portfolio".
  *
  * @property int $id
- * @property string $image_url
+ * @property string $image_file
  */
 class Portfolio extends \yii\db\ActiveRecord
 {
@@ -28,7 +28,9 @@ class Portfolio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['image_url', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+            ['image_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+
+            [['image_url'], 'safe'],
         ];
     }
 
@@ -39,7 +41,8 @@ class Portfolio extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'image_url' => 'Image Url',
+            'image_file' => 'Image File',
+            'image_url' => "Image Url"
         ];
     }
 

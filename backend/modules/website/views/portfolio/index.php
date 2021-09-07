@@ -44,14 +44,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'html',
                         'label' => 'Name',
                         'value' => function($model){
-                            return $model->image_url;
+                            return $model->image_file;
                         }
                     ],
                     [
                         'format' => 'html',
-                        'label' => 'Image',
+                        'label' => 'Image Url',
                         'value' => function($model){
-                            return '';
+                            return $model->image_url;
                         }
                     ],
                     [
@@ -97,7 +97,7 @@ $js = "function ajaxSubmit(element){
     timeout: 1000,     // timeout milliseconds
     type: 'POST',  // http method
     data: { 
-        image: $('#portfolio-image_url').val(),
+        image: $('#portfolio-image_file').val(),
     },
     success: function(result){
         $('#result-submit').html(result);

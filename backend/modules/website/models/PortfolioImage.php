@@ -23,7 +23,7 @@ class PortfolioImage extends Portfolio
         return [
             [
                 'class' => CropImageUploadBehavior::className(),
-                'attribute' => 'image_url',
+                'attribute' => 'image_file',
                 'scenarios' => ['insert', 'update'],
                 'path' => $directory,
                 'url' => '',
