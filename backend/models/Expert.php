@@ -33,6 +33,8 @@ class Expert extends \yii\db\ActiveRecord
         return [
             [['fullname', 'email', 'personal_updated_at'], 'required', 'on' => 'insert'],
 
+            [['expert_type', 'personal_updated_at'], 'required', 'on' => 'admin_update'],
+
             ['email', 'email'],
 
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],

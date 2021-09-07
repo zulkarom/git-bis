@@ -4,12 +4,14 @@ namespace backend\modules\expert\controllers;
 
 use Yii;
 use backend\models\Expert;
+use common\models\User;
 use backend\modules\expert\models\ExpertSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\models\UploadFile;
+use yii\db\Expression;
 /**
  * ExpertController implements the CRUD actions for Expert model.
  */
@@ -89,13 +91,36 @@ class ExpertController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelUser = User::findOne($model->user_id);
+        
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $modelUser->scenario = 'update';
+        $model->scenario = 'admin_update';
+
+        if ($modelUser->load(Yii::$app->request->post()) 
+            && $model->load(Yii::$app->request->post())) {
+
+            $modelUser->username = $modelUser->email;
+            if($modelUser->rawPassword){
+                $modelUser->setPassword($modelUser->rawPassword);
+            }            
+            
+            if($modelUser->save()){
+                $model->personal_updated_at = new Expression('NOW()');
+                if($model->save()){
+                    Yii::$app->session->addFlash('success', "Data Updated");
+                    return $this->redirect(['view', 'id' => $id]);
+                }else{
+                    $model->flashError();
+                }
+            }else{
+                $modelUser->flashError();
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'modelUser' => $modelUser,
         ]);
     }
 

@@ -11,10 +11,6 @@ $this->title = 'Clients';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-    <p>
-        <?= Html::a('Create Client', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <br/>
 <div class="client-index">
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
