@@ -80,7 +80,7 @@ return [
             'expert/*',
             'client/*',
             'website/*',
-            'biz-canvas/*',
+            'bc-category/*',
 
             
         

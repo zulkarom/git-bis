@@ -33,7 +33,15 @@ use common\widgets\Menu_crypto;
 
             ['label' => \Yii::t('app', 'Experts'), 'level' => 1, 'url' => ['/expert/expert/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
 
-            ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => $dirAssests.'/img/menu-icon/18.svg', 'children' => []],
+            // ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => $dirAssests.'/img/menu-icon/18.svg', 'children' => []],
+
+            ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 2 , 'icon' => $dirAssests.'/img/menu-icon/18.svg', 'children' => [
+                
+                ['label' => \Yii::t('app', 'List of Canvas'), 'url' => ['/client/biz-canvas/index'], 'icon' => 'fa fa-circle'],
+
+                ['label' => \Yii::t('app', 'Categories'), 'url' => ['/bc-category/index'], 'icon' => 'fa fa-circle'],
+                
+            ]],
         
         ]
     

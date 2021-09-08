@@ -29,7 +29,7 @@ class BcCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['category_name', 'category_key'], 'required'],
+            [['description'], 'required'],
             [['description'], 'string'],
             [['cat_col'], 'integer'],
             [['category_name'], 'string', 'max' => 200],
