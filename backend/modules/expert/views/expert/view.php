@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
 /* @var $this yii\web\View */
-/* @var $model backend\modules\expert\models\Expert */
+/* @var $model backend\modules\client\models\Client */
 
 $this->title = $model->user->fullname;
-$this->params['breadcrumbs'][] = ['label' => 'Experts', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="expert-view">
+<div class="client-view">
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <br/>
 <div class="white_card card_height_100 mb_30">
 <div class="white_card_header">
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -60,4 +59,52 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 </div>
+
+<div class="card">
+        <div class="card-header"><b>Assign Clients</b></div>
+        <div class="card-body">
+             <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Client Name</th>
+                    <th></th>
+                </tr>
+                    <?php 
+                    $i = 1;
+                    if($clientExpert){
+                        foreach ($clientExpert as $clientEx) {
+                                echo'<tr>
+                                    <td>'.$i.'</td>
+                                    <td>'.$clientEx->client->user->fullname.'</td>
+                                    <td><a href="' . Url::to(['/expert/expert/assign-delete', 'id' => $clientEx->id, 'cid' => $model->id]) . '" data-confirm="Are you sure to remove this client from this expert?"><span class="fa fa-trash fa-xs"></span></a></td>
+
+                                </tr>';
+                                $i++;
+                        }
+                    }
+                    ?>               
+                </thead>
+              </table>
+                    
+            <br/>
+
+                <p>
+                    <?php echo Html::button('Assign', ['value' => Url::to(['/expert/expert/assign','cid' => $model->id]), 'class' => 'btn btn-success btn-sm', 'id' => 'modalBttnAssignEx']);
+
+                    $this->registerJs('
+                    $(function(){
+                      $("#modalBttnAssignEx").click(function(){
+                          $("#assignEx").modal("show")
+                            .find("#formAssignEx")
+                            .load($(this).attr("value"));
+                      });
+                    });
+                    ');
+                
+                
+                    ?>
+                </p>
+        </div>
+    </div>
 </div>

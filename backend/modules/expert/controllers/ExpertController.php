@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\models\UploadFile;
 use yii\db\Expression;
+use backend\models\ClientExpert;
 /**
  * ExpertController implements the CRUD actions for Expert model.
  */
@@ -58,8 +59,11 @@ class ExpertController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $clientExpert = ClientExpert::find()->where(['expert_id' => $id])->all();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model ,
+            'clientExpert' => $clientExpert ,
         ]);
     }
 
@@ -124,6 +128,41 @@ class ExpertController extends Controller
         ]);
     }
 
+    public function actionAssignDelete($id,$cid)
+    {
+        $this->findClientExpert($id)->delete();
+        Yii::$app->session->addFlash('success', "Client Removed");
+
+        return $this->redirect(['/expert/expert/view', 'id' => $cid]);
+    }
+
+    public function actionAssign($cid)
+    {
+        $model = new ClientExpert();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            $check = ClientExpert::find()->where(['client_id' => $model->client_id])->one();
+            if($check){
+                Yii::$app->session->addFlash('warning', "Client Already Exist");
+            }else{
+                $model->expert_id = $cid;
+
+                 if($model->save()){
+                    Yii::$app->session->addFlash('success', "Client Assign"); 
+                }else{
+                    $model->flashError();
+                }
+            }
+            
+            return $this->redirect(['/expert/expert/view', 'id' => $cid]);
+        }
+
+        return $this->renderAjax('assign', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Deletes an existing Expert model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -154,6 +193,15 @@ class ExpertController extends Controller
     protected function findModel($id)
     {
         if (($model = Expert::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findClientExpert($id)
+    {
+        if (($model = ClientExpert::findOne($id)) !== null) {
             return $model;
         }
 

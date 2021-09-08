@@ -41,8 +41,8 @@ class ClientExpert extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'client_id' => 'Client ID',
-            'expert_id' => 'Expert ID',
+            'client_id' => 'Client',
+            'expert_id' => 'Expert',
         ];
     }
 
