@@ -198,6 +198,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
           <td colspan="2" rowspan="2">
 
@@ -220,6 +221,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
           <td colspan="2">
 
@@ -244,6 +246,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
           <td colspan="2" rowspan="2">
 
@@ -268,6 +271,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
         </tr>
 
@@ -297,6 +301,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
           <td colspan="2">
             
@@ -321,6 +326,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
         </tr>
         <tr>
@@ -346,6 +352,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
           <td colspan="5">
             
@@ -368,6 +375,7 @@ div.bc-guide {
               }?>
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
         </tr>
       </table>
@@ -401,6 +409,7 @@ div.bc-guide {
               
               </div>
             </p>
+            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
           </td>
         </tr>
       </table>
@@ -415,6 +424,12 @@ div.bc-guide {
 function addItemLink($model, $cat){
     $category = $model->getCategory($cat)->category_name;
     return '<a class="bc-add-item" data-title="Add '. $category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/create-item', 'pid' => $model->id, 'cat' => $cat]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+    
+}
+
+function itemDesc($model, $cat){
+    $category = $model->getCategory($cat)->category_name;
+    return '<a class="bc-add-item" data-title="'.$category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/cat-desc', 'pid' => $model->id, 'cat' => $cat]) . '" >&nbsp<span class="fa fa-lightbulb"></span></a>';
     
 }
 
