@@ -61,7 +61,17 @@ $this->params['breadcrumbs'][] = $this->title;
             // ],
             
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'width: 10%'],
+                'template' => '{view}',
+                //'visible' => false,
+                'buttons'=>[
+                    'view'=>function ($url, $model) {
+                        return Html::a('<span class="fa fa-eye"></span> VIEW',['view', 'id' => $model->id],['class'=>'btn btn-info btn-sm']);
+                    }
+                ],
+            
+            ], 
         ],
     ]); ?>
 

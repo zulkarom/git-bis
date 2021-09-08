@@ -80,6 +80,8 @@ return [
             'expert/*',
             'client/*',
             'website/*',
+            'biz-canvas/*',
+
             
         
             

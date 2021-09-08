@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use common\models\User;
 /**
  * This is the model class for table "bc_biz_canvas".
  *
@@ -53,6 +53,11 @@ class BizCanvas extends \yii\db\ActiveRecord
     
     public function getCategory($category){
         return BcCategory::findOne($category);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     public function flashError(){
