@@ -35,7 +35,7 @@ class ChatModel extends \yii\db\ActiveRecord
     {
         return [
             [['time','recipient_id','sender_id', 'message'], 'required'],
-            [['time','recipient_id','sender_id'], 'integer'],
+            [['time','recipient_id','sender_id', 'topic_id'], 'integer'],
             [['rfc822'], 'string', 'max' => 50],
             [['message'], 'string'],
         ];
@@ -62,7 +62,7 @@ class ChatModel extends \yii\db\ActiveRecord
     }
 
 
-    public static function getMessages($expert, $numberLastMessages)
+    public static function getMessages($expert, $numberLastMessages, $pid)
     {
         $messages = self::find()
         ->alias('a')
@@ -72,12 +72,14 @@ class ChatModel extends \yii\db\ActiveRecord
             
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
-                ['recipient_id' => $expert]
+                ['recipient_id' => $expert],
+                ['topic_id' => $pid],
             ])
             
             ->orFilterWhere(['and',
                 ['sender_id' => $expert],
-                ['recipient_id' => Yii::$app->user->identity->id]
+                ['recipient_id' => Yii::$app->user->identity->id],
+                ['topic_id' => $pid],
             ])
             
             ->orderBy(['time'=>SORT_ASC])

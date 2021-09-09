@@ -3,8 +3,8 @@
 namespace frontend\models\user; 
 
 use Yii;
-use backend\modules\client\models\Client;
-use backend\modules\expert\models\Expert;
+use backend\models\Client;
+use backend\models\Expert;
 
 class User extends \dektrium\user\models\User
 {

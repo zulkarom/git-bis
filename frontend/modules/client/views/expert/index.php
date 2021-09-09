@@ -25,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                 <div class="row el-element-overlay">
                     
-                          
-                                <a href="<?=Url::to(['/chat/', 'id' => $model->expert_id])?>">
+                          <!-- Url::to(['/chat/', 'id' => $model->expert_id])?>"> -->
+                                <a href="<?=Url::to(['/chat/chat-topic/index', 'id' => $model->expert_id])?>">
                                 <div class="col-md-2 col-lg-2 col-xl-2 box-col-2">
                                   <div class="card custom-card">
                                     <div class="card-header"><img class="img-fluid" src="<?=$dirAssests?>/img/profilebox/2.jpg" alt="" data-original-title="" title=""></div>

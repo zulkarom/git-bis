@@ -6,8 +6,8 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-use backend\modules\client\models\Client;
-use backend\modules\expert\models\Expert;
+use backend\models\Client;
+use backend\models\Expert;
 /**
  * User model
  *

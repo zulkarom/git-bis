@@ -32,17 +32,18 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex($id)
+    public function actionIndex($id, $tid)
     {
         $expert = Expert::findOne($id);
         $user = Yii::$app->user->identity;
 
-        $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages);
+        $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages, $tid);
 
         return $this->render('index', [
             'user' => $user,
             'messages' => $messages,
             'expert' => $expert,
+            'tid' => $tid,
         ]);
     }
 
@@ -71,7 +72,7 @@ class DefaultController extends Controller
                     }
                 }
                 
-                $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages);
+                $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages,$pid);
                 return $this->renderPartial('_table',compact('messages'));
 
             }
