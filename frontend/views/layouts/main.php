@@ -112,6 +112,16 @@ echo '<div id="bc-form"></div>';
 
 Modal::end();
 
+Modal::begin([
+    'title' => '<h4 id="bc-desc-title"></h4>',
+    'id' =>'bc-modal-canvas-desc',
+    'size' => 'modal-lg',
+]);
+
+echo '<div id="bc-desc"></div>';
+
+Modal::end();
+
 ?>
 
 

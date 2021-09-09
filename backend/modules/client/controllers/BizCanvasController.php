@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use backend\models\BcItem;
+use backend\models\BcCategory;
 /**
  * BizCanvasController implements the CRUD actions for BizCanvas model.
  */
@@ -95,6 +96,23 @@ class BizCanvasController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+        ]);
+    }
+
+    public function actionCatDesc($cat, $pid)
+    {
+        $model = BcCategory::findOne($cat);
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if($model->save()){
+                Yii::$app->session->addFlash('success', "Data Updated");
+                return $this->redirect(['view', 'id' => $pid]);
+            }
+        }
+        
+        return $this->renderAjax('guideline', [
+            'model' => $model
         ]);
     }
 

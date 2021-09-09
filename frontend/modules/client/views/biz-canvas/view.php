@@ -175,7 +175,11 @@ div.bc-guide {
               </div>
             </p>
             <br />
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 1);
+                ?>
+            </div>
           </td>
           <td colspan="2">
 
@@ -198,7 +202,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 2);
+                ?>
+            </div>
           </td>
           <td colspan="2" rowspan="2">
 
@@ -221,7 +229,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 3);
+                ?>
+            </div>
           </td>
           <td colspan="2">
 
@@ -246,7 +258,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 4);
+                ?>
+            </div>
           </td>
           <td colspan="2" rowspan="2">
 
@@ -271,7 +287,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 5);
+                ?>
+            </div>
           </td>
         </tr>
 
@@ -301,7 +321,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 6);
+                ?>
+            </div>
           </td>
           <td colspan="2">
             
@@ -326,7 +350,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 7);
+                ?>
+            </div>
           </td>
         </tr>
         <tr>
@@ -352,7 +380,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 8);
+                ?>
+            </div>
           </td>
           <td colspan="5">
             
@@ -375,7 +407,11 @@ div.bc-guide {
               }?>
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 9);
+                ?>
+            </div>
           </td>
         </tr>
       </table>
@@ -409,7 +445,11 @@ div.bc-guide {
               
               </div>
             </p>
-            <div class="bc-guide"><span class="fa fa-lightbulb"></span></div>
+            <div class="bc-guide">
+                <?php 
+                echo ItemDesc($model, 10);
+                ?>
+            </div>
           </td>
         </tr>
       </table>
@@ -429,7 +469,7 @@ function addItemLink($model, $cat){
 
 function itemDesc($model, $cat){
     $category = $model->getCategory($cat)->category_name;
-    return '<a class="bc-add-item" data-title="'.$category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/cat-desc', 'pid' => $model->id, 'cat' => $cat]) . '" >&nbsp<span class="fa fa-lightbulb"></span></a>';
+    return '<a class="bc-cat-desc" data-title="'.$category.' (Guidelines)" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/cat-desc', 'cat' => $cat]) . '" >&nbsp<span class="fa fa-lightbulb"></span></a>';
     
 }
 
@@ -465,6 +505,20 @@ $(function(){
         $("#bc-title").text(title);
       $("#bc-modal-canvas").modal("show")
         .find("#bc-form")
+        .load($(this).attr("value"));
+
+
+  });
+
+});
+
+$(function(){
+  $(".bc-cat-desc").click(function(){
+
+    var title = $(this).data("title");
+        $("#bc-desc-title").text(title);
+      $("#bc-modal-canvas-desc").modal("show")
+        .find("#bc-desc")
         .load($(this).attr("value"));
 
 
