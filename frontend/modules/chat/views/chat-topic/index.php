@@ -8,6 +8,7 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Chat Topics';
+$this->params['breadcrumbs'][] = ['label' => 'Consultation', 'url' => ['/client/expert/index']];
 $this->params['breadcrumbs'][] = $this->title;
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
 ?>
@@ -35,7 +36,20 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
     </div>
     <div class="col-md-9">
     <p>
-        <?= Html::a('Create Chat Topic', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php echo Html::button('Create Chat Topic', ['value' => Url::to(['create','id' => $expert->id]), 'class' => 'btn btn-success btn-sm', 'id' => 'modalBttnTopic']);
+
+        $this->registerJs('
+        $(function(){
+          $("#modalBttnTopic").click(function(){
+              $("#topic").modal("show")
+                .find("#formTopic")
+                .load($(this).attr("value"));
+          });
+        });
+        ');
+    
+    
+        ?>
     </p>
     <br/>
 

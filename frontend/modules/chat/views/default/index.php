@@ -4,7 +4,9 @@ use yii\helpers\Url;
 $assets = ChatAsset::register($this); 
 
 
-$this->title = 'Consultation';
+$this->title = 'Consultation Chat';
+$this->params['breadcrumbs'][] = ['label' => 'Consultation', 'url' => ['/client/expert/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Chat Topic', 'url' => ['/chat/chat-topic/index', 'id' => $expert->id]];
 $this->params['breadcrumbs'][] = $this->title;
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
 

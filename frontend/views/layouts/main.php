@@ -107,9 +107,7 @@ Modal::begin([
     'id' =>'bc-modal-canvas',
     'size' => 'modal-lg',
 ]);
-
 echo '<div id="bc-form"></div>';
-
 Modal::end();
 
 Modal::begin([
@@ -117,9 +115,15 @@ Modal::begin([
     'id' =>'bc-modal-canvas-desc',
     'size' => 'modal-lg',
 ]);
-
 echo '<div id="bc-desc"></div>';
+Modal::end();
 
+Modal::begin([
+        'title' => '<h4>Create Chat Topic</h4>',
+        'id' =>'topic',
+        'size' => 'modal-lg'
+    ]);
+echo '<div id="formTopic"></div>';
 Modal::end();
 
 ?>

@@ -72,7 +72,7 @@ class DefaultController extends Controller
                     }
                 }
                 
-                $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages,$pid);
+                $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages,$tid);
                 return $this->renderPartial('_table',compact('messages'));
 
             }
