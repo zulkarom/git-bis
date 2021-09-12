@@ -7,6 +7,7 @@ use yii\web\Controller;
 use backend\models\ChatModel;
 use backend\modules\expert\models\Expert;
 use yii\filters\AccessControl;
+use backend\models\ChatTopic;
 /**
  * Default controller for the `chat` module
  */
@@ -35,6 +36,7 @@ class DefaultController extends Controller
     public function actionIndex($id, $tid)
     {
         $expert = Expert::findOne($id);
+        $topicModel = ChatTopic::findOne($tid);
         $user = Yii::$app->user->identity;
 
         $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages, $tid);
@@ -43,7 +45,7 @@ class DefaultController extends Controller
             'user' => $user,
             'messages' => $messages,
             'expert' => $expert,
-            'tid' => $tid,
+            'topicModel' => $topicModel,
         ]);
     }
 
@@ -72,7 +74,7 @@ class DefaultController extends Controller
                     }
                 }
                 
-                $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages,$tid);
+                $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id);
                 return $this->renderPartial('_table',compact('messages'));
 
             }

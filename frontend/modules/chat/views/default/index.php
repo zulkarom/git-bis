@@ -35,6 +35,11 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
       ';
     
     ?>
+    <div class="card custom-card">
+            <div class="card-box">
+                <div align="center"><h5><?=$topicModel->topic?></h5></div>
+            </div>
+        </div>
     
     </div>
     
@@ -48,7 +53,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto')
                         
                         <div class="message_send_field">
                             <input type="text" id="chat-message" placeholder="Write your message" value="">
-                            <button class="btn_1" type="submit" id="send-message" data-url="<?=Url::to(['/chat/default/send-message'])?>" data-id="<?= $user->id ?>" data-recipient="<?=$expert->user->id?>" data-topic="<?=$tid?>">Send
+                            <button class="btn_1" type="submit" id="send-message" data-url="<?=Url::to(['/chat/default/send-message'])?>" data-id="<?= $user->id ?>" data-recipient="<?=$expert->user->id?>" data-topic="<?=$topicModel->id?>">Send
                             </button>
                             
                         </div>
