@@ -62,7 +62,7 @@ class ChatModel extends \yii\db\ActiveRecord
     }
 
 
-    public static function getMessages($expert, $numberLastMessages, $pid)
+    public static function getMessages($expert, $numberLastMessages, $tid)
     {
         $messages = self::find()
         ->alias('a')
@@ -73,13 +73,13 @@ class ChatModel extends \yii\db\ActiveRecord
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
                 ['recipient_id' => $expert],
-                ['topic_id' => $pid],
+                ['topic_id' => $tid],
             ])
             
             ->orFilterWhere(['and',
                 ['sender_id' => $expert],
                 ['recipient_id' => Yii::$app->user->identity->id],
-                ['topic_id' => $pid],
+                ['topic_id' => $tid],
             ])
             
             ->orderBy(['time'=>SORT_ASC])
