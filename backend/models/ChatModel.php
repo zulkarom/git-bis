@@ -82,7 +82,7 @@ class ChatModel extends \yii\db\ActiveRecord
                 ['topic_id' => $tid],
             ])
             
-            ->orderBy(['time'=>SORT_ASC])
+            ->orderBy(['time'=>SORT_DESC])
             ->all();
         
         $out=[];
