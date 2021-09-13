@@ -11,6 +11,7 @@ foreach ($messages as $message){
     $show_name = $message['sender_id'] == $sender  ? false : true;
     echo showMessage($message, $show_name);
     $sender = $message['sender_id'];
+    echo '<div data-chat-id ="'.$message['chat_id'].'">';
 }
 
 function showMessage($message, $show_name){
