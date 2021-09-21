@@ -17,9 +17,8 @@ $model->email = $user->email;
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     
-<div class="white_card card_height_100 mb_30">
-    <div class="white_card_header">
-        <div class="profile-index">
+<div class="box">
+        <div class="box-body">
 
     
     
@@ -107,7 +106,6 @@ $model->email = $user->email;
 
 
 </div><!-- profile-index -->
-</div>
 </div>
 
  <div class="form-group">

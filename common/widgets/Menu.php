@@ -9,7 +9,7 @@ use yii\helpers\Html;
  * Class Menu
  * Theme menu widget.
  */
-class Menu 
+class Menu
 {
 	public $items;
 	public $tree = false;
@@ -31,16 +31,12 @@ class Menu
 	   foreach($this->items as $item){
 			   switch($item['level']){
 				   case 0:
-				   $html .= '<li class="nav-small-cap">'.$item['label'].'</li>';
+				   $html .= '<li class="header">'.$item['label'].'</li>';
 				   break;
 				   
 				   case 1:
 				   $html .= $this->item1($item);
 				   break;
-				   
-				   case 2:
-				   $html .= $this->item2($item);
-				   
 			   }
 	   }
 			   
@@ -50,49 +46,10 @@ class Menu
    protected function item1($item){
 	   $active = $this->isItemActive($item) ? 'active' : '';
 	   return '<li>
-				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
-				   <i class="'.$item['icon'].'"></i>
-				   <span class="hide-menu">
-					'.$item['label'].'
-					</span>
-				   </a></li>';
-   }
-   
-    protected function children($item){
-	   $active = $this->isItemActive($item) ? 'active' : '';
-	   return '<li>
-				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
-				   '.$item['label'].'
-				   </a></li>';
-   }
-
-   protected function item2($item){
-	   $this->tree = false;
-	   $anak = '';
-	   $expand = $this->isItemActive($item) ? 'true' : 'false';
-	   $in = $this->isItemActive($item) ? 'in' : '';
-	   $active = $this->isItemActive($item) ? 'active' : '';
-	   $children = $item['children'];
-			if($children){
-				foreach($children as $child){
-					$anak .= $this->children($child);
-				}
-			}
-	   
-	   $html =  '<li class="'.$active.'">
-			<a href="#" class="has-arrow waves-effect '.$active.'" aria-expanded="'.$expand.'">
-				<i class="'.$item['icon'].'"></i>
-				<span class="hide-menu">
-					'.$item['label'].'
-				</span>
-			</a>
-			<ul aria-expanded ="'.$expand.'" class="collapse '.$in.'">';
-			
-			$html .= $anak;
-						
-                            
-      $html .= '</ul></li>';
-	  return $html;
+				   <a href="'.Url::to($item['url']).'"><img src="'.$item['icon'].'" class="svg-icon" alt>
+				   <span>'.$item['label'].'</span>
+					</a>
+				</li>';
    }
    
     protected function isItemActive($item)
