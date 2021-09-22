@@ -27,60 +27,58 @@ function showMessage($message, $show_name){
     if($client){
         ?>
 
-<div class="single_message_chat sender_message">
-    <div class="message_pre_left">
+        <div class="card d-inline-block mb-3 float-left mr-2">
         
-        <?php if($show_name){?>
-        <div class="messges_info">
-            <h4><?=$message['sender_name']?></h4>
-            <p><?=date("d/m/Y h:i: A", $message['time']);?></p>
-        </div>
-        <div class="message_preview_thumb">
-            <img src="<?=Url::to(['/client/profile/'.$role.'-image', 'id' => $message['sender_id']])?>" alt="">
-        </div>
-        <?php }else{
-            
-            echo '<p>' . date("h:i: A", $message['time']). '</p>';
-        }
-            ?>
-    </div>
-    <div class="message_content_view">
-        <p>
-            <?= $message['message'] ?>
-        </p>
-    </div>
-</div>
-
-    
-    
-<?php 
+            <div class="position-absolute pt-1 pr-2 r-0">
+                <span class="text-extra-small text-muted"><?=date("d/m/Y h:i: A", $message['time']);?></span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-row pb-2">
+                    <a class="d-flex" href="#">
+                        <img alt="Profile" src="<?=Url::to(['/client/profile/'.$role.'-image', 'id' => $message['sender_id']])?>" class="avatar mr-10">
+                    </a>
+                    <div class="d-flex flex-grow-1 min-width-zero">
+                        <div class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between">
+                            <div class="min-width-zero">
+                                <p class="mb-0 font-size-16 text-dark"><?=$message['sender_name']?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-text-left pl-55">
+                    <p class="mb-0 text-semi-muted"><?= $message['message'] ?></p>
+                </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+    <?php 
     }else{
         ?>
 
-<div class="single_message_chat">
-    <div class="message_pre_left">
-     <?php if($show_name){?>
-        <div class="message_preview_thumb">
-            <img src="<?=Url::to(['/client/profile/'.$role.'-image', 'id' => $message['sender_id']])?>" alt="">
-        </div>
-        <div class="messges_info">
-            <h4><?=$message['sender_name']?></h4>
-            <p><?=date("d/m/Y h:i: A", $message['time']);?></p>
-        </div>
-        <?php }else{
+        <div class="card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80">
             
-            echo '<p>' . date("h:i: A", $message['time']). '</p>';
-        }
-            ?>
-    </div>
-    <div class="message_content_view red_border">
-        <p>
-            <?= $message['message'] ?>
-        </p>
-    </div>
-</div>
-
-    
+            <div class="position-absolute pt-1 pl-2 l-0">
+                <span class="text-extra-small"><?=date("d/m/Y h:i: A", $message['time']);?></span>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-row pb-2">
+                    <div class="d-flex flex-grow-1 justify-content-end">
+                        <div class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between">
+                            <div>
+                                <p class="mb-0 font-size-16"><?=$message['sender_name']?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="d-flex" href="#">
+                        <img alt="Profile" src="<?=Url::to(['/client/profile/'.$role.'-image', 'id' => $message['sender_id']])?>" class="avatar ml-10">
+                    </a>
+                </div>
+                <div class="chat-text-left pr-50">
+                    <p class="mb-0 text-semi-muted"><?= $message['message'] ?></p>
+                </div>
+            </div>
+          </div>
+          <div class="clearfix"></div> 
     
 <?php 
     }

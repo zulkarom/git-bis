@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-     <?php echo Html::button('<span class="fa fa-plus"></span> Create Business Canvas',['value' => Url::to(['/client/biz-canvas/create']), 'class' => 'btn btn-success btn-sm', 'id' => 'modalBttnPartner']);
+     <?php echo Html::button('<span class="fa fa-plus"></span> Create Business Canvas',['value' => Url::to(['/client/biz-canvas/create']), 'class' => 'btn btn-success', 'id' => 'modalBttnPartner']);
 
             $this->registerJs('
             $(function(){
@@ -31,12 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ');
         ?>
     </p>
-<br/>
 
 <div class="biz-canvas-index">
 
-    <div class="white_card card_height_100 mb_30">
-        <div class="white_card_header">
+    <div class="box">
+      <div class="box-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
@@ -55,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         //'visible' => false,
                         'buttons'=>[
                         'view'=>function ($url, $model) {
-                            return Html::a('<span class="fa fa-search"></span> View',['view', 'id' => $model->id],['class'=>'btn btn-primary btn-sm']);
+                            return Html::a('<span class="fa fa-search"></span> View',['view', 'id' => $model->id],['class'=>'btn btn-primary']);
                         }
                         ],
                 

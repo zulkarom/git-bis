@@ -134,9 +134,8 @@ div.bc-guide {
 
 
 
-
-<div class="white_card card_height_100 mb_30" style="overflow-x: scroll;">
-  <div class="white_card_header">
+<div class="box" style="overflow-x: scroll;">
+  <div class="box-body">
     
     
       <!-- <h1>The Business Model Canvas</h1> -->

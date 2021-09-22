@@ -20,6 +20,8 @@ use common\widgets\Menu;
 
                 ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/expert/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
 
+                ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/expert/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
+
                 ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/apps.svg'],
 
                 ['label' => \Yii::t('app', 'Log Out'), 'level' => 1, 'url' => ['/site/logout'], ['data-method' => 'post'], 'icon' => $dirAssests.'/images/svg-icon/logout.svg'],

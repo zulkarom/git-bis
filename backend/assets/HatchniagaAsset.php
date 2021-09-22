@@ -29,7 +29,7 @@ class HatchniagaAsset extends AssetBundle
 
     public $depends = [
         'yii\web\YiiAsset',
-		'djabiev\yii\assets\AutosizeTextareaAsset',
+		// 'djabiev\yii\assets\AutosizeTextareaAsset',
         //'yii\jui\JuiAsset',
         'yii\bootstrap4\BootstrapAsset',
         //'backend\assets\FontAwesomeAsset'
