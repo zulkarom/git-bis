@@ -12,10 +12,10 @@ class ChatAsset extends AssetBundle
 	/**
 	 * @inheritdoc
 	 */
-	public $sourcePath = '@backend/assets/adminpress';
+	public $sourcePath = '@backend/assets/hatchniaga';
 
     public $css = [
-        'images/images.css'
+        'css/images.css'
     ];
 
 } 

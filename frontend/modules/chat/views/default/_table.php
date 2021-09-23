@@ -28,7 +28,7 @@ function showMessage($message, $show_name){
         ?>
 
         <div class="card d-inline-block mb-3 float-left mr-2">
-        
+            
             <div class="position-absolute pt-1 pr-2 r-0">
                 <span class="text-extra-small text-muted"><?=date("d/m/Y h:i: A", $message['time']);?></span>
             </div>
