@@ -160,10 +160,10 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                         <div class="d-flex justify-content-between align-items-center">
                             <input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something...">
                             <div class="d-flex justify-content-between align-items-center">
-                                <button type="button" id="send-message" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary">
+                                <button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary">
                                     <i class="mdi mdi-link"></i>
                                 </button>
-                                <button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" data-url="<?=Url::to(['/chat/default/send-message'])?>" data-id="<?= $user->id ?>" data-recipient="<?=$expert->user->id?>" data-topic="<?=$topicModel->id?>">
+                                <button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" type="submit" id="send-message" data-url="<?=Url::to(['/chat/default/send-message'])?>" data-id="<?= $user->id ?>" data-recipient="<?=$expert->user->id?>" data-topic="<?=$topicModel->id?>">
                                     <i class="mdi mdi-send"></i>
                                 </button>
                             </div>

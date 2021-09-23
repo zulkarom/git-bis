@@ -468,7 +468,7 @@ function addItemLink($model, $cat){
 
 function itemDesc($model, $cat){
     $category = $model->getCategory($cat)->category_name;
-    return '<a class="bc-cat-desc" data-title="'.$category.' (Guidelines)" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/cat-desc', 'cat' => $cat]) . '" >&nbsp<span class="fa fa-lightbulb"></span></a>';
+    return '<a class="bc-cat-desc" data-title="'.$category.' (Guidelines)" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/cat-desc', 'cat' => $cat]) . '" >&nbsp<span class="mdi mdi-lightbulb"></span></a>';
     
 }
 
