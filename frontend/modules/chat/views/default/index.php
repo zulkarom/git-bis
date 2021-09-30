@@ -1,9 +1,7 @@
 <?php
 use backend\assets\ChatAsset;
-use backend\assets\HatchniagaAsset;
 use yii\helpers\Url;
 ChatAsset::register($this); 
-HatchniagaAsset::register($this);
 
 
 // $this->title = 'Consultation Chat';

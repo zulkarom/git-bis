@@ -20,7 +20,7 @@ class HatchniagaAsset extends AssetBundle
 
     public $js = [
         // 'js/main.js',
-        'js/vendors.min.js',
+        // 'js/vendors.min.js',
         'js/pages/chat-popup.js',
         'js/template.js',
         'js/demo.js',
