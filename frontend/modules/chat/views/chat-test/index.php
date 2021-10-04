@@ -27,7 +27,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                     <div class="chat-box-one-side">
                                       <div class="media-list media-list-hover">
                                         <?php foreach ($model as $clientEx): ?>
-                                          <div id="send-topic" class="media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>">
+                                          <div id="send-topic" class="media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
                                           <a class="avatar avatar-lg status-danger" href="#">
                                             <img src="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>" alt="...">
                                           </a>
@@ -50,21 +50,26 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                         <div class="media-list media-list-hover">
                                             <div class="media py-10 px-0 align-items-center">
                                               <a class="avatar avatar-lg status-success" href="#">
-                                                <img src="" alt="...">
+                                                <img src="" alt="..." class="exp-profile">
                                               </a>
                                               <div class="media-body">
                                                 <p class="font-size-16">
-                                                  <a class="hover-primary" href="#">Contoh Nama</a>
+                                                  <a class="hover-primary exp-name" href="#">Contoh Nama</a>
                                                 </p>
                                               </div>
                                             </div>
-                                            <div class="media py-10 px-0 align-items-center">
+                                            <!-- <div class="media py-10 px-0 align-items-center">
                                              
                                               <div class="media-body">
-                                                <p class="font-size-16">
-                                                  <a class="hover-primary topic-name" href="#"></a>
+                                                <p class="font-size-16 test">
+                                                  <a class="hover-primary" href="#"></a>
                                                 </p>
                                               </div>
+                                            </div> -->
+
+                                            <div id="topic-name">
+                                             
+                                              
                                             </div>
                                             
                                           </div>
@@ -85,18 +90,37 @@ $js = "function getTargetId(element){
 
    
     var val = element.data('client');
+    var val2 = element.data('expert-name');
 
-      $.ajax({url: '".Url::to(['/chat/chat-test/get-topics', 'client_id' => ''])."' + val , success: function(result){
+    let div = document.createElement('div');
+    div.classList.add('media-body');
+
+    let p = document.createElement('p');
+    p.classList.add('font-size-16');
+
+    let a = document.createElement('a');
+    a.classList.add('hover-primary');
+
+    $('.exp-name').html(val2);
+    $('.exp-profile').attr('src',element.data('expert-profile'));
+
+
+    $.ajax({url: '".Url::to(['/chat/chat-test/get-topics', 'client_id' => ''])."' + val , success: function(result){
         
         if(result){
             var data = JSON.parse(result);
+            var str = '';
             // console.log(result);
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
-                    console.log(key + ' -> ' + data[key]);
-                    $('.topic-name').html(data[key]);
+
+                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a class=\"hover-primary\" href=\"#\">' + data[key] + '</a></p></div></div>';
+
                 }
             }
+            console.log(str);
+            $('#topic-name').html(str);
+            
         }
     }
     });
