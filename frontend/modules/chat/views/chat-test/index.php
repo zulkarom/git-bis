@@ -92,15 +92,6 @@ $js = "function getTargetId(element){
     var val = element.data('client');
     var val2 = element.data('expert-name');
 
-    let div = document.createElement('div');
-    div.classList.add('media-body');
-
-    let p = document.createElement('p');
-    p.classList.add('font-size-16');
-
-    let a = document.createElement('a');
-    a.classList.add('hover-primary');
-
     $('.exp-name').html(val2);
     $('.exp-profile').attr('src',element.data('expert-profile'));
 
