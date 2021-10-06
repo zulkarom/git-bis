@@ -53,9 +53,6 @@ class ChatTestController extends Controller
 
         $topics  = ArrayHelper::map(ChatTopic::find()->where(['client_id' => $client_id])->all(), 'id', 'topic');
         
-        // echo "<pre>";
-        // print_r($topics);
-        // die();
         $result = json_encode($topics);
         return $result;
         

@@ -5,7 +5,7 @@ namespace frontend\modules\chat\controllers;
 use Yii;
 use yii\web\Controller;
 use backend\models\ChatModel;
-use backend\modules\expert\models\Expert;
+use backend\models\Expert;
 use yii\filters\AccessControl;
 use backend\models\ChatTopic;
 /**
@@ -33,21 +33,37 @@ class DefaultController extends Controller
      * Renders the index view for the module
      * @return string
      */
-    public function actionIndex($id, $tid)
+
+    public function actionIndex()
     {
+        $id = Yii::$app->request->post('id');
+        $tid = Yii::$app->request->post('tid');
+
         $expert = Expert::findOne($id);
         $topicModel = ChatTopic::findOne($tid);
         $user = Yii::$app->user->identity;
 
         $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages, $tid);
 
-        return $this->render('index', [
-            'user' => $user,
-            'messages' => $messages,
-            'expert' => $expert,
-            'topicModel' => $topicModel,
-        ]);
+        $result = json_encode($messages);
+        return $result;
     }
+
+    // public function actionIndex($id, $tid)
+    // {
+    //     $expert = Expert::findOne($id);
+    //     $topicModel = ChatTopic::findOne($tid);
+    //     $user = Yii::$app->user->identity;
+
+    //     $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages, $tid);
+
+    //     return $this->render('index', [
+    //         'user' => $user,
+    //         'messages' => $messages,
+    //         'expert' => $expert,
+    //         'topicModel' => $topicModel,
+    //     ]);
+    // }
 
     public function actionSendMessage()
     {
