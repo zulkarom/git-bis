@@ -98,7 +98,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 
         <div class="box-body px-0">
             <div class="chat-box-one">
-              
+              <div id="chat-box"></div>
             </div>
         </div>
       </div>
@@ -166,10 +166,6 @@ $js = "function getTargetId(element){
 
 function getTargetChat(element){
 
-   
-    var val_exp_id = element.data('exp-id');
-    var val_topic_id = element.data('topic');
-
     $.ajax({
         url: '".Url::to(['/chat/default/index'])."',
         type: 'POST',
@@ -179,7 +175,43 @@ function getTargetChat(element){
         },
         success: function (result) {
           var data = JSON.parse(result);
-          console.log(data);
+          var res = [];
+          var str = '';
+           for (var key in data) {
+
+            // res.push([key, data [key]]);
+                
+            console.log(data[key]);
+
+            
+          //   str += '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\">
+            
+          //   <div class=\"position-absolute pt-1 pl-2 l-0\">
+          //       <span class=\"text-extra-small\"></span>
+          //   </div>
+          //   <div class=\"card-body\">
+          //       <div class=\"d-flex flex-row pb-2\">
+          //           <div class=\"d-flex flex-grow-1 justify-content-end\">
+          //               <div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\">
+          //                   <div>
+          //                       <p class=\"mb-0 font-size-16\"></p>
+          //                   </div>
+          //               </div>
+          //           </div>
+          //           <a class=\"d-flex\" href=\"#\">
+          //               <img alt=\"Profile\" src=\"\" class=\"avatar ml-10\">
+          //           </a>
+          //       </div>
+          //       <div class=\"chat-text-left pr-50\">
+          //           <p class=\"mb-0 text-semi-muted\"></p>
+          //       </div>
+          //   </div>
+          // </div>
+          // <div class=\"clearfix\"></div>';
+                
+            }
+
+
         }
     });
 
