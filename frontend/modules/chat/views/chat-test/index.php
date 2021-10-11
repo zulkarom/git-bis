@@ -17,17 +17,17 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
           <div class="box-body">
               <!-- Nav tabs -->
               <ul class="nav nav-tabs customtab nav-justified" role="tablist">
-                  <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#messages" role="tab">Experts</a> </li>
-                  <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#contacts" role="tab">Topics</a> </li>
+                  <li id="tab-expert" class="nav-item"> <a id="a-expert" class="nav-link active" data-toggle="tab" href="#panel-expert" role="tab">Experts</a> </li>
+                  <li id="tab-topic" class="nav-item"> <a id="a-topic" class="nav-link" data-toggle="tab" href="#panel-topic" role="tab">Topics</a> </li>
               </ul>
               <!-- Tab panes -->
               <div class="tab-content">
-                  <div class="tab-pane active" id="messages" role="tabpanel">
+                  <div class="tab-pane active" id="panel-expert" role="tabpanel">
       
                       <div class="chat-box-one-side">
                         <div class="media-list media-list-hover">
                           <?php foreach ($model as $clientEx): ?>
-                            <div id="send-topic" class="media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
+                            <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
                             <a class="avatar avatar-lg status-danger" href="#">
                               <img src="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>" alt="...">
                             </a>
@@ -44,7 +44,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                         </div>
                       </div>
                   </div>
-                  <div class="tab-pane" id="contacts" role="tabpanel">                                    
+                  <div class="tab-pane" id="panel-topic" role="tabpanel">                                    
                       
                       <div class="chat-box-one-side">
                           <div class="media-list media-list-hover">
@@ -67,7 +67,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                 </div>
                               </div> -->
 
-                              <div id="topic-name">
+                              <div class="topic-name">
                                
                                 
                               </div>
@@ -122,9 +122,9 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 
 <?php
 
-$js = "function getTargetId(element){
+$js = "
+function getTopic(element){
 
-   
     var val = element.data('client');
     var val2 = element.data('expert-name');
     var val3 = element.data('expert-id');
@@ -135,10 +135,15 @@ $js = "function getTargetId(element){
     $('.exp-name2').html(val2);
     $('.exp-profile2').attr('src',element.data('expert-profile'));
 
-
-    $.ajax({url: '".Url::to(['/chat/chat-test/get-topics', 'client_id' => ''])."' + val , success: function(result){
-        
-        if(result){
+    $.ajax({
+        url: '".Url::to(['/chat/chat-test/get-topics'])."',
+        type: 'POST',
+        data: {
+          client_id: val, 
+          expert_id: val3
+        },
+        success: function (result) {
+          if(result){
             var data = JSON.parse(result);
             var str = '';
             // console.log(result);
@@ -149,8 +154,8 @@ $js = "function getTargetId(element){
 
                 }
             }
-            console.log(str);
-            $('#topic-name').html(str);
+            // console.log(str);
+            $('.topic-name').html(str);
 
 
             $('.topic-chat').click(function(){
@@ -158,8 +163,8 @@ $js = "function getTargetId(element){
               getTargetChat($(this));
             });
             
+          }
         }
-    }
     });
 
 }
@@ -175,41 +180,17 @@ function getTargetChat(element){
         },
         success: function (result) {
           var data = JSON.parse(result);
-          var res = [];
-          var str = '';
+          var chatstr = '';
+
            for (var key in data) {
+              var row = data[key];
+              // console.log(row['message']);
 
-            // res.push([key, data [key]]);
-                
-            console.log(data[key]);
-
-            
-          //   str += '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\">
-            
-          //   <div class=\"position-absolute pt-1 pl-2 l-0\">
-          //       <span class=\"text-extra-small\"></span>
-          //   </div>
-          //   <div class=\"card-body\">
-          //       <div class=\"d-flex flex-row pb-2\">
-          //           <div class=\"d-flex flex-grow-1 justify-content-end\">
-          //               <div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\">
-          //                   <div>
-          //                       <p class=\"mb-0 font-size-16\"></p>
-          //                   </div>
-          //               </div>
-          //           </div>
-          //           <a class=\"d-flex\" href=\"#\">
-          //               <img alt=\"Profile\" src=\"\" class=\"avatar ml-10\">
-          //           </a>
-          //       </div>
-          //       <div class=\"chat-text-left pr-50\">
-          //           <p class=\"mb-0 text-semi-muted\"></p>
-          //       </div>
-          //   </div>
-          // </div>
-          // <div class=\"clearfix\"></div>';
-                
+              chatstr += messageBox(row);
             }
+            $('#chat-box').html(chatstr);
+
+
 
 
         }
@@ -217,12 +198,57 @@ function getTargetChat(element){
 
 }
 
+function messageBox(row){
+  var client = '';
+  var role = '';
+  if(row['sender_id'] == '".Yii::$app->user->identity->id."'){
+      client = true;
+      role = 'profile';
+      
+  }else{
+      client = false;
+      role = 'expert';
+  }
+
+  if(client){
+
+    var sender_id = row['sender_id'];
+    var url = '".Url::to(['/client/profile/profile-image', 'id' => ''])."' + sender_id;
+
+      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
+
+      return str;
+
+  }else{
+
+    var sender_id = row['sender_id'];
+    var url = '".Url::to(['/client/profile/expert-image', 'id' => ''])."' + sender_id;
+
+      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
+
+          return str;
+  }
+}
 
 
 
 
-$('#send-topic').click(function(){
-  getTargetId($(this));
+
+$('.send-topic').click(function(){
+
+  $('#a-topic').addClass('active');
+
+  $('#a-topic').attr('aria-selected', true);
+
+  $('#a-expert').removeClass('active');
+  $('#a-expert').attr('aria-selected', false);
+
+
+  $('#panel-topic').addClass('active');
+  $('#panel-expert').removeClass('active');
+
+
+  getTopic($(this));
 
     // alert($(this).data('client'));
 });

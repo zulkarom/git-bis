@@ -49,9 +49,15 @@ class ChatTestController extends Controller
         ]);
     }
 
-    public function actionGetTopics($client_id){
+    public function actionGetTopics(){
 
-        $topics  = ArrayHelper::map(ChatTopic::find()->where(['client_id' => $client_id])->all(), 'id', 'topic');
+        $client_id = Yii::$app->request->post('client_id');
+        $expert_id = Yii::$app->request->post('expert_id');
+
+        $topics  = ArrayHelper::map(ChatTopic::find()
+            ->where(['client_id' => $client_id])
+            ->andWhere(['expert_id' => $expert_id])
+            ->all(), 'id', 'topic');
         
         $result = json_encode($topics);
         return $result;
