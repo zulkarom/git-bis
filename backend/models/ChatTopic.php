@@ -30,6 +30,7 @@ class ChatTopic extends \yii\db\ActiveRecord
         return [
             [['topic'], 'required'],
             [['topic'], 'string', 'max' => 225],
+            [['client_id', 'expert_id'], 'integer'],
         ];
     }
 

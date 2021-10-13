@@ -27,7 +27,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                       <div class="chat-box-one-side">
                         <div class="media-list media-list-hover">
                           <?php foreach ($model as $clientEx): ?>
-                            <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
+                            <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-expert-user-id="<?= $clientEx->expert->user_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
                             <a class="avatar avatar-lg status-danger" href="#">
                               <img src="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>" alt="...">
                             </a>
@@ -103,14 +103,8 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
         </div>
       </div>
       <div class="box box-body">
-          <div class="d-flex justify-content-between align-items-center">
-              <input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something...">
-              <div class="d-flex justify-content-between align-items-center">
-                  <button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary">
-                      <i class="mdi mdi-link"></i>
-                  </button>
-                  
-              </div>
+          <div class="d-flex justify-content-between align-items-center btn-send-message">
+              
           </div>
       </div>
   </div>
@@ -128,6 +122,7 @@ function getTopic(element){
     var val = element.data('client');
     var val2 = element.data('expert-name');
     var val3 = element.data('expert-id');
+    var val4 = element.data('expert-user-id');
 
     $('.exp-name').html(val2);
     $('.exp-profile').attr('src',element.data('expert-profile'));
@@ -150,7 +145,7 @@ function getTopic(element){
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
 
-                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div></div>';
+                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div></div>';
 
                 }
             }
@@ -170,25 +165,41 @@ function getTopic(element){
 }
 
 function getTargetChat(element){
+    var expert_id = element.data('exp-id');
+    var topic_id = element.data('topic');
+    var user_id = '".Yii::$app->user->identity->id."';
+    var exp_user_id = element.data('exp-user-id');
+
+    // console.log();
 
     $.ajax({
         url: '".Url::to(['/chat/default/index'])."',
         type: 'POST',
         data: {
-          id: element.data('exp-id'), 
-          tid: element.data('topic')
+          id: expert_id, 
+          tid: topic_id
         },
         success: function (result) {
           var data = JSON.parse(result);
           var chatstr = '';
-
+          var btnsendstr ='';
            for (var key in data) {
               var row = data[key];
               // console.log(row['message']);
 
               chatstr += messageBox(row);
             }
+
+            var dataUrl = '".Url::to(['/chat/default/send-message'])."';
+            
+            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+
+            $('.btn-send-message').html(btnsendstr);
             $('#chat-box').html(chatstr);
+
+            $('#send-message').click(function(){
+                sendchat(this,true);
+            });
 
 
 
@@ -257,4 +268,36 @@ $('.send-topic').click(function(){
 ";
 // JuiAsset::register($this);
 $this->registerJs($js);
+
+$script="
+function sendchat(button,sendMessage) {
+    
+    $.ajax({
+        url: $('#send-message').data('url'),
+        type: 'POST',
+        data: {
+            'sendMessage':sendMessage,
+            'ChatModel[sender_id]': $('#send-message').data('id'),
+            'ChatModel[recipient_id]': $('#send-message').data('recipient'),
+            'ChatModel[topic_id]': $('#send-message').data('topic'),
+            'ChatModel[message]': $('#chat-message').val()
+        },
+        success: function (html) {
+        $('#chat-message').val('')
+        $('#chat-box').html(html);
+        }
+    });
+}
+
+$('#send-message').click(function(){
+    sendchat(this,true);
+});
+
+setInterval(function () { sendchat(null,false); }, 5000 );
+
+";
+
+
+$this->registerJs($script, $this::POS_READY);
+
 ?>
