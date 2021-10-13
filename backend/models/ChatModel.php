@@ -20,6 +20,10 @@ class ChatModel extends \yii\db\ActiveRecord
     
     public $recipient_name;
 
+    public $last_message_id;
+
+    public $first_message_id;
+
     /**
      * @inheritdoc
      */
@@ -35,7 +39,7 @@ class ChatModel extends \yii\db\ActiveRecord
     {
         return [
             [['time','recipient_id','sender_id', 'message'], 'required'],
-            [['time','recipient_id','sender_id', 'topic_id'], 'integer'],
+            [['time','recipient_id','sender_id', 'topic_id', 'last_message_id', 'first_message_id'], 'integer'],
             [['rfc822'], 'string', 'max' => 50],
             [['message'], 'string'],
         ];
@@ -80,6 +84,87 @@ class ChatModel extends \yii\db\ActiveRecord
                 ['sender_id' => $expert],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
+            ])
+            
+            ->orderBy(['id'=>SORT_DESC])
+            ->all();
+        
+        $out=[];
+        foreach ($messages as $message)
+        {
+            $out[$message->id]=[
+                    'time' => $message->time,
+                    'sender_name' => $message->sender_name,
+                    'recipient_name' => $message->recipient_name,
+                    'message' => $message->message,
+                    'sender_id' => $message->sender_id,
+                    'recipient_id' => $message->recipient_id,
+                    'chat_id' => $message->id,
+                ];
+        }
+        ksort($out);
+        return $out;
+    }
+
+     public static function getRecentMessages($expert, $numberLastMessages, $tid, $last_message_id)
+    {
+        $messages = self::find()
+        ->alias('a')
+        ->select('a.*, s.fullname as sender_name, r.fullname as recipient_name')
+        ->joinWith(['sender s', 'recipient r'])
+            ->orFilterWhere(['and',
+                ['sender_id' => Yii::$app->user->identity->id],
+                ['recipient_id' => $expert],
+                ['topic_id' => $tid],
+                ['>','a.id',$last_message_id],
+            ])
+            
+            ->orFilterWhere(['and',
+                ['sender_id' => $expert],
+                ['recipient_id' => Yii::$app->user->identity->id],
+                ['topic_id' => $tid],
+                ['>','a.id',$last_message_id],
+            ])
+            
+            ->orderBy(['id'=>SORT_DESC])
+            ->all();
+        
+        $out=[];
+        foreach ($messages as $message)
+        {
+            $out[$message->id]=[
+                    'time' => $message->time,
+                    'sender_name' => $message->sender_name,
+                    'recipient_name' => $message->recipient_name,
+                    'message' => $message->message,
+                    'sender_id' => $message->sender_id,
+                    'recipient_id' => $message->recipient_id,
+                    'chat_id' => $message->id,
+                ];
+        }
+        ksort($out);
+        return $out;
+    }
+
+    public static function getPreviousMessages($expert, $numberLastMessages, $tid, $first_message_id)
+    {
+        $messages = self::find()
+        ->alias('a')
+        ->select('a.*, s.fullname as sender_name, r.fullname as recipient_name')
+        ->joinWith(['sender s', 'recipient r'])
+        ->limit($numberLastMessages)
+            ->orFilterWhere(['and',
+                ['sender_id' => Yii::$app->user->identity->id],
+                ['recipient_id' => $expert],
+                ['topic_id' => $tid],
+                ['<','a.id',$first_message_id],
+            ])
+            
+            ->orFilterWhere(['and',
+                ['sender_id' => $expert],
+                ['recipient_id' => Yii::$app->user->identity->id],
+                ['topic_id' => $tid],
+                ['<','a.id',$first_message_id],
             ])
             
             ->orderBy(['id'=>SORT_DESC])

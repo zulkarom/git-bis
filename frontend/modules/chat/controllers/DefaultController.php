@@ -94,8 +94,45 @@ class DefaultController extends Controller
                     }
                 }
                 
-                $messages = ChatModel::getMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id);
-                return $this->renderPartial('_table',compact('messages'));
+                $messages = ChatModel::getRecentMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
+                $result = json_encode($messages);
+                return $result;
+
+            }
+
+        
+    }
+
+    public function actionLoadMessage()
+    {
+        if (Yii::$app->user->isGuest){
+            return '';
+        }
+        $post = Yii::$app->request->post();
+        //return json_encode($post) ;
+
+            $model = new ChatModel();
+            
+            if ($model->load(Yii::$app->request->post()))
+            {
+
+               // return 'xxxxxxxxx' . $model->recipient_id;
+                if ($post['loadMessage']=='true'){
+                    $model->time = time();
+                    $model->rfc822 = date(DATE_RFC822,$model->time);
+                    $model->message = strip_tags($model->message);
+
+                    if(!$model->save()){
+                        return json_encode($model->errors);
+                    }
+                }
+                
+                $messages = ChatModel::getPreviousMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
+                $result = json_encode($messages);
+                echo "<pre>";
+                print_r($result);
+                die();
+                return $model->first_message_id;
 
             }
 
