@@ -1,6 +1,8 @@
 <?php
 use backend\assets\ChatAsset;
 use yii\helpers\Url;
+use yii\bootstrap4\Modal;
+use yii\helpers\Html;
 ChatAsset::register($this); 
 
 
@@ -54,7 +56,35 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                 </a>
                                 <div class="media-body">
                                   <p class="font-size-16">
-                                    <a class="hover-primary exp-name" href="#">Contoh Nama</a>
+                                    <a class="hover-primary exp-name" href="#">Contoh Nama</a><br/>
+                                  </p>
+                                </div>
+                              </div>
+                              <div class="media py-10 px-0 align-items-center">
+                                 <div class="media-body" align="center">
+                                  <p class="font-size-16">
+                                    <?php echo Html::button('Create Topic', ['value' => Url::to(['/chat/chat-topic/create']), 'class' => 'btn btn-rounded btn-secondary', 'id' => 'modalButton']);
+                    
+                                          Modal::begin([
+                                              'title' => '<h4>Create Topic</h4>',
+                                              'id' =>'createTopic',
+                                              'size' => 'modal-md'
+                                          ]);
+
+                                      echo '<div id="formCreateTopic"></div>';
+
+                                      Modal::end();
+
+                                      $this->registerJs('
+                                        $(function(){
+                                          $("#modalButton").click(function(){
+                                              $("#createTopic").modal("show")
+                                                .find("#formCreateTopic")
+                                                .load($(this).attr("value"));
+                                          });
+                                        });
+                                        ');
+                                      ?>
                                   </p>
                                 </div>
                               </div>
@@ -212,6 +242,7 @@ function getTargetChat(element){
 function messageBox(row){
   var client = '';
   var role = '';
+  console.log(row['chat_id']);
   if(row['sender_id'] == '".Yii::$app->user->identity->id."'){
       client = true;
       role = 'profile';
@@ -226,7 +257,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/client/profile/profile-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
+      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted\" data-chat-id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
 
       return str;
 
@@ -235,7 +266,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/client/profile/expert-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
+      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted\" data-chat-id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
 
           return str;
   }
@@ -280,6 +311,7 @@ function sendchat(button,sendMessage) {
             'ChatModel[sender_id]': $('#send-message').data('id'),
             'ChatModel[recipient_id]': $('#send-message').data('recipient'),
             'ChatModel[topic_id]': $('#send-message').data('topic'),
+            // 'ChatModel[last_message_id]': $()
             'ChatModel[message]': $('#chat-message').val()
         },
         success: function (html) {
@@ -293,7 +325,9 @@ $('#send-message').click(function(){
     sendchat(this,true);
 });
 
-setInterval(function () { sendchat(null,false); }, 5000 );
+setInterval(function () { 
+  // sendchat(null,false); 
+  }, 5000 );
 
 ";
 

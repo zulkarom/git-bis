@@ -67,7 +67,7 @@ class ChatTopicController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($id)
+    public function actionCreate()
     {
         $model = new ChatTopic();
 
@@ -75,7 +75,7 @@ class ChatTopicController extends Controller
 
             if($model->save()){
                 Yii::$app->session->addFlash('success', "Chat Topic Created");
-                return $this->redirect(['index', 'id' => $id]);
+                return $this->redirect(['index']);
             }
         }
 
