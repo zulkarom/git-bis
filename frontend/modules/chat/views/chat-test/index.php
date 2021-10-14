@@ -127,6 +127,9 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
         </div>
 
         <div class="box-body px-0">
+          <div class="align-items-center btn-previous-message" align="center">
+              
+          </div>
             <div class="chat-box-one">
               <div id="chat-box"></div>
             </div>
@@ -213,6 +216,7 @@ function getTargetChat(element){
           var data = JSON.parse(result);
           var chatstr = '';
           var btnsendstr ='';
+          var btnprevstr ='';
            for (var key in data) {
               var row = data[key];
               // console.log(row['message']);
@@ -221,14 +225,26 @@ function getTargetChat(element){
             }
 
             var dataUrl = '".Url::to(['/chat/default/send-message'])."';
+            var loadUrl = '".Url::to(['/chat/default/load-message'])."';
             
             btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
+            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+
+            btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
+
             $('.btn-send-message').html(btnsendstr);
+            $('.btn-previous-message').html(btnprevstr);
             $('#chat-box').html(chatstr);
 
             $('#send-message').click(function(){
+
                 sendchat(this,true);
+            });
+
+            $('#load-message').click(function(){
+
+                loadchat(this,true);
             });
 
 
@@ -257,7 +273,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/client/profile/profile-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted\" data-chat-id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
+      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
 
       return str;
 
@@ -266,7 +282,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/client/profile/expert-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted\" data-chat-id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
+      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
 
           return str;
   }
@@ -302,6 +318,9 @@ $this->registerJs($js);
 
 $script="
 function sendchat(button,sendMessage) {
+
+  var last = $('#chat-box .card-msg').last().attr('id');
+  // alert(last);
     
     $.ajax({
         url: $('#send-message').data('url'),
@@ -311,12 +330,21 @@ function sendchat(button,sendMessage) {
             'ChatModel[sender_id]': $('#send-message').data('id'),
             'ChatModel[recipient_id]': $('#send-message').data('recipient'),
             'ChatModel[topic_id]': $('#send-message').data('topic'),
-            // 'ChatModel[last_message_id]': $()
+            'ChatModel[last_message_id]': last,
             'ChatModel[message]': $('#chat-message').val()
         },
-        success: function (html) {
+        success: function (data) {
+          
+        var data = JSON.parse(data);
+          var chatstr = '';
+
+           for (var key in data) {
+              var row = data[key];
+              // console.log(row);
+              chatstr += messageBox(row);
+            }
         $('#chat-message').val('')
-        $('#chat-box').html(html);
+        $('#chat-box').append(chatstr);
         }
     });
 }
@@ -329,7 +357,51 @@ setInterval(function () {
   // sendchat(null,false); 
   }, 5000 );
 
+
+function loadchat(button,loadMessage) {
+
+var first = $('#chat-box .card-msg').first().attr('id');
+alert($('#load-message').data('url'));
+
+    $.ajax({
+        url: $('#load-message').data('url'),
+        type: 'POST',
+        data: {
+            'loadMessage':loadMessage,
+            'ChatModel[sender_id]': $('#load-message').data('id'),
+            'ChatModel[recipient_id]': $('#load-message').data('recipient'),
+            'ChatModel[topic_id]': $('#load-message').data('topic'),
+            'ChatModel[first_message_id]': first,
+        },
+        success: function (result) {
+          console.log(result);
+        // var data = JSON.parse(result);
+        //   var chatstr = '';
+
+        //    for (var key in data) {
+        //       var row = data[key];
+        //       // console.log(row);
+        //       chatstr += messageBox(row);
+        //     }
+        // $('#chat-box').append(chatstr);
+        }
+    });
+  
+  
+}
+
+$('#load-message').click(function(){
+  loadchat(this,true);
+});
+
+setInterval(function () { 
+// sendchat(null,false); 
+}, 5000 );
+
 ";
+
+
+
 
 
 $this->registerJs($script, $this::POS_READY);
