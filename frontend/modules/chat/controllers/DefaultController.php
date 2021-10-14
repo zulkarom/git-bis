@@ -69,6 +69,43 @@ class DefaultController extends Controller
     //     ]);
     // }
 
+    public function actionCreateTopic()
+    {
+        if (Yii::$app->user->isGuest){
+            return '';
+        }
+
+
+        $post = Yii::$app->request->post();
+        // return json_encode($post) ;
+
+            $model = new ChatTopic();
+            
+            if ($model->load(Yii::$app->request->post()))
+            {
+
+                if ($post['submitTopic']=='true'){
+
+                    $model->topic = $model->topic;
+
+                    if(!$model->save()){
+                        return json_encode($model->errors);
+                    }
+                }
+                
+                $data = ChatTopic::getTopic($model->id);
+
+                // echo "<pre>";
+                // print_r($data);
+                // die();
+                $result = json_encode($data);
+                return $result;
+
+            }
+
+        
+    }
+
     public function actionSendMessage()
     {
         if (Yii::$app->user->isGuest){
@@ -117,22 +154,22 @@ class DefaultController extends Controller
             {
 
                // return 'xxxxxxxxx' . $model->recipient_id;
-                if ($post['loadMessage']=='true'){
-                    $model->time = time();
-                    $model->rfc822 = date(DATE_RFC822,$model->time);
-                    $model->message = strip_tags($model->message);
+                // if ($post['loadMessage']=='true'){
+                //     $model->time = time();
+                //     $model->rfc822 = date(DATE_RFC822,$model->time);
+                //     $model->message = strip_tags($model->message);
 
-                    if(!$model->save()){
-                        return json_encode($model->errors);
-                    }
-                }
+                //     if(!$model->save()){
+                //         return json_encode($model->errors);
+                //     }
+                // }
                 
                 $messages = ChatModel::getPreviousMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
                 $result = json_encode($messages);
-                echo "<pre>";
-                print_r($result);
-                die();
-                return $model->first_message_id;
+                // echo "<pre>";
+                // print_r($messages);
+                // die();
+                return $result;
 
             }
 

@@ -28,7 +28,7 @@ class ChatTopic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['topic'], 'required'],
+            [['topic', 'client_id', 'expert_id'], 'required'],
             [['topic'], 'string', 'max' => 225],
             [['client_id', 'expert_id'], 'integer'],
         ];
@@ -54,4 +54,30 @@ class ChatTopic extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Chat::className(), ['topic_id' => 'id']);
     }
+
+    public function getExpert(){
+         return $this->hasOne(Expert::className(), ['id' => 'expert_id']);
+    }
+    
+    public function getClient(){
+        return $this->hasOne(Client::className(), ['id' => 'client_id']);
+    }
+
+    public static function getTopic($topic)
+    {
+        $model = self::findOne($topic);
+        
+        $out=[];
+        
+        $out[$model->id]=[
+            'client_id' => $model->client_id,
+            'expert_id' => $model->expert_id,
+            'expert_user_id' => $model->expert->user_id,
+            'topic_name' => $model->topic,
+            'topic_id' => $model->id,
+        ];
+        ksort($out);
+        return $out;
+    }
+
 }

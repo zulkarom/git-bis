@@ -62,29 +62,9 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                               </div>
                               <div class="media py-10 px-0 align-items-center">
                                  <div class="media-body" align="center">
-                                  <p class="font-size-16">
-                                    <?php echo Html::button('Create Topic', ['value' => Url::to(['/chat/chat-topic/create']), 'class' => 'btn btn-rounded btn-secondary', 'id' => 'modalButton']);
-                    
-                                          Modal::begin([
-                                              'title' => '<h4>Create Topic</h4>',
-                                              'id' =>'createTopic',
-                                              'size' => 'modal-md'
-                                          ]);
+                                  <p class="font-size-16 new-topic">
 
-                                      echo '<div id="formCreateTopic"></div>';
-
-                                      Modal::end();
-
-                                      $this->registerJs('
-                                        $(function(){
-                                          $("#modalButton").click(function(){
-                                              $("#createTopic").modal("show")
-                                                .find("#formCreateTopic")
-                                                .load($(this).attr("value"));
-                                          });
-                                        });
-                                        ');
-                                      ?>
+                                    
                                   </p>
                                 </div>
                               </div>
@@ -127,10 +107,12 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
         </div>
 
         <div class="box-body px-0">
-          <div class="align-items-center btn-previous-message" align="center">
-              
-          </div>
+          
             <div class="chat-box-one">
+              <div class="btn-previous-message" align="center">
+              
+              </div>
+              <br/>
               <div id="chat-box"></div>
             </div>
         </div>
@@ -174,6 +156,7 @@ function getTopic(element){
           if(result){
             var data = JSON.parse(result);
             var str = '';
+            var topicStr ='';
             // console.log(result);
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
@@ -181,14 +164,22 @@ function getTopic(element){
                   str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div></div>';
 
                 }
-            }
-            // console.log(str);
-            $('.topic-name').html(str);
+            }                        
+                                    
+            var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
 
+            $('.new-topic').html(topicStr);
+
+            $('.topic-name').html(str);
 
             $('.topic-chat').click(function(){
               // alert($(this).data('topic'));
               getTargetChat($(this));
+            });
+
+            $('#submit-topic').click(function(){
+
+                createtopic(this,true);
             });
             
           }
@@ -305,8 +296,15 @@ $('.send-topic').click(function(){
   $('#panel-topic').addClass('active');
   $('#panel-expert').removeClass('active');
 
+  $('#a-expert').click(function(){
+      $('.btn-send-message').html('');
+      $('.btn-previous-message').html('');
+      $('#chat-box').html('');
+  });
 
   getTopic($(this));
+
+
 
     // alert($(this).data('client'));
 });
@@ -317,6 +315,43 @@ $('.send-topic').click(function(){
 $this->registerJs($js);
 
 $script="
+
+//Create Topic
+function createtopic(button,submitTopic) {
+    
+    $.ajax({
+        url: '".Url::to(['/chat/default/create-topic'])."',
+        type: 'POST',
+        data: {
+            'submitTopic':submitTopic,
+            'ChatTopic[client_id]': $('#submit-topic').data('client'),
+            'ChatTopic[expert_id]': $('#submit-topic').data('expert'),
+            'ChatTopic[topic]': $('#inputTopic').val()
+        },
+        success: function (data) {
+          // console.log(data);
+          var data = JSON.parse(data);
+          var str = '';
+
+          for (var key in data) {
+            var row = data[key];
+            // console.log(row);
+            str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div></div>';
+            
+          }
+          $('.topic-name').prepend(str);
+          $('#inputTopic').val('');
+          $('.topic-chat').click(function(){
+              // alert($(this).data('topic'));
+              getTargetChat($(this));
+            });
+          $('#exampleModalLong').modal('hide');
+        }
+    });
+}
+
+
+//Send Chat
 function sendchat(button,sendMessage) {
 
   var last = $('#chat-box .card-msg').last().attr('id');
@@ -334,7 +369,7 @@ function sendchat(button,sendMessage) {
             'ChatModel[message]': $('#chat-message').val()
         },
         success: function (data) {
-          
+          // console.log(data);
         var data = JSON.parse(data);
           var chatstr = '';
 
@@ -358,6 +393,7 @@ setInterval(function () {
   }, 5000 );
 
 
+//Load Previous Chat
 function loadchat(button,loadMessage) {
 
 var first = $('#chat-box .card-msg').first().attr('id');
@@ -373,17 +409,17 @@ alert($('#load-message').data('url'));
             'ChatModel[topic_id]': $('#load-message').data('topic'),
             'ChatModel[first_message_id]': first,
         },
-        success: function (result) {
-          console.log(result);
-        // var data = JSON.parse(result);
-        //   var chatstr = '';
+        success: function (data) {
+          // console.log(data);
+        var data = JSON.parse(data);
+          var chatstr = '';
 
-        //    for (var key in data) {
-        //       var row = data[key];
-        //       // console.log(row);
-        //       chatstr += messageBox(row);
-        //     }
-        // $('#chat-box').append(chatstr);
+           for (var key in data) {
+              var row = data[key];
+              // console.log(row);
+              chatstr += messageBox(row);
+            }
+        $('#chat-box').prepend(chatstr);
         }
     });
   

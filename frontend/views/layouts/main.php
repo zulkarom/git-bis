@@ -57,6 +57,8 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
   <div class="content-wrapper">
       <div class="container-full">
         <!-- Content Header (Page header) -->
+        <?php if(Yii::$app->controller->module->id != 'chat'){
+            ?>
         <div class="content-header">
             <div class="d-flex align-items-center">
                 <div class="w-p100 d-md-flex align-items-center justify-content-between">
@@ -78,6 +80,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                 
             </div>
         </div>
+    <?php } ?>
         <!-- Main content -->
         <section class="content">
             <?= Alert::widget() ?>
