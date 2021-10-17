@@ -66,7 +66,7 @@ class ChatModel extends \yii\db\ActiveRecord
     }
 
 
-    public static function getMessages($expert, $numberLastMessages, $tid)
+    public static function getMessages($user, $numberLastMessages, $tid)
     {
         $messages = self::find()
         ->alias('a')
@@ -76,12 +76,12 @@ class ChatModel extends \yii\db\ActiveRecord
             
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
-                ['recipient_id' => $expert],
+                ['recipient_id' => $user],
                 ['topic_id' => $tid],
             ])
             
             ->orFilterWhere(['and',
-                ['sender_id' => $expert],
+                ['sender_id' => $user],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
             ])
@@ -106,7 +106,7 @@ class ChatModel extends \yii\db\ActiveRecord
         return $out;
     }
 
-     public static function getRecentMessages($expert, $numberLastMessages, $tid, $last_message_id)
+     public static function getRecentMessages($user, $numberLastMessages, $tid, $last_message_id)
     {
         $messages = self::find()
         ->alias('a')
@@ -114,13 +114,13 @@ class ChatModel extends \yii\db\ActiveRecord
         ->joinWith(['sender s', 'recipient r'])
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
-                ['recipient_id' => $expert],
+                ['recipient_id' => $user],
                 ['topic_id' => $tid],
                 ['>','a.id',$last_message_id],
             ])
             
             ->orFilterWhere(['and',
-                ['sender_id' => $expert],
+                ['sender_id' => $user],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
                 ['>','a.id',$last_message_id],
@@ -146,7 +146,7 @@ class ChatModel extends \yii\db\ActiveRecord
         return $out;
     }
 
-    public static function getPreviousMessages($expert, $numberLastMessages, $tid, $first_message_id)
+    public static function getPreviousMessages($user, $numberLastMessages, $tid, $first_message_id)
     {
         $messages = self::find()
         ->alias('a')
@@ -155,13 +155,13 @@ class ChatModel extends \yii\db\ActiveRecord
         ->limit($numberLastMessages)
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
-                ['recipient_id' => $expert],
+                ['recipient_id' => $user],
                 ['topic_id' => $tid],
                 ['<','a.id',$first_message_id],
             ])
             
             ->orFilterWhere(['and',
-                ['sender_id' => $expert],
+                ['sender_id' => $user],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
                 ['<','a.id',$first_message_id],

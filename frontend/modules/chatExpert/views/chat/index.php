@@ -5,11 +5,6 @@ use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 ChatAsset::register($this); 
 
-
-// $this->title = 'Consultation Chat';
-// $this->params['breadcrumbs'][] = ['label' => 'Consultation', 'url' => ['/client/expert/index']];
-// $this->params['breadcrumbs'][] = ['label' => 'Chat Topic', 'url' => ['/chat/chat-topic/index', 'id' => $expert->id]];
-// $this->params['breadcrumbs'][] = $this->title;
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchniaga');
 
 ?>
@@ -29,13 +24,13 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                       <div class="chat-box-one-side">
                         <div class="media-list media-list-hover">
                           <?php foreach ($model as $clientEx): ?>
-                            <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-expert-user-id="<?= $clientEx->expert->user_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
+                            <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-client-user-id="<?= $clientEx->client->user_id?>" data-client-name="<?=$clientEx->client->user->fullname?>" data-client-profile="<?=Url::to(['/expert/profile/client-image', 'id' => $clientEx->client->user->id])?>">
                             <a class="avatar avatar-lg status-danger" href="#">
-                              <img src="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>" alt="...">
+                              <img src="<?=Url::to(['/expert/profile/client-image', 'id' => $clientEx->client->user->id])?>" alt="...">
                             </a>
                             <div class="media-body">
                               <p class="font-size-16">
-                                <a class="hover-primary" href="#"><?=$clientEx->expert->user->fullname?></a>
+                                <a class="hover-primary" href="#"><?=$clientEx->client->user->fullname?></a>
                               </p>
                             </div>
                             <div class="media-right">
@@ -48,7 +43,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                   </div>
                   <div class="tab-pane" id="panel-topic" role="tabpanel">                                    
                       
-                      <div id='scroll-msj' class="chat-box-one-side">
+                      <div class="chat-box-one-side">
                           <div class="media-list media-list-hover ">
 
                             <div class="exp-details">
@@ -74,11 +69,11 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
         <div class="box-header px-0">
           <div class="media align-items-center p-0">
             <a class="avatar avatar-lg status-success mx-0" href="#">
-              <img src="" class="rounded-circle exp-profile2" alt="...">
+              <img src="" class="rounded-circle cl-profile2" alt="...">
             </a>
             <div class="media-body">
               <p class="font-size-16">
-                <a class="hover-primary exp-name2" href="#"><strong></strong></a>
+                <a class="hover-primary cl-name2" href="#"><strong></strong></a>
               </p>
                 2 day ago
             </div>
@@ -114,47 +109,46 @@ $js = "
 function getTopic(element){
 
     var val = element.data('client');
-    var val2 = element.data('expert-name');
+    var val2 = element.data('client-name');
     var val3 = element.data('expert-id');
-    var val4 = element.data('expert-user-id');
-    var val5 = element.data('expert-profile');
+    var val4 = element.data('client-user-id');
+    var val5 = element.data('client-profile');
 
     var expStr ='';
-    expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\" align=\"center\"><p class=\"font-size-16 new-topic\"></p></div></div>';
+    expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div>';
 
     $('.exp-details').html(expStr);
 
-    
-    // $('.exp-name').html(val2);
-    // $('.exp-profile').attr('src',element.data('expert-profile'));
+    // $('.cl-name').html(val2);
+    // $('.cl-profile').attr('src',element.data('client-profile'));
 
-    $('.exp-name2').html(val2);
-    $('.exp-profile2').attr('src',element.data('expert-profile'));
+    $('.cl-name2').html(val2);
+    $('.cl-profile2').attr('src',element.data('client-profile'));
 
     $.ajax({
-        url: '".Url::to(['/chat/chat-test/get-topics'])."',
+        url: '".Url::to(['/chatExpert/chat/get-topics'])."',
         type: 'POST',
         data: {
           client_id: val, 
           expert_id: val3
         },
         success: function (result) {
+          // console.log(result);
           if(result){
             var data = JSON.parse(result);
             var str = '';
             var topicStr ='';
-            // console.log(result);
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
 
-                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div></div>';
+                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div></div>';
 
                 }
             }                        
                                     
-            var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
+            /*var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
 
-            $('.new-topic').html(topicStr);
+            $('.new-topic').html(topicStr);*/
 
             $('.topic-name').html(str);
 
@@ -163,10 +157,10 @@ function getTopic(element){
               updateScroll();
             });
 
-            $('#submit-topic').click(function(){
+            /*$('#submit-topic').click(function(){
 
                 createtopic(this,true);
-            });
+            });*/
             
           }
         }
@@ -175,21 +169,23 @@ function getTopic(element){
 }
 
 function getTargetChat(element){
-    var expert_id = element.data('exp-id');
+    var client_id = element.data('cl-id');
     var topic_id = element.data('topic');
     var user_id = '".Yii::$app->user->identity->id."';
-    var exp_user_id = element.data('exp-user-id');
-
-    // console.log();
-
+    var cl_user_id = element.data('cl-user-id');
+    console.log(topic_id);
     $.ajax({
-        url: '".Url::to(['/chat/default/index'])."',
+        url: '".Url::to(['/chatExpert/default/index'])."',
         type: 'POST',
         data: {
-          id: expert_id, 
-          tid: topic_id
+          id: client_id, 
+          tid: topic_id,
+          cuser_id: cl_user_id 
         },
         success: function (result) {
+
+          console.log(result);
+
           var data = JSON.parse(result);
           var chatstr = '';
           var btnsendstr ='';
@@ -201,14 +197,14 @@ function getTargetChat(element){
               chatstr += messageBox(row);
             }
 
-            var dataUrl = '".Url::to(['/chat/default/send-message'])."';
-            var loadUrl = '".Url::to(['/chat/default/load-message'])."';
+            var dataUrl = '".Url::to(['/chatExpert/default/send-message'])."';
+            var loadUrl = '".Url::to(['/chatExpert/default/load-message'])."';
             
-            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
-            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
-            btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
+            btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
 
             $('.btn-send-message').html(btnsendstr);
             $('.btn-previous-message').html(btnprevstr);
@@ -242,13 +238,13 @@ function messageBox(row){
       
   }else{
       client = false;
-      role = 'expert';
+      role = 'client';
   }
 
   if(client){
 
     var sender_id = row['sender_id'];
-    var url = '".Url::to(['/client/profile/profile-image', 'id' => ''])."' + sender_id;
+    var url = '".Url::to(['/expert/profile/profile-image', 'id' => ''])."' + sender_id;
 
       str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
 
@@ -257,7 +253,7 @@ function messageBox(row){
   }else{
 
     var sender_id = row['sender_id'];
-    var url = '".Url::to(['/client/profile/expert-image', 'id' => ''])."' + sender_id;
+    var url = '".Url::to(['/expert/profile/client-image', 'id' => ''])."' + sender_id;
 
       str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
 
@@ -267,10 +263,30 @@ function messageBox(row){
 
 
 function updateScroll(){
-    var element = document.getElementById('scroll-msj');
-    // element.scrollTop = element.scrollHeight;
-     element.scrollTop = element.scrollHeight - element.clientHeight;
+  $('.slimScrollBar').scrollTop($('.slimScrollBar')[0].scrollHeight);
 }
+
+// function updateScroll(){
+
+
+//   var out = document.getElementsByClassName('slimScrollBar');
+//   alert(out.scrollHeight);
+//   var c = 0;
+//   var add = setInterval(function() {
+//       // allow 1px inaccuracy by adding 1
+//       var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
+//       console.log(out.scrollHeight - out.clientHeight,  out.scrollTop + 1);
+//       if(isScrolledToBottom)
+//         out.scrollTop = out.scrollHeight - out.clientHeight;
+//   });
+
+// }
+
+
+// $('#slimScrollBar').on('scroll', function(){
+//     scrolled=true;
+// });
+
 
 
 $('.send-topic').click(function(){
