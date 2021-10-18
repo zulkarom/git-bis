@@ -48,7 +48,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                   </div>
                   <div class="tab-pane" id="panel-topic" role="tabpanel">                                    
                       
-                      <div id='scroll-msj' class="chat-box-one-side">
+                      <div class="chat-box-one-side">
                           <div class="media-list media-list-hover ">
 
                             <div class="exp-details">
@@ -87,7 +87,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 
         <div class="box-body px-0">
           
-            <div class="chat-box-one">
+            <div id="scroll-msj" class="chat-box-one">
               <div class="btn-previous-message" align="center">
               
               </div>
@@ -143,11 +143,11 @@ function getTopic(element){
             var data = JSON.parse(result);
             var str = '';
             var topicStr ='';
-            // console.log(result);
+            console.log(result);
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
 
-                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div></div>';
+                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" class=\"bc-add-item\" data-title=\"\" href=\"\" value=\"\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+key+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
 
                 }
             }                        
@@ -160,13 +160,20 @@ function getTopic(element){
 
             $('.topic-chat').click(function(){
               getTargetChat($(this));
-              updateScroll();
+             
             });
 
             $('#submit-topic').click(function(){
 
                 createtopic(this,true);
             });
+
+            $('.delete-topic').click(function(){
+
+                deletetopic($(this));
+            });
+
+            
             
           }
         }
@@ -175,6 +182,10 @@ function getTopic(element){
 }
 
 function getTargetChat(element){
+
+    // var scrollDown_int = $('#chat-box')[0].scrollHeight;
+    // $('#chat-box').scrollTop(scrollDown_int);
+
     var expert_id = element.data('exp-id');
     var topic_id = element.data('topic');
     var user_id = '".Yii::$app->user->identity->id."';
@@ -224,7 +235,10 @@ function getTargetChat(element){
                 loadchat(this,true);
             });
 
-
+             $('.chat-box-one').slimScroll({
+                height: '549',
+                start:'bottom'
+              });
 
 
         }
@@ -265,12 +279,6 @@ function messageBox(row){
   }
 }
 
-
-function updateScroll(){
-    var element = document.getElementById('scroll-msj');
-    // element.scrollTop = element.scrollHeight;
-     element.scrollTop = element.scrollHeight - element.clientHeight;
-}
 
 
 $('.send-topic').click(function(){
@@ -337,6 +345,23 @@ function createtopic(button,submitTopic) {
     });
 }
 
+//Delete Topic
+function deletetopic(element){
+
+  var topic_id = element.data('topic');
+
+  $.ajax({
+      url: '".Url::to(['/chat/default/delete-topic'])."',
+      type: 'POST',
+      data: {
+        tid: topic_id
+      },
+      success: function (result) {
+        alert(result);
+      }
+  });
+
+}
 
 //Send Chat
 function sendchat(button,sendMessage) {
@@ -421,9 +446,9 @@ $('#load-message').click(function(){
   loadchat(this,true);
 });
 
-setInterval(function () { 
-// sendchat(null,false); 
-}, 5000 );
+/*setInterval(function () { 
+  sendchat(null,false); 
+}, 5000 );*/
 
 ";
 

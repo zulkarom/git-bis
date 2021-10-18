@@ -75,36 +75,44 @@ class DefaultController extends Controller
             return '';
         }
 
-
         $post = Yii::$app->request->post();
         // return json_encode($post) ;
 
-            $model = new ChatTopic();
-            
-            if ($model->load(Yii::$app->request->post()))
-            {
-
-                if ($post['submitTopic']=='true'){
-
-                    $model->topic = $model->topic;
-
-                    if(!$model->save()){
-                        return json_encode($model->errors);
-                    }
-                }
-                
-                $data = ChatTopic::getTopic($model->id);
-
-                // echo "<pre>";
-                // print_r($data);
-                // die();
-                $result = json_encode($data);
-                return $result;
-
-            }
-
+        $model = new ChatTopic();
         
+        if ($model->load(Yii::$app->request->post()))
+        {
+
+            if ($post['submitTopic']=='true'){
+
+                $model->topic = $model->topic;
+
+                if(!$model->save()){
+                    return json_encode($model->errors);
+                }
+            }
+            
+            $data = ChatTopic::getTopic($model->id);
+
+            // echo "<pre>";
+            // print_r($data);
+            // die();
+            $result = json_encode($data);
+            return $result;
+        }
     }
+
+   public function actionDeleteTopic()
+    {
+        $tid = Yii::$app->request->post('tid');
+
+        $model = ChatTopic::findOne($tid);
+        $model->delete();
+        ChatModel::deleteAll(['topic_id' => $tid]);
+        $result = 'Delete Success';
+        return $result;
+    }
+
 
     public function actionSendMessage()
     {
