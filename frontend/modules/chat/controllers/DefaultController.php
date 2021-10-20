@@ -102,16 +102,42 @@ class DefaultController extends Controller
         }
     }
 
-   public function actionDeleteTopic()
+    public function actionDeleteTopic()
     {
-        $tid = Yii::$app->request->post('tid');
+        if (Yii::$app->user->isGuest){
+            return '';
+        }
+        $post = Yii::$app->request->post();
+        //return json_encode($post) ;
 
-        $model = ChatTopic::findOne($tid);
-        $model->delete();
-        ChatModel::deleteAll(['topic_id' => $tid]);
-        $result = 'Delete Success';
-        return $result;
+            $model = new ChatTopic();
+            
+            if ($model->load(Yii::$app->request->post()))
+            {
+                
+                // $messages = ChatTopic::deleteTopic($model->id);
+                // $result = json_encode($messages);
+
+                return $model->id;
+
+            }
+
+        
     }
+
+   // public function actionDeleteTopic()
+   //  {
+   //      $tid = Yii::$app->request->post('tid');
+
+   //      // echo $tid;
+   //      // die();
+   //      ChatModel::deleteAll(['topic_id' => $tid]);
+   //      $model = ChatTopic::findOne($tid);
+   //      $model->delete();
+        
+   //      $result = 'Delete Success';
+   //      return $result;
+   //  }
 
 
     public function actionSendMessage()
@@ -161,22 +187,9 @@ class DefaultController extends Controller
             if ($model->load(Yii::$app->request->post()))
             {
 
-               // return 'xxxxxxxxx' . $model->recipient_id;
-                // if ($post['loadMessage']=='true'){
-                //     $model->time = time();
-                //     $model->rfc822 = date(DATE_RFC822,$model->time);
-                //     $model->message = strip_tags($model->message);
-
-                //     if(!$model->save()){
-                //         return json_encode($model->errors);
-                //     }
-                // }
                 
                 $messages = ChatModel::getPreviousMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
                 $result = json_encode($messages);
-                // echo "<pre>";
-                // print_r($messages);
-                // die();
                 return $result;
 
             }

@@ -170,7 +170,8 @@ function getTopic(element){
 
             $('.delete-topic').click(function(){
 
-                deletetopic($(this));
+                // deletetopic($(this));
+                deletetopic(this,true);
             });
 
             
@@ -264,7 +265,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/client/profile/profile-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
+      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-chat=\"\" class=\"delete-msg dropdown-item\" href=\"#\">Delete</a></div></div></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"\"></p></div></div></div><div class=\"clearfix\"></div>';
 
       return str;
 
@@ -277,6 +278,13 @@ function messageBox(row){
 
           return str;
   }
+
+  // $('.delete-msg').click(function(){
+
+  //     // deletetopic($(this));
+  //     // deletetopic(this,true);
+  //     alert('hello');
+  // });
 }
 
 
@@ -346,7 +354,24 @@ function createtopic(button,submitTopic) {
 }
 
 //Delete Topic
-function deletetopic(element){
+function deletetopic(button,deleteTopic) {
+  // alert($('.delete-topic').data('topic'));
+    
+    $.ajax({
+        url: '".Url::to(['/chat/default/delete-topic'])."',
+        type: 'POST',
+        data: {
+            'deleteTopic':deleteTopic,
+            'ChatTopic[id]': $('.delete-topic').data('topic')
+        },
+        success: function (data) {
+          console.log(data);
+        }
+    });
+}
+
+//Delete Topic
+/*function deletetopic(element){
 
   var topic_id = element.data('topic');
 
@@ -361,7 +386,7 @@ function deletetopic(element){
       }
   });
 
-}
+}*/
 
 //Send Chat
 function sendchat(button,sendMessage) {
@@ -405,6 +430,7 @@ $('#send-message').click(function(){
 });
 
 setInterval(function () { 
+  deletetopic(null,false);
   sendchat(null,false); 
   }, 3000 );
 

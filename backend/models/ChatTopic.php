@@ -80,4 +80,15 @@ class ChatTopic extends \yii\db\ActiveRecord
         return $out;
     }
 
+    public static function deleteTopic($topic)
+    {
+
+        ChatModel::deleteAll(['topic_id' => $topic]);
+        $model = self::findOne($topic);
+        
+        $model->delete();
+        
+        $result = 'Delete Success';
+        return $result;
+    }
 }
