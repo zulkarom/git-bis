@@ -112,5 +112,16 @@ class DefaultController extends Controller
             return $result;
         }
     }
+
+    public function actionDeleteMessage()
+    {
+
+        $chat_id = Yii::$app->request->post('cid');
+
+        $model = ChatModel::findOne($chat_id);
+        $model->delete();
+        
+        return $chat_id;
+    }
 }
 

@@ -220,7 +220,10 @@ function getTargetChat(element){
                 loadchat(this,true);
             });
 
+            $('.delete-msg').click(function(){
 
+                deletemessage($(this));
+            });
 
 
         }
@@ -246,7 +249,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/expert/profile/profile-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
+      str = '<div id=\"msg-'+row['chat_id']+'\" class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\">09:41</span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-chat=\"'+row['chat_id']+'\" class=\"delete-msg dropdown-item\" href=\"#\">Delete</a></div></div></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
 
       return str;
 
@@ -353,6 +356,26 @@ function createtopic(button,submitTopic) {
     });
 }
 
+// Delete Message
+function deletemessage(element){
+
+  var chat_id = element.data('chat');
+
+  $.ajax({
+      url: '".Url::to(['/chat/default/delete-message'])."',
+      type: 'POST',
+      data: {
+        cid: chat_id
+      },
+      success: function (result) {
+        console.log('Delete Success');
+        $('#msg-'+result).empty();
+        $('#msg-'+result).remove();
+      }
+  });
+
+}
+
 
 //Send Chat
 function sendchat(button,sendMessage) {
@@ -382,11 +405,16 @@ function sendchat(button,sendMessage) {
               chatstr += messageBox(row);
             }
 
-        if(sendMessage){
-          $('#chat-message').val('');
-        }
+          if(sendMessage){
+            $('#chat-message').val('');
+          }
 
-        $('#chat-box').append(chatstr);
+          $('#chat-box').append(chatstr);
+
+          $('.delete-msg').click(function(){
+
+              deletemessage($(this));
+          });
         }
     });
 }
@@ -404,7 +432,7 @@ setInterval(function () {
 function loadchat(button,loadMessage) {
 
 var first = $('#chat-box .card-msg').first().attr('id');
-alert($('#load-message').data('url'));
+// alert(first);
 
     $.ajax({
         url: $('#load-message').data('url'),
@@ -426,7 +454,12 @@ alert($('#load-message').data('url'));
               // console.log(row);
               chatstr += messageBox(row);
             }
-        $('#chat-box').prepend(chatstr);
+          $('#chat-box').prepend(chatstr);
+
+          $('.delete-msg').click(function(){
+
+              deletemessage($(this));
+          });
         }
     });
   

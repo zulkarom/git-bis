@@ -56,7 +56,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                 
                             </div>
 
-                            <div class="topic-name">
+                            <div  class="topic-name">
                                
                                 
                             </div>
@@ -147,7 +147,7 @@ function getTopic(element){
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
 
-                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" class=\"bc-add-item\" data-title=\"\" href=\"\" value=\"\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+key+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
+                  str += '<div id=\"topic-'+key+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+key+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + data[key] + '</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" class=\"bc-add-item\" data-title=\"\" href=\"\" value=\"\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+key+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
 
                 }
             }                        
@@ -170,8 +170,7 @@ function getTopic(element){
 
             $('.delete-topic').click(function(){
 
-                // deletetopic($(this));
-                deletetopic(this,true);
+                deletetopic($(this));
             });
 
             
@@ -236,13 +235,18 @@ function getTargetChat(element){
                 loadchat(this,true);
             });
 
-             $('.chat-box-one').slimScroll({
-                height: '549',
-                start:'bottom'
-              });
+             // $('.chat-box-one').slimScroll({
+             //    height: '549',
+             //    start:'bottom'
+             //  });
 
+            $('.delete-msg').click(function(){
 
+                deletemessage($(this));
+            });
         }
+
+
     });
 
 }
@@ -265,7 +269,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/client/profile/profile-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-chat=\"\" class=\"delete-msg dropdown-item\" href=\"#\">Delete</a></div></div></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"\"></p></div></div></div><div class=\"clearfix\"></div>';
+      str = '<div id=\"msg-'+row['chat_id']+'\" class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\">09:41</span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-chat=\"'+row['chat_id']+'\" class=\"delete-msg dropdown-item\" href=\"#\">Delete</a></div></div></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
 
       return str;
 
@@ -274,17 +278,12 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/client/profile/expert-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
+      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\">09:41</span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
 
           return str;
   }
 
-  // $('.delete-msg').click(function(){
-
-  //     // deletetopic($(this));
-  //     // deletetopic(this,true);
-  //     alert('hello');
-  // });
+  
 }
 
 
@@ -339,10 +338,16 @@ function createtopic(button,submitTopic) {
           for (var key in data) {
             var row = data[key];
             // console.log(row);
-            str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div></div>';
+
+            str += '<div id=\"topic-'+row['topic_id']+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+row['topic_id']+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
             
           }
           $('.topic-name').prepend(str);
+
+          $('.delete-topic').click(function(){
+              deletetopic($(this));
+          });
+
           $('#inputTopic').val('');
           $('.topic-chat').click(function(){
               // alert($(this).data('topic'));
@@ -354,39 +359,49 @@ function createtopic(button,submitTopic) {
 }
 
 //Delete Topic
-function deletetopic(button,deleteTopic) {
-  // alert($('.delete-topic').data('topic'));
-    
-    $.ajax({
-        url: '".Url::to(['/chat/default/delete-topic'])."',
-        type: 'POST',
-        data: {
-            'deleteTopic':deleteTopic,
-            'ChatTopic[id]': $('.delete-topic').data('topic')
-        },
-        success: function (data) {
-          console.log(data);
-        }
-    });
-}
-
-//Delete Topic
-/*function deletetopic(element){
+function deletetopic(element){
 
   var topic_id = element.data('topic');
-
-  $.ajax({
+  if(confirm('Are you sure to delete this topic? All related messages will also be deleted')){
+    $.ajax({
       url: '".Url::to(['/chat/default/delete-topic'])."',
       type: 'POST',
       data: {
         tid: topic_id
       },
       success: function (result) {
-        alert(result);
+        
+            console.log('Delete Success');
+            $('#topic-'+result).remove();
+            $('.btn-send-message').html('');
+            $('.btn-previous-message').html('');
+            $('#chat-box').html('');
+        
+      }
+    });
+  }
+
+}
+
+// Delete Message
+function deletemessage(element){
+
+  var chat_id = element.data('chat');
+
+  $.ajax({
+      url: '".Url::to(['/chat/default/delete-message'])."',
+      type: 'POST',
+      data: {
+        cid: chat_id
+      },
+      success: function (result) {
+        console.log('Delete Success');
+        $('#msg-'+result).empty();
+        $('#msg-'+result).remove();
       }
   });
 
-}*/
+}
 
 //Send Chat
 function sendchat(button,sendMessage) {
@@ -416,11 +431,16 @@ function sendchat(button,sendMessage) {
               chatstr += messageBox(row);
             }
 
-        if(sendMessage){
-          $('#chat-message').val('');
-        }
+          if(sendMessage){
+            $('#chat-message').val('');
+          }
 
-        $('#chat-box').append(chatstr);
+          $('#chat-box').append(chatstr);
+
+          $('.delete-msg').click(function(){
+
+              deletemessage($(this));
+          });
         }
     });
 }
@@ -430,7 +450,6 @@ $('#send-message').click(function(){
 });
 
 setInterval(function () { 
-  deletetopic(null,false);
   sendchat(null,false); 
   }, 3000 );
 
@@ -439,7 +458,7 @@ setInterval(function () {
 function loadchat(button,loadMessage) {
 
 var first = $('#chat-box .card-msg').first().attr('id');
-alert($('#load-message').data('url'));
+// alert(first);
 
     $.ajax({
         url: $('#load-message').data('url'),
@@ -461,7 +480,12 @@ alert($('#load-message').data('url'));
               // console.log(row);
               chatstr += messageBox(row);
             }
-        $('#chat-box').prepend(chatstr);
+          $('#chat-box').prepend(chatstr);
+
+          $('.delete-msg').click(function(){
+
+              deletemessage($(this));
+          });
         }
     });
   
@@ -471,10 +495,6 @@ alert($('#load-message').data('url'));
 $('#load-message').click(function(){
   loadchat(this,true);
 });
-
-/*setInterval(function () { 
-  sendchat(null,false); 
-}, 5000 );*/
 
 ";
 

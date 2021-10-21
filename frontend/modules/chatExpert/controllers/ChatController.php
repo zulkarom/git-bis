@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
  */
 class ChatController extends Controller
 {
+    public $layout = '//main-expert';
     /**
      * {@inheritdoc}
      */

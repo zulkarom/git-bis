@@ -56,7 +56,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
   <div class="content-wrapper">
       <div class="container-full">
         <!-- Content Header (Page header) -->
-        <?php if(Yii::$app->controller->module->id != 'chat'){
+        <?php if(Yii::$app->controller->module->id != 'chatExpert'){
             ?>
         <div class="content-header">
             <div class="d-flex align-items-center">

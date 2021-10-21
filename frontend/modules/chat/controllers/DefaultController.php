@@ -102,42 +102,16 @@ class DefaultController extends Controller
         }
     }
 
-    public function actionDeleteTopic()
+   public function actionDeleteTopic()
     {
-        if (Yii::$app->user->isGuest){
-            return '';
-        }
-        $post = Yii::$app->request->post();
-        //return json_encode($post) ;
+        $tid = Yii::$app->request->post('tid');
 
-            $model = new ChatTopic();
-            
-            if ($model->load(Yii::$app->request->post()))
-            {
-                
-                // $messages = ChatTopic::deleteTopic($model->id);
-                // $result = json_encode($messages);
-
-                return $model->id;
-
-            }
-
+        ChatModel::deleteAll(['topic_id' => $tid]);
+        $model = ChatTopic::findOne($tid);
+        $model->delete();
         
+        return $tid;
     }
-
-   // public function actionDeleteTopic()
-   //  {
-   //      $tid = Yii::$app->request->post('tid');
-
-   //      // echo $tid;
-   //      // die();
-   //      ChatModel::deleteAll(['topic_id' => $tid]);
-   //      $model = ChatTopic::findOne($tid);
-   //      $model->delete();
-        
-   //      $result = 'Delete Success';
-   //      return $result;
-   //  }
 
 
     public function actionSendMessage()
@@ -195,6 +169,17 @@ class DefaultController extends Controller
             }
 
         
+    }
+
+    public function actionDeleteMessage()
+    {
+
+        $chat_id = Yii::$app->request->post('cid');
+
+        $model = ChatModel::findOne($chat_id);
+        $model->delete();
+        
+        return $chat_id;
     }
     
 }
