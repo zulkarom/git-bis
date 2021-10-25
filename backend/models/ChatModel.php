@@ -40,6 +40,7 @@ class ChatModel extends \yii\db\ActiveRecord
         return [
             [['time','recipient_id','sender_id', 'message'], 'required'],
             [['time','recipient_id','sender_id', 'topic_id', 'last_message_id', 'first_message_id'], 'integer'],
+            [['is_read'], 'integer', 'max' => 1],
             [['rfc822'], 'string', 'max' => 50],
             [['message'], 'string'],
         ];
@@ -100,6 +101,7 @@ class ChatModel extends \yii\db\ActiveRecord
                     'sender_id' => $message->sender_id,
                     'recipient_id' => $message->recipient_id,
                     'chat_id' => $message->id,
+                    'is_read' => $message->is_read,
                 ];
         }
         ksort($out);
@@ -140,6 +142,7 @@ class ChatModel extends \yii\db\ActiveRecord
                     'sender_id' => $message->sender_id,
                     'recipient_id' => $message->recipient_id,
                     'chat_id' => $message->id,
+                    'is_read' => $message->is_read,
                 ];
         }
         ksort($out);

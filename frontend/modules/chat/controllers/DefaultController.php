@@ -43,6 +43,7 @@ class DefaultController extends Controller
         $topicModel = ChatTopic::findOne($tid);
         $user = Yii::$app->user->identity;
 
+        ChatModel::updateAll(['is_read' => 1], ['topic_id' => $tid, 'recipient_id' => $user]);
         $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages, $tid);
 
         $result = json_encode($messages);
@@ -134,6 +135,7 @@ class DefaultController extends Controller
                     $model->time = time();
                     $model->rfc822 = date(DATE_RFC822,$model->time);
                     $model->message = strip_tags($model->message);
+                    $model->is_read = 0;
                     if(!$model->save()){
                         return json_encode($model->errors);
                     }

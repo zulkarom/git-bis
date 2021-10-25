@@ -14,6 +14,7 @@ use Yii;
  */
 class ChatTopic extends \yii\db\ActiveRecord
 {
+    public $count_chat;
     /**
      * {@inheritdoc}
      */
@@ -52,7 +53,7 @@ class ChatTopic extends \yii\db\ActiveRecord
      */
     public function getChats()
     {
-        return $this->hasMany(Chat::className(), ['topic_id' => 'id']);
+        return $this->hasMany(ChatModel::className(), ['topic_id' => 'id']);
     }
 
     public function getExpert(){
