@@ -78,7 +78,8 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                 
                             </div>
 
-                            <div  class="topic-name">
+                            <div id="current-topic"></div>
+                            <div class="topic-name">
                                
                                 
                             </div>
@@ -93,7 +94,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
   </div>
   <div class="col-lg-9 col-md-7 col-12">
       <div class="box box-transparent no-shadow">
-        <div class="box-header px-0">
+        <div id="group-header" class="box-header px-0" style="display:none">
           <div class="media align-items-center p-0">
             <a class="avatar avatar-lg status-success mx-0" href="#">
               <img src="" class="rounded-circle exp-profile2" alt="...">
@@ -118,7 +119,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
             </div>
         </div>
       </div>
-      <div class="box box-body">
+      <div id="group-msg" class="box box-body" style="display:none">
           <div class="d-flex justify-content-between align-items-center btn-send-message">
               
           </div>
@@ -133,7 +134,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 <?php
 
 $js = "
-function getTopic(element){
+function getTopic(element, init){
 
     var val = element.data('client');
     var val2 = element.data('expert-name');
@@ -141,17 +142,33 @@ function getTopic(element){
     var val4 = element.data('expert-user-id');
     var val5 = element.data('expert-profile');
 
-    var expStr ='';
-    expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\" align=\"center\"><p class=\"font-size-16 new-topic\"></p></div></div>';
+    if(init){
 
-    $('.exp-details').html(expStr);
+      var x = document.getElementById('group-header');
 
+      if (x.style.display === 'none') {
+        x.style.display = 'block';
+      } 
+
+      $('#current-topic').attr('data-client', val);
+      $('#current-topic').attr('data-expert-name', val2);
+      $('#current-topic').attr('data-expert-id', val3);
+      $('#current-topic').attr('data-expert-user-id', val4);
+      $('#current-topic').attr('data-expert-profile', val5);
     
-    // $('.exp-name').html(val2);
-    // $('.exp-profile').attr('src',element.data('expert-profile'));
+      var expStr ='';
+      expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\" align=\"center\"><p class=\"font-size-16 new-topic\"></p></div></div>';
 
-    $('.exp-name2').html(val2);
-    $('.exp-profile2').attr('src',element.data('expert-profile'));
+      $('.exp-details').html(expStr);
+
+      // $('.exp-name').html(val2);
+      // $('.exp-profile').attr('src',element.data('expert-profile'));
+
+      $('.exp-name2').html(val2);
+      $('.exp-profile2').attr('src',element.data('expert-profile'));
+    }
+    
+    
 
     $.ajax({
         url: '".Url::to(['/chat/chat-test/get-topics'])."',
@@ -174,15 +191,21 @@ function getTopic(element){
               const top_name = data[index].value;
               const unread = data[index].unread;
 
-              console.log(unread);
+              // console.log(unread);
 
               str += '<div id=\"topic-'+top_id+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div>&nbsp&nbsp<div class=\"media-right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+top_id+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
 
             }                      
-                                    
-            var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
+            if(init){                        
+              var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
 
-            $('.new-topic').html(topicStr);
+              $('.new-topic').html(topicStr);
+
+              $('#submit-topic').click(function(){
+
+                  createtopic(this,true);
+              });
+            }
 
             $('.topic-name').html(str);
 
@@ -191,10 +214,7 @@ function getTopic(element){
              
             });
 
-            $('#submit-topic').click(function(){
-
-                createtopic(this,true);
-            });
+            
 
             $('.delete-topic').click(function(){
 
@@ -211,8 +231,11 @@ function getTopic(element){
 
 function getTargetChat(element){
 
-    // var scrollDown_int = $('#chat-box')[0].scrollHeight;
-    // $('#chat-box').scrollTop(scrollDown_int);
+    var x = document.getElementById('group-msg');
+
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+    }
 
     var expert_id = element.data('exp-id');
     var topic_id = element.data('topic');
@@ -344,9 +367,14 @@ $('.send-topic').click(function(){
       $('.btn-send-message').html('');
       $('.btn-previous-message').html('');
       $('#chat-box').html('');
+
+      var x = document.getElementById('group-msg');
+      if (x.style.display === 'block') {
+        x.style.display = 'none';
+      }
   });
 
-  getTopic($(this));
+  getTopic($(this), true);
 
 });
 
@@ -381,7 +409,7 @@ function createtopic(button,submitTopic) {
             str += '<div id=\"topic-'+row['topic_id']+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+row['topic_id']+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
             
           }
-          $('.topic-name').prepend(str);
+          // $('.topic-name').prepend(str);
 
           $('.delete-topic').click(function(){
               deletetopic($(this));
@@ -490,6 +518,7 @@ $('#send-message').click(function(){
 
 setInterval(function () { 
   sendchat(null,false); 
+  getTopic($('#current-topic'), false);
   }, 3000 );
 
 

@@ -51,6 +51,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                 
                             </div>
 
+                            <div id="current-topic"></div>
                             <div class="topic-name">
                                
                                 
@@ -106,13 +107,23 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 <?php
 
 $js = "
-function getTopic(element){
+function getTopic(element, init){
+
+
 
     var val = element.data('client');
     var val2 = element.data('client-name');
     var val3 = element.data('expert-id');
     var val4 = element.data('client-user-id');
     var val5 = element.data('client-profile');
+
+    if(init){
+      $('#current-topic').attr('data-client', val);
+      $('#current-topic').attr('data-client-name', val2);
+      $('#current-topic').attr('data-expert-id', val3);
+      $('#current-topic').attr('data-client-user-id', val4);
+      $('#current-topic').attr('data-client-profile', val5);
+    }
 
     var expStr ='';
     expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div>';
@@ -143,8 +154,13 @@ function getTopic(element){
 
               const top_id = data[index].id;
               const top_name = data[index].value;
+              const unread = data[index].unread;
 
-                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div></div>';
+              if(unread == 0){
+                str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div></div>';
+              }else{
+                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
+              }
             }                        
                                     
             /*var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
@@ -266,33 +282,6 @@ function messageBox(row){
 }
 
 
-function updateScroll(){
-  $('.slimScrollBar').scrollTop($('.slimScrollBar')[0].scrollHeight);
-}
-
-// function updateScroll(){
-
-
-//   var out = document.getElementsByClassName('slimScrollBar');
-//   alert(out.scrollHeight);
-//   var c = 0;
-//   var add = setInterval(function() {
-//       // allow 1px inaccuracy by adding 1
-//       var isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
-//       console.log(out.scrollHeight - out.clientHeight,  out.scrollTop + 1);
-//       if(isScrolledToBottom)
-//         out.scrollTop = out.scrollHeight - out.clientHeight;
-//   });
-
-// }
-
-
-// $('#slimScrollBar').on('scroll', function(){
-//     scrolled=true;
-// });
-
-
-
 $('.send-topic').click(function(){
 
   $('#a-topic').addClass('active');
@@ -312,7 +301,7 @@ $('.send-topic').click(function(){
       $('#chat-box').html('');
   });
 
-  getTopic($(this));
+  getTopic($(this), true);
 
 });
 
@@ -426,6 +415,7 @@ $('#send-message').click(function(){
 
 setInterval(function () { 
   sendchat(null,false); 
+  getTopic($('#current-topic'), false);
   }, 3000 );
 
 
@@ -470,10 +460,6 @@ var first = $('#chat-box .card-msg').first().attr('id');
 $('#load-message').click(function(){
   loadchat(this,true);
 });
-
-setInterval(function () { 
-// sendchat(null,false); 
-}, 5000 );
 
 ";
 

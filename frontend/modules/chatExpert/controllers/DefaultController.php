@@ -8,6 +8,7 @@ use backend\models\ChatModel;
 use backend\models\Client;
 use yii\filters\AccessControl;
 use backend\models\ChatTopic;
+use yii\db\Expression;
 /**
  * Default controller for the `chat` module
  */
@@ -41,9 +42,9 @@ class DefaultController extends Controller
 
         $client = Client::findOne($id);
         $topicModel = ChatTopic::findOne($tid);
-        // echo $client;
-        // die();
+        $user = Yii::$app->user->identity;
 
+        ChatModel::updateAll(['is_read' => 1], ['topic_id' => $tid, 'recipient_id' => $user]);
         $messages = ChatModel::getMessages($cuser_id, $this->module->numberLastMessages, $tid);
 
         $result = json_encode($messages);
@@ -79,6 +80,7 @@ class DefaultController extends Controller
         {
            // return 'xxxxxxxxx' . $model->recipient_id;
             if ($post['sendMessage']=='true'){
+                ChatTopic::updateAll(['last_message_send' => new Expression('NOW()')], ['id' => $model->topic_id]);
                 $model->time = time();
                 $model->rfc822 = date(DATE_RFC822,$model->time);
                 $model->message = strip_tags($model->message);

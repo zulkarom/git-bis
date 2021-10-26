@@ -8,6 +8,7 @@ use backend\models\ChatModel;
 use backend\models\Expert;
 use yii\filters\AccessControl;
 use backend\models\ChatTopic;
+use yii\db\Expression;
 /**
  * Default controller for the `chat` module
  */
@@ -132,6 +133,7 @@ class DefaultController extends Controller
             {
                // return 'xxxxxxxxx' . $model->recipient_id;
                 if ($post['sendMessage']=='true'){
+                    ChatTopic::updateAll(['last_message_send' => new Expression('NOW()')], ['id' => $model->topic_id]);
                     $model->time = time();
                     $model->rfc822 = date(DATE_RFC822,$model->time);
                     $model->message = strip_tags($model->message);

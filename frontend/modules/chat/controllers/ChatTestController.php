@@ -73,7 +73,7 @@ class ChatTestController extends Controller
         $topics = ChatTopic::find()
                 ->where(['client_id' => $client_id])
                 ->andWhere(['expert_id' => $expert_id])
-                ->orderBy('id DESC')
+                ->orderBy('last_message_send DESC')
                 ->all();
 
         $data = [];
