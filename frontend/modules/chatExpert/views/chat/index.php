@@ -76,7 +76,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
               <p class="font-size-16">
                 <a class="hover-primary cl-name2" href="#"><strong></strong></a>
               </p>
-                2 day ago
+                <a class="hover-primary cl-topic-name"  href="#"><strong></strong></a>
             </div>
           </div>             
         </div>
@@ -157,9 +157,9 @@ function getTopic(element, init){
               const unread = data[index].unread;
 
               if(unread == 0){
-                str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div></div>';
+                str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div></div>';
               }else{
-                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
+                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
               }
             }                        
                                     
@@ -188,8 +188,12 @@ function getTopic(element, init){
 function getTargetChat(element){
     var client_id = element.data('cl-id');
     var topic_id = element.data('topic');
+    var top_name = element.data('topic-name');
     var user_id = '".Yii::$app->user->identity->id."';
     var cl_user_id = element.data('cl-user-id');
+
+    $('.cl-topic-name').html(top_name);
+
     console.log(topic_id);
     $.ajax({
         url: '".Url::to(['/chatExpert/default/index'])."',

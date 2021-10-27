@@ -5,7 +5,7 @@ namespace backend\models;
 use Yii;
 use backend\models\Expert;
 use backend\models\Client;
-
+use backend\models\ChatTopic;
 /**
  * This is the model class for table "client_exper".
  *
@@ -54,5 +54,17 @@ class ClientExpert extends \yii\db\ActiveRecord
     public function getClient()
     {
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
+    }
+
+    public function getCountUnread($client_id, $expert_id){
+        $unread = ChatTopic::find()
+                ->alias('t')
+                ->joinWith(['chats c'])
+                ->where(['t.client_id' => $this->client_id])
+                ->andWhere(['t.expert_id' => $this->expert_id])
+                ->andWhere(['c.recipient_id' => Yii::$app->user->identity->id])
+                ->andWhere(['c.is_read' => 0])
+                ->count();
+        return $unread;
     }
 }

@@ -50,6 +50,48 @@ class ChatTestController extends Controller
         ]);
     }
 
+    public function actionGetUnreadTopic(){
+
+        $client_id = Yii::$app->request->post('client_id');
+        $expert_id = Yii::$app->request->post('expert_id');
+
+        $topics = ChatTopic::find()
+                ->where(['client_id' => $client_id])
+                ->andWhere(['expert_id' => $expert_id])
+                ->orderBy('last_message_send DESC')
+                ->all();
+
+        $data = [];
+
+        foreach($topics as $topic) {
+
+            $countChat = ChatModel::find()
+                    ->andWhere(['recipient_id' => $topic->client->user_id])
+                    ->andWhere(['is_read' => 0])
+                    ->count();
+
+             // $unread = ChatTopic::find()
+             //    ->alias('t')
+             //    ->joinWith(['chats c'])
+             //    ->where(['t.client_id' => $client_id])
+             //    ->andWhere(['t.expert_id' => $expert_id])
+             //    ->andWhere(['c.recipient_id' => Yii::$app->user->identity->id])
+             //    ->andWhere(['c.is_read' => 0])
+             //    ->count();
+
+
+
+            $data[] = [
+                "id" => $topic->id,
+                "value" => $topic->topic,
+                "unread" => $countChat
+            ];
+        }
+
+       
+         return json_encode($data);
+    }
+
     public function actionGetTopics(){
 
         $client_id = Yii::$app->request->post('client_id');
@@ -79,16 +121,6 @@ class ChatTestController extends Controller
         $data = [];
 
         foreach($topics as $topic) {
-
-            // $model = ChatTopic::find()
-            //     ->alias('t')
-            //     ->select('COUNT(c.is_read) as count_chat')
-            //     ->where(['is_read' => 0])
-            //     ->andWhere(['client_id' => $client_id])
-            //     ->andWhere(['expert_id' => $expert_id])
-            //     ->joinWith('chats c')
-            //     ->groupBy('t.id')
-            //     ->all();
 
             $countChat = ChatModel::find()
                     ->where(['topic_id' => $topic->id])

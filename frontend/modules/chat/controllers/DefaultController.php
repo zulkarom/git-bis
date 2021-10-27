@@ -41,7 +41,6 @@ class DefaultController extends Controller
         $tid = Yii::$app->request->post('tid');
 
         $expert = Expert::findOne($id);
-        $topicModel = ChatTopic::findOne($tid);
         $user = Yii::$app->user->identity;
 
         ChatModel::updateAll(['is_read' => 1], ['topic_id' => $tid, 'recipient_id' => $user]);
