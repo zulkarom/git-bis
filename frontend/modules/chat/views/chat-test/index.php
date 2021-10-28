@@ -52,6 +52,8 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                       <div class="chat-box-one-side">
                         <div class="media-list media-list-hover">
                           <?php foreach ($model as $clientEx): ?>
+                            
+
                             <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-expert-user-id="<?= $clientEx->expert->user_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
                             <a class="avatar avatar-lg status-danger" href="#">
                               <img src="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>" alt="...">
@@ -73,6 +75,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                             </div>
                             </div>
                           <?php endforeach; ?>
+                        <!-- </div> -->
                         </div>
                       </div>
                   </div>
@@ -143,7 +146,10 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 
 $js = "
 
-function getUnread(element, init){
+/*getExpertList($(this), true);*/
+
+/*function getUnread(element, init){
+
     var val = element.attr('data-client');
     var val2 = element.attr('data-expert-id');
 
@@ -161,31 +167,35 @@ function getUnread(element, init){
           client_id: val, 
           expert_id: val2
         },
-        success: function (data) {
-          console.log(data);
-          var str = '';
-          if(init){
-            
-            for (let index = 0; index < data.length; ++index) {
+        success: function (result) {
+          
 
-              const top_id = data[index].id;
-              const top_name = data[index].value;
-              const unread = data[index].unread;
+          var unread = JSON.parse(result);
 
-              console.log(unread);
-
-
-              if(unread == 0){
-                str ='';
-              }else{
-                str ='<span class=\"badge badge-primary badge-pill\">'+unread+'</span>';
-              }
-              $('.user-unread').html(str);
-            }
+          if(unread != 0){
+            str ='<span class=\"badge badge-primary badge-pill\">'+unread+'</span>';
           }
+          
+          
+          $('.user-unread').html(str);
+          
         }
     });
-}
+}*/
+
+/*function getExpertList(element, init){
+
+    var val = element.attr('data-client');
+    var val2 = element.attr('data-expert-name');
+    var val3 = element.attr('data-expert-id');
+    var val4 = element.attr('data-expert-user-id');
+    var val5 = element.attr('data-expert-profile');
+
+    var strListEx = '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+val+'\" data-expert-id=\"'+val3+'\" data-expert-user-id=\"'+val4+'\" data-expert-name=\"'+val2+'\" data-expert-profile=\"'+val5+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a></p></div><div class=\"media-right\"><div id=\"current-unread\"></div><div id=\"\" class=\"user-unread\" data-client=\"'+val+'\" data-expert-id=\"'+val3+'\"><span class=\"badge badge-primary badge-pill\"></span></div></div></div>';
+
+    $('.list-expert').html(strListEx);
+
+}*/
 
 
 function getTopic(element, init){
@@ -340,7 +350,7 @@ function getTargetChat(element){
 
             $('#send-message').click(function(){
 
-                sendchat(this,true);
+                sendchat(true);
             });
 
             $('#load-message').click(function(){
@@ -358,7 +368,7 @@ function getTargetChat(element){
                 deletemessage($(this));
             });
 
-            getUnread($(this), true);
+            // getUnread($(this), true);
         }
 
 
@@ -443,6 +453,8 @@ $('.send-topic').click(function(){
 
   getTopic($(this), true);
 
+  // getUnread($(this), true);
+
 });
 
 
@@ -451,6 +463,11 @@ $('.send-topic').click(function(){
 $this->registerJs($js);
 
 $script="
+
+window.addEventListener('load', 
+  function() { 
+    // getUnread($(this), true);
+  }, false);
 
 //Create Topic
 function createtopic(button,submitTopic) {
@@ -481,7 +498,7 @@ function createtopic(button,submitTopic) {
           $('.delete-topic').click(function(){
               deletetopic($(this));
           });
-
+          getTargetChat($(this));
           $('#inputTopic').val('');
           $('.topic-chat').click(function(){
               // alert($(this).data('topic'));
@@ -538,7 +555,7 @@ function deletemessage(element){
 }
 
 //Send Chat
-function sendchat(button,sendMessage) {
+function sendchat(sendMessage) {
 
   var last = $('#chat-box .card-msg').last().attr('id');
   // alert(last);
@@ -559,7 +576,7 @@ function sendchat(button,sendMessage) {
           if(data){
             var data = JSON.parse(data);
 
-            console.log(data);
+            // console.log(data);
             var chatstr = '';
 
               for (var key in data) {
@@ -586,11 +603,11 @@ function sendchat(button,sendMessage) {
 
 setInterval(function () { 
   
-  // sendchat(null,false);
+  // sendchat(false);
 
   getTopic($('#current-topic'), false);
-  getUnread($('#current-unread'), false);
-  }, 3000 );
+  // getUnread($('#current-unread'), false);
+  }, 1000 );
 
 
 //Load Previous Chat
