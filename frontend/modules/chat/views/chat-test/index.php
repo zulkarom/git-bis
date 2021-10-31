@@ -51,31 +51,8 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
       
                       <div class="chat-box-one-side">
                         <div class="media-list media-list-hover">
-                          <?php foreach ($model as $clientEx): ?>
-                            
-
-                            <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-expert-user-id="<?= $clientEx->expert->user_id?>" data-expert-name="<?=$clientEx->expert->user->fullname?>" data-expert-profile="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>">
-                            <a class="avatar avatar-lg status-danger" href="#">
-                              <img src="<?=Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id])?>" alt="...">
-                            </a>
-                            <div class="media-body">
-                              <p class="font-size-16">
-                                <a class="hover-primary" href="#"><?=$clientEx->expert->user->fullname?></a>
-                              </p>
-                            </div>
-                            <div class="media-right">
-                              <div id="current-unread"></div>
-                              <div id="" class="user-unread" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>">
-                                <?php if($clientEx->getCountUnread($clientEx->client_id, $clientEx->expert_id) != 0): ?>
-                                    <span class="badge badge-primary badge-pill">
-                                      <?=$clientEx->getCountUnread($clientEx->client_id, $clientEx->expert_id)?>
-                                    </span>
-                                <?php endif; ?>
-                              </div>
-                            </div>
-                            </div>
-                          <?php endforeach; ?>
-                        <!-- </div> -->
+                          <div id="current-expert"></div>
+                          <div class="list-expert"></div>
                         </div>
                       </div>
                   </div>
@@ -146,56 +123,77 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 
 $js = "
 
-/*getExpertList($(this), true);*/
+getExpertList($(this), true);
 
-/*function getUnread(element, init){
-
-    var val = element.attr('data-client');
-    var val2 = element.attr('data-expert-id');
-
-    // console.log(val);
-
-    if(init){
-      $('#current-unread').attr('data-client', val);
-      $('#current-unread').attr('data-expert-id', val2);
-    }
+function getExpertList(element, init){
 
     $.ajax({
-        url: '".Url::to(['/chat/chat-test/get-unread-topic'])."',
+        url: '".Url::to(['/chat/chat-test/get-list-experts'])."',
         type: 'POST',
-        data: {
-          client_id: val, 
-          expert_id: val2
-        },
+        data: {},
         success: function (result) {
-          
 
-          var unread = JSON.parse(result);
+          // console.log(result);
 
-          if(unread != 0){
-            str ='<span class=\"badge badge-primary badge-pill\">'+unread+'</span>';
+          if(result){
+            var data = JSON.parse(result);
+            
+            var str = '';
+
+            for (let index = 0; index < data.length; ++index) {
+              const client_id = data[index].client_id;
+              const expert_id = data[index].expert_id;
+              const client_expert_id = data[index].client_expert_id;
+              const expert_user_id = data[index].expert_user_id;
+              const expert_name = data[index].expert_name;
+              const expert_profile = data[index].expert_profile;
+              const unread = data[index].unread;
+
+              if(unread == 0){
+
+                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-expert-user-id=\"'+expert_user_id+'\" data-expert-name=\"'+expert_name+'\" data-expert-profile=\"'+expert_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+expert_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+expert_name+'</a></p></div></div>';
+              }else{
+                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-expert-user-id=\"'+expert_user_id+'\" data-expert-name=\"'+expert_name+'\" data-expert-profile=\"'+expert_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+expert_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+expert_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
+              }
+            }
+            $('.list-expert').html(str);                      
           }
-          
-          
-          $('.user-unread').html(str);
-          
+
+          $('.send-topic').click(function(){
+
+            $('#a-topic').addClass('active');
+
+            $('#a-topic').attr('aria-selected', true);
+
+            $('#a-expert').removeClass('active');
+            $('#a-expert').attr('aria-selected', false);
+
+
+            $('#panel-topic').addClass('active');
+            $('#panel-expert').removeClass('active');
+
+            $('#a-expert').click(function(){
+                $('.btn-send-message').html('');
+                $('.btn-previous-message').html('');
+                $('#chat-box').html('');
+                $('.exp-topic-name').html('');
+
+                var x = document.getElementById('group-msg');
+                if (x.style.display === 'block') {
+                  x.style.display = 'none';
+                }
+            });
+
+            getTopic($(this), true);
+
+            // getUnread($(this), true);
+
+          });
+
         }
     });
-}*/
 
-/*function getExpertList(element, init){
-
-    var val = element.attr('data-client');
-    var val2 = element.attr('data-expert-name');
-    var val3 = element.attr('data-expert-id');
-    var val4 = element.attr('data-expert-user-id');
-    var val5 = element.attr('data-expert-profile');
-
-    var strListEx = '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+val+'\" data-expert-id=\"'+val3+'\" data-expert-user-id=\"'+val4+'\" data-expert-name=\"'+val2+'\" data-expert-profile=\"'+val5+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a></p></div><div class=\"media-right\"><div id=\"current-unread\"></div><div id=\"\" class=\"user-unread\" data-client=\"'+val+'\" data-expert-id=\"'+val3+'\"><span class=\"badge badge-primary badge-pill\"></span></div></div></div>';
-
-    $('.list-expert').html(strListEx);
-
-}*/
+}
 
 
 function getTopic(element, init){
@@ -205,20 +203,22 @@ function getTopic(element, init){
     var val3 = element.attr('data-expert-id');
     var val4 = element.attr('data-expert-user-id');
     var val5 = element.attr('data-expert-profile');
-    // console.log(val3);
+    var val6 = element.attr('data-client-expert-id');
+    // console.log(val6);
     if(init){
 
       var x = document.getElementById('group-header');
 
       if (x.style.display === 'none') {
         x.style.display = 'block';
-      } 
+      }
 
       $('#current-topic').attr('data-client', val);
       $('#current-topic').attr('data-expert-name', val2);
       $('#current-topic').attr('data-expert-id', val3);
       $('#current-topic').attr('data-expert-user-id', val4);
       $('#current-topic').attr('data-expert-profile', val5);
+      $('#current-topic').attr('data-client-expert-id', val6);
     
       var expStr ='';
       expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\" align=\"center\"><p class=\"font-size-16 new-topic\"></p></div></div>';
@@ -239,11 +239,12 @@ function getTopic(element, init){
         type: 'POST',
         data: {
           client_id: val, 
-          expert_id: val3
+          expert_id: val3,
+          client_expert_id : val6
         },
         success: function (result) {
           if(result){
-            // console.log(result);
+            console.log(result);
             var data = JSON.parse(result);
             // console.log(data);
             var str = '';
@@ -265,7 +266,7 @@ function getTopic(element, init){
 
             }                      
             if(init){                        
-              var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
+              var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\" data-client-expert=\"'+val6+'\">Save</button></div></div></div>';
 
               $('.new-topic').html(topicStr);
 
@@ -323,7 +324,8 @@ function getTargetChat(element){
         type: 'POST',
         data: {
           id: expert_id, 
-          tid: topic_id
+          tid: topic_id,
+          ex_user_id: exp_user_id
         },
         success: function (result) {
           var data = JSON.parse(result);
@@ -426,36 +428,7 @@ function messageBox(row){
 
 
 
-$('.send-topic').click(function(){
 
-  $('#a-topic').addClass('active');
-
-  $('#a-topic').attr('aria-selected', true);
-
-  $('#a-expert').removeClass('active');
-  $('#a-expert').attr('aria-selected', false);
-
-
-  $('#panel-topic').addClass('active');
-  $('#panel-expert').removeClass('active');
-
-  $('#a-expert').click(function(){
-      $('.btn-send-message').html('');
-      $('.btn-previous-message').html('');
-      $('#chat-box').html('');
-      $('.exp-topic-name').html('');
-
-      var x = document.getElementById('group-msg');
-      if (x.style.display === 'block') {
-        x.style.display = 'none';
-      }
-  });
-
-  getTopic($(this), true);
-
-  // getUnread($(this), true);
-
-});
 
 
 ";
@@ -464,14 +437,8 @@ $this->registerJs($js);
 
 $script="
 
-window.addEventListener('load', 
-  function() { 
-    // getUnread($(this), true);
-  }, false);
-
 //Create Topic
 function createtopic(button,submitTopic) {
-    
     $.ajax({
         url: '".Url::to(['/chat/default/create-topic'])."',
         type: 'POST',
@@ -479,6 +446,7 @@ function createtopic(button,submitTopic) {
             'submitTopic':submitTopic,
             'ChatTopic[client_id]': $('#submit-topic').data('client'),
             'ChatTopic[expert_id]': $('#submit-topic').data('expert'),
+            'ChatTopic[client_expert_id]': $('#submit-topic').data('client-expert'),
             'ChatTopic[topic]': $('#inputTopic').val()
         },
         success: function (data) {
@@ -606,7 +574,7 @@ setInterval(function () {
   // sendchat(false);
 
   getTopic($('#current-topic'), false);
-  // getUnread($('#current-unread'), false);
+  getExpertList($('#current-expert'), false);
   }, 1000 );
 
 

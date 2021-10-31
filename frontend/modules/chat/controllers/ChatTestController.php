@@ -12,6 +12,7 @@ use yii\filters\AccessControl;
 use backend\models\ClientExpert;
 use backend\modules\expert\models\Expert;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 /**
  * ChatTopicController implements the CRUD actions for ChatTopic model.
  */
@@ -34,44 +35,52 @@ class ChatTestController extends Controller
             ],
         ];
     }
-
     /**
      * Lists all ChatTopic models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $model = ClientExpert::find()
-        ->where(['client_id' => Yii::$app->user->identity->client->id])
-        ->all();
-
-        return $this->render('index', [
-            'model' => $model,
-        ]);
+        return $this->render('index');
     }
 
-    public function actionGetUnreadTopic(){
+    public function actionGetListExperts()
+    {
+        $model = ClientExpert::find()
+        ->alias('ce')
+        ->joinWith('chatTopics t')
+        ->where(['ce.client_id' => Yii::$app->user->identity->client->id])
+        ->orderBy('t.last_message_send DESC')
+        ->all();
 
-        $client_id = Yii::$app->request->post('client_id');
-        $expert_id = Yii::$app->request->post('expert_id');
+        $data = [];
 
-        $unread = ChatTopic::find()
-                ->alias('t')
-                ->joinWith(['chats c'])
-                ->where(['t.client_id' => $client_id])
-                ->andWhere(['t.expert_id' => $expert_id])
-                ->andWhere(['c.recipient_id' => Yii::$app->user->identity->id])
-                ->andWhere(['c.is_read' => 0])
-                ->count();
+         foreach($model as $clientEx) {
 
-       
-         return json_encode($unread);
+            $countChat = ChatModel::find()
+                    ->andWhere(['recipient_id' => $clientEx->client->user_id])
+                    ->andWhere(['sender_id' => $clientEx->expert->user_id])
+                    ->andWhere(['is_read' => 0])
+                    ->count();
+
+            $data[] = [
+                "client_id" => $clientEx->client_id,
+                "expert_id" => $clientEx->expert_id,
+                "client_expert_id" => $clientEx->id,
+                "expert_user_id" => $clientEx->expert->user_id,
+                "expert_name" => $clientEx->expert->user->fullname,
+                "expert_profile" => Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id]),
+                "unread" => $countChat
+            ];
+        }
+        return json_encode($data);
     }
 
     public function actionGetTopics(){
 
         $client_id = Yii::$app->request->post('client_id');
         $expert_id = Yii::$app->request->post('expert_id');
+        $client_expert_id = Yii::$app->request->post('client_expert_id');
 
         // $topics  = ArrayHelper::map(ChatTopic::find()
         //     ->where(['client_id' => $client_id])
@@ -89,7 +98,8 @@ class ChatTestController extends Controller
         // }
 
         $topics = ChatTopic::find()
-                ->where(['client_id' => $client_id])
+                ->where(['client_expert_id' => $client_expert_id])
+                ->andWhere(['client_id' => $client_id])
                 ->andWhere(['expert_id' => $expert_id])
                 ->orderBy('last_message_send DESC')
                 ->all();

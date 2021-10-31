@@ -39,12 +39,13 @@ class DefaultController extends Controller
     {
         $id = Yii::$app->request->post('id');
         $tid = Yii::$app->request->post('tid');
+        $ex_user_id = Yii::$app->request->post('ex_user_id');
 
         $expert = Expert::findOne($id);
         $user = Yii::$app->user->identity;
 
         ChatModel::updateAll(['is_read' => 1], ['topic_id' => $tid, 'recipient_id' => $user]);
-        $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages, $tid);
+        $messages = ChatModel::getMessages($ex_user_id, $this->module->numberLastMessages, $tid);
 
         $result = json_encode($messages);
         return $result;

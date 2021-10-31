@@ -1,0 +1,1 @@
+ALTER TABLE `chat_topic` ADD `client_expert_id` INT NOT NULL AFTER `topic`;

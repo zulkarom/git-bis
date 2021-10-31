@@ -56,6 +56,11 @@ class ClientExpert extends \yii\db\ActiveRecord
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
     }
 
+    public function getChatTopics()
+    {
+        return $this->hasMany(ChatTopic::className(), ['client_expert_id' => 'id']);
+    }
+
     public function getCountUnread($client_id, $expert_id){
         $unread = ChatTopic::find()
                 ->alias('t')
