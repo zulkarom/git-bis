@@ -14,7 +14,7 @@ use yii\db\Expression;
  */
 class DefaultController extends Controller
 {
-    
+    public $layout = '//main';
 
     public function behaviors()
     {
@@ -50,26 +50,6 @@ class DefaultController extends Controller
         $result = json_encode($messages);
         return $result;
     }
-
-    // public function actionIndex($id, $tid)
-    // {
-    //     $expert = Expert::findOne($id);
-    //     $topicModel = ChatTopic::findOne($tid);
-    //     $user = Yii::$app->user->identity;
-
-    //     $messages = ChatModel::getMessages($expert->user->id, $this->module->numberLastMessages, $tid);
-
-    //     echo "<pre>";
-    //     print_r($messages);
-    //     die();
-
-    //     return $this->render('index', [
-    //         'user' => $user,
-    //         'messages' => $messages,
-    //         'expert' => $expert,
-    //         'topicModel' => $topicModel,
-    //     ]);
-    // }
 
     public function actionCreateTopic()
     {

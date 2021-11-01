@@ -66,6 +66,10 @@ class ChatModel extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'recipient_id']);
     }
 
+    public function getChatTopic(){
+        return $this->hasOne(ChatTopic::className(), ['id' => 'topic_id']);
+    }
+
 
     public static function getMessages($user, $numberLastMessages, $tid)
     {

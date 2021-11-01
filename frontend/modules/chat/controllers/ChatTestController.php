@@ -18,6 +18,7 @@ use yii\helpers\Url;
  */
 class ChatTestController extends Controller
 {
+    public $layout = '//main';
     /**
      * {@inheritdoc}
      */
@@ -106,21 +107,32 @@ class ChatTestController extends Controller
 
         $data = [];
 
-        foreach($topics as $topic) {
+        if($topics){
+            foreach($topics as $topic) {
 
-            $countChat = ChatModel::find()
-                    ->where(['topic_id' => $topic->id])
-                    ->andWhere(['recipient_id' => $topic->client->user_id])
-                    ->andWhere(['is_read' => 0])
-                    ->count();
+                $countChat = ChatModel::find()
+                        ->where(['topic_id' => $topic->id])
+                        ->andWhere(['recipient_id' => $topic->client->user_id])
+                        ->andWhere(['is_read' => 0])
+                        ->count();
 
 
-            $data[] = [
-                "id" => $topic->id,
-                "value" => $topic->topic,
-                "unread" => $countChat
-            ];
+                $data[] = [
+                    "id" => $topic->id,
+                    "value" => $topic->topic,
+                    "unread" => $countChat
+                ];
+            }  
+        }else{
+            $topic = new ChatTopic();
+            $topic->topic = "Default";
+            $topic->client_id = $client_id;
+            $topic->expert_id = $expert_id;
+            $topic->client_expert_id = $client_expert_id;
+            $topic->save();
         }
+
+        
 
         return json_encode($data);
     }

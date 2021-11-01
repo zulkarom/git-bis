@@ -8,6 +8,29 @@ ChatAsset::register($this);
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchniaga');
 
 ?>
+<style type="text/css">
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  /*min-width: 160px;*/
+  box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
+  /*padding: 12px 16px;*/
+  z-index: 1;
+  right:-10px;
+  border-radius: 12px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+
 <div class="row">
   <div class="col-lg-3 col-md-5 col-12">
       <div class="box">
@@ -67,7 +90,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
   </div>
   <div class="col-lg-9 col-md-7 col-12">
       <div class="box box-transparent no-shadow">
-        <div class="box-header px-0">
+        <div id="group-header" class="box-header px-0" style="display:none">
           <div class="media align-items-center p-0">
             <a class="avatar avatar-lg status-success mx-0" href="#">
               <img src="" class="rounded-circle cl-profile2" alt="...">
@@ -92,7 +115,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
             </div>
         </div>
       </div>
-      <div class="box box-body">
+      <div id="group-msg" class="box box-body" style="display:none">
           <div class="d-flex justify-content-between align-items-center btn-send-message">
               
           </div>
@@ -118,6 +141,13 @@ function getTopic(element, init){
     var val5 = element.data('client-profile');
 
     if(init){
+
+      var x = document.getElementById('group-header');
+
+      if (x.style.display === 'none') {
+        x.style.display = 'block';
+      }
+
       $('#current-topic').attr('data-client', val);
       $('#current-topic').attr('data-client-name', val2);
       $('#current-topic').attr('data-expert-id', val3);
@@ -186,6 +216,13 @@ function getTopic(element, init){
 }
 
 function getTargetChat(element){
+
+    var x = document.getElementById('group-msg');
+
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+    }
+
     var client_id = element.data('cl-id');
     var topic_id = element.data('topic');
     var top_name = element.data('topic-name');
@@ -256,6 +293,12 @@ function messageBox(row){
   var client = '';
   var role = '';
   // console.log(row['chat_id']);
+
+  var dateData = new Date(row['time'] * 1000);
+  var date = ((dateData.getDate() < 10)?'0':'') + dateData.getDate() +'/'+(((dateData.getMonth()+1) < 10)?'0':'') + (dateData.getMonth()+1) +'/'+ dateData.getFullYear();
+  var time = ((dateData.getHours() < 10)?'0':'') + dateData.getHours() +':'+ ((dateData.getMinutes() < 10)?'0':'') + dateData.getMinutes() + (dateData.getHours() >= 12 ? 'PM' : 'AM');
+  var dd = date + '  ' + time;
+
   if(row['sender_id'] == '".Yii::$app->user->identity->id."'){
       client = true;
       role = 'profile';
@@ -270,7 +313,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/expert/profile/profile-image', 'id' => ''])."' + sender_id;
 
-      str = '<div id=\"msg-'+row['chat_id']+'\" class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\">09:41</span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuButton\"><a data-chat=\"'+row['chat_id']+'\" class=\"delete-msg dropdown-item\" href=\"#\">Delete</a></div></div></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
+      str = '<div id=\"msg-'+row['chat_id']+'\" class=\"card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80\"><div class=\"position-absolute pt-1 pl-2 l-0\"><span class=\"text-extra-small\">'+dd+'</span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><div class=\"d-flex flex-grow-1 justify-content-end\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div><p class=\"mb-0 font-size-16\">' + row['sender_name']  + '</p></div></div></div><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar ml-10\"></a><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-chat=\"'+row['chat_id']+'\" class=\"delete-msg dropdown-item\" href=\"#\">Delete</a></div></div></div><div class=\"chat-text-left pr-50\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>';
 
       return str;
 
@@ -279,7 +322,7 @@ function messageBox(row){
     var sender_id = row['sender_id'];
     var url = '".Url::to(['/expert/profile/client-image', 'id' => ''])."' + sender_id;
 
-      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\"></span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
+      str = '<div class=\"card d-inline-block mb-3 float-left mr-2\"><div class=\"position-absolute pt-1 pr-2 r-0\"><span class=\"text-extra-small text-muted\">'+dd+'</span></div><div class=\"card-body\"><div class=\"d-flex flex-row pb-2\"><a class=\"d-flex\" href=\"#\"><img alt=\"Profile\" src=\"'+ url +'\" class=\"avatar mr-10\"></a><div class=\"d-flex flex-grow-1 min-width-zero\"><div class=\"m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between\"><div class=\"min-width-zero\"><p class=\"mb-0 font-size-16 text-dark\">' + row['sender_name']  + '</p></div></div></div></div><div class=\"chat-text-left pl-55\"><p class=\"mb-0 text-semi-muted card-msg\" id=\"'+row['chat_id']+'\">' + row['message']  + '</p></div></div></div><div class=\"clearfix\"></div>'
 
           return str;
   }
@@ -303,6 +346,12 @@ $('.send-topic').click(function(){
       $('.btn-send-message').html('');
       $('.btn-previous-message').html('');
       $('#chat-box').html('');
+      $('.cl-topic-name').html('');
+
+      var x = document.getElementById('group-msg');
+      if (x.style.display === 'block') {
+        x.style.display = 'none';
+      }
   });
 
   getTopic($(this), true);
@@ -420,7 +469,7 @@ $('#send-message').click(function(){
 setInterval(function () { 
   sendchat(null,false); 
   getTopic($('#current-topic'), false);
-  }, 3000 );
+  }, 1000 );
 
 
 //Load Previous Chat

@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
  */
 class ChatController extends Controller
 {
+    public $layout = '//main-expert';
     /**
      * {@inheritdoc}
      */
@@ -73,7 +74,7 @@ class ChatController extends Controller
 
             $countChat = ChatModel::find()
                     ->where(['topic_id' => $topic->id])
-                    ->andWhere(['recipient_id' => $topic->client->user_id])
+                    ->andWhere(['recipient_id' => $topic->expert->user_id])
                     ->andWhere(['is_read' => 0])
                     ->count();
 

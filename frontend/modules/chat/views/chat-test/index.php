@@ -6,11 +6,6 @@ use yii\helpers\Html;
 
 ChatAsset::register($this); 
 
-
-// $this->title = 'Consultation Chat';
-// $this->params['breadcrumbs'][] = ['label' => 'Consultation', 'url' => ['/client/expert/index']];
-// $this->params['breadcrumbs'][] = ['label' => 'Chat Topic', 'url' => ['/chat/chat-topic/index', 'id' => $expert->id]];
-// $this->params['breadcrumbs'][] = $this->title;
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchniaga');
 
 ?>
@@ -36,6 +31,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
   display: block;
 }
 </style>
+
 <div class="row">
   <div class="col-lg-3 col-md-5 col-12">
       <div class="box">
@@ -186,8 +182,6 @@ function getExpertList(element, init){
 
             getTopic($(this), true);
 
-            // getUnread($(this), true);
-
           });
 
         }
@@ -266,7 +260,7 @@ function getTopic(element, init){
 
             }                      
             if(init){                        
-              var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\" data-client-expert=\"'+val6+'\">Save</button></div></div></div>';
+              var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\" data-client-expert=\"'+val6+'\" data-exp-user-id=\"'+val4+'\">Save</button></div></div></div>';
 
               $('.new-topic').html(topicStr);
 
@@ -299,9 +293,6 @@ function getTopic(element, init){
 }
 
 function getTargetChat(element){
-
-
-    
 
     var x = document.getElementById('group-msg');
 
@@ -438,15 +429,22 @@ $this->registerJs($js);
 $script="
 
 //Create Topic
-function createtopic(button,submitTopic) {
+function createtopic(element,submitTopic) {
+
+    var val = $('#submit-topic').data('client');
+    var val2 = $('#submit-topic').data('expert-name');
+    var val3 = $('#submit-topic').data('expert');
+    var val4 = $('#submit-topic').data('expert-user-id');
+    var val6 = $('#submit-topic').data('client-expert');
+
     $.ajax({
         url: '".Url::to(['/chat/default/create-topic'])."',
         type: 'POST',
         data: {
             'submitTopic':submitTopic,
-            'ChatTopic[client_id]': $('#submit-topic').data('client'),
-            'ChatTopic[expert_id]': $('#submit-topic').data('expert'),
-            'ChatTopic[client_expert_id]': $('#submit-topic').data('client-expert'),
+            'ChatTopic[client_id]': val,
+            'ChatTopic[expert_id]': val3,
+            'ChatTopic[client_expert_id]': val6,
             'ChatTopic[topic]': $('#inputTopic').val()
         },
         success: function (data) {
@@ -456,9 +454,10 @@ function createtopic(button,submitTopic) {
 
           for (var key in data) {
             var row = data[key];
+            var element_id = row['topic_id'];
             // console.log(row);
 
-            str += '<div id=\"topic-'+row['topic_id']+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+row['topic_id']+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
+            str += '<div id=\"topic-'+row['topic_id']+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a id=\"atopic-'+row['topic_id']+'\" data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+row['topic_id']+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
             
           }
           // $('.topic-name').prepend(str);
@@ -466,13 +465,19 @@ function createtopic(button,submitTopic) {
           $('.delete-topic').click(function(){
               deletetopic($(this));
           });
-          getTargetChat($(this));
+
+          
+
           $('#inputTopic').val('');
           $('.topic-chat').click(function(){
               // alert($(this).data('topic'));
               getTargetChat($(this));
-            });
+          });
           $('#exampleModalLong').modal('hide');
+
+          getTargetChat($('#atopic-'+element_id));
+
+          console.log($('#atopic-'+element_id));
         }
     });
 }
@@ -572,7 +577,7 @@ function sendchat(sendMessage) {
 setInterval(function () { 
   
   // sendchat(false);
-
+  
   getTopic($('#current-topic'), false);
   getExpertList($('#current-expert'), false);
   }, 1000 );
