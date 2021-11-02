@@ -12,6 +12,7 @@ use yii\filters\AccessControl;
 use backend\models\ClientExpert;
 use backend\modules\expert\models\Expert;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 /**
  * ChatTopicController implements the CRUD actions for ChatTopic model.
  */
@@ -51,10 +52,43 @@ class ChatController extends Controller
         ]);
     }
 
+    public function actionGetListClients()
+    {
+        $model = ClientExpert::find()
+        ->alias('ce')
+        ->joinWith('chatTopics t')
+        ->where(['ce.expert_id' => Yii::$app->user->identity->expert->id])
+        ->orderBy('ce.last_message DESC')
+        ->all();
+
+        $data = [];
+
+         foreach($model as $clientEx) {
+
+            $countChat = ChatModel::find()
+                    ->andWhere(['recipient_id' => $clientEx->expert->user_id])
+                    ->andWhere(['sender_id' => $clientEx->client->user_id])
+                    ->andWhere(['is_read' => 0])
+                    ->count();
+
+            $data[] = [
+                "client_id" => $clientEx->client_id,
+                "expert_id" => $clientEx->expert_id,
+                "client_expert_id" => $clientEx->id,
+                "client_user_id" => $clientEx->client->user_id,
+                "client_name" => $clientEx->client->user->fullname,
+                "client_profile" => Url::to(['/expert/profile/client-image', 'id' => $clientEx->client->user->id]),
+                "unread" => $countChat
+            ];
+        }
+        return json_encode($data);
+    }
+
     public function actionGetTopics(){
 
         $client_id = Yii::$app->request->post('client_id');
         $expert_id = Yii::$app->request->post('expert_id');
+        $client_expert_id = Yii::$app->request->post('client_expert_id');
 
         // $topics  = ArrayHelper::map(ChatTopic::find()
         //     ->where(['client_id' => $client_id])
@@ -63,6 +97,7 @@ class ChatController extends Controller
         //     ->all(), 'id', 'topic');
 
         $topics = ChatTopic::find()
+                ->where(['client_expert_id' => $client_expert_id])
                 ->where(['client_id' => $client_id])
                 ->andWhere(['expert_id' => $expert_id])
                 ->orderBy('last_message_send DESC')
@@ -70,20 +105,29 @@ class ChatController extends Controller
 
         $data = [];
 
-        foreach($topics as $topic) {
+        if($topics){
+            foreach($topics as $topic) {
 
-            $countChat = ChatModel::find()
-                    ->where(['topic_id' => $topic->id])
-                    ->andWhere(['recipient_id' => $topic->expert->user_id])
-                    ->andWhere(['is_read' => 0])
-                    ->count();
+                $countChat = ChatModel::find()
+                        ->where(['topic_id' => $topic->id])
+                        ->andWhere(['recipient_id' => $topic->expert->user_id])
+                        ->andWhere(['is_read' => 0])
+                        ->count();
 
 
-            $data[] = [
-                "id" => $topic->id,
-                "value" => $topic->topic,
-                "unread" => $countChat
-            ];
+                $data[] = [
+                    "id" => $topic->id,
+                    "value" => $topic->topic,
+                    "unread" => $countChat
+                ];
+            }    
+        }else{
+            $topic = new ChatTopic();
+            $topic->topic = "Default";
+            $topic->client_id = $client_id;
+            $topic->expert_id = $expert_id;
+            $topic->client_expert_id = $client_expert_id;
+            $topic->save();
         }
         return json_encode($data);
         

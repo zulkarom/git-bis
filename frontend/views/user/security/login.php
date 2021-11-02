@@ -40,7 +40,7 @@ h2 {
                     <h2 class="form-title">Login account</h2>
                         <?= $form
                         ->field($model, 'role')
-                        ->dropDownList(Common::role(), ['prompt' => 'Select User Category', 'class' => 'form-input'])
+                        ->dropDownList(Common::role(), ['class' => 'form-input'])
                         ->label(false)
                        ?>
                         <?= $form

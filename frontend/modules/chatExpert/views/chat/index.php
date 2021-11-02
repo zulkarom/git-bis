@@ -46,21 +46,8 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
       
                       <div class="chat-box-one-side">
                         <div class="media-list media-list-hover">
-                          <?php foreach ($model as $clientEx): ?>
-                            <div id="" class="send-topic media py-10 px-0 align-items-center" data-client="<?= $clientEx->client_id?>" data-expert-id="<?= $clientEx->expert_id?>" data-client-user-id="<?= $clientEx->client->user_id?>" data-client-name="<?=$clientEx->client->user->fullname?>" data-client-profile="<?=Url::to(['/expert/profile/client-image', 'id' => $clientEx->client->user->id])?>">
-                            <a class="avatar avatar-lg status-danger" href="#">
-                              <img src="<?=Url::to(['/expert/profile/client-image', 'id' => $clientEx->client->user->id])?>" alt="...">
-                            </a>
-                            <div class="media-body">
-                              <p class="font-size-16">
-                                <a class="hover-primary" href="#"><?=$clientEx->client->user->fullname?></a>
-                              </p>
-                            </div>
-                            <div class="media-right">
-                              <span class="badge badge-primary badge-pill">5</span>
-                            </div>
-                            </div>
-                          <?php endforeach; ?>
+                          <div id="current-client"></div>
+                          <div class="list-client"></div>  
                         </div>
                       </div>
                   </div>
@@ -130,16 +117,90 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 <?php
 
 $js = "
+
+getClientList($(this), true);
+
+function getClientList(element, init){
+
+    $.ajax({
+        url: '".Url::to(['/chatExpert/chat/get-list-clients'])."',
+        type: 'POST',
+        data: {},
+        success: function (result) {
+
+          // console.log(result);
+
+          if(result){
+            var data = JSON.parse(result);
+
+            console.log(data);
+            
+            var str = '';
+
+            for (let index = 0; index < data.length; ++index) {
+              const client_id = data[index].client_id;
+              const expert_id = data[index].expert_id;
+              const client_expert_id = data[index].client_expert_id;
+              const client_user_id = data[index].client_user_id;
+              const client_name = data[index].client_name;
+              const client_profile = data[index].client_profile;
+              const unread = data[index].unread;
+
+              if(unread == 0){
+
+                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div></div>';
+              }else{
+                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-client-id=\"'+client_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
+              }
+            }
+            $('.list-client').html(str);                      
+          }
+
+          $('.send-topic').click(function(){
+
+            $('#a-topic').addClass('active');
+
+            $('#a-topic').attr('aria-selected', true);
+
+            $('#a-expert').removeClass('active');
+            $('#a-expert').attr('aria-selected', false);
+
+
+            $('#panel-topic').addClass('active');
+            $('#panel-expert').removeClass('active');
+
+            $('#a-expert').click(function(){
+                $('.btn-send-message').html('');
+                $('.btn-previous-message').html('');
+                $('#chat-box').html('');
+                $('.cl-topic-name').html('');
+
+                var x = document.getElementById('group-msg');
+                if (x.style.display === 'block') {
+                  x.style.display = 'none';
+                }
+            });
+
+            getTopic($(this), true);
+
+          });
+
+        }
+    });
+
+}
+
 function getTopic(element, init){
 
 
 
-    var val = element.data('client');
-    var val2 = element.data('client-name');
-    var val3 = element.data('expert-id');
-    var val4 = element.data('client-user-id');
-    var val5 = element.data('client-profile');
-
+    var val = element.attr('data-client');
+    var val2 = element.attr('data-client-name');
+    var val3 = element.attr('data-expert-id');
+    var val4 = element.attr('data-client-user-id');
+    var val5 = element.attr('data-client-profile');
+    var val6 = element.attr('data-client-expert-id');
+    console.log(val);
     if(init){
 
       var x = document.getElementById('group-header');
@@ -153,6 +214,7 @@ function getTopic(element, init){
       $('#current-topic').attr('data-expert-id', val3);
       $('#current-topic').attr('data-client-user-id', val4);
       $('#current-topic').attr('data-client-profile', val5);
+      $('#current-topic').attr('data-client-expert-id', val6);
     }
 
     var expStr ='';
@@ -171,7 +233,8 @@ function getTopic(element, init){
         type: 'POST',
         data: {
           client_id: val, 
-          expert_id: val3
+          expert_id: val3,
+          client_expert_id : val6
         },
         success: function (result) {
           // console.log(result);
@@ -269,9 +332,10 @@ function getTargetChat(element){
             $('#chat-box').html(chatstr);
 
             $('#send-message').click(function(){
-
-                sendchat(this,true);
-            });
+                if($('#chat-message').val()){
+                  sendchat(this, true);
+                }
+              });
 
             $('#load-message').click(function(){
 
@@ -329,34 +393,7 @@ function messageBox(row){
 }
 
 
-$('.send-topic').click(function(){
 
-  $('#a-topic').addClass('active');
-
-  $('#a-topic').attr('aria-selected', true);
-
-  $('#a-expert').removeClass('active');
-  $('#a-expert').attr('aria-selected', false);
-
-
-  $('#panel-topic').addClass('active');
-  $('#panel-expert').removeClass('active');
-
-  $('#a-expert').click(function(){
-      $('.btn-send-message').html('');
-      $('.btn-previous-message').html('');
-      $('#chat-box').html('');
-      $('.cl-topic-name').html('');
-
-      var x = document.getElementById('group-msg');
-      if (x.style.display === 'block') {
-        x.style.display = 'none';
-      }
-  });
-
-  getTopic($(this), true);
-
-});
 
 
 ";
@@ -467,8 +504,9 @@ $('#send-message').click(function(){
 });
 
 setInterval(function () { 
-  sendchat(null,false); 
+  // sendchat(null,false); 
   getTopic($('#current-topic'), false);
+  getClientList($('#current-client'), false);
   }, 1000 );
 
 
