@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2021 at 05:06 AM
+-- Generation Time: Nov 03, 2021 at 02:45 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -139,17 +139,6 @@ CREATE TABLE `bc_item` (
   `color` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `bc_item`
---
-
-INSERT INTO `bc_item` (`id`, `biz_canvas_id`, `category_id`, `title`, `description`, `color`) VALUES
-(1, 4, 1, 'testing', 'testing', 'blue'),
-(7, 4, 8, 'sdfsd', 'sdfsdf', 'yellow'),
-(8, 4, 8, 'sdfsdf', 'sdfsdf', 'yellow'),
-(10, 4, 1, 'testing', 'qwerty', 'grey'),
-(11, 4, 2, 'testings', 'asdasdasd', 'yellow');
-
 -- --------------------------------------------------------
 
 --
@@ -163,32 +152,24 @@ CREATE TABLE `chat` (
   `recipient_id` int(11) NOT NULL,
   `time` int(10) UNSIGNED DEFAULT NULL,
   `rfc822` varchar(50) DEFAULT NULL,
-  `message` text DEFAULT NULL
+  `message` text DEFAULT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chat`
 --
 
-INSERT INTO `chat` (`id`, `topic_id`, `sender_id`, `recipient_id`, `time`, `rfc822`, `message`) VALUES
-(254, 1, 7, 9, 1631457716, 'Sun, 12 Sep 21 16:41:56 +0200', 'iuyi'),
-(255, 1, 9, 7, 1631457716, 'Sun, 12 Sep 21 16:41:56 +0200', 'iuyiyuiyt'),
-(256, 1, 7, 9, 1631457757, 'Sun, 12 Sep 21 16:42:37 +0200', 'iuiui'),
-(258, 1, 7, 9, 1632907434, 'Wed, 29 Sep 21 11:23:54 +0200', 'cccc'),
-(259, 1, 7, 9, 1632907444, 'Wed, 29 Sep 21 11:24:04 +0200', 'dddd'),
-(260, 3, 7, 9, 1632907461, 'Wed, 29 Sep 21 11:24:21 +0200', 'sdfsdf'),
-(261, 6, 7, 10, 1632908888, 'Wed, 29 Sep 21 11:48:08 +0200', 'test 2nd expert'),
-(262, 6, 7, 10, 1632909009, 'Wed, 29 Sep 21 11:50:09 +0200', 'test 2nd exeedt'),
-(263, 1, 7, 9, 1634024080, 'Tue, 12 Oct 21 09:34:40 +0200', 'test'),
-(264, 1, 7, 9, 1634024085, 'Tue, 12 Oct 21 09:34:45 +0200', '231233'),
-(265, 3, 7, 9, 1634024095, 'Tue, 12 Oct 21 09:34:55 +0200', 'dfgdfg'),
-(266, 1, 7, 9, 1634024182, 'Tue, 12 Oct 21 09:36:22 +0200', 'hjkhjkhjk'),
-(267, 6, 7, 10, 1634024292, 'Tue, 12 Oct 21 09:38:12 +0200', 'gdfgdfdfg'),
-(268, 1, 7, 9, 1634088078, 'Wed, 13 Oct 21 03:21:18 +0200', 'test'),
-(269, 3, 7, 9, 1634088085, 'Wed, 13 Oct 21 03:21:25 +0200', '123'),
-(270, 3, 7, 9, 1634090543, 'Wed, 13 Oct 21 04:02:23 +0200', 'dfgdfg'),
-(271, 3, 7, 9, 1634090548, 'Wed, 13 Oct 21 04:02:28 +0200', 'dfg'),
-(272, 3, 7, 9, 1634090551, 'Wed, 13 Oct 21 04:02:31 +0200', 'dfg');
+INSERT INTO `chat` (`id`, `topic_id`, `sender_id`, `recipient_id`, `time`, `rfc822`, `message`, `is_read`) VALUES
+(824, 199, 9, 7, 1635837736, 'Tue, 02 Nov 21 08:22:16 +0100', 'dfgdfgdgd', 1),
+(825, 199, 9, 7, 1635837752, 'Tue, 02 Nov 21 08:22:32 +0100', 'sdfsdf', 1),
+(845, 199, 9, 7, 1635838224, 'Tue, 02 Nov 21 08:30:24 +0100', 'gdfgdf', 1),
+(850, 199, 7, 9, 1635841409, 'Tue, 02 Nov 21 09:23:29 +0100', 'sdfsdf', 1),
+(852, 212, 9, 7, 1635902635, 'Wed, 03 Nov 21 02:23:55 +0100', 'say something..', 1),
+(853, 212, 9, 7, 1635902641, 'Wed, 03 Nov 21 02:24:01 +0100', 'hello', 1),
+(854, 212, 9, 7, 1635902654, 'Wed, 03 Nov 21 02:24:14 +0100', 'hello', 1),
+(855, 212, 9, 7, 1635902663, 'Wed, 03 Nov 21 02:24:23 +0100', 'what are you doing now', 1),
+(856, 212, 9, 7, 1635902673, 'Wed, 03 Nov 21 02:24:33 +0100', 'are you ok?', 1);
 
 -- --------------------------------------------------------
 
@@ -199,18 +180,22 @@ INSERT INTO `chat` (`id`, `topic_id`, `sender_id`, `recipient_id`, `time`, `rfc8
 CREATE TABLE `chat_topic` (
   `id` int(11) NOT NULL,
   `topic` varchar(225) NOT NULL,
+  `client_expert_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `expert_id` int(11) NOT NULL
+  `expert_id` int(11) NOT NULL,
+  `last_message_send` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `chat_topic`
 --
 
-INSERT INTO `chat_topic` (`id`, `topic`, `client_id`, `expert_id`) VALUES
-(1, 'Where is your place?', 5, 1),
-(3, 'How to grow your business and get huge profit?', 5, 1),
-(6, 'How long have you been?', 5, 2);
+INSERT INTO `chat_topic` (`id`, `topic`, `client_expert_id`, `client_id`, `expert_id`, `last_message_send`) VALUES
+(197, 'Default', 6, 5, 2, NULL),
+(199, 'Default', 5, 5, 1, '2021-11-02 16:23:29'),
+(200, 'Where have you been Second?', 6, 5, 2, NULL),
+(201, 'Where have you been?', 6, 5, 2, NULL),
+(212, 'test 123', 5, 5, 1, '2021-11-03 09:24:32');
 
 -- --------------------------------------------------------
 
@@ -252,16 +237,17 @@ INSERT INTO `client` (`id`, `user_id`, `client_type`, `biz_name`, `biz_address`,
 CREATE TABLE `client_exper` (
   `id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
-  `expert_id` int(11) NOT NULL
+  `expert_id` int(11) NOT NULL,
+  `last_message` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client_exper`
 --
 
-INSERT INTO `client_exper` (`id`, `client_id`, `expert_id`) VALUES
-(5, 5, 1),
-(6, 5, 2);
+INSERT INTO `client_exper` (`id`, `client_id`, `expert_id`, `last_message`) VALUES
+(5, 5, 1, '2021-11-03 09:24:32'),
+(6, 5, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -283,7 +269,8 @@ CREATE TABLE `expert` (
 
 INSERT INTO `expert` (`id`, `user_id`, `expert_type`, `profile_file`, `personal_updated_at`) VALUES
 (1, 9, 20, '61283d66d7716.jpeg', '2021-09-08 00:04:03'),
-(2, 10, 20, '615bbd2d83f64.jpg', '2021-10-05 10:49:17');
+(2, 10, 20, '615bbd2d83f64.jpg', '2021-10-05 10:49:17'),
+(3, 11, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -345,7 +332,8 @@ CREATE TABLE `profile` (
 INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`, `timezone`) VALUES
 (7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -427,10 +415,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1634088052, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1635903151, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
-(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$13$lh6AznZexBZVMp9YfH3Eu.aReWILMfAQKzKjfDgooyeitXFRAdFbm', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1631030643, 0, 1632291711, 10, ''),
-(10, 'haikal@gmail.com', 'Hakimi Bin Ab Rahim', 'haikal@gmail.com', 2, '$2y$10$E4zM.GJUgKZFjMn7h2Id9uukq7QX8c20m84WzxhIo5NEmBI9jPUAK', '5VEOQvyjcxb6RKXvYQJmWSfR-yIcpIlJ', NULL, NULL, NULL, '::1', 1633402074, 1633402074, 0, 1633402126, 10, '');
+(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$13$lh6AznZexBZVMp9YfH3Eu.aReWILMfAQKzKjfDgooyeitXFRAdFbm', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1631030643, 0, 1635900055, 10, ''),
+(10, 'haikal@gmail.com', 'Hakimi Bin Ab Rahim', 'haikal@gmail.com', 2, '$2y$10$E4zM.GJUgKZFjMn7h2Id9uukq7QX8c20m84WzxhIo5NEmBI9jPUAK', '5VEOQvyjcxb6RKXvYQJmWSfR-yIcpIlJ', NULL, NULL, NULL, '::1', 1633402074, 1633402074, 0, 1635671931, 10, ''),
+(11, 'mohdali@gmail.com', 'Mohd Ali Bin Abu', 'mohdali@gmail.com', 2, '$2y$10$CQsQ7C8o233xWqpSciUCref3OTxhU4kKJ6EWsTIiKCzdpjW2fg.3q', 'DO4IhG6vE4WXGcVXyQQ4Zx827WBgIX0t', 1635734141, NULL, NULL, '::1', 1635734098, 1635734098, 0, 1635734190, 10, '');
 
 -- --------------------------------------------------------
 
@@ -650,19 +639,19 @@ ALTER TABLE `bc_category`
 -- AUTO_INCREMENT for table `bc_item`
 --
 ALTER TABLE `bc_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=857;
 
 --
 -- AUTO_INCREMENT for table `chat_topic`
 --
 ALTER TABLE `chat_topic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -680,7 +669,7 @@ ALTER TABLE `client_exper`
 -- AUTO_INCREMENT for table `expert`
 --
 ALTER TABLE `expert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `service`
@@ -698,7 +687,7 @@ ALTER TABLE `social_account`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `web_intro`
