@@ -37,7 +37,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
           <div class="box-body">
               <!-- Nav tabs -->
               <ul class="nav nav-tabs customtab nav-justified" role="tablist">
-                  <li id="tab-expert" class="nav-item"> <a id="a-expert" class="nav-link active" data-toggle="tab" href="#panel-expert" role="tab">Experts</a> </li>
+                  <li id="tab-expert" class="nav-item"> <a id="a-expert" class="nav-link active" data-toggle="tab" href="#panel-expert" role="tab">Clients</a> </li>
                   <li id="tab-topic" class="nav-item"> <a id="a-topic" class="nav-link" data-toggle="tab" href="#panel-topic" role="tab">Topics</a> </li>
               </ul>
               <!-- Tab panes -->
@@ -54,7 +54,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                   <div class="tab-pane" id="panel-topic" role="tabpanel">                                    
                       
                       <div class="chat-box-one-side">
-                          <div class="media-list media-list-hover ">
+                        
 
                             <div class="exp-details">
                                
@@ -66,8 +66,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                                
                                 
                             </div>
-                              
-                          </div>
+                           
                       </div>
                   </div>
               </div>
@@ -98,6 +97,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
               
               </div>
               <br/>
+              <div id="current-chat-box"></div>
               <div id="chat-box"></div>
             </div>
         </div>
@@ -148,9 +148,9 @@ function getClientList(element, init){
               // console.log(expert_id);
               if(unread == 0){
 
-                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div></div>';
+                str += '<div class=\"media-list media-list-hover\"><div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div></div></div>';
               }else{
-                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
+                str += '<div class=\"media-list media-list-hover\"><div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div></div>';
               }
             }
             $('.list-client').html(str);                      
@@ -218,7 +218,7 @@ function getTopic(element, init){
     }
 
     var expStr ='';
-    expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div>';
+    expStr = '<div class=\"media-list media-list-hover\"><div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div></div>';
 
     $('.exp-details').html(expStr);
 
@@ -241,6 +241,7 @@ function getTopic(element, init){
           if(result){
             var data = JSON.parse(result);
             var str = '';
+            var dataStr = '';
             var topicStr ='';
 
             for (let index = 0; index < data.length; ++index) {
@@ -249,11 +250,21 @@ function getTopic(element, init){
               const top_name = data[index].value;
               const unread = data[index].unread;
 
-              if(unread == 0){
-                str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div></div>';
-              }else{
-                  str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
-              }
+              dataStr = '<div class=\"media-list media-list-hover\"><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div>';
+
+               if(top_name == 'Default'){
+                  if(unread == 0){
+                    str += dataStr+'</div></div>';
+                  }else{
+                    str += dataStr+'<div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div></div>';
+                  }
+                }else{
+                  if(unread == 0){
+                    str += dataStr+'</div></div>';
+                  }else{
+                      str += dataStr+'<div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div></div>';
+                  }
+                }
             }                        
                                     
             /*var topicStr = '<button id=\"btn-topic\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">Create Topic</button><div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\"><div class=\"modal-dialog\" role=\"document\"><div class=\"modal-content\"><div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Create Topic</h5><button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button></div><div class=\"modal-body\"><div class=\"form-row\"><div class=\"form-group col-md-12\"><label for=\"inputTopic\">Topic</label><input type=\"text\" class=\"form-control\" id=\"inputTopic\"></div></div><button id=\"submit-topic\" type=\"submit\" class=\"btn btn-primary\" data-expert=\"'+val3+'\" data-client=\"'+val+'\">Save</button></div></div></div>';
@@ -263,8 +274,7 @@ function getTopic(element, init){
             $('.topic-name').html(str);
 
             $('.topic-chat').click(function(){
-              getTargetChat($(this));
-              updateScroll();
+              getTargetChat($(this), true);
             });
 
             /*$('#submit-topic').click(function(){
@@ -278,23 +288,29 @@ function getTopic(element, init){
 
 }
 
-function getTargetChat(element){
+function getTargetChat(element, init){
 
-    var x = document.getElementById('group-msg');
+    var client_id = element.attr('data-cl-id');
+    var topic_id = element.attr('data-topic');
+    var top_name = element.attr('data-topic-name');
+    var user_id = '".Yii::$app->user->identity->id."';
+    var cl_user_id = element.attr('data-cl-user-id');
 
-    if (x.style.display === 'none') {
-      x.style.display = 'block';
+    if(init){
+      var x = document.getElementById('group-msg');
+
+      if (x.style.display === 'none') {
+        x.style.display = 'block';
+      }
+
+      $('.cl-topic-name').html(top_name);
+
+      $('#current-chat-box').attr('data-cl-id', client_id);
+      $('#current-chat-box').attr('data-topic', topic_id);
+      $('#current-chat-box').attr('data-topic-name', top_name);
+      $('#current-chat-box').attr('data-cl-user-id', cl_user_id);
     }
 
-    var client_id = element.data('cl-id');
-    var topic_id = element.data('topic');
-    var top_name = element.data('topic-name');
-    var user_id = '".Yii::$app->user->identity->id."';
-    var cl_user_id = element.data('cl-user-id');
-
-    $('.cl-topic-name').html(top_name);
-
-    console.log(topic_id);
     $.ajax({
         url: '".Url::to(['/chatExpert/default/index'])."',
         type: 'POST',
@@ -305,48 +321,49 @@ function getTargetChat(element){
         },
         success: function (result) {
 
-          console.log(result);
-
           var data = JSON.parse(result);
           var chatstr = '';
           var btnsendstr ='';
           var btnprevstr ='';
-           for (var key in data) {
+            for (var key in data) {
               var row = data[key];
               // console.log(row['message']);
 
               chatstr += messageBox(row);
             }
 
-            var dataUrl = '".Url::to(['/chatExpert/default/send-message'])."';
-            var loadUrl = '".Url::to(['/chatExpert/default/load-message'])."';
-            
-            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+            if(init){
+              var dataUrl = '".Url::to(['/chatExpert/default/send-message'])."';
+              var loadUrl = '".Url::to(['/chatExpert/default/load-message'])."';
+              
+              btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
-            btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+              btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
-            btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
+              btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
 
-            $('.btn-send-message').html(btnsendstr);
-            $('.btn-previous-message').html(btnprevstr);
-            $('#chat-box').html(chatstr);
+              $('.btn-send-message').html(btnsendstr);
+              $('.btn-previous-message').html(btnprevstr);
+              $('#chat-box').html(chatstr);
 
-            $('#send-message').click(function(){
-                if($('#chat-message').val()){
-                  sendchat(this, true);
-                }
+              $('#send-message').click(function(){
+                  if($('#chat-message').val()){
+                    sendchat(this, true);
+                  }
+                });
+
+              $('#load-message').click(function(){
+
+                  loadchat(this,true);
               });
 
-            $('#load-message').click(function(){
+              $('.delete-msg').click(function(){
 
-                loadchat(this,true);
-            });
+                  deletemessage($(this));
+              });
+            }
 
-            $('.delete-msg').click(function(){
-
-                deletemessage($(this));
-            });
-
+            $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
 
         }
     });
@@ -415,23 +432,24 @@ function createtopic(button,submitTopic) {
             'ChatTopic[topic]': $('#inputTopic').val()
         },
         success: function (data) {
-          // console.log(data);
+          
           var data = JSON.parse(data);
           var str = '';
 
           for (var key in data) {
             var row = data[key];
-            // console.log(row);
-            str += '<div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div></div>';
+            
+            str += '<div class=\"media-list media-list-hover\"><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div></div></div>';
             
           }
           $('.topic-name').prepend(str);
           $('#inputTopic').val('');
           $('.topic-chat').click(function(){
-              // alert($(this).data('topic'));
-              getTargetChat($(this));
+              getTargetChat($(this), true);
             });
           $('#exampleModalLong').modal('hide');
+
+          // getTargetChat($('#topic-'+element_id), true);
         }
     });
 }
@@ -475,26 +493,32 @@ function sendchat(button,sendMessage) {
             'ChatModel[message]': $('#chat-message').val()
         },
         success: function (data) {
-          // console.log(data);
-        var data = JSON.parse(data);
-          var chatstr = '';
+          
+          if(data){
+            var data = JSON.parse(data);
+            var chatstr = '';
 
-           for (var key in data) {
-              var row = data[key];
-              // console.log(row);
-              chatstr += messageBox(row);
+             for (var key in data) {
+                var row = data[key];
+                // console.log(row);
+                chatstr += messageBox(row);
+              }
+
+            if(sendMessage){
+              $('#chat-message').val('');
             }
 
-          if(sendMessage){
-            $('#chat-message').val('');
+            $('#chat-box').append(chatstr);
+
+            $('.delete-msg').click(function(){
+
+                deletemessage($(this));
+            });
           }
 
-          $('#chat-box').append(chatstr);
-
-          $('.delete-msg').click(function(){
-
-              deletemessage($(this));
-          });
+          if(sendMessage){
+            $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+          }
         }
     });
 }
@@ -504,7 +528,8 @@ $('#send-message').click(function(){
 });
 
 setInterval(function () { 
-  // sendchat(null,false); 
+  sendchat(null,false); 
+  getTargetChat($('#current-chat-box'), false);
   getTopic($('#current-topic'), false);
   getClientList($('#current-client'), false);
   }, 1000 );

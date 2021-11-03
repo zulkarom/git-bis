@@ -46,29 +46,18 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
                   <div class="tab-pane active" id="panel-expert" role="tabpanel">
       
                       <div class="chat-box-one-side">
-                        <div class="media-list media-list-hover">
                           <div id="current-expert"></div>
                           <div class="list-expert"></div>
-                        </div>
                       </div>
                   </div>
                   <div class="tab-pane" id="panel-topic" role="tabpanel">                                    
                       
                       <div class="chat-box-one-side">
-                          <div class="media-list media-list-hover ">
 
-                            <div class="exp-details">
-                               
-                                
-                            </div>
+                          <div class="exp-details"></div>
 
-                            <div id="current-topic"></div>
-                            <div class="topic-name">
-                               
-                                
-                            </div>
-                              
-                          </div>
+                          <div id="current-topic"></div>
+                          <div class="topic-name"></div>
                       </div>
                   </div>
               </div>
@@ -148,9 +137,9 @@ function getExpertList(element, init){
 
               if(unread == 0){
 
-                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-expert-user-id=\"'+expert_user_id+'\" data-expert-name=\"'+expert_name+'\" data-expert-profile=\"'+expert_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+expert_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+expert_name+'</a></p></div></div>';
+                str += '<div class=\"media-list media-list-hover\"><div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-expert-user-id=\"'+expert_user_id+'\" data-expert-name=\"'+expert_name+'\" data-expert-profile=\"'+expert_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+expert_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+expert_name+'</a></p></div></div></div>';
               }else{
-                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-expert-user-id=\"'+expert_user_id+'\" data-expert-name=\"'+expert_name+'\" data-expert-profile=\"'+expert_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+expert_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+expert_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
+                str += '<div class=\"media-list media-list-hover\"><div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-expert-user-id=\"'+expert_user_id+'\" data-expert-name=\"'+expert_name+'\" data-expert-profile=\"'+expert_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+expert_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+expert_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div></div>';
               }
             }
             $('.list-expert').html(str);                      
@@ -216,7 +205,7 @@ function getTopic(element, init){
       $('#current-topic').attr('data-client-expert-id', val6);
     
       var expStr ='';
-      expStr = '<div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\" align=\"center\"><p class=\"font-size-16 new-topic\"></p></div></div>';
+      expStr = '<div class=\"media-list media-list-hover\"><div class=\"media py-10 px-0 align-items-center\"><a class=\"avatar avatar-lg status-success\" href=\"#\"><img src=\"'+val5+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+val2+'</a><br/></p></div></div><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\" align=\"center\"><p class=\"font-size-16 new-topic\"></p></div></div></div>';
 
       $('.exp-details').html(expStr);
 
@@ -243,7 +232,7 @@ function getTopic(element, init){
             var data = JSON.parse(result);
             // console.log(data);
             var str = '';
-            var str1 = '';
+            var dataStr = '';
             var topicStr ='';
 
             for (let index = 0; index < data.length; ++index) {
@@ -252,19 +241,19 @@ function getTopic(element, init){
               const top_name = data[index].value;
               const unread = data[index].unread;
 
-              dataStr = '<div id=\"topic-'+top_id+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div>';
+              dataStr = '<div class=\"media-list media-list-hover\"><div id=\"topic-'+top_id+'\" class=\"media py-10 px-0 align-items-center topic-chat\" data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-exp-id=\"'+val3+'\" data-exp-user-id=\"'+val4+'\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a class=\"hover-primary\" href=\"#\">' + top_name + '</a></p></div>';
 
                 if(top_name == 'Default'){
                   if(unread == 0){
-                    str += dataStr+'</div></div></div>';
+                    str += dataStr+'</div></div></div></div>';
                   }else{
-                    str += dataStr+'<div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div></div></div>';
+                    str += dataStr+'<div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div></div></div></div>';
                   }
                 }else{
                   if(unread == 0){
-                    str += dataStr+'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<div class=\"media-right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+top_id+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
+                    str += dataStr+'&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<div class=\"media-right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+top_id+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div></div>';
                   }else{
-                    str += dataStr+'<div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div>&nbsp&nbsp<div class=\"media-right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+top_id+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
+                    str += dataStr+'<div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div>&nbsp&nbsp<div class=\"media-right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+top_id+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div></div>';
                   }
                 }
             }                      
@@ -373,7 +362,10 @@ function getTargetChat(element, init){
                   deletemessage($(this));
               });
             }
-            
+
+            if(init){
+              $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+            }            
         }
 
 
@@ -469,10 +461,10 @@ function createtopic(element,submitTopic) {
             var element_id = row['topic_id'];
             // console.log(row);
 
-            str += '<div id=\"topic-'+row['topic_id']+'\" class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a id=\"atopic-'+row['topic_id']+'\" data-topic=\"'+row['topic_id']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\" class=\"hover-primary topic-chat\" href=\"#\">'+row['topic_name']+'</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+row['topic_id']+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div>';
+            str += '<div class=\"media-list media-list-hover\"><div id=\"topic-'+row['topic_id']+'\" class=\"media py-10 px-0 align-items-center topic-chat\" data-topic=\"'+row['topic_id']+'\" data-topic-name=\"'+row['topic_name']+'\" data-exp-id=\"'+row['expert_id']+'\" data-exp-user-id=\"'+row['expert_user_id']+'\"><div class=\"media-body\"><div class=\"row\"><div class=\"col-10\"><p class=\"font-size-16 test\"><a id=\"atopic-'+row['topic_id']+'\" class=\"hover-primary\" href=\"#\">'+row['topic_name']+'</a></p></div><div class=\"col-2\" align=\"right\"><div class=\"dropdown\"><a id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">&nbsp<span class=\"mdi mdi-dots-vertical\"></span></a><div class=\"dropdown-content\" aria-labelledby=\"dropdownMenuButton\"><a data-topic=\"'+row['topic_id']+'\" class=\"delete-topic dropdown-item\" href=\"#\">Delete</a></div></div></div></div></div></div></div>';
             
           }
-          $('.topic-name').prepend(str);
+          $('.topic-name').append(str);
 
           $('.delete-topic').click(function(){
               deletetopic($(this));
@@ -489,9 +481,9 @@ function createtopic(element,submitTopic) {
 
 
 
-          getTargetChat($('#atopic-'+element_id), true);
+          getTargetChat($('#topic-'+element_id), true);
 
-          console.log($('#atopic-'+element_id));
+          // console.log($('#topic-'+element_id));
 
         }
     });
@@ -584,6 +576,11 @@ function sendchat(sendMessage) {
                 deletemessage($(this));
             });
           }
+
+          if(sendMessage){
+            $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+          }
+          
           
         }
     });
@@ -596,7 +593,7 @@ setInterval(function () {
   getTopic($('#current-topic'), false);
   getTargetChat($('#current-chat-box'), false);
   getExpertList($('#current-expert'), false);
-  }, 1000 );
+  }, 5000 );
 
 
 //Load Previous Chat
