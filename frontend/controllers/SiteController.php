@@ -32,7 +32,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'chat-template'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -41,7 +41,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                  //  'logout' => ['post'],
                 ],
             ],
         ];
@@ -179,6 +179,13 @@ class SiteController extends Controller
 
         return $this->render('resetPassword', [
             'model' => $model,
+        ]);
+    }
+    
+    public function actionChatTemplate(){
+        $this->layout = 'chat_new';
+        
+        return $this->render('index', [
         ]);
     }
 	
