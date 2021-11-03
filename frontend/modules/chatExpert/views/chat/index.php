@@ -145,12 +145,12 @@ function getClientList(element, init){
               const client_name = data[index].client_name;
               const client_profile = data[index].client_profile;
               const unread = data[index].unread;
-
+              // console.log(expert_id);
               if(unread == 0){
 
                 str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div></div>';
               }else{
-                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-client-id=\"'+client_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
+                str += '<div id=\"\" class=\"send-topic media py-10 px-0 align-items-center\" data-client=\"'+client_id+'\" data-expert-id=\"'+expert_id+'\" data-client-expert-id=\"'+client_expert_id+'\" data-client-user-id=\"'+client_user_id+'\" data-client-name=\"'+client_name+'\" data-client-profile=\"'+client_profile+'\"><a class=\"avatar avatar-lg status-danger\" href=\"#\"><img src=\"'+client_profile+'\" alt=\"...\"></a><div class=\"media-body\"><p class=\"font-size-16\"><a class=\"hover-primary\" href=\"#\">'+client_name+'</a></p></div><div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div>';
               }
             }
             $('.list-client').html(str);                      
@@ -200,7 +200,7 @@ function getTopic(element, init){
     var val4 = element.attr('data-client-user-id');
     var val5 = element.attr('data-client-profile');
     var val6 = element.attr('data-client-expert-id');
-    console.log(val);
+    // console.log(val3);
     if(init){
 
       var x = document.getElementById('group-header');
