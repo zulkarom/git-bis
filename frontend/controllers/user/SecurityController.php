@@ -62,6 +62,9 @@ class SecurityController extends BaseSecurityController
             return $this->redirect(['/client/dashboard/index']);
         }else if(Yii::$app->user->identity->role == 2){
             return $this->redirect(['/expert/dashboard/index']);
+        }else{
+            Yii::$app->user->logout();
+            return $this->redirect(['/user/login']);
         }
     }
 }
