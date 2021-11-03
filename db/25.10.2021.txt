@@ -1,0 +1,7 @@
+ALTER TABLE `client_exper` ADD `last_message` DATETIME NULL AFTER `expert_id`;
+
+ALTER TABLE `chat_topic` ADD `last_message_send` DATETIME NULL AFTER `expert_id`;
+
+ALTER TABLE `chat` ADD `is_read` TINYINT(1) NOT NULL AFTER `message`;
+
+ALTER TABLE `chat` CHANGE `is_read` `is_read` TINYINT(1) NOT NULL DEFAULT '0';

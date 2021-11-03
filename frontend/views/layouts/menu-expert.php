@@ -1,39 +1,31 @@
 <?php 
 
 use yii\helpers\Url;
-use common\widgets\Menu_crypto;
+use common\widgets\Menu;
 
 ?> 
-<!-- <nav class="sidebar dark_sidebar"> -->
-<nav class="sidebar">
-    <div class="logo d-flex justify-content-between">
-        <a class="large_logo" href="index.html"><img src="<?= $dirAssests?>/pictures/logo-top.png" alt=""></a>
-        <a class="small_logo" href="index.html"><img src="<?= $dirAssests?>/pictures/mini-logo.png" alt=""></a>
-        <div class="sidebar_close_icon d-lg-none">
-            <i class="ti-close"></i>
-        </div>
-    </div>
-    <ul id="sidebar_menu"> 
+<aside class="main-sidebar">
+    <!-- sidebar-->
+    <section class="sidebar">   
+      <!-- sidebar menu-->
+      <ul class="sidebar-menu" data-widget="tree">
                 
 
-    <?=Menu_crypto::widget(
+    <?=Menu::widget(
     [
-            
-            ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/expert/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/1.svg', 'children' => []],
 
-            ['label' => \Yii::t('app', 'My Profile'), 'level' => 1, 'url' => ['/expert/profile/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+            ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/expert/dashboard/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/dashboard.svg'],
 
-            ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/expert/client/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
-    
-        
+                ['label' => \Yii::t('app', 'My Profile'), 'level' => 1, 'url' => ['/expert/profile/index'], 'icon' => $dirAssests.'/images/svg-icon/user.svg'],
+
+                ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/chatExpert/chat/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
         ]
     
     )?>
 
-                    
-                    
-                    
-<br /><br /><br /><br /><br /><br />
+        </ul>
+    </section>
+</aside>
                     
                     
                     

@@ -979,7 +979,8 @@ throw new Error('template requires jQuery')
   });
 
   $('.chat-box-one').slimScroll({
-    height: '549'
+    height: '549',
+    start:'bottom'
   });
 
   $('.chat-box-one2').slimScroll({

@@ -40,6 +40,7 @@ class ChatModel extends \yii\db\ActiveRecord
         return [
             [['time','recipient_id','sender_id', 'message'], 'required'],
             [['time','recipient_id','sender_id', 'topic_id', 'last_message_id', 'first_message_id'], 'integer'],
+            [['is_read'], 'integer', 'max' => 1],
             [['rfc822'], 'string', 'max' => 50],
             [['message'], 'string'],
         ];
@@ -65,8 +66,12 @@ class ChatModel extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'recipient_id']);
     }
 
+    public function getChatTopic(){
+        return $this->hasOne(ChatTopic::className(), ['id' => 'topic_id']);
+    }
 
-    public static function getMessages($expert, $numberLastMessages, $tid)
+
+    public static function getMessages($user, $numberLastMessages, $tid)
     {
         $messages = self::find()
         ->alias('a')
@@ -76,12 +81,12 @@ class ChatModel extends \yii\db\ActiveRecord
             
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
-                ['recipient_id' => $expert],
+                ['recipient_id' => $user],
                 ['topic_id' => $tid],
             ])
             
             ->orFilterWhere(['and',
-                ['sender_id' => $expert],
+                ['sender_id' => $user],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
             ])
@@ -100,13 +105,14 @@ class ChatModel extends \yii\db\ActiveRecord
                     'sender_id' => $message->sender_id,
                     'recipient_id' => $message->recipient_id,
                     'chat_id' => $message->id,
+                    'is_read' => $message->is_read,
                 ];
         }
         ksort($out);
         return $out;
     }
 
-     public static function getRecentMessages($expert, $numberLastMessages, $tid, $last_message_id)
+     public static function getRecentMessages($user, $numberLastMessages, $tid, $last_message_id)
     {
         $messages = self::find()
         ->alias('a')
@@ -114,13 +120,13 @@ class ChatModel extends \yii\db\ActiveRecord
         ->joinWith(['sender s', 'recipient r'])
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
-                ['recipient_id' => $expert],
+                ['recipient_id' => $user],
                 ['topic_id' => $tid],
                 ['>','a.id',$last_message_id],
             ])
             
             ->orFilterWhere(['and',
-                ['sender_id' => $expert],
+                ['sender_id' => $user],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
                 ['>','a.id',$last_message_id],
@@ -140,13 +146,14 @@ class ChatModel extends \yii\db\ActiveRecord
                     'sender_id' => $message->sender_id,
                     'recipient_id' => $message->recipient_id,
                     'chat_id' => $message->id,
+                    'is_read' => $message->is_read,
                 ];
         }
         ksort($out);
         return $out;
     }
 
-    public static function getPreviousMessages($expert, $numberLastMessages, $tid, $first_message_id)
+    public static function getPreviousMessages($user, $numberLastMessages, $tid, $first_message_id)
     {
         $messages = self::find()
         ->alias('a')
@@ -155,13 +162,13 @@ class ChatModel extends \yii\db\ActiveRecord
         ->limit($numberLastMessages)
             ->orFilterWhere(['and',
                 ['sender_id' => Yii::$app->user->identity->id],
-                ['recipient_id' => $expert],
+                ['recipient_id' => $user],
                 ['topic_id' => $tid],
                 ['<','a.id',$first_message_id],
             ])
             
             ->orFilterWhere(['and',
-                ['sender_id' => $expert],
+                ['sender_id' => $user],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
                 ['<','a.id',$first_message_id],

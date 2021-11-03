@@ -18,9 +18,9 @@ use common\widgets\Menu;
 
                 ['label' => \Yii::t('app', 'My Profile'), 'level' => 1, 'url' => ['/client/profile/index'], 'icon' => $dirAssests.'/images/svg-icon/user.svg'],
 
-                ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/expert/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
+                // ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/expert/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
 
-                ['label' => \Yii::t('app', 'Chat Testing'), 'level' => 1, 'url' => ['/chat/chat-test/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
+                ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/chat/chat-test/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
 
                 ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/apps.svg'],
 
