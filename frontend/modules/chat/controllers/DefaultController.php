@@ -84,6 +84,29 @@ class DefaultController extends Controller
         }
     }
 
+    public function actionUpdateTopic()
+    {
+        if (Yii::$app->user->isGuest){
+            return '';
+        }
+
+        $post = Yii::$app->request->post();
+        // return json_encode($post) ;
+        $tid = Yii::$app->request->post('tid');
+        $topic_name = Yii::$app->request->post('topic_name');
+
+        $model = ChatTopic::findOne($tid);
+        $model->topic = $topic_name;
+
+        if($model->save()){
+            $data = ChatTopic::getTopic($model->id);
+            $result = json_encode($data);
+            return $result;
+        }else{
+            return json_encode($model->errors);
+        }
+    }
+
    public function actionDeleteTopic()
     {
         $tid = Yii::$app->request->post('tid');
