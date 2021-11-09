@@ -201,6 +201,7 @@ function getTopic(element, init){
     var val5 = element.attr('data-client-profile');
     var val6 = element.attr('data-client-expert-id');
     // console.log(val3);
+
     if(init){
 
       var x = document.getElementById('group-header');
@@ -243,20 +244,27 @@ function getTopic(element, init){
             var str = '';
             var dataStr = '';
             var topicStr ='';
+            var dft = '';
+            var tid = '';
 
             for (let index = 0; index < data.length; ++index) {
 
               const top_id = data[index].id;
               const top_name = data[index].value;
+              const is_default = data[index].is_default;
               const unread = data[index].unread;
 
               dataStr = '<div class=\"media-list media-list-hover\"><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div>';
 
-               if(top_name == 'Default'){
+               if(is_default == 1){
                   if(unread == 0){
                     str += dataStr+'</div></div>';
+                    dft = 1;
+                    tid = top_id;
                   }else{
                     str += dataStr+'<div class=\"media-right\"><span class=\"badge badge-primary badge-pill\">'+unread+'</span></div></div></div>';
+                    dft = 1;
+                    tid = top_id;
                   }
                 }else{
                   if(unread == 0){
@@ -273,6 +281,12 @@ function getTopic(element, init){
 
             $('.topic-name').html(str);
 
+            if(init){
+              if(dft == 1){
+                getTargetChat($('#topic-'+tid), true);
+              }
+            }
+
             $('.topic-chat').click(function(){
               getTargetChat($(this), true);
             });
@@ -285,7 +299,7 @@ function getTopic(element, init){
           }
         }
     });
-
+    
 }
 
 function getTargetChat(element, init){
@@ -296,77 +310,82 @@ function getTargetChat(element, init){
     var user_id = '".Yii::$app->user->identity->id."';
     var cl_user_id = element.attr('data-cl-user-id');
 
-    if(init){
-      var x = document.getElementById('group-msg');
+    if(topic_id){
+        if(init){
+        var x = document.getElementById('group-msg');
 
-      if (x.style.display === 'none') {
-        x.style.display = 'block';
+        if (x.style.display === 'none') {
+          x.style.display = 'block';
+        }
+
+        $('.cl-topic-name').html(top_name);
+
+        $('#current-chat-box').attr('data-cl-id', client_id);
+        $('#current-chat-box').attr('data-topic', topic_id);
+        $('#current-chat-box').attr('data-topic-name', top_name);
+        $('#current-chat-box').attr('data-cl-user-id', cl_user_id);
       }
 
-      $('.cl-topic-name').html(top_name);
+      
 
-      $('#current-chat-box').attr('data-cl-id', client_id);
-      $('#current-chat-box').attr('data-topic', topic_id);
-      $('#current-chat-box').attr('data-topic-name', top_name);
-      $('#current-chat-box').attr('data-cl-user-id', cl_user_id);
-    }
+      $.ajax({
+          url: '".Url::to(['/chatExpert/default/index'])."',
+          type: 'POST',
+          data: {
+            id: client_id, 
+            tid: topic_id,
+            cuser_id: cl_user_id 
+          },
+          success: function (result) {
 
-    $.ajax({
-        url: '".Url::to(['/chatExpert/default/index'])."',
-        type: 'POST',
-        data: {
-          id: client_id, 
-          tid: topic_id,
-          cuser_id: cl_user_id 
-        },
-        success: function (result) {
+            var data = JSON.parse(result);
+            var chatstr = '';
+            var btnsendstr ='';
+            var btnprevstr ='';
+              for (var key in data) {
+                var row = data[key];
+                // console.log(row['message']);
 
-          var data = JSON.parse(result);
-          var chatstr = '';
-          var btnsendstr ='';
-          var btnprevstr ='';
-            for (var key in data) {
-              var row = data[key];
-              // console.log(row['message']);
+                chatstr += messageBox(row);
+              }
 
-              chatstr += messageBox(row);
-            }
+              if(init){
+                var dataUrl = '".Url::to(['/chatExpert/default/send-message'])."';
+                var loadUrl = '".Url::to(['/chatExpert/default/load-message'])."';
+                
+                btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
-            if(init){
-              var dataUrl = '".Url::to(['/chatExpert/default/send-message'])."';
-              var loadUrl = '".Url::to(['/chatExpert/default/load-message'])."';
-              
-              btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+                btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
-              btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+                btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
 
-              btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+cl_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
+                $('.btn-send-message').html(btnsendstr);
+                $('.btn-previous-message').html(btnprevstr);
+                $('#chat-box').html(chatstr);
 
-              $('.btn-send-message').html(btnsendstr);
-              $('.btn-previous-message').html(btnprevstr);
-              $('#chat-box').html(chatstr);
+                $('#send-message').click(function(){
+                    if($('#chat-message').val()){
+                      sendchat(this, true);
+                    }
+                  });
 
-              $('#send-message').click(function(){
-                  if($('#chat-message').val()){
-                    sendchat(this, true);
-                  }
+                $('#load-message').click(function(){
+
+                    loadchat(this,true);
                 });
 
-              $('#load-message').click(function(){
+                $('.delete-msg').click(function(){
 
-                  loadchat(this,true);
-              });
+                    deletemessage($(this));
+                });
 
-              $('.delete-msg').click(function(){
+                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+              }
+          }
+      });
+    }
 
-                  deletemessage($(this));
-              });
-            }
-
-            $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
-
-        }
-    });
+    
 
 }
 
@@ -532,7 +551,7 @@ setInterval(function () {
   getTargetChat($('#current-chat-box'), false);
   getTopic($('#current-topic'), false);
   getClientList($('#current-client'), false);
-  }, 1000 );
+  }, 5000 );
 
 
 //Load Previous Chat

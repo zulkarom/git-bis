@@ -99,9 +99,7 @@ class DefaultController extends Controller
         $model->topic = $topic_name;
 
         if($model->save()){
-            $data = ChatTopic::getTopic($model->id);
-            $result = json_encode($data);
-            return $result;
+            return $model->topic;
         }else{
             return json_encode($model->errors);
         }

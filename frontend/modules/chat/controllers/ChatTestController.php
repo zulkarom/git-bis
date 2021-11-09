@@ -120,12 +120,14 @@ class ChatTestController extends Controller
                 $data[] = [
                     "id" => $topic->id,
                     "value" => $topic->topic,
+                    "is_default" => $topic->is_default,
                     "unread" => $countChat
                 ];
             }  
         }else{
             $topic = new ChatTopic();
             $topic->topic = "Default";
+            $topic->is_default = 1;
             $topic->client_id = $client_id;
             $topic->expert_id = $expert_id;
             $topic->client_expert_id = $client_expert_id;
