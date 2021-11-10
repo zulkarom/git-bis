@@ -420,8 +420,10 @@ function getTargetChat(element, init){
                     deletemessage($(this));
                 });
 
-                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
-              }           
+                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' }); 
+                
+              }    
+
           }
 
 
@@ -577,7 +579,12 @@ function deletetopic(element){
             $('.btn-send-message').html('');
             $('.btn-previous-message').html('');
             $('#chat-box').html('');
-        
+            $('.exp-topic-name').html('');
+
+            var x = document.getElementById('group-msg');
+                if (x.style.display === 'block') {
+                  x.style.display = 'none';
+                }
       }
     });
   }
@@ -607,29 +614,6 @@ function updatetopic(element){
   });
 }
 
-//Delete Topic
-function deletetopic(element){
-
-  var topic_id = element.data('topic');
-  if(confirm('Are you sure to delete this topic? All related messages will also be deleted')){
-    $.ajax({
-      url: '".Url::to(['/chat/default/delete-topic'])."',
-      type: 'POST',
-      data: {
-        tid: topic_id
-      },
-      success: function (result) {
-        
-            console.log('Delete Success');
-            $('#topic-'+result).remove();
-            $('.btn-send-message').html('');
-            $('.btn-previous-message').html('');
-            $('#chat-box').html('');
-        
-      }
-    });
-  }
-}
 
 // Delete Message
 function deletemessage(element){
@@ -706,7 +690,6 @@ function sendchat(sendMessage) {
 setInterval(function () { 
   
   sendchat(false);
-  
   getTopic($('#current-topic'), false);
   getTargetChat($('#current-chat-box'), false);
   getExpertList($('#current-expert'), false);

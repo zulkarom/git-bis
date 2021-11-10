@@ -254,7 +254,7 @@ function getTopic(element, init){
               const is_default = data[index].is_default;
               const unread = data[index].unread;
 
-              dataStr = '<div class=\"media-list media-list-hover\"><div class=\"media py-10 px-0 align-items-center\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\" class=\"hover-primary topic-chat\" href=\"#\">' + top_name + '</a></p></div>';
+              dataStr = '<div class=\"media-list media-list-hover\"><div id=\"topic-'+top_id+'\" class=\"media py-10 px-0 align-items-center topic-chat\" data-topic=\"'+top_id+'\" data-topic-name=\"'+top_name+'\" data-cl-id=\"'+val3+'\" data-cl-user-id=\"'+val4+'\"><div class=\"media-body\"><p class=\"font-size-16 test\"><a class=\"hover-primary\" href=\"#\">' + top_name + '</a></p></div>';
 
                if(is_default == 1){
                   if(unread == 0){
@@ -379,8 +379,10 @@ function getTargetChat(element, init){
                     deletemessage($(this));
                 });
 
-                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
               }
+
+              $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+
           }
       });
     }
@@ -439,7 +441,7 @@ $this->registerJs($js);
 $script="
 
 //Create Topic
-function createtopic(button,submitTopic) {
+/*function createtopic(button,submitTopic) {
     
     $.ajax({
         url: '".Url::to(['/chat/default/create-topic'])."',
@@ -471,7 +473,7 @@ function createtopic(button,submitTopic) {
           // getTargetChat($('#topic-'+element_id), true);
         }
     });
-}
+}*/
 
 // Delete Message
 function deletemessage(element){
@@ -479,7 +481,7 @@ function deletemessage(element){
   var chat_id = element.data('chat');
 
   $.ajax({
-      url: '".Url::to(['/chat/default/delete-message'])."',
+      url: '".Url::to(['/chatExpert/default/delete-message'])."',
       type: 'POST',
       data: {
         cid: chat_id
