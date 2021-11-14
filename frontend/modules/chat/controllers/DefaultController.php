@@ -153,6 +153,26 @@ class DefaultController extends Controller
         
     }
 
+    public function actionRefreshMessage()
+    {
+        if (Yii::$app->user->isGuest){
+            return '';
+        }
+        $post = Yii::$app->request->post();
+        //return json_encode($post) ;
+
+            $model = new ChatModel();
+            
+            if ($model->load(Yii::$app->request->post()))
+            {
+
+                
+                $messages = ChatModel::getRecentMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
+                $result = json_encode($messages);
+                return $result;
+            }        
+    }
+
     public function actionLoadMessage()
     {
         if (Yii::$app->user->isGuest){

@@ -396,7 +396,7 @@ function getTargetChat(element, init){
                 var dataUrl = '".Url::to(['/chat/default/send-message'])."';
                 var loadUrl = '".Url::to(['/chat/default/load-message'])."';
 
-                btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
+                btnsendstr = '<input class=\"form-control b-0 py-10\" type=\"text\" id=\"chat-message\" placeholder=\"Say something...\"><div class=\"d-flex justify-content-between align-items-center \"><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary\"><i class=\"mdi mdi-link\"></i></button><button type=\"button\" class=\"waves-effect waves-circle btn btn-circle btn-primary\" type=\"submit\" id=\"send-message-'+topic_id+'\" data-url=\"'+dataUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\"><i class=\"mdi mdi-send\"></i></button></div>';
 
                 btnprevstr = '<button type=\"button\" type=\"submit\" id=\"load-message\" class=\"btn btn-rounded btn-secondary-outline\" data-url=\"'+loadUrl+'\" data-id=\"'+user_id+'\" data-recipient=\"'+exp_user_id+'\" data-topic=\"'+topic_id+'\">Load More</button>';
 
@@ -406,9 +406,11 @@ function getTargetChat(element, init){
 
                 $('#send-message').click(function(){
                   if($('#chat-message').val()){
-                    sendchat(true);
+                    sendchat($('#send-message-'+topic_id), true);
                   }
                 });
+
+                
 
                 $('#load-message').click(function(){
 
@@ -420,9 +422,11 @@ function getTargetChat(element, init){
                     deletemessage($(this));
                 });
 
-                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' }); 
+                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
                 
               }    
+
+              // refreshchat($('#send-message-'+topic_id), true);
 
           }
 
@@ -636,19 +640,23 @@ function deletemessage(element){
 }
 
 //Send Chat
-function sendchat(sendMessage) {
+function sendchat(element, sendMessage) {
 
   var last = $('#chat-box .card-msg').last().attr('id');
   // alert(last);
-    
+  
+  var sender_id = element.attr('data-id');
+  var recipient_id = element.attr('data-recipient');
+  var topic_id = element.attr('data-topic');
+
     $.ajax({
         url: $('#send-message').data('url'),
         type: 'POST',
         data: {
             'sendMessage':sendMessage,
-            'ChatModel[sender_id]': $('#send-message').data('id'),
-            'ChatModel[recipient_id]': $('#send-message').data('recipient'),
-            'ChatModel[topic_id]': $('#send-message').data('topic'),
+            'ChatModel[sender_id]': sender_id,
+            'ChatModel[recipient_id]': recipient_id,
+            'ChatModel[topic_id]': topic_id,
             'ChatModel[last_message_id]': last,
             'ChatModel[message]': $('#chat-message').val()
         },
@@ -687,11 +695,75 @@ function sendchat(sendMessage) {
     });
 }
 
+//Refresh Chat
+function refreshchat(element, refreshMessage) {
+
+  var last = $('#chat-box .card-msg').last().attr('id');
+  // alert(last);
+
+  var sender_id = element.attr('data-id');
+  var recipient_id = element.attr('data-recipient');
+  var topic_id = element.attr('data-topic');
+
+  if(refreshMessage){
+
+    $('#current-chat-box').attr('data-id', expert_id);
+    $('#current-chat-box').attr('data-recipient', topic_id);
+    $('#current-chat-box').attr('data-topic', top_name);
+  }
+
+  if(topic_id){
+    
+    $.ajax({
+        url: '".Url::to(['/chat/default/refresh-message'])."',
+        type: 'POST',
+        data: {
+            'refreshMessage':refreshMessage,
+            'ChatModel[sender_id]': sender_id,
+            'ChatModel[recipient_id]': recipient_id,
+            'ChatModel[topic_id]': topic_id,
+            'ChatModel[last_message_id]': last,
+        },
+        success: function (data) {
+
+          console.log(data);
+
+          if(data){
+            var data = JSON.parse(data);
+
+            // console.log(data);
+            var chatstr = '';
+
+              for (var key in data) {
+                var row = data[key];
+                // console.log(row);
+                chatstr += messageBox(row);
+              }
+
+            $('#chat-box').append(chatstr);
+
+            $('.delete-msg').click(function(){
+
+                deletemessage($(this));
+            });
+          }
+
+          
+            $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+          
+          
+          
+        }
+    });
+  }
+}
+
 setInterval(function () { 
   
-  sendchat(false);
+  // sendchat(false);
   getTopic($('#current-topic'), false);
   getTargetChat($('#current-chat-box'), false);
+  refreshchat($('#current-chat-box'), false);
   getExpertList($('#current-expert'), false);
   }, 5000 );
 
