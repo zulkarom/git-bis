@@ -124,6 +124,21 @@ class DefaultController extends Controller
         $chat_id = Yii::$app->request->post('cid');
 
         $model = ChatModel::findOne($chat_id);
+
+        $new = new ChatModel();
+        $new->is_deleted = $chat_id;
+        $new->topic_id = $model->topic_id;
+        $new->sender_id = $model->sender_id;
+        $new->recipient_id = $model->recipient_id;
+        $new->time = time();
+        $new->rfc822 = date(DATE_RFC822,$new->time);
+
+        if(!$new->save()){
+            return json_encode($new->errors);
+        }
+
+        
+
         $model->delete();
         
         return $chat_id;

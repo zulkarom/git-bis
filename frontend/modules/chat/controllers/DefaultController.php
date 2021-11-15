@@ -169,7 +169,10 @@ class DefaultController extends Controller
                 
                 $messages = ChatModel::getRecentMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
                 $result = json_encode($messages);
-                return $result;
+
+                if($messages){
+                    return $result;
+                }
             }        
     }
 
