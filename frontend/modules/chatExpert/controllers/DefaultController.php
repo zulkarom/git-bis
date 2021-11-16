@@ -98,6 +98,29 @@ class DefaultController extends Controller
         }
     }
 
+    public function actionRefreshMessage()
+    {
+        if (Yii::$app->user->isGuest){
+            return '';
+        }
+        $post = Yii::$app->request->post();
+        //return json_encode($post) ;
+
+            $model = new ChatModel();
+            
+            if ($model->load(Yii::$app->request->post()))
+            {
+
+                
+                $messages = ChatModel::getRecentMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
+                $result = json_encode($messages);
+
+                if($messages){
+                    return $result;
+                }
+            }        
+    }
+
     public function actionLoadMessage()
     {
         if (Yii::$app->user->isGuest){
@@ -132,6 +155,7 @@ class DefaultController extends Controller
         $new->recipient_id = $model->recipient_id;
         $new->time = time();
         $new->rfc822 = date(DATE_RFC822,$new->time);
+        $new->is_read = 1;
 
         if(!$new->save()){
             return json_encode($new->errors);

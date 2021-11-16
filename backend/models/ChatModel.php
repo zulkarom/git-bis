@@ -83,12 +83,14 @@ class ChatModel extends \yii\db\ActiveRecord
                 ['sender_id' => Yii::$app->user->identity->id],
                 ['recipient_id' => $user],
                 ['topic_id' => $tid],
+                ['is_deleted' => 0],
             ])
             
             ->orFilterWhere(['and',
                 ['sender_id' => $user],
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
+                ['is_deleted' => 0],
             ])
             
             ->orderBy(['id'=>SORT_DESC])
@@ -112,7 +114,7 @@ class ChatModel extends \yii\db\ActiveRecord
         return $out;
     }
 
-     public static function getRecentMessages($user, $numberLastMessages, $tid, $last_message_id)
+    public static function getRefreshMessages($user, $numberLastMessages, $tid, $last_message_id)
     {
         $messages = self::find()
         ->alias('a')
@@ -154,6 +156,50 @@ class ChatModel extends \yii\db\ActiveRecord
         return $out;
     }
 
+    public static function getRecentMessages($user, $numberLastMessages, $tid, $last_message_id)
+    {
+        $messages = self::find()
+        ->alias('a')
+        ->select('a.*, s.fullname as sender_name, r.fullname as recipient_name')
+        ->joinWith(['sender s', 'recipient r'])
+            ->orFilterWhere(['and',
+                ['sender_id' => Yii::$app->user->identity->id],
+                ['recipient_id' => $user],
+                ['topic_id' => $tid],
+                ['>','a.id',$last_message_id],
+                ['is_deleted' => 0],
+            ])
+            
+            ->orFilterWhere(['and',
+                ['sender_id' => $user],
+                ['recipient_id' => Yii::$app->user->identity->id],
+                ['topic_id' => $tid],
+                ['>','a.id',$last_message_id],
+                ['is_deleted' => 0],
+            ])
+            
+            ->orderBy(['id'=>SORT_DESC])
+            ->all();
+        
+        $out=[];
+        foreach ($messages as $message)
+        {
+            $out[$message->id]=[
+                    'time' => $message->time,
+                    'sender_name' => $message->sender_name,
+                    'recipient_name' => $message->recipient_name,
+                    'message' => $message->message,
+                    'sender_id' => $message->sender_id,
+                    'recipient_id' => $message->recipient_id,
+                    'chat_id' => $message->id,
+                    'is_read' => $message->is_read,
+                    'is_deleted' => $message->is_deleted,
+                ];
+        }
+        ksort($out);
+        return $out;
+    }
+
     public static function getPreviousMessages($user, $numberLastMessages, $tid, $first_message_id)
     {
         $messages = self::find()
@@ -166,6 +212,7 @@ class ChatModel extends \yii\db\ActiveRecord
                 ['recipient_id' => $user],
                 ['topic_id' => $tid],
                 ['<','a.id',$first_message_id],
+                ['is_deleted' => 0],
             ])
             
             ->orFilterWhere(['and',
@@ -173,6 +220,7 @@ class ChatModel extends \yii\db\ActiveRecord
                 ['recipient_id' => Yii::$app->user->identity->id],
                 ['topic_id' => $tid],
                 ['<','a.id',$first_message_id],
+                ['is_deleted' => 0],
             ])
             
             ->orderBy(['id'=>SORT_DESC])
