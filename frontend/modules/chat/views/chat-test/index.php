@@ -127,5 +127,6 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 
 
 <?php JSRegister::begin(['position' => static::POS_END]); ?>
-<?= $this->render('chat_js')?>
+<?= $this->render('@frontend/javascript/chat_js')?>
+<?= $this->render('chatClient_js')?>
 <?php JSRegister::end(); ?>
