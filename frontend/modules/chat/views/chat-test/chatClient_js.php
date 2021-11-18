@@ -18,7 +18,12 @@ function getTopic(element, init){
     // console.log(val6);
     if(init){
 
+      $('#group-header').show();
+      $('#group-msg').show();
+      $('.chat-box-one').show();
       var x = document.getElementById('group-header');
+
+
 
       if (x.style.display === 'none') {
         x.style.display = 'block';

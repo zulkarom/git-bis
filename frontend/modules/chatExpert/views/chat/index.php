@@ -87,14 +87,14 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
               <p class="font-size-16">
                 <a class="hover-primary cl-name2" href="#"><strong></strong></a>
               </p>
-                <a class="hover-primary cl-topic-name"  href="#"><strong></strong></a>
+                <a class="hover-primary exp-topic-name"  href="#"><strong></strong></a>
             </div>
           </div>             
         </div>
 
         <div class="box-body px-0">
           
-            <div class="chat-box-one">
+            <div id="scroll-msj" class="chat-box-one" style="display:block">
               <div class="btn-previous-message" align="center">
               
               </div>

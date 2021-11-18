@@ -84,7 +84,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 
         <div class="box-body px-0">
           
-            <div id="scroll-msj" class="chat-box-one">
+            <div id="scroll-msj" class="chat-box-one" style="display:block">
               <div class="btn-previous-message" align="center">
               
               </div>

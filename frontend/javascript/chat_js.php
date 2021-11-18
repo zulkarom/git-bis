@@ -72,6 +72,7 @@ function getUserList(element, init){
                 $('.btn-previous-message').html('');
                 $('#chat-box').html('');
                 $('.exp-topic-name').html('');
+                $('#current-chat-box').attr('data-topic', '');
 
                 var x = document.getElementById('group-msg');
                 if (x.style.display === 'block') {
@@ -131,6 +132,8 @@ function getTargetChat(element, init){
           },
           success: function (result) {
             var data = JSON.parse(result);
+
+            console.log(data);
             var chatstr = '';
             var btnsendstr ='';
             var btnprevstr ='';
@@ -143,9 +146,18 @@ function getTargetChat(element, init){
                   chatstr += messageBox(row);
                 }
 
-              
-                var dataUrl = '<?=Url::to(['/chat/default/send-message'])?>';
+                var dataUrl = '';
                 var loadUrl = '<?=Url::to(['/chat/default/load-message'])?>';
+
+                if('<?=Yii::$app->user->identity->role?>' == 1){
+                  dataUrl = '<?=Url::to(['/chat/default/send-message'])?>';
+                  
+                    
+                }else {
+                  dataUrl = '<?=Url::to(['/chatExpert/default/send-message'])?>';
+                  
+                }
+                             
 
                 btnsendstr = '<input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something..."><div class="d-flex justify-content-between align-items-center "><button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary"><i class="mdi mdi-link"></i></button><button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" type="submit" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><i class="mdi mdi-send"></i></button></div>';
 
@@ -205,24 +217,26 @@ function messageBox(row){
       role = 'expert';
   }
 
+  var sender_id = row['sender_id'];
+  var url = '';
+
+  if('<?=Yii::$app->user->identity->role?>' == 1){
+      url = '<?=Url::to(['/client/profile/profile-image', 'id' => ''])?>' + sender_id;
+      url2 = '<?=Url::to(['/client/profile/expert-image', 'id' => ''])?>' + sender_id;
+  }else {
+      url = '<?=Url::to(['/expert/profile/profile-image', 'id' => ''])?>' + sender_id;
+      url2 = '<?=Url::to(['/expert/profile/client-image', 'id' => ''])?>' + sender_id;
+  }
+
   if(client){
-
-
-
-    var sender_id = row['sender_id'];
-    var url = '<?=Url::to(['/client/profile/profile-image', 'id' => ''])?>' + sender_id;
 
       str = '<div id="msg-'+row['chat_id']+'" class="card d-inline-block mb-3 float-right mr-2 bg-primary max-w-p80"><div class="position-absolute pt-1 pl-2 l-0"><span class="text-extra-small">'+dd+'</span></div><div class="card-body"><div class="d-flex flex-row pb-2"><div class="d-flex flex-grow-1 justify-content-end"><div class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between"><div><p class="mb-0 font-size-16">' + row['sender_name']  + '</p></div></div></div><a class="d-flex" href="#"><img alt="Profile" src="'+ url +'" class="avatar ml-10"></a><div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp<span class="mdi mdi-dots-vertical"></span></a><div class="dropdown-content" aria-labelledby="dropdownMenuButton"><a data-chat="'+row['chat_id']+'" class="delete-msg dropdown-item" href="#">Delete</a></div></div></div><div class="chat-text-left pr-50"><p class="mb-0 text-semi-muted card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div></div></div><div class="clearfix"></div>';
 
       return str;
 
-  }else{
+  }else{ 
 
-
-    var sender_id = row['sender_id'];
-    var url = '<?=Url::to(['/client/profile/expert-image', 'id' => ''])?>' + sender_id;
-
-      str = '<div id="msg-'+row['chat_id']+'" class="card d-inline-block mb-3 float-left mr-2"><div class="position-absolute pt-1 pr-2 r-0"><span class="text-extra-small text-muted">'+dd+'</span></div><div class="card-body"><div class="d-flex flex-row pb-2"><a class="d-flex" href="#"><img alt="Profile" src="'+ url +'" class="avatar mr-10"></a><div class="d-flex flex-grow-1 min-width-zero"><div class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between"><div class="min-width-zero"><p class="mb-0 font-size-16 text-dark">' + row['sender_name']  + '</p></div></div></div></div><div class="chat-text-left pl-55"><p class="mb-0 text-semi-muted card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div></div></div><div class="clearfix"></div>';
+      str = '<div id="msg-'+row['chat_id']+'" class="card d-inline-block mb-3 float-left mr-2"><div class="position-absolute pt-1 pr-2 r-0"><span class="text-extra-small text-muted">'+dd+'</span></div><div class="card-body"><div class="d-flex flex-row pb-2"><a class="d-flex" href="#"><img alt="Profile" src="'+ url2 +'" class="avatar mr-10"></a><div class="d-flex flex-grow-1 min-width-zero"><div class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between"><div class="min-width-zero"><p class="mb-0 font-size-16 text-dark">' + row['sender_name']  + '</p></div></div></div></div><div class="chat-text-left pl-55"><p class="mb-0 text-semi-muted card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div></div></div><div class="clearfix"></div>';
 
       
 
@@ -314,13 +328,15 @@ function refreshchat(element, refreshMessage) {
   var recipient_id = element.attr('data-recipient');
   var topic_id = element.attr('data-topic');
 
-  if(refreshMessage){
-    $('#current-chat-box').attr('data-id', sender_id);
-    $('#current-chat-box').attr('data-recipient', recipient_id);
-    $('#current-chat-box').attr('data-topic', topic_id);
-  }
-
   if(topic_id){
+
+    if(refreshMessage){
+      $('#current-chat-box').attr('data-id', sender_id);
+      $('#current-chat-box').attr('data-recipient', recipient_id);
+      $('#current-chat-box').attr('data-topic', topic_id);
+    }
+
+  
     
     $.ajax({
         url: '<?=Url::to(['/chat/default/refresh-message'])?>',
@@ -336,26 +352,58 @@ function refreshchat(element, refreshMessage) {
 
           if (data) {
 
-            var data = JSON.parse(data);           
+            if(data == "topic_deleted"){
 
-            // console.log(data);
-            var chatstr = '';
-            var i = 0;
-              for (var key in data) {
-                var row = data[key];
-                // console.log(row);
-                if(row['is_deleted'] != 0){
-                  $('#msg-'+row['is_deleted']).empty();
-                }else{
-                  chatstr += messageBox(row);
-                  i = 1;
+                // var x = document.getElementById('group-header');
+
+                // if (x.style.display === 'block') {
+                //   x.style.display = 'none';
+                // }
+
+                // var y = document.getElementById('group-msg');
+
+                // if (y.style.display === 'block') {
+                //   y.style.display = 'none';
+                // }
+
+                // var z = document.getElementById('scroll-msj');
+
+                // if (z.style.display === 'block') {
+                //   z.style.display = 'none';
+                // }
+              
+
+                $('#group-header').hide();
+                $('#group-msg').hide();
+                $('.chat-box-one').hide();
+                
+                      
+              
+
+
+            }else{
+
+              var data = JSON.parse(data);           
+
+              // console.log(data);
+              var chatstr = '';
+              var i = 0;
+                for (var key in data) {
+                  var row = data[key];
+                  // console.log(row);
+                  if(row['is_deleted'] != 0){
+                    $('#msg-'+row['is_deleted']).empty();
+                  }else{
+                    chatstr += messageBox(row);
+                    i = 1;
+                  }
                 }
+
+              $('#chat-box').append(chatstr);
+
+              if(i == 1){
+                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
               }
-
-            $('#chat-box').append(chatstr);
-
-            if(i == 1){
-              $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
             }
             
           }
@@ -373,7 +421,7 @@ setInterval(function () {
   getTopic($('#current-topic'), false);
   getTargetChat($('#current-chat-box'), false);
   refreshchat($('#current-chat-box'), false);
-  getExpertList($('#current-expert'), false);
+  getUserList($('#current-expert'), false);
   }, 5000 );
 
 

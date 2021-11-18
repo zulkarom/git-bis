@@ -17,10 +17,10 @@ function getTopic(element, init){
 
 
     var val = element.attr('data-client');
-    var val2 = element.attr('data-client-name');
+    var val2 = element.attr('data-clEx-name');
     var val3 = element.attr('data-expert-id');
-    var val4 = element.attr('data-client-user-id');
-    var val5 = element.attr('data-client-profile');
+    var val4 = element.attr('data-clEx-user-id');
+    var val5 = element.attr('data-clEx-profile');
     var val6 = element.attr('data-client-expert-id');
     // console.log(val3);
 
@@ -33,10 +33,10 @@ function getTopic(element, init){
       }
 
       $('#current-topic').attr('data-client', val);
-      $('#current-topic').attr('data-client-name', val2);
+      $('#current-topic').attr('data-clEx-name', val2);
       $('#current-topic').attr('data-expert-id', val3);
-      $('#current-topic').attr('data-client-user-id', val4);
-      $('#current-topic').attr('data-client-profile', val5);
+      $('#current-topic').attr('data-clEx-user-id', val4);
+      $('#current-topic').attr('data-clEx-profile', val5);
       $('#current-topic').attr('data-client-expert-id', val6);
     }
 
@@ -49,7 +49,7 @@ function getTopic(element, init){
     // $('.cl-profile').attr('src',element.data('client-profile'));
 
     $('.cl-name2').html(val2);
-    $('.cl-profile2').attr('src',element.data('client-profile'));
+    $('.cl-profile2').attr('src',val5);
 
     $.ajax({
         url: '<?=Url::to(['/chatExpert/chat/get-topics'])?>',
@@ -76,7 +76,7 @@ function getTopic(element, init){
               const is_default = data[index].is_default;
               const unread = data[index].unread;
 
-              dataStr = '<div class="media-list media-list-hover"><div id="topic-'+top_id+'" class="media py-10 px-0 align-items-center topic-chat" data-topic="'+top_id+'" data-topic-name="'+top_name+'" data-cl-id="'+val3+'" data-cl-user-id="'+val4+'"><div class="media-body"><p class="font-size-16 test"><a class="hover-primary" href="#">' + top_name + '</a></p></div>';
+              dataStr = '<div class="media-list media-list-hover"><div id="topic-'+top_id+'" class="media py-10 px-0 align-items-center topic-chat" data-topic="'+top_id+'" data-topic-name="'+top_name+'" data-cl-id="'+val3+'" data-clEx-user-id="'+val4+'"><div class="media-body"><p class="font-size-16 test"><a class="hover-primary" href="#">' + top_name + '</a></p></div>';
 
                if(is_default == 1){
                   if(unread == 0){
@@ -96,10 +96,7 @@ function getTopic(element, init){
                   }
                 }
             }                        
-                                    
-            /*var topicStr = '<button id="btn-topic" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">Create Topic</button><div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalLongTitle">Create Topic</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="form-row"><div class="form-group col-md-12"><label for="inputTopic">Topic</label><input type="text" class="form-control" id="inputTopic"></div></div><button id="submit-topic" type="submit" class="btn btn-primary" data-expert="'+val3+'" data-client="'+val+'">Save</button></div></div></div>';
-
-            $('.new-topic').html(topicStr);*/
+                            
 
             $('.topic-name').html(str);
 
@@ -112,11 +109,6 @@ function getTopic(element, init){
             $('.topic-chat').click(function(){
               getTargetChat($(this), true);
             });
-
-            /*$('#submit-topic').click(function(){
-
-                createtopic(this,true);
-            });*/
             
           }
         }

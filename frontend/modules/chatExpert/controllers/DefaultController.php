@@ -52,20 +52,6 @@ class DefaultController extends Controller
         return $result;
     }
 
-    // public function actionIndex($id)
-    // {
-    //     $client = Client::findOne($id);
-    //     $user = Yii::$app->user->identity;
-
-    //     $messages = ChatModel::getMessages($client->user->id, $this->module->numberLastMessages);
-
-    //     return $this->render('index', [
-    //         'user' => $user,
-    //         'messages' => $messages,
-    //         'client' => $client,
-    //     ]);
-    // }
-
    public function actionSendMessage()
     {
         if (Yii::$app->user->isGuest){
@@ -98,74 +84,74 @@ class DefaultController extends Controller
         }
     }
 
-    public function actionRefreshMessage()
-    {
-        if (Yii::$app->user->isGuest){
-            return '';
-        }
-        $post = Yii::$app->request->post();
-        //return json_encode($post) ;
+    // public function actionRefreshMessage()
+    // {
+    //     if (Yii::$app->user->isGuest){
+    //         return '';
+    //     }
+    //     $post = Yii::$app->request->post();
+    //     //return json_encode($post) ;
 
-            $model = new ChatModel();
+    //         $model = new ChatModel();
             
-            if ($model->load(Yii::$app->request->post()))
-            {
+    //         if ($model->load(Yii::$app->request->post()))
+    //         {
 
                 
-                $messages = ChatModel::getRecentMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
-                $result = json_encode($messages);
+    //             $messages = ChatModel::getRecentMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
+    //             $result = json_encode($messages);
 
-                if($messages){
-                    return $result;
-                }
-            }        
-    }
+    //             if($messages){
+    //                 return $result;
+    //             }
+    //         }        
+    // }
 
-    public function actionLoadMessage()
-    {
-        if (Yii::$app->user->isGuest){
-            return '';
-        }
-        $post = Yii::$app->request->post();
-        //return json_encode($post) ;
+    // public function actionLoadMessage()
+    // {
+    //     if (Yii::$app->user->isGuest){
+    //         return '';
+    //     }
+    //     $post = Yii::$app->request->post();
+    //     //return json_encode($post) ;
 
-        $model = new ChatModel();
+    //     $model = new ChatModel();
         
-        if ($model->load(Yii::$app->request->post()))
-        {
+    //     if ($model->load(Yii::$app->request->post()))
+    //     {
 
             
-            $messages = ChatModel::getPreviousMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
-            $result = json_encode($messages);
-            return $result;
-        }
-    }
+    //         $messages = ChatModel::getPreviousMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
+    //         $result = json_encode($messages);
+    //         return $result;
+    //     }
+    // }
 
-    public function actionDeleteMessage()
-    {
+    // public function actionDeleteMessage()
+    // {
 
-        $chat_id = Yii::$app->request->post('cid');
+    //     $chat_id = Yii::$app->request->post('cid');
 
-        $model = ChatModel::findOne($chat_id);
+    //     $model = ChatModel::findOne($chat_id);
 
-        $new = new ChatModel();
-        $new->is_deleted = $chat_id;
-        $new->topic_id = $model->topic_id;
-        $new->sender_id = $model->sender_id;
-        $new->recipient_id = $model->recipient_id;
-        $new->time = time();
-        $new->rfc822 = date(DATE_RFC822,$new->time);
-        $new->is_read = 1;
+    //     $new = new ChatModel();
+    //     $new->is_deleted = $chat_id;
+    //     $new->topic_id = $model->topic_id;
+    //     $new->sender_id = $model->sender_id;
+    //     $new->recipient_id = $model->recipient_id;
+    //     $new->time = time();
+    //     $new->rfc822 = date(DATE_RFC822,$new->time);
+    //     $new->is_read = 1;
 
-        if(!$new->save()){
-            return json_encode($new->errors);
-        }
+    //     if(!$new->save()){
+    //         return json_encode($new->errors);
+    //     }
 
         
 
-        $model->delete();
+    //     $model->delete();
         
-        return $chat_id;
-    }
+    //     return $chat_id;
+    // }
 }
 

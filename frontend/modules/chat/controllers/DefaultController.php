@@ -166,13 +166,18 @@ class DefaultController extends Controller
             if ($model->load(Yii::$app->request->post()))
             {
 
-                
-                $messages = ChatModel::getRefreshMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
-                $result = json_encode($messages);
+                $topic = ChatTopic::findOne($model->topic_id);
+                if($topic){
+                    $messages = ChatModel::getRefreshMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->last_message_id);
+                    $result = json_encode($messages);
 
-                if($messages){
-                    return $result;
+                    if($messages){
+                        return $result;
+                    }
+                }else{
+                    return "topic_deleted";
                 }
+                
             }        
     }
 
