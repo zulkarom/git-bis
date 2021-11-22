@@ -340,6 +340,7 @@ function refreshchat(element, refreshMessage) {
   var recipient_id = element.attr('data-recipient');
   var topic_id = element.attr('data-topic');
 
+
   if(topic_id){
 
     if(refreshMessage){
@@ -383,15 +384,10 @@ function refreshchat(element, refreshMessage) {
                 if (z.style.display === 'block') {
                   z.style.display = 'none';
                 }
-              
-
+            
                 // $('#group-header').hide();
                 // $('#group-msg').hide();
                 // $('.chat-box-one').hide();
-                
-                      
-              
-
 
             }else{
 
