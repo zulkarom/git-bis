@@ -18,12 +18,7 @@ function getTopic(element, init){
     // console.log(val6);
     if(init){
 
-      $('#group-header').show();
-      $('#group-msg').show();
-      $('.chat-box-one').show();
       var x = document.getElementById('group-header');
-
-
 
       if (x.style.display === 'none') {
         x.style.display = 'block';
@@ -40,13 +35,13 @@ function getTopic(element, init){
       expStr = '<div class="media-list media-list-hover"><div class="media py-10 px-0 align-items-center"><a class="avatar avatar-lg status-success" href="#"><img src="'+val5+'" alt=""></a><div class="media-body"><p class="font-size-16"><a class="hover-primary" href="#">'+val2+'</a><br/></p></div></div><div class="media py-10 px-0 align-items-center"><div class="media-body" align="center"><p class="font-size-16 new-topic"></p></div></div></div>';
 
       $('.exp-details').html(expStr);
+    }
 
       // $('.exp-name').html(val2);
       // $('.exp-profile').attr('src',element.data('expert-profile'));
 
       $('.exp-name2').html(val2);
       $('.exp-profile2').attr('src',val5);
-    }
     
     
 
@@ -244,15 +239,28 @@ function deletetopic(element){
         
             console.log('Delete Success');
             $('#topic-'+result).remove();
-            $('.btn-send-message').html('');
-            $('.btn-previous-message').html('');
-            $('#chat-box').html('');
-            $('.exp-topic-name').html('');
+            // $('.btn-send-message').html('');
+            // $('.btn-previous-message').html('');
+            // $('#chat-box').html('');
+            // $('.exp-topic-name').html('');
 
-            var x = document.getElementById('group-msg');
-                if (x.style.display === 'block') {
-                  x.style.display = 'none';
-                }
+            var x = document.getElementById('group-header');
+
+            if (x.style.display === 'block') {
+              x.style.display = 'none';
+            }
+
+            var y = document.getElementById('group-msg');
+
+            if (y.style.display === 'block') {
+              y.style.display = 'none';
+            }
+
+            var z = document.getElementById('scroll-msj');
+
+            if (z.style.display === 'block') {
+              z.style.display = 'none';
+            }
       }
     });
   }

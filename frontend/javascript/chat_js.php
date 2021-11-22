@@ -107,6 +107,18 @@ function getTargetChat(element, init){
           x.style.display = 'block';
         }
 
+        var y = document.getElementById('group-header');
+
+        if (y.style.display === 'none') {
+          y.style.display = 'block';
+        }
+
+        var z = document.getElementById('scroll-msj');
+
+        if (z.style.display === 'none') {
+          z.style.display = 'block';
+        }
+
         $('.exp-topic-name').html(top_name);
 
         $('#current-chat-box').attr('data-exp-id', expert_id);
@@ -354,28 +366,28 @@ function refreshchat(element, refreshMessage) {
 
             if(data == "topic_deleted"){
 
-                // var x = document.getElementById('group-header');
+                var x = document.getElementById('group-header');
 
-                // if (x.style.display === 'block') {
-                //   x.style.display = 'none';
-                // }
+                if (x.style.display === 'block') {
+                  x.style.display = 'none';
+                }
 
-                // var y = document.getElementById('group-msg');
+                var y = document.getElementById('group-msg');
 
-                // if (y.style.display === 'block') {
-                //   y.style.display = 'none';
-                // }
+                if (y.style.display === 'block') {
+                  y.style.display = 'none';
+                }
 
-                // var z = document.getElementById('scroll-msj');
+                var z = document.getElementById('scroll-msj');
 
-                // if (z.style.display === 'block') {
-                //   z.style.display = 'none';
-                // }
+                if (z.style.display === 'block') {
+                  z.style.display = 'none';
+                }
               
 
-                $('#group-header').hide();
-                $('#group-msg').hide();
-                $('.chat-box-one').hide();
+                // $('#group-header').hide();
+                // $('#group-msg').hide();
+                // $('.chat-box-one').hide();
                 
                       
               
