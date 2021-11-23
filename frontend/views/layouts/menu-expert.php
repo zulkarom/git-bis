@@ -19,6 +19,8 @@ use common\widgets\Menu;
                 ['label' => \Yii::t('app', 'My Profile'), 'level' => 1, 'url' => ['/expert/profile/index'], 'icon' => $dirAssests.'/images/svg-icon/user.svg'],
 
                 ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/chatExpert/chat/index'], 'icon' => $dirAssests.'/images/svg-icon/sidebar-menu/comment.svg'],
+
+                ['label' => \Yii::t('app', 'Log Out'), 'level' => 1, 'url' => ['/site/logout'], ['data-method' => 'post'], 'icon' => $dirAssests.'/images/svg-icon/logout.svg'],
         ]
     
     )?>

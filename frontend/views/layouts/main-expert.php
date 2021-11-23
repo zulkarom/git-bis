@@ -41,7 +41,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 <!-- Site wrapper -->
 <div class="wrapper">
 
-    <?=$this->render('header', [    
+    <?=$this->render('header-expert', [    
         'dirAssests' => $dirAssests,
     ]);
     ?>

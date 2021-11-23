@@ -73,6 +73,7 @@ class ChatModel extends \yii\db\ActiveRecord
 
     public static function getMessages($user, $numberLastMessages, $tid)
     {
+        $topic = ChatTopic::findOne($tid);
         $messages = self::find()
         ->alias('a')
         ->select('a.*, s.fullname as sender_name, r.fullname as recipient_name')
@@ -108,6 +109,7 @@ class ChatModel extends \yii\db\ActiveRecord
                     'recipient_id' => $message->recipient_id,
                     'chat_id' => $message->id,
                     'is_read' => $message->is_read,
+                    'topic_name' => $topic->topic,
                 ];
         }
         ksort($out);

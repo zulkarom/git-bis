@@ -149,14 +149,19 @@ function getTargetChat(element, init){
             var chatstr = '';
             var btnsendstr ='';
             var btnprevstr ='';
+            // var top_name = '';
 
-              if(init){
+              
                 for (var key in data) {
                   var row = data[key];
                   // console.log(row['message']);
-
-                  chatstr += messageBox(row);
+                  top_name = row['topic_name'];
+                  if(init){
+                    chatstr += messageBox(row);
+                  }
                 }
+
+              if(init){
 
                 var dataUrl = '';
                 var loadUrl = '<?=Url::to(['/chat/default/load-message'])?>';
@@ -198,7 +203,9 @@ function getTargetChat(element, init){
 
                 $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
                 
-              }    
+              }
+
+              $('.exp-topic-name').html(top_name);    
 
           }
 

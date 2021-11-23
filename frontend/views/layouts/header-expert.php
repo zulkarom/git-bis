@@ -159,7 +159,7 @@ use yii\helpers\Html;
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-				  <?= Html::a('<i class="ion ion-person"></i> My Profile',['/client/profile/index'],['class' => 'dropdown-item']) ?>
+				  <?= Html::a('<i class="ion ion-person"></i> My Profile',['/expert/profile/index'],['class' => 'dropdown-item']) ?>
 					<a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-bag"></i> My Balance</a>
 					<a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-email-unread"></i> Inbox</a>
 					<div class="dropdown-divider"></div>
@@ -168,7 +168,7 @@ use yii\helpers\Html;
 					<?= Html::a('<i class="ion-log-out"></i> Logout',['/site/logout'],['data-method' => 'post', 'class' => 'dropdown-item']) ?>
 					<div class="dropdown-divider"></div>
 					<div class="p-10">
-						<?= Html::a('View Profile',['/client/profile/index'],['class' => "btn btn-sm btn-rounded btn-success"]) ?>
+						<?= Html::a('View Profile',['/expert/profile/index'],['class' => "btn btn-sm btn-rounded btn-success"]) ?>
 					</div>
               </li>
             </ul>

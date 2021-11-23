@@ -94,8 +94,6 @@ function getTopic(element, init){
                     str += dataStr+'<div class="media-right"><span class="badge badge-primary badge-pill">'+unread+'</span></div>&nbsp&nbsp<div class="media-right"><div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp<span class="mdi mdi-dots-vertical"></span></a><div class="dropdown-content" aria-labelledby="dropdownMenuButton"><a data-topic="'+top_id+'" class="delete-topic dropdown-item" href="#">Delete</a>'+dataUpdt+'</div></div></div></div></div></div></div>';
                   }
                 }
-
-                // $('.exp-topic-name').html(top_name);
             } 
 
             if(init){                        
