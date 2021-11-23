@@ -92,9 +92,6 @@ class SectionController extends Controller
         $model = $this->findSectionImage($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            echo "<pre>";
-            print_r(Yii::$app->request->post());
-            die();
 
             if($model->save()){
                 Yii::$app->session->addFlash('success', "Data saved.");

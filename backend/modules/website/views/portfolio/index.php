@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
               $("#portfolio").modal("show")
                 .find("#formPortfolio")
                 .load($(this).attr("value"));
-          });
+          }); 
         });
     ');
     ?>
@@ -92,35 +92,35 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 
 
-$js = "function ajaxSubmit(element){
-    $.ajax({url: '".Url::to(['/website/portfolio/ajax'])."', 
-    timeout: 1000,     // timeout milliseconds
-    type: 'POST',  // http method
-    data: { 
-        image: $('#portfolio-image_file').val(),
-    },
-    success: function(result){
-        $('#result-submit').html(result);
-    },
-    error: function (jqXhr, textStatus, errorMessage) { // error callback 
-        $('#result-submit').append('Error: ' + errorMessage);
-    }
+// $js = "function ajaxSubmit(element){
+//     $.ajax({url: '".Url::to(['/website/portfolio/ajax'])."', 
+//     timeout: 1000,     // timeout milliseconds
+//     type: 'POST',  // http method
+//     data: { 
+//         image: $('#portfolio-image_file').val(),
+//     },
+//     success: function(result){
+//         $('#result-submit').html(result);
+//     },
+//     error: function (jqXhr, textStatus, errorMessage) { // error callback 
+//         $('#result-submit').append('Error: ' + errorMessage);
+//     }
   
   
-  });
-}
-";
+//   });
+// }
+// ";
 
-$this->registerJs($js);
+// $this->registerJs($js);
 
-$this->registerJs("
-$('#btn-run').click(function(){
-    $('#btn-action').val(1);
-    if(confirm('Are you sure to run this autoload?')){
-        ajaxSubmit();
-    }
+// $this->registerJs("
+// $('#btn-run').click(function(){
+//     $('#btn-action').val(1);
+//     if(confirm('Are you sure to run this autoload?')){
+//         ajaxSubmit();
+//     }
     
-});
-");
+// });
+// ");
 
 ?>
