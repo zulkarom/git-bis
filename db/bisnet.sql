@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2021 at 02:45 AM
+-- Generation Time: Nov 24, 2021 at 08:58 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -139,6 +139,13 @@ CREATE TABLE `bc_item` (
   `color` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `bc_item`
+--
+
+INSERT INTO `bc_item` (`id`, `biz_canvas_id`, `category_id`, `title`, `description`, `color`) VALUES
+(17, 5, 1, 'testing 123', 'sdfsdfsdfsd', 'yellow');
+
 -- --------------------------------------------------------
 
 --
@@ -153,23 +160,125 @@ CREATE TABLE `chat` (
   `time` int(10) UNSIGNED DEFAULT NULL,
   `rfc822` varchar(50) DEFAULT NULL,
   `message` text DEFAULT NULL,
-  `is_read` tinyint(1) NOT NULL DEFAULT 0
+  `is_read` tinyint(1) NOT NULL DEFAULT 0,
+  `is_deleted` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `chat`
 --
 
-INSERT INTO `chat` (`id`, `topic_id`, `sender_id`, `recipient_id`, `time`, `rfc822`, `message`, `is_read`) VALUES
-(824, 199, 9, 7, 1635837736, 'Tue, 02 Nov 21 08:22:16 +0100', 'dfgdfgdgd', 1),
-(825, 199, 9, 7, 1635837752, 'Tue, 02 Nov 21 08:22:32 +0100', 'sdfsdf', 1),
-(845, 199, 9, 7, 1635838224, 'Tue, 02 Nov 21 08:30:24 +0100', 'gdfgdf', 1),
-(850, 199, 7, 9, 1635841409, 'Tue, 02 Nov 21 09:23:29 +0100', 'sdfsdf', 1),
-(852, 212, 9, 7, 1635902635, 'Wed, 03 Nov 21 02:23:55 +0100', 'say something..', 1),
-(853, 212, 9, 7, 1635902641, 'Wed, 03 Nov 21 02:24:01 +0100', 'hello', 1),
-(854, 212, 9, 7, 1635902654, 'Wed, 03 Nov 21 02:24:14 +0100', 'hello', 1),
-(855, 212, 9, 7, 1635902663, 'Wed, 03 Nov 21 02:24:23 +0100', 'what are you doing now', 1),
-(856, 212, 9, 7, 1635902673, 'Wed, 03 Nov 21 02:24:33 +0100', 'are you ok?', 1);
+INSERT INTO `chat` (`id`, `topic_id`, `sender_id`, `recipient_id`, `time`, `rfc822`, `message`, `is_read`, `is_deleted`) VALUES
+(1345, 256, 7, 9, 1637122839, 'Wed, 17 Nov 21 05:20:39 +0100', NULL, 1, 1343),
+(1346, 256, 7, 9, 1637122841, 'Wed, 17 Nov 21 05:20:41 +0100', NULL, 1, 1338),
+(1347, 256, 7, 9, 1637122843, 'Wed, 17 Nov 21 05:20:43 +0100', NULL, 1, 1339),
+(1348, 256, 7, 9, 1637122845, 'Wed, 17 Nov 21 05:20:45 +0100', NULL, 1, 1341),
+(1349, 256, 7, 9, 1637122846, 'Wed, 17 Nov 21 05:20:46 +0100', NULL, 1, 1342),
+(1350, 256, 9, 7, 1637122848, 'Wed, 17 Nov 21 05:20:48 +0100', NULL, 1, 1336),
+(1351, 256, 9, 7, 1637122849, 'Wed, 17 Nov 21 05:20:49 +0100', NULL, 1, 1337),
+(1353, 256, 7, 9, 1637122936, 'Wed, 17 Nov 21 05:22:16 +0100', NULL, 1, 1352),
+(1357, 256, 7, 9, 1637124617, 'Wed, 17 Nov 21 05:50:17 +0100', NULL, 1, 1354),
+(1361, 256, 7, 9, 1637135866, 'Wed, 17 Nov 21 08:57:46 +0100', NULL, 1, 1358),
+(1362, 256, 7, 9, 1637135868, 'Wed, 17 Nov 21 08:57:48 +0100', NULL, 1, 1360),
+(1381, 256, 9, 7, 1637198954, 'Thu, 18 Nov 21 02:29:14 +0100', 'dfdsf', 1, 0),
+(1382, 256, 9, 7, 1637198957, 'Thu, 18 Nov 21 02:29:17 +0100', 'dfgdfg', 1, 0),
+(1383, 256, 9, 7, 1637198994, 'Thu, 18 Nov 21 02:29:54 +0100', 'bdfgdfgd', 1, 0),
+(1385, 256, 9, 7, 1637199935, 'Thu, 18 Nov 21 02:45:35 +0100', 'fhfgh', 1, 0),
+(1387, 256, 7, 9, 1637199943, 'Thu, 18 Nov 21 02:45:43 +0100', 'fghgfh', 1, 0),
+(1388, 256, 9, 7, 1637199946, 'Thu, 18 Nov 21 02:45:46 +0100', 'fghfg', 1, 0),
+(1389, 284, 9, 7, 1637202101, 'Thu, 18 Nov 21 03:21:41 +0100', 'asdasdasd', 1, 0),
+(1390, 284, 9, 7, 1637202115, 'Thu, 18 Nov 21 03:21:55 +0100', 'asdasdas', 1, 0),
+(1391, 284, 9, 7, 1637202121, 'Thu, 18 Nov 21 03:22:01 +0100', 'adasdas', 1, 0),
+(1392, 284, 9, 7, 1637202128, 'Thu, 18 Nov 21 03:22:08 +0100', '123123123', 1, 0),
+(1393, 284, 7, 9, 1637202133, 'Thu, 18 Nov 21 03:22:13 +0100', '12123123120', 1, 0),
+(1394, 284, 7, 9, 1637202141, 'Thu, 18 Nov 21 03:22:21 +0100', '12123104121231', 1, 0),
+(1395, 284, 7, 9, 1637202144, 'Thu, 18 Nov 21 03:22:24 +0100', '1212123', 1, 0),
+(1396, 284, 9, 7, 1637202148, 'Thu, 18 Nov 21 03:22:28 +0100', '12321', 1, 0),
+(1397, 284, 7, 9, 1637202149, 'Thu, 18 Nov 21 03:22:29 +0100', '123213', 1, 0),
+(1398, 256, 7, 9, 1637203496, 'Thu, 18 Nov 21 03:44:56 +0100', 'asdfsfsd', 1, 0),
+(1399, 284, 9, 7, 1637203502, 'Thu, 18 Nov 21 03:45:02 +0100', 'fgdgdgfdg', 1, 0),
+(1401, 284, 9, 7, 1637203513, 'Thu, 18 Nov 21 03:45:13 +0100', 'dfgdfgdf', 1, 0),
+(1402, 284, 7, 9, 1637203521, 'Thu, 18 Nov 21 03:45:21 +0100', 'dfgdfg', 1, 0),
+(1404, 256, 9, 7, 1637203677, 'Thu, 18 Nov 21 03:47:57 +0100', 'fsdfds', 1, 0),
+(1405, 256, 7, 9, 1637203684, 'Thu, 18 Nov 21 03:48:04 +0100', 'dsfsdfsd', 1, 0),
+(1406, 256, 9, 7, 1637203789, 'Thu, 18 Nov 21 03:49:49 +0100', '1', 1, 0),
+(1407, 256, 7, 9, 1637203793, 'Thu, 18 Nov 21 03:49:53 +0100', '2', 1, 0),
+(1408, 256, 9, 7, 1637203796, 'Thu, 18 Nov 21 03:49:56 +0100', '3', 1, 0),
+(1409, 256, 7, 9, 1637203800, 'Thu, 18 Nov 21 03:50:00 +0100', '5', 1, 0),
+(1410, 256, 9, 7, 1637203801, 'Thu, 18 Nov 21 03:50:01 +0100', '4', 1, 0),
+(1411, 256, 7, 9, 1637203806, 'Thu, 18 Nov 21 03:50:06 +0100', '7', 1, 0),
+(1412, 256, 9, 7, 1637203807, 'Thu, 18 Nov 21 03:50:07 +0100', '6', 1, 0),
+(1413, 256, 9, 7, 1637203812, 'Thu, 18 Nov 21 03:50:12 +0100', '9', 1, 0),
+(1414, 256, 9, 7, 1637203822, 'Thu, 18 Nov 21 03:50:22 +0100', '10', 1, 0),
+(1415, 256, 7, 9, 1637203825, 'Thu, 18 Nov 21 03:50:25 +0100', '12', 1, 0),
+(1416, 256, 7, 9, 1637203830, 'Thu, 18 Nov 21 03:50:30 +0100', '13', 1, 0),
+(1417, 256, 9, 7, 1637203834, 'Thu, 18 Nov 21 03:50:34 +0100', '14', 1, 0),
+(1418, 256, 9, 7, 1637203836, 'Thu, 18 Nov 21 03:50:36 +0100', '15', 1, 0),
+(1419, 256, 7, 9, 1637203841, 'Thu, 18 Nov 21 03:50:41 +0100', '16', 1, 0),
+(1420, 256, 7, 9, 1637203847, 'Thu, 18 Nov 21 03:50:47 +0100', '17', 1, 0),
+(1421, 256, 7, 9, 1637203875, 'Thu, 18 Nov 21 03:51:15 +0100', '18', 1, 0),
+(1422, 256, 9, 7, 1637203878, 'Thu, 18 Nov 21 03:51:18 +0100', '19', 1, 0),
+(1423, 256, 9, 7, 1637203879, 'Thu, 18 Nov 21 03:51:19 +0100', '31', 1, 0),
+(1424, 256, 9, 7, 1637203881, 'Thu, 18 Nov 21 03:51:21 +0100', '47', 1, 0),
+(1425, 256, 7, 9, 1637203885, 'Thu, 18 Nov 21 03:51:25 +0100', '23', 1, 0),
+(1426, 256, 7, 9, 1637203887, 'Thu, 18 Nov 21 03:51:27 +0100', '4', 1, 0),
+(1427, 256, 9, 7, 1637203889, 'Thu, 18 Nov 21 03:51:29 +0100', '4112', 1, 0),
+(1428, 256, 7, 9, 1637203903, 'Thu, 18 Nov 21 03:51:43 +0100', 'hjg', 1, 0),
+(1429, 256, 7, 9, 1637203927, 'Thu, 18 Nov 21 03:52:07 +0100', '1', 1, 0),
+(1430, 256, 7, 9, 1637203928, 'Thu, 18 Nov 21 03:52:08 +0100', '2', 1, 0),
+(1431, 256, 7, 9, 1637203931, 'Thu, 18 Nov 21 03:52:11 +0100', '3', 1, 0),
+(1432, 256, 7, 9, 1637203932, 'Thu, 18 Nov 21 03:52:12 +0100', '4', 1, 0),
+(1433, 256, 7, 9, 1637203934, 'Thu, 18 Nov 21 03:52:14 +0100', '5', 1, 0),
+(1434, 256, 7, 9, 1637203935, 'Thu, 18 Nov 21 03:52:15 +0100', '6', 1, 0),
+(1435, 256, 7, 9, 1637203937, 'Thu, 18 Nov 21 03:52:17 +0100', '7', 1, 0),
+(1436, 256, 7, 9, 1637203939, 'Thu, 18 Nov 21 03:52:19 +0100', '8', 1, 0),
+(1437, 256, 7, 9, 1637203940, 'Thu, 18 Nov 21 03:52:20 +0100', '9', 1, 0),
+(1438, 256, 7, 9, 1637203943, 'Thu, 18 Nov 21 03:52:23 +0100', '10', 1, 0),
+(1439, 256, 7, 9, 1637203944, 'Thu, 18 Nov 21 03:52:24 +0100', '11', 1, 0),
+(1440, 256, 7, 9, 1637203946, 'Thu, 18 Nov 21 03:52:26 +0100', '12', 1, 0),
+(1441, 256, 7, 9, 1637203948, 'Thu, 18 Nov 21 03:52:28 +0100', '13', 1, 0),
+(1442, 256, 7, 9, 1637203949, 'Thu, 18 Nov 21 03:52:29 +0100', '14', 1, 0),
+(1443, 256, 7, 9, 1637203952, 'Thu, 18 Nov 21 03:52:32 +0100', '15', 1, 0),
+(1444, 256, 7, 9, 1637203953, 'Thu, 18 Nov 21 03:52:33 +0100', '16', 1, 0),
+(1445, 256, 7, 9, 1637203955, 'Thu, 18 Nov 21 03:52:35 +0100', '17', 1, 0),
+(1446, 256, 7, 9, 1637203957, 'Thu, 18 Nov 21 03:52:37 +0100', '18', 1, 0),
+(1447, 256, 7, 9, 1637203958, 'Thu, 18 Nov 21 03:52:38 +0100', '19', 1, 0),
+(1448, 256, 7, 9, 1637203961, 'Thu, 18 Nov 21 03:52:41 +0100', '20', 1, 0),
+(1449, 256, 7, 9, 1637206392, 'Thu, 18 Nov 21 04:33:12 +0100', NULL, 1, 1368),
+(1450, 256, 7, 9, 1637206399, 'Thu, 18 Nov 21 04:33:19 +0100', NULL, 1, 1369),
+(1451, 256, 9, 7, 1637206405, 'Thu, 18 Nov 21 04:33:25 +0100', NULL, 1, 1380),
+(1452, 256, 9, 7, 1637206412, 'Thu, 18 Nov 21 04:33:32 +0100', NULL, 1, 1384),
+(1453, 256, 7, 9, 1637206420, 'Thu, 18 Nov 21 04:33:40 +0100', NULL, 1, 1400),
+(1454, 256, 9, 7, 1637206427, 'Thu, 18 Nov 21 04:33:47 +0100', NULL, 1, 1403),
+(1455, 256, 9, 7, 1637206589, 'Thu, 18 Nov 21 04:36:29 +0100', NULL, 1, 1386),
+(1457, 256, 9, 7, 1637209538, 'Thu, 18 Nov 21 05:25:38 +0100', 'sdfsfsd', 1, 0),
+(1458, 256, 9, 7, 1637209558, 'Thu, 18 Nov 21 05:25:58 +0100', 'xvxcvxc', 1, 0),
+(1459, 256, 9, 7, 1637209618, 'Thu, 18 Nov 21 05:26:58 +0100', 'sdfsdfds', 1, 0),
+(1460, 256, 9, 7, 1637209744, 'Thu, 18 Nov 21 05:29:04 +0100', 'dfgdg', 1, 0),
+(1461, 256, 9, 7, 1637209749, 'Thu, 18 Nov 21 05:29:09 +0100', 'dfgdf', 1, 0),
+(1462, 284, 9, 7, 1637209762, 'Thu, 18 Nov 21 05:29:22 +0100', 'dfgdfg', 1, 0),
+(1463, 256, 9, 7, 1637209767, 'Thu, 18 Nov 21 05:29:27 +0100', 'dfgdfg', 1, 0),
+(1467, 284, 9, 7, 1637222920, 'Thu, 18 Nov 21 09:08:40 +0100', 'cvbcb', 1, 0),
+(1470, 256, 7, 9, 1637544161, 'Mon, 22 Nov 21 02:22:41 +0100', 'ssdfsd', 1, 0),
+(1471, 256, 9, 7, 1637544163, 'Mon, 22 Nov 21 02:22:43 +0100', 'sdfsdf', 1, 0),
+(1474, 284, 9, 7, 1637546856, 'Mon, 22 Nov 21 03:07:36 +0100', 'asdasda', 1, 0),
+(1476, 284, 7, 9, 1637551259, 'Mon, 22 Nov 21 04:20:59 +0100', 'sdfsf', 1, 0),
+(1477, 256, 7, 9, 1637553391, 'Mon, 22 Nov 21 04:56:31 +0100', 'sdfsd', 1, 0),
+(1479, 284, 7, 9, 1637553903, 'Mon, 22 Nov 21 05:05:03 +0100', 'dfgdgd', 1, 0),
+(1480, 284, 7, 9, 1637555019, 'Mon, 22 Nov 21 05:23:39 +0100', 'bddfg', 1, 0),
+(1483, 328, 9, 7, 1637555053, 'Mon, 22 Nov 21 05:24:13 +0100', NULL, 1, 1482),
+(1484, 328, 7, 9, 1637555060, 'Mon, 22 Nov 21 05:24:20 +0100', NULL, 1, 1481),
+(1486, 284, 7, 9, 1637555073, 'Mon, 22 Nov 21 05:24:33 +0100', 'sdfsfsdf', 1, 0),
+(1487, 328, 9, 7, 1637556690, 'Mon, 22 Nov 21 05:51:30 +0100', NULL, 1, 1485),
+(1497, 328, 7, 9, 1637636947, 'Tue, 23 Nov 21 04:09:07 +0100', NULL, 1, 1490),
+(1498, 328, 7, 9, 1637636948, 'Tue, 23 Nov 21 04:09:08 +0100', NULL, 1, 1491),
+(1499, 328, 7, 9, 1637636948, 'Tue, 23 Nov 21 04:09:08 +0100', NULL, 1, 1492),
+(1500, 328, 7, 9, 1637636954, 'Tue, 23 Nov 21 04:09:14 +0100', NULL, 1, 1493),
+(1501, 328, 9, 7, 1637637044, 'Tue, 23 Nov 21 04:10:44 +0100', NULL, 1, 1488),
+(1502, 328, 9, 7, 1637637045, 'Tue, 23 Nov 21 04:10:45 +0100', NULL, 1, 1489),
+(1503, 328, 7, 9, 1637637050, 'Tue, 23 Nov 21 04:10:50 +0100', NULL, 1, 1494),
+(1504, 328, 7, 9, 1637637051, 'Tue, 23 Nov 21 04:10:51 +0100', NULL, 1, 1495),
+(1505, 328, 7, 9, 1637637053, 'Tue, 23 Nov 21 04:10:53 +0100', NULL, 1, 1496);
 
 -- --------------------------------------------------------
 
@@ -183,6 +292,7 @@ CREATE TABLE `chat_topic` (
   `client_expert_id` int(11) NOT NULL,
   `client_id` int(11) NOT NULL,
   `expert_id` int(11) NOT NULL,
+  `is_default` tinyint(1) NOT NULL,
   `last_message_send` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -190,12 +300,11 @@ CREATE TABLE `chat_topic` (
 -- Dumping data for table `chat_topic`
 --
 
-INSERT INTO `chat_topic` (`id`, `topic`, `client_expert_id`, `client_id`, `expert_id`, `last_message_send`) VALUES
-(197, 'Default', 6, 5, 2, NULL),
-(199, 'Default', 5, 5, 1, '2021-11-02 16:23:29'),
-(200, 'Where have you been Second?', 6, 5, 2, NULL),
-(201, 'Where have you been?', 6, 5, 2, NULL),
-(212, 'test 123', 5, 5, 1, '2021-11-03 09:24:32');
+INSERT INTO `chat_topic` (`id`, `topic`, `client_expert_id`, `client_id`, `expert_id`, `is_default`, `last_message_send`) VALUES
+(256, 'Default', 5, 5, 1, 1, '2021-11-22 11:56:31'),
+(258, 'Default', 6, 5, 2, 1, NULL),
+(284, 'Where have you been?', 5, 5, 1, 0, '2021-11-22 12:24:33'),
+(328, 'test 123456', 5, 5, 1, 0, '2021-11-23 11:09:02');
 
 -- --------------------------------------------------------
 
@@ -226,7 +335,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `user_id`, `client_type`, `biz_name`, `biz_address`, `biz_phone`, `biz_fax`, `biz_email`, `biz_type`, `biz_main_activity`, `biz_date_execution`, `biz_reg_no`, `biz_capital`, `profile_file`, `personal_updated_at`) VALUES
-(5, 7, 0, 'Fiqram Cooperation Sdn Bhd', 'No 123 Jalan Meranti Chabang Empat 16210\r\nTumpat\r\nKelantan', '0176250556', '0914588520', 'fiqramcooperation@gmail.com', 'Information Technology', 'Software Development', '2021-08-03', 'KT0406247-U', 50, '614ab6cfa87ba.jpg', '2021-09-22 12:53:35');
+(5, 7, 0, 'Fiqram Cooperation Sdn Bhd', 'No 123 Jalan Meranti Chabang Empat 16210\r\nTumpat\r\nKelantan', '0176250556', '0914588520', 'fiqramcooperation@gmail.com', 'Information Technology', 'Software Development', '2021-08-03', 'KT0406247-U', 50, '619da6fa54e7e.jpg', '2021-11-24 10:44:10');
 
 -- --------------------------------------------------------
 
@@ -246,7 +355,7 @@ CREATE TABLE `client_exper` (
 --
 
 INSERT INTO `client_exper` (`id`, `client_id`, `expert_id`, `last_message`) VALUES
-(5, 5, 1, '2021-11-03 09:24:32'),
+(5, 5, 1, '2021-11-23 09:08:48'),
 (6, 5, 2, NULL);
 
 -- --------------------------------------------------------
@@ -268,7 +377,7 @@ CREATE TABLE `expert` (
 --
 
 INSERT INTO `expert` (`id`, `user_id`, `expert_type`, `profile_file`, `personal_updated_at`) VALUES
-(1, 9, 20, '61283d66d7716.jpeg', '2021-09-08 00:04:03'),
+(1, 9, 20, '6189f221d7438.png', '2021-11-09 11:59:29'),
 (2, 10, 20, '615bbd2d83f64.jpg', '2021-10-05 10:49:17'),
 (3, 11, 0, NULL, NULL);
 
@@ -415,9 +524,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1635903151, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1637721222, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
-(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$13$lh6AznZexBZVMp9YfH3Eu.aReWILMfAQKzKjfDgooyeitXFRAdFbm', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1631030643, 0, 1635900055, 10, ''),
+(9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$13$lh6AznZexBZVMp9YfH3Eu.aReWILMfAQKzKjfDgooyeitXFRAdFbm', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1631030643, 0, 1637636240, 10, ''),
 (10, 'haikal@gmail.com', 'Hakimi Bin Ab Rahim', 'haikal@gmail.com', 2, '$2y$10$E4zM.GJUgKZFjMn7h2Id9uukq7QX8c20m84WzxhIo5NEmBI9jPUAK', '5VEOQvyjcxb6RKXvYQJmWSfR-yIcpIlJ', NULL, NULL, NULL, '::1', 1633402074, 1633402074, 0, 1635671931, 10, ''),
 (11, 'mohdali@gmail.com', 'Mohd Ali Bin Abu', 'mohdali@gmail.com', 2, '$2y$10$CQsQ7C8o233xWqpSciUCref3OTxhU4kKJ6EWsTIiKCzdpjW2fg.3q', 'DO4IhG6vE4WXGcVXyQQ4Zx827WBgIX0t', 1635734141, NULL, NULL, '::1', 1635734098, 1635734098, 0, 1635734190, 10, '');
 
@@ -432,15 +541,17 @@ CREATE TABLE `web_intro` (
   `title` varchar(50) NOT NULL,
   `title_content` varchar(100) NOT NULL,
   `title_button` varchar(50) NOT NULL,
-  `intro_content` text NOT NULL
+  `intro_content` text NOT NULL,
+  `logo_header_url` text NOT NULL,
+  `logo_intro_url` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `web_intro`
 --
 
-INSERT INTO `web_intro` (`id`, `title`, `title_content`, `title_button`, `intro_content`) VALUES
-(1, 'HATCHNIAGA', 'Online Incubation Platform', 'LEARN MORE', 'Hatchniaga an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.');
+INSERT INTO `web_intro` (`id`, `title`, `title_content`, `title_button`, `intro_content`, `logo_header_url`, `logo_intro_url`) VALUES
+(1, 'HATCHNIAGA', 'Online Incubation Platform', 'LEARN MORE', 'Hatchniaga an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.', '', '');
 
 -- --------------------------------------------------------
 
@@ -451,8 +562,17 @@ INSERT INTO `web_intro` (`id`, `title`, `title_content`, `title_button`, `intro_
 CREATE TABLE `web_portfolio` (
   `id` int(11) NOT NULL,
   `image_file` varchar(225) NOT NULL,
-  `image_url` text CHARACTER SET utf8 NOT NULL
+  `image_file_hover` varchar(225) NOT NULL,
+  `image_url` text CHARACTER SET utf8 NOT NULL,
+  `is_show` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `web_portfolio`
+--
+
+INSERT INTO `web_portfolio` (`id`, `image_file`, `image_file_hover`, `image_url`, `is_show`) VALUES
+(44, '619de8681b3af.png', '619deb4b4964c.jpg', '', 0);
 
 -- --------------------------------------------------------
 
@@ -639,19 +759,19 @@ ALTER TABLE `bc_category`
 -- AUTO_INCREMENT for table `bc_item`
 --
 ALTER TABLE `bc_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=857;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1506;
 
 --
 -- AUTO_INCREMENT for table `chat_topic`
 --
 ALTER TABLE `chat_topic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
 
 --
 -- AUTO_INCREMENT for table `client`
@@ -699,7 +819,7 @@ ALTER TABLE `web_intro`
 -- AUTO_INCREMENT for table `web_portfolio`
 --
 ALTER TABLE `web_portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `web_section`
