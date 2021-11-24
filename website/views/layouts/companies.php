@@ -2,7 +2,10 @@
 use backend\modules\website\models\Portfolio;
 use yii\helpers\Url;
 
-$portfolio = Portfolio::find()->all();
+$portfolio = Portfolio::find()
+->where(['is_show' => 1])
+->andWhere(['!=', 'image_file', ''])
+->all();
 ?>
       <div class="row text-center">
          <div class="container-layout padding-tb-xl margin-auto">
@@ -26,14 +29,6 @@ $portfolio = Portfolio::find()->all();
                    </div>
                <?php endforeach; ?>
             <?php endif; ?>       
-                  <div class="grid-containerCol w-col-3 w-col-stack">
-                     <div class="company-item">
-                        <a data-modal-id="agencasa" target="_blank" href="https://www.facebook.com/bisnestofficial" class="company-link w-inline-block">
-                           <img src="<?= $dirAssests?>/pictures/Bisnest-W.png" alt="" class="image-3 companies-image--black">
-                           <img src="<?= $dirAssests?>/pictures/Bisnest-W1.png" alt="" class="image-2">
-                        </a>
-                     </div>
-                   </div>
 
                    <div class="grid-containerCol w-col-3 w-col-stack img-container">
                       <div class="company-item">
@@ -42,19 +37,7 @@ $portfolio = Portfolio::find()->all();
                            <img src="<?= $dirAssests?>/pictures/Oda-Bazaar-W1.png" alt="" class="image-2">
                         </a>
                      </div>
-                   </div>
-                 
-        
-               
-                <div class="grid-containerCol w-col-3 w-col-stack">
-                     <div class="company-item">
-                        <a data-modal-id="agencasa" target="_blank" href="https://confvalley.com/" class="company-link w-inline-block">
-                           <img src="<?= $dirAssests?>/pictures/convalley-W.png" alt="" class="image-3 companies-image--black">
-                           <img src="<?= $dirAssests?>/pictures/convalley-W1.png" alt="" class="image-2">
-                        </a>
-                     </div>
-                   </div> 
-                  
+                   </div>                  
                    
                  <div class="grid-containerCol w-col-3 w-col-stack">
                       <div class="company-item">

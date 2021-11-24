@@ -28,14 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
-
-                    [
-                        'format' => 'html',
-                        'label' => 'Name',
-                        'value' => function($model){
-                            return $model->image_file;
-                        }
-                    ],
                     [
                         'format' => 'html',
                         'label' => 'Image Url',
@@ -45,9 +37,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'format' => 'html',
-                        'label' => 'Portfolio Image',
+                        'label' => 'Image',
                         'value' => function($model){
-                            return '<img src="'.Url::to(['/website/portfolio/portfolio-image', 'id' => $model->id]).'" width="90" height="90">';
+                            if($model->image_file){
+                                return '<img src="'.Url::to(['/website/portfolio/portfolio-image', 'id' => $model->id]).'" width="90" height="90">';
+                            }else{
+                                return "";
+                            }
+                        }
+                    ],
+                    [
+                        'format' => 'html',
+                        'label' => 'Image Hover',
+                        'value' => function($model){
+                            if($model->image_file_hover){
+                                return '<img src="'.Url::to(['/website/portfolio/portfolio-image2', 'id' => $model->id]).'" width="90" height="90">';
+                            }else{
+                                return "";
+                            }
                         }
                     ],
                     ['class' => 'yii\grid\ActionColumn',

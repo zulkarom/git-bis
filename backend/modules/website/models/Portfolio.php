@@ -29,11 +29,13 @@ class Portfolio extends \yii\db\ActiveRecord
     {
         return [
 
-            ['image_url', 'required'],
+            [['image_url'], 'required', 'on' => 'update'],
 
             [['image_file', 'image_file_hover'], 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['image_url'], 'safe'],
+
+            [['is_show'], 'integer']
         ];
     }
 
@@ -46,7 +48,8 @@ class Portfolio extends \yii\db\ActiveRecord
             'id' => 'ID',
             'image_file' => 'Image',
             'image_file_hover' => 'Image Hover',
-            'image_url' => "Image Url"
+            'image_url' => "Image Url",
+            'is_show' => "Is Show"
         ];
     }
 

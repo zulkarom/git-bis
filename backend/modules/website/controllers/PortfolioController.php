@@ -71,10 +71,11 @@ class PortfolioController extends Controller
     public function actionCreate()
     {
         $model = new Portfolio();
-
         if($model->save()){
             return $this->redirect(['update', 'id' => $model->id]);
-        }   
+        }
+        
+        
     }
 
     public function actionPortfolioImage($id){
