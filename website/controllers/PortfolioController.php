@@ -32,7 +32,13 @@ class PortfolioController extends Controller
     public function actionPortfolioImage($id){
         $model = $this->findModel($id);
         
-        UploadFile::portfolioImage($model);
+        UploadFile::portfolioImage(1,$model);
+    }
+
+    public function actionPortfolioImage2($id){
+        $model = $this->findModel($id);
+        
+        UploadFile::portfolioImage(2,$model);
     }
 
     

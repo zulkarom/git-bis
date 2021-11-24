@@ -43,6 +43,11 @@ return [
         ],
     ],
     'components' => [
+        'assetManager' => [
+            'assetMap' => [
+                'jquery.js' => '@web/js/vendors.min.js',
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],

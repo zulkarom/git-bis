@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
       //  'css/site.css?v=1.01',
     ];
     public $js = [
-        'js/ajax-modal-popup.js',
+        // 'js/ajax-modal-popup.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

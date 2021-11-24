@@ -28,7 +28,10 @@ class Portfolio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['image_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+
+            ['image_url', 'required'],
+
+            [['image_file', 'image_file_hover'], 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 
             [['image_url'], 'safe'],
         ];
@@ -41,7 +44,8 @@ class Portfolio extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'image_file' => 'Image File',
+            'image_file' => 'Image',
+            'image_file_hover' => 'Image Hover',
             'image_url' => "Image Url"
         ];
     }

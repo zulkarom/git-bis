@@ -14,18 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <p>
-    <?php echo Html::button('Add Portfolio Image', ['value' => Url::to(['/website/portfolio/create']), 'class' => 'btn btn-success', 'id' => 'modalBttnPortfolio']);
-
-    $this->registerJs('
-        $(function(){
-          $("#modalBttnPortfolio").click(function(){
-              $("#portfolio").modal("show")
-                .find("#formPortfolio")
-                .load($(this).attr("value"));
-          }); 
-        });
-    ');
-    ?>
+    <?= Html::a('Add Portfolio Image', ['/website/portfolio/create'], ['class' => 'btn btn-success']) ?>
 </p>
 <br/>
 

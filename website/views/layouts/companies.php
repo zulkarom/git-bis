@@ -19,9 +19,8 @@ $portfolio = Portfolio::find()->all();
                <div class="grid-containerCol w-col-3 w-col-stack">
                      <div class="company-item">
                         <a data-modal-id="agencasa" target="_blank" href="<?=$port->image_url?>" class="company-link w-inline-block">
-                           <img src="<?=Url::to(['portfolio/portfolio-image', 'id' => $port->id])?>" alt="" class="image-2">
-                           <!-- <img src="<?= $dirAssests?>/pictures/Bisnest-W.png" alt="" class="image-3 companies-image--black">
-                           <img src="<?= $dirAssests?>/pictures/Bisnest-W1.png" alt="" class="image-2"> -->
+                           <img src="<?=Url::to(['portfolio/portfolio-image', 'id' => $port->id])?>" alt="" class="image-3 companies-image--black">
+                           <img src="<?=Url::to(['portfolio/portfolio-image2', 'id' => $port->id])?>" alt="" class="image-2">
                         </a>
                      </div>
                    </div>

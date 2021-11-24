@@ -14,7 +14,9 @@ use karpoff\icrop\CropImageUpload;
 
         <?= $form->field($model, 'image_url')->textInput(['maxlength' => true])?>
 
-        <?= $form->field($model, 'image_file')->widget(CropImageUpload::className()) ?>
+        
+
+        <?= $form->field($model2, 'image_file_hover')->widget(CropImageUpload::className()) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -6,11 +6,11 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
-        'assetManager' => [
-            'assetMap' => [
-                'jquery.js' => '@web/js/vendors.min.js',
-            ],
-        ],
+        // 'assetManager' => [
+        //     'assetMap' => [
+        //         'jquery.js' => '@web/js/vendors.min.js',
+        //     ],
+        // ],
         'formatter' => [
             'dateFormat' => 'php:d M Y',
             'datetimeFormat' => 'php:D d M Y h:i a',

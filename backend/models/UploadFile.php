@@ -244,13 +244,23 @@ class UploadFile
 		
 	}
 
-	public static function portfolioImage($model){
+	public static function portfolioImage($type, $model){
+
+		$img_file = "";
+		if($type == 1){
+			$file = Yii::getAlias('@uploaded/website/portfolio/' . $model->image_file);
+			$img_file = $model->image_file;
+
+		}else if($type == 2){
+			$file = Yii::getAlias('@uploaded/website/portfolio/' . $model->image_file_hover);
+			$img_file = $model->image_file_hover;
+		}
 	    
-	    $file = Yii::getAlias('@uploaded/website/portfolio/' . $model->image_file);
+	    	
 	    
-	    if($model->image_file){
+	    if($img_file){
             if (file_exists($file)) {
-            $ext = pathinfo($model->image_file, PATHINFO_EXTENSION);
+            $ext = pathinfo($img_file, PATHINFO_EXTENSION);
 
             $filename =  'section.' . $ext ;
             

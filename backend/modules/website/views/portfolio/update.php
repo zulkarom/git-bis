@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\widgets\ActiveForm;
 use karpoff\icrop\CropImageUpload; 
 use yii\helpers\Url;
 /* @var $this yii\web\View */
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = 'Update';
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <?= $form->field($model, 'image_url')->textInput(['maxlength' => true])?>
         </div>
     </div>
@@ -29,6 +29,17 @@ $this->params['breadcrumbs'][] = 'Update';
                 <tbody><tr>
                   <th style="width: 900px"><?= $form->field($model, 'image_file')->widget(CropImageUpload::className()) ?></th>
                   <th><img src="<?=Url::to(['/website/portfolio/portfolio-image', 'id' => $model->id])?>" width="90" height="90"></th>
+                </tr>
+              </tbody></table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tbody><tr>
+                  <th style="width: 900px"><?= $form->field($model2, 'image_file_hover')->widget(CropImageUpload::className()) ?></th>
+                  <th><img src="<?=Url::to(['/website/portfolio/portfolio-image2', 'id' => $model->id])?>" width="90" height="90"></th>
                 </tr>
               </tbody></table>
         </div>

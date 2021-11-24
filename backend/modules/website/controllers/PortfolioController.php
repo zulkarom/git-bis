@@ -5,6 +5,7 @@ namespace backend\modules\website\controllers;
 use Yii;
 use backend\modules\website\models\Portfolio;
 use backend\modules\website\models\PortfolioImage;
+use backend\modules\website\models\PortfolioImage2;
 use backend\modules\website\models\PortfolioSearch;
 use backend\models\UploadFile;
 use yii\web\Controller;
@@ -49,16 +50,6 @@ class PortfolioController extends Controller
         ]);
     }
 
-    public function actionAjax()
-    {
-        
-            $test = "Ajax Worked!";
-            echo $test;
-            die();
-            // do your query stuff here
-       
-    }
-
     /**
      * Displays a single Portfolio model.
      * @param integer $id
@@ -79,29 +70,23 @@ class PortfolioController extends Controller
      */
     public function actionCreate()
     {
-        $model = new PortfolioImage();
+        $model = new Portfolio();
 
-        $model->setScenario('insert');
-        if ($model->load(Yii::$app->request->post())) {
-
-            if($model->save()){
-                Yii::$app->session->addFlash('success', "Data saved.");
-                return $this->redirect(['index']);
-           }else{
-                return $model->flashError();
-           }
-            
-        }
-
-        return $this->renderAjax('create', [
-            'model' => $model,
-        ]);
+        if($model->save()){
+            return $this->redirect(['update', 'id' => $model->id]);
+        }   
     }
 
     public function actionPortfolioImage($id){
         $model = $this->findModel($id);
         
-        UploadFile::portfolioImage($model);
+        UploadFile::portfolioImage(1,$model);
+    }
+
+    public function actionPortfolioImage2($id){
+        $model = $this->findModel($id);
+        
+        UploadFile::portfolioImage(2,$model);
     }
 
     /**
@@ -114,11 +99,14 @@ class PortfolioController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findPortfolio($id);
+        $model2 = $this->findPortfolio2($id);
 
-        $model->setScenario('insert');
-        if ($model->load(Yii::$app->request->post())) {
+        $model->setScenario('update');
+        $model2->setScenario('update');
+        if ($model->load(Yii::$app->request->post()) 
+            && $model2->load(Yii::$app->request->post())) {
 
-            if($model->save()){
+            if($model->save() && $model2->save()){
                 Yii::$app->session->addFlash('success', "Data updated.");
                 return $this->redirect(['index']);
            }else{
@@ -129,6 +117,7 @@ class PortfolioController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'model2' => $model2,
         ]);
     }
 
@@ -173,6 +162,15 @@ class PortfolioController extends Controller
     protected function findPortfolio($id)
     {
         if (($model = PortfolioImage::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findPortfolio2($id)
+    {
+        if (($model = PortfolioImage2::findOne($id)) !== null) {
             return $model;
         }
 
