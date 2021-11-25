@@ -25,13 +25,15 @@ use specialist\icrop\CropImageUpload;
 		    	</div>
 		    </div>
 
-		    <div class="row">
+		    <!-- <div class="row">
 		        <div class="col-md-6">		    
 		  			
-		  			<?= $form->field($model, 'image_url')->widget(CropImageUpload::className()) ?>
+		  			<?php 
+		  			// $form->field($model, 'image_url')->widget(CropImageUpload::className()) 
+		  			?>
 		  			
 		        </div>
-		    </div>
+		    </div> -->
 
 		    <div class="form-group">
 		        <?= Html::submitButton('Save Content', ['class' => 'btn btn-success']) ?>

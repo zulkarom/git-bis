@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     // 'id',
                     'title',
                     'content',
-                    'image_url:url',
 
                     ['class' => 'yii\grid\ActionColumn',
                         'contentOptions' => ['style' => 'width: 10%'],
