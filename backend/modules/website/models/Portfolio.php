@@ -29,7 +29,7 @@ class Portfolio extends \yii\db\ActiveRecord
     {
         return [
 
-            [['image_url'], 'required', 'on' => 'update'],
+            // [['image_url'], 'required', 'on' => 'update'],
 
             [['image_file', 'image_file_hover'], 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
 

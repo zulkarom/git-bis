@@ -107,9 +107,15 @@ class PortfolioController extends Controller
         if ($model->load(Yii::$app->request->post()) 
             && $model2->load(Yii::$app->request->post())) {
 
-            if($model->save() && $model2->save()){
-                Yii::$app->session->addFlash('success', "Data updated.");
-                return $this->redirect(['index']);
+            if($model->image_url == ""){
+                $model->image_url = "Not Set";
+            }
+
+            if($model->save()){
+                if($model2->save()){
+                    Yii::$app->session->addFlash('success', "Data updated.");
+                    return $this->redirect(['index']);
+                }
            }else{
                 return $model->flashError();
            }

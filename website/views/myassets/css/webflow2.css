@@ -1323,13 +1323,13 @@ strong {
 }
 
 .company-item {
-  position: relative;
-  width: 33.3333%;
-  padding: 10px;
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
+    position: relative;
+    width: 25%;
+    padding: 10px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 .image-3 {
@@ -3605,7 +3605,7 @@ strong {
     margin-bottom: 30px;
   }
   .company-item {
-    width: 50%;
+    width: 16%;
   }
   .investors-teaser-title {
     font-size: 4rem;

@@ -51,15 +51,7 @@ $intro = Introduction::findOne(1);
 
 
 
-.company-item {
-    position: relative;
-    width: 25%;
-    padding: 10px;
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 auto;
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
-}
+
 
 .our-companies-col-panel {
     height: 325px;
