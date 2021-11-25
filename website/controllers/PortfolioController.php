@@ -16,16 +16,9 @@ class PortfolioController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function actionIndex()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+        echo 'image';
     }
  
 
