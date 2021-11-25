@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2021 at 08:58 AM
+-- Generation Time: Nov 25, 2021 at 07:42 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -144,7 +144,7 @@ CREATE TABLE `bc_item` (
 --
 
 INSERT INTO `bc_item` (`id`, `biz_canvas_id`, `category_id`, `title`, `description`, `color`) VALUES
-(17, 5, 1, 'testing 123', 'sdfsdfsdfsd', 'yellow');
+(17, 5, 1, 'testing 123456', 'sdfsdfsdfsd', 'yellow');
 
 -- --------------------------------------------------------
 
@@ -378,8 +378,7 @@ CREATE TABLE `expert` (
 
 INSERT INTO `expert` (`id`, `user_id`, `expert_type`, `profile_file`, `personal_updated_at`) VALUES
 (1, 9, 20, '6189f221d7438.png', '2021-11-09 11:59:29'),
-(2, 10, 20, '615bbd2d83f64.jpg', '2021-10-05 10:49:17'),
-(3, 11, 0, NULL, NULL);
+(2, 10, 20, '615bbd2d83f64.jpg', '2021-10-05 10:49:17');
 
 -- --------------------------------------------------------
 
@@ -524,7 +523,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1637721222, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1637809637, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
 (9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$13$lh6AznZexBZVMp9YfH3Eu.aReWILMfAQKzKjfDgooyeitXFRAdFbm', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1631030643, 0, 1637636240, 10, ''),
 (10, 'haikal@gmail.com', 'Hakimi Bin Ab Rahim', 'haikal@gmail.com', 2, '$2y$10$E4zM.GJUgKZFjMn7h2Id9uukq7QX8c20m84WzxhIo5NEmBI9jPUAK', '5VEOQvyjcxb6RKXvYQJmWSfR-yIcpIlJ', NULL, NULL, NULL, '::1', 1633402074, 1633402074, 0, 1635671931, 10, ''),
@@ -572,7 +571,15 @@ CREATE TABLE `web_portfolio` (
 --
 
 INSERT INTO `web_portfolio` (`id`, `image_file`, `image_file_hover`, `image_url`, `is_show`) VALUES
-(44, '619de8681b3af.png', '619deb4b4964c.jpg', '', 0);
+(45, '619df83ae9b87.png', '619df8b41f84d.png', 'https://www.facebook.com/bisnestofficial', 1),
+(47, '619eff1771841.png', '619eff1781f49.png', 'Not Set', 1),
+(48, '619dfe502294e.png', '619dfe5a98321.png', 'https://confvalley.com/', 1),
+(49, '619f000a9477a.png', '619f000aa37a8.png', 'http://www.edusagenet.com/', 1),
+(50, '619f16b18be12.png', '619f16b19c112.png', 'https://www.facebook.com/IBN-Agro-Farm-110867724169562', 1),
+(51, '619f16f659db6.png', '619f16f66de29.png', 'https://instagram.com/projekmakanmayu?igshid=1i1kdi4hglcuv', 1),
+(52, '619f178d4161f.png', '619f178d4da0b.png', 'https://ijeob.com/', 1),
+(53, '619f17b5137c5.jpg', '619f17b527375.jpg', 'Not Set', 1),
+(54, '619f199479f3c.jpg', '619f199484ea0.jpg', 'Not Set', 1);
 
 -- --------------------------------------------------------
 
@@ -592,7 +599,7 @@ CREATE TABLE `web_section` (
 --
 
 INSERT INTO `web_section` (`id`, `title`, `content`, `image_url`) VALUES
-(1, 'Startups', 'Hatchniaga assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.', ''),
+(1, 'Startup', 'Hatchniaga assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.', ''),
 (2, 'Investors', 'Hatchniaga connect with investment opportunities in Malaysia.', 'pic2.jpeg'),
 (3, 'Ecosystem', ' Hatchniaga create an entrepreneurial ecosystem focused on growing and sustaining the business and community.', 'pic3.jpeg');
 
@@ -819,7 +826,7 @@ ALTER TABLE `web_intro`
 -- AUTO_INCREMENT for table `web_portfolio`
 --
 ALTER TABLE `web_portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `web_section`
