@@ -11,9 +11,23 @@ use yii\filters\VerbFilter;
 /**
  * PortfolioController implements the CRUD actions for Portfolio model.
  */
-class PortfolioController extends Controller
+class CompanyController extends Controller
 {
-
+	public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['test'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                ],
+            ],
+        ];
+    }
 	
 	public function actionTest()
     {
@@ -22,6 +36,7 @@ class PortfolioController extends Controller
  
 
     public function actionPortfolioImage($id){
+		echo 'hai';die();
         $model = $this->findModel($id);
         
         UploadFile::portfolioImage(1,$model);
