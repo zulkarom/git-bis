@@ -37,12 +37,13 @@ return [
             'errorAction' => 'site/error',
         ],
         
-       /*  'urlManager' => [
+        'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+				'<controller>/<action>' => '<controller>/<action>',
             ],
-        ], */
+        ],
         
     ],
     'params' => $params,
