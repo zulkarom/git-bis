@@ -14,7 +14,7 @@ class HatchniagaAsset extends AssetBundle
     public $sourcePath = '@backend/assets/hatchniaga';
     public $css = [
         'css/vendors_css.css',
-        'css/style.css',
+        'css/style2.css',
         'css/skin_color.css',
     ];
 

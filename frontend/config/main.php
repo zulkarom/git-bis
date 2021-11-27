@@ -84,7 +84,8 @@ return [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'profile/*',
-            'chat/*'
+            'chat/*',
+			'user/*',
             //'application/*',
             //'some-controller/some-action',
             // The actions listed here will be allowed to everyone including guests.

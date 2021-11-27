@@ -152,8 +152,8 @@ div.bc-guide {
           <td colspan="2" rowspan="2">
             
             <div class ="row">
-              <div class ="col-md-10"><div class="titlebc">Key Partners</div></div> 
-              <div class ="col-md-2">
+              <div class ="col-md-9"><div class="titlebc">Key Partners</div></div> 
+              <div class ="col-md-3" align="right">
                 <?php 
                 
                 echo addItemLink($model, 1);
@@ -183,8 +183,8 @@ div.bc-guide {
           <td colspan="2">
 
               <div class ="row">
-              <div class ="col-md-10"><div class="titlebc">Key Activities</div></div> 
-              <div class ="col-md-2">
+              <div class ="col-md-9"><div class="titlebc">Key Activities</div></div> 
+              <div class ="col-md-3" align="right">
                 <?php
                 echo addItemLink($model, 2);
                     ?>
@@ -210,8 +210,8 @@ div.bc-guide {
           <td colspan="2" rowspan="2">
 
               <div class ="row">
-              <div class ="col-md-10"><div class="titlebc">Value Proposition</div> </div>
-              <div class ="col-md-2">
+              <div class ="col-md-9"><div class="titlebc">Value Proposition</div> </div>
+              <div class ="col-md-3" align="right">
                 <?php 
                 echo addItemLink($model, 3);
                 ?>
@@ -237,8 +237,8 @@ div.bc-guide {
           <td colspan="2">
 
               <div class ="row">
-              <div class ="col-md-10"><div class="titlebc">Customer Relationship</div> </div>
-              <div class ="col-md-2">
+              <div class ="col-md-9"><div class="titlebc">Customer Relationship</div> </div>
+              <div class ="col-md-3" align="right">
                 <?php 
                 echo addItemLink($model, 4);
                 
@@ -266,8 +266,8 @@ div.bc-guide {
           <td colspan="2" rowspan="2">
 
               <div class ="row">
-              <div class ="col-md-10"><div class="titlebc">Customers Segments</div> </div>
-              <div class ="col-md-2">
+              <div class ="col-md-9"><div class="titlebc">Customers Segments</div> </div>
+              <div class ="col-md-3" align="right">
                 <?php 
                 echo addItemLink($model, 5);
                 
@@ -299,8 +299,8 @@ div.bc-guide {
           <td colspan="2">
             
               <div class ="row">
-              <div class ="col-md-10"><div class="titlebc">Key Resources</div></div> 
-              <div class ="col-md-2">
+              <div class ="col-md-9"><div class="titlebc">Key Resources</div></div> 
+              <div class ="col-md-3" align="right">
                 <?php 
                 echo addItemLink($model, 6);
                 
@@ -329,8 +329,8 @@ div.bc-guide {
           <td colspan="2">
             
               <div class ="row">
-              <div class ="col-md-10"><div class="titlebc">Channels</div></div> 
-              <div class ="col-md-2">
+              <div class ="col-md-9"><div class="titlebc">Channels</div></div> 
+              <div class ="col-md-3" align="right">
                 <?php 
                 echo addItemLink($model, 7);
                 
@@ -360,8 +360,8 @@ div.bc-guide {
           <td colspan="5">
             
               <div class ="row">
-              <div class ="col-md-11"><div class="titlebc">Cost Structure </div></div> 
-              <div class ="col-md-1">
+              <div class ="col-md-10"><div class="titlebc">Cost Structure </div></div> 
+              <div class ="col-md-2" align="right">
                 <?php 
                 echo addItemLink($model, 8);
                 ?>
@@ -388,8 +388,8 @@ div.bc-guide {
           <td colspan="5">
             
               <div class ="row">
-              <div class ="col-md-11"><div class="titlebc">Revenue Streams </div></div> 
-              <div class ="col-md-1">
+              <div class ="col-md-10"><div class="titlebc">Revenue Streams </div></div> 
+              <div class ="col-md-2" align="right">
                 <?php 
                 echo addItemLink($model, 9);
                 
