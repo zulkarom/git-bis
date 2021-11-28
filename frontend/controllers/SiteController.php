@@ -73,6 +73,11 @@ class SiteController extends Controller
        return $this->redirect('user/login');
         
     }
+	
+	public function actionTest(){
+		echo 'hai';die();
+		exit();
+	}
 
     /**
      * Logs in a user.
