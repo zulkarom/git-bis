@@ -39,9 +39,7 @@ phpunit.phar
 
 # ignore generated files
 backend/web/
-frontend/web/
 website/web/
-frontend/web/
 frontend/config/
 backend/config/
 website/config/

@@ -13,12 +13,11 @@ use yii\filters\VerbFilter;
  */
 class PortfolioController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function actionIndex()
+
+	
+	public function actionTest()
     {
-        echo 'image';
+        echo 'test';
     }
  
 
