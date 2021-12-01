@@ -86,6 +86,7 @@ return [
             'profile/*',
             'chat/*',
 			'user/*',
+			'consult/*',
 			'/site/*',
             //'application/*',
             //'some-controller/some-action',
