@@ -1,64 +1,26 @@
 [
   {
-    "users": [
-      {
-        "id": 5,
-        "name": "Nicholas Staten",
-        "status": "online",
-        "profile": "chat/images/users/avatar-3.jpg"
-      },
-      {
-        "id": 6,
-        "name": "Kathryn Swarey",
-        "status": "online",
-        "profile": "chat/images/users/avatar-12.jpg",
-        "messagecount" : 8
-      },
-      {
-        "id": 9,
-        "name": "Jessica Lewis",
-        "status": "online",
-        "profile": ""
-      },
-      {
-        "id": 10,
-        "name": "John Foss",
-        "status": "online",
-        "profile": "chat/images/users/avatar-9.jpg",
-        "messagecount" : 5
-      },
-      {
-        "id": 11,
-        "name": "Gloria Underhill",
-        "status": "online",
-        "profile": "chat/images/users/avatar-10.jpg"
-      }
-    ],
-    "favorites": [
-      {
-        "id": 1,
-        "name": "Bella Cote",
-        "status": "online",
-        "profile": "chat/images/users/avatar-2.jpg",
-        "messagecount" : 18
-      },
-      {
-        "id": 2,
-        "name": "Steven Jury",
-        "status": "online",
-        "profile": "chat/images/users/avatar-7.jpg"
-      },
-      { "id": 3,
-        "name": "James Pinard",
-        "status": "Offline", 
-        "profile": ""
-      },
-      {
-        "id": 4,
-        "name": "Alissa Richards",
-        "status": "online",
-        "profile": "chat/images/users/avatar-4.jpg"
-      }
-    ]
+    "id": 1,
+    "name": "Bella Cote",
+    "status": "online",
+    "profile": "chat/images/users/avatar-2.jpg",
+    "messagecount" : 18
+  },
+  {
+    "id": 2,
+    "name": "Steven Jury",
+    "status": "online",
+    "profile": "chat/images/users/avatar-7.jpg"
+  },
+  { "id": 3,
+    "name": "James Pinard",
+    "status": "Offline", 
+    "profile": ""
+  },
+  {
+    "id": 4,
+    "name": "Alissa Richards",
+    "status": "online",
+    "profile": "chat/images/users/avatar-4.jpg"
   }
 ]

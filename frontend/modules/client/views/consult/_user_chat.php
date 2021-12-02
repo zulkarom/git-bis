@@ -44,7 +44,7 @@ $web = Yii::getAlias('@web');
                                                 </div>
                                                 <div class="flex-grow-1 overflow-hidden">
                                                     <h6 class="text-truncate mb-0 font-size-18"><a href="#" class="user-profile-show text-reset">Bella Cote</a></h6>
-                                                    <p class="text-truncate text-muted mb-0"><small>Online</small></p>
+                                                    <p class="text-truncate text-muted mb-0"><small class="user-topic-text">Online</small></p>
                                                 </div>
                                             </div>
                                         </div>

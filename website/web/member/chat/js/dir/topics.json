@@ -1,24 +1,27 @@
 [   
     {
-        "id": 1,
-        "consultant": "Adam Zampa",
-        "cid": 1,
-        "title": "How to create a good marketing plan",
-        "unread": 12
-    },
-    {
         "id": 2,
-        "consultant": "Bella Cote",
+        "consultant": "Steven Jury",
         "cid": 2,
-        "title": "How to create a good financial plan",
-        "unread": 0
+        "title": "How to create a good marketing plan",
+        "unread": 12,
+		"profile": "chat/images/users/avatar-7.jpg"
     },
     {
-        "id": 3,
-        "consultant": "Floria Underhill",
-        "cid": 3,
+        "id": 1,
+        "consultant": "Bella Cote",
+        "cid": 1,
+        "title": "How to create a good financial plan",
+        "unread": 0,
+		"profile": "chat/images/users/avatar-2.jpg"
+    },
+    {
+        "id": 4,
+        "consultant": "Alissa Richards",
+        "cid": 4,
         "title": "How to create a good operating plan",
-        "unread": 2
+        "unread": 5,
+		"profile": "chat/images/users/avatar-4.jpg"
     }
 ]
   

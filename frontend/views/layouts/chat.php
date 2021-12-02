@@ -28,7 +28,7 @@ $web = Yii::getAlias('@web');
         <!-- Icons Css -->
         <link href="<?=$web?>/chat/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="<?=$web?>/chat/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="<?=$web?>/chat/css/app.css" id="app-style" rel="stylesheet" type="text/css" />
 
 
     </head>

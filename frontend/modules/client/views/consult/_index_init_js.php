@@ -60,7 +60,18 @@ function searchContactOnModal() {
                 var t = document.querySelector(".chat-user-list li.active");
                 t && t.classList.remove("active"), this.parentNode.classList.add("active");
             });
-        }),
+        }), 
+		
+		document.querySelectorAll(".chat-topic-list li").forEach(function (e) {
+            e.addEventListener("click", function (e) {
+                a.forEach(function (e) {
+                    e.classList.add("user-chat-show");
+                });
+                var t = document.querySelector(".chat-topic-list li.active");
+                t && t.classList.remove("active"), this.classList.add("active");
+            });
+        }), 
+		
             document.querySelectorAll(".sort-contact ul li").forEach(function (e) {
                 e.addEventListener("click", function (e) {
                     a.forEach(function (e) {
@@ -74,7 +85,8 @@ function searchContactOnModal() {
                         e.classList.remove("user-chat-show");
                     });
                 });
-            });
+            })
+			;
     }
     function e(e, t) {
         var a = new XMLHttpRequest();
@@ -96,7 +108,7 @@ function searchContactOnModal() {
     e("users.json", function (e, t) {
         null !== e
             ? console.log("Something went wrong: " + e)
-            : t[0].favorites.forEach(function (e, t) {
+            : (c = t), t.forEach(function (e, t) {
                   var a = e.profile
                           ? '<img src="' + url + e.profile + '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>'
                           : '<div class="avatar-xs"><span class="avatar-title rounded-circle bg-primary text-white"><span class="username">JP</span><span class="user-status"></span></span></div>',
@@ -124,10 +136,11 @@ function searchContactOnModal() {
                     i.addEventListener("click", function (e) {
                         (o = "users"), u(), (n = "users-chat");
                         var t = i.getAttribute("id"),
-                            a = i.querySelector(".text-truncate").innerHTML;
+                            a = i.querySelector(".text-truncate").innerHTML;;
                         (document.querySelector(".user-profile-sidebar .user-name").innerHTML = a),
                             (document.getElementById("users-chat").querySelector(".text-truncate .user-profile-show").innerHTML = a),
                             (document.querySelector(".user-profile-desc .text-truncate").innerHTML = a),
+							(document.querySelector(".user-topic-text").innerHTML = 'Online'),
                             (document.querySelector(".audiocallModal .text-truncate").innerHTML = a),
                             (document.querySelector(".videocallModal .text-truncate").innerHTML = a);
                         var s = document.getElementById(t).querySelector(".avatar-xs").getAttribute("src");
@@ -149,88 +162,10 @@ function searchContactOnModal() {
                             }),
                             window.stop();
                     });
-                }),
-            document.querySelectorAll("#channelList li").forEach(function (r) {
-                r.addEventListener("click", function (e) {
-                    (n = "channel-chat"), (o = "channel"), u();
-                    var t = r.getAttribute("id"),
-                        a = r.querySelector(".text-truncate").innerHTML;
-                    (document.getElementById("channel-chat").querySelector(".text-truncate .user-profile-show").innerHTML = a),
-                        (document.querySelector(".user-profile-desc .text-truncate").innerHTML = a),
-                        (document.querySelector(".audiocallModal .text-truncate").innerHTML = a),
-                        (document.querySelector(".videocallModal .text-truncate").innerHTML = a),
-                        (document.querySelector(".user-profile-sidebar .user-name").innerHTML = a);
-                    var s = document.getElementById(t).querySelector(".avatar-xs").getAttribute("src");
-                    s
-                        ? (document.querySelector(".user-own-img .avatar-sm").setAttribute("src", s),
-                          document.querySelector(".user-profile-sidebar .profile-img").setAttribute("src", s),
-                          document.querySelector(".audiocallModal .img-thumbnail").setAttribute("src", s),
-                          document.querySelector(".videocallModal .videocallModal-bg").setAttribute("src", s))
-                        : (document.querySelector(".user-own-img .avatar-sm").setAttribute("src", l),
-                          document.querySelector(".user-profile-sidebar .profile-img").setAttribute("src", l),
-                          document.querySelector(".audiocallModal .img-thumbnail").setAttribute("src", l),
-                          document.querySelector(".videocallModal .videocallModal-bg").setAttribute("src", l));
                 });
-            });
     }),
         
-        e("contacts.json", function (e, t) {
-            var r, i;
-            null !== e
-                ? console.log("Something went wrong: " + e)
-                : ((c = t).sort(function (e, t) {
-                      return e.name.localeCompare(t.name);
-                  }),
-                  (i = r = ""),
-                  c.forEach(function (e, t) {
-                      var a = e.profile ? '<img src="' + e.profile + '" class="img-fluid rounded-circle" alt="">' : '<span class="avatar-title rounded-circle bg-primary font-size-10">FP</span>';
-                      r =
-                          '<li>              <div class="d-flex align-items-center">                  <div class="flex-shrink-0 me-2">                      <div class="avatar-xs">                          ' +
-                          a +
-                          '                      </div>                  </div>                  <div class="flex-grow-1">                      <h5 class="font-size-14 m-0" >' +
-                          e.name +
-                          '</h5>                  </div>                  <div class="flex-shrink-0">                      <div class="dropdown">                          <a href="#" class="text-muted dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                              <i class="bx bx-dots-vertical-rounded align-middle"></i>                          </a>                          <div class="dropdown-menu dropdown-menu-end">                              <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Edit <i class="bx bx-pencil ms-2 text-muted"></i></a>                              <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Block <i class="bx bx-block ms-2 text-muted"></i></a>                              <a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Remove <i class="bx bx-trash ms-2 text-muted"></i></a>                          </div>                      </div>                  </div>              </div>          </li>';
-                      var s =
-                          '<div class="mt-3" >          <div class="contact-list-title">' +
-                          e.name.charAt(0).toUpperCase() +
-                          '                </div>                <ul id="contact-sort-' +
-                          e.name.charAt(0) +
-                          '" class="list-unstyled contact-list" >';
-                      i != e.name.charAt(0) && (document.getElementsByClassName("sort-contact")[0].innerHTML += s),
-                          (document.getElementById("contact-sort-" + e.name.charAt(0)).innerHTML = document.getElementById("contact-sort-" + e.name.charAt(0)).innerHTML + r),
-                          (i = e.name.charAt(0));
-                  })),
-                document.querySelectorAll(".sort-contact ul li").forEach(function (s) {
-                    s.addEventListener("click", function (e) {
-                        (o = "users"), u();
-                        var t = s.querySelector("li .font-size-14").innerHTML;
-                        (document.querySelector(".text-truncate .user-profile-show").innerHTML = t),
-                            (document.querySelector(".user-profile-desc .text-truncate").innerHTML = t),
-                            (document.querySelector(".audiocallModal .text-truncate").innerHTML = t),
-                            (document.querySelector(".videocallModal .text-truncate").innerHTML = t),
-                            (document.querySelector(".user-profile-sidebar .user-name").innerHTML = t);
-                        var a = s.querySelector("li .align-items-center").querySelector(".avatar-xs .rounded-circle").getAttribute("src");
-                        a
-                            ? (document.querySelector(".user-own-img .avatar-sm").setAttribute("src", a),
-                              document.querySelector(".user-profile-sidebar .profile-img").setAttribute("src", a),
-                              document.querySelector(".audiocallModal .img-thumbnail").setAttribute("src", a),
-                              document.querySelector(".videocallModal .videocallModal-bg").setAttribute("src", a))
-                            : (document.querySelector(".user-own-img .avatar-sm").setAttribute("src", l),
-                              document.querySelector(".user-profile-sidebar .profile-img").setAttribute("src", l),
-                              document.querySelector(".audiocallModal .img-thumbnail").setAttribute("src", l),
-                              document.querySelector(".videocallModal .videocallModal-bg").setAttribute("src", l)),
-                            document
-                                .getElementById("users-conversation")
-                                .querySelectorAll(".left .chat-avatar")
-                                .forEach(function (e) {
-                                    a ? e.querySelector("img").setAttribute("src", a) : e.querySelector("img").setAttribute("src", l);
-                                }),
-                            window.stop();
-                    });
-                }),
-                a();
-        }),
-		
+   
 		e("topics.json", function (e, t) {
             var r, i;
 			var str_topics = "";
@@ -238,19 +173,51 @@ function searchContactOnModal() {
                 ? console.log("Something went wrong: " + e)
                 : (i = r = ""),
                   t.forEach(function (e, t) {
-					  console.log(e.consultant);
-					  
-                     str_topics += '<li><div class="d-flex align-items-center"><div class="flex-shrink-0 avatar-xs ms-1 me-3"><div class="avatar-title bg-soft-primary text-primary rounded-circle"><i class="bx bx-file"></i></div></div><div class="flex-grow-1 overflow-hidden"><h5 class="font-size-14 mb-1"><a href="#" class="text-truncate p-0">';
+                     str_topics += '<li id="contact-id-' + e.cid + '"><div class="d-flex align-items-center"><div class="chat-user-img online align-self-center me-2 ms-0">                              <img src="' + url + e.profile + '" class="rounded-circle avatar-xs" alt=""><span class="user-status"></span>                          </div><div class="flex-grow-1 overflow-hidden"><h5 class="font-size-14 mb-1"><a href="#" class="text-truncate p-0">';
 					 str_topics += e.consultant;
-					 str_topics += '</a></h5><p class="text-muted font-size-13 mb-0">';
+					 str_topics += '</a></h5><p class="font-size-13 mb-0 topic-text">';
 					 str_topics += e.title;
 					 str_topics += '</p></div><span class="badge badge-soft-dark rounded p-1">';
 					 str_topics += e.unread;
 					 str_topics += '</span><div class="flex-shrink-0 ms-3"><div class="dropdown"><a class="dropdown-toggle font-size-16 text-muted px-1" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded"></i></a><div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Edit <i class="bx bx-pencil ms-2 text-muted"></i></a><a class="dropdown-item d-flex align-items-center justify-content-between" href="#">Delete <i class="bx bx-trash ms-2 text-muted"></i></a></div></div></div></div></li>';
 					 
                   }),
-				  document.getElementById("topic-list").innerHTML = str_topics;
+				  document.getElementById("topic-list").innerHTML = str_topics, 
+				  a(),
+				  document.querySelectorAll("#topic-list li") &&
+					document.querySelectorAll("#topic-list li").forEach(function (i) {
+						i.addEventListener("click", function (e) {
+							(o = "users"), u(), (n = "users-chat");
+							var t = i.getAttribute("id"), topic_text = i.querySelector(".topic-text").innerHTML,
+								a = i.querySelector(".text-truncate").innerHTML;
+								(document.querySelector(".user-profile-sidebar .user-name").innerHTML = a),
+								(document.querySelector(".user-topic-text").innerHTML = topic_text),
+								(document.getElementById("users-chat").querySelector(".text-truncate .user-profile-show").innerHTML = a),
+								(document.querySelector(".user-profile-desc .text-truncate").innerHTML = a),
+								(document.querySelector(".audiocallModal .text-truncate").innerHTML = a),
+								(document.querySelector(".videocallModal .text-truncate").innerHTML = a);
+							var s = document.getElementById(t).querySelector(".avatar-xs").getAttribute("src");
+							s
+								? (document.querySelector(".user-own-img .avatar-sm").setAttribute("src", s),
+								  document.querySelector(".user-profile-sidebar .profile-img").setAttribute("src", s),
+								  document.querySelector(".audiocallModal .img-thumbnail").setAttribute("src", s),
+								  document.querySelector(".videocallModal .videocallModal-bg").setAttribute("src", s))
+								: (document.querySelector(".user-own-img .avatar-sm").setAttribute("src", l),
+								  document.querySelector(".user-profile-sidebar .profile-img").setAttribute("src", l),
+								  document.querySelector(".audiocallModal .img-thumbnail").setAttribute("src", l),
+								  document.querySelector(".videocallModal .videocallModal-bg").setAttribute("src", l));
+							var r = i.querySelector(".avatar-xs").getAttribute("src");
+							document
+								.getElementById("users-conversation")
+								.querySelectorAll(".left .chat-avatar")
+								.forEach(function (e) {
+									r ? e.querySelector("img").setAttribute("src", r) : e.querySelector("img").setAttribute("src", l);
+								}),
+								window.stop();
+						});
+					})
         }),
+		
 		
         u();
     var t = document.querySelector(".user-profile-sidebar");

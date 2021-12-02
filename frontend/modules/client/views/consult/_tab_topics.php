@@ -22,7 +22,7 @@
 
 		<!-- Start contact lists -->
 		<div class="chat-message-list chat-bookmark-list" data-simplebar>
-			<ul class="list-unstyled chat-list" id="topic-list">
+			<ul class="list-unstyled chat-topic-list" id="topic-list">
 				
 
 			</ul>

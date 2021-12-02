@@ -1090,7 +1090,21 @@ body[data-layout-mode="dark"] .dark-mode {
 .contact-list li {
   cursor: pointer;
   padding: 8px 24px; }
+  
+.chat-topic-list li {
+  cursor: pointer;}
+.chat-topic-list li.active{
+  background-color: rgba(var(--bs-primary-rgb), 1);
+  }
 
+.chat-topic-list li.active p, .chat-topic-list li.active a.text-truncate{
+  color: #fff;
+  }
+.user-topic-text {
+	overflow: visible;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
 .contact-list-title {
   padding: 6px 24px;
   color: rgba(var(--bs-primary-rgb), 1);
