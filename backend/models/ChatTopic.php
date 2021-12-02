@@ -96,4 +96,10 @@ class ChatTopic extends \yii\db\ActiveRecord
         $result = 'Delete Success';
         return $result;
     }
+
+    public static function countTopic($user){
+        return self::find()
+        ->where(['client_id' => $user])
+        ->count();
+    }
 }

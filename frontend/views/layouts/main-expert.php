@@ -7,14 +7,14 @@ use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
-use backend\assets\HatchniagaAsset;
+use backend\assets\CryptoAsset;
 use backend\assets\AppAsset;
 
 AppAsset::register($this);
-HatchniagaAsset::register($this);
+CryptoAsset::register($this);
 
 
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchniaga');
+$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
 
 
 ?>
@@ -24,27 +24,19 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="<?= $dirAssests?>/images/favicon.ico">
-    <!-- <title>Husoe</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- <title>BitCrypto</title> -->
     <title><?= Html::encode($this->title) ?></title>
+
+    <link rel="icon" href="<?= $dirAssests?>/icon/favicon.png" type="image/png">
 
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
 
 </head>
 
-<body class="hold-transition light-skin theme-primary">
+<body class="crm_body_bg">
 <?php $this->beginBody() ?>
-<!-- Site wrapper -->
-<div class="wrapper">
-
-    <?=$this->render('header-expert', [    
-        'dirAssests' => $dirAssests,
-    ]);
-    ?>
 
 
     <?=$this->render('menu-expert', [    
@@ -52,44 +44,59 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchnia
     ]);
     ?>
 
-     <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-      <div class="container-full">
-        <!-- Content Header (Page header) -->
-        <?php if(Yii::$app->controller->module->id != 'chatExpert'){
-            ?>
-        <div class="content-header">
-            <div class="d-flex align-items-center">
-                <div class="w-p100 d-md-flex align-items-center justify-content-between">
-                    <h3 class="page-title"><?= Html::encode($this->title) ?></h3>
-                    <div class="d-inline-block align-items-center">
-                        <nav>
-                            <ol class="breadcrumb">
-                                <?php echo
-                                     Breadcrumbs::widget(
-                                         [
-                                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                         ]
-                                     ) 
-                                ?>
-                            </ol>
-                        </nav>
+    <section class="main_content dashboard_part large_header_bg">
+    <!-- menu  -->
+        <?=$this->render('upper_menu_expert', [    
+            'dirAssests' => $dirAssests,
+        ]);
+        ?>
+    <!--/ menu  -->
+    
+<div class="main_content_iner overly_inner ">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12">
+                <div class="page_title_box d-flex align-items-center justify-content-between">
+                    <div class="page_title_left">
+                        <h3 class="f_s_30 f_w_700 dark_text"><?= Html::encode($this->title) ?></h3>
+                        
                     </div>
+                    <ol class="breadcrumb page_bradcam mb-0">
+                        <?php echo
+                             Breadcrumbs::widget(
+                                 [
+                                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                                 ]
+                             ) 
+                        ?>
+                    </ol>
                 </div>
-                
             </div>
         </div>
-    <?php } ?>
-        <!-- Main content -->
-        <section class="content">
-            <?= Alert::widget() ?>
-            <?=$content?>
-        </section>
+        <div class="row">
+            <div class="col-12">
+                <?= Alert::widget() ?>
+                <?=$content?>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <!-- /.content -->
-      </div>
-  </div>
-  <!-- /.content-wrapper -->
+<!-- footer part -->
+    <?=$this->render('footer', [    
+        'dirAssests' => $dirAssests,
+    ]);
+    ?>
+<!-- end of footer part -->    
+</section>
+
+
+
+<div id="back-top" style="display: none;">
+    <a title="Go to Top" href="#">
+        <i class="ti-angle-up"></i>
+    </a>
+</div>
 
 <?php $this->endBody() ?>
 </body>

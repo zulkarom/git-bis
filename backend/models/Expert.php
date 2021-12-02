@@ -75,4 +75,9 @@ class Expert extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ClientExpert::className(), ['expert_id' => 'id']);
     }
+
+    public static function countExperts(){
+        return self::find()
+        ->count();
+    }
 }

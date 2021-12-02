@@ -17,8 +17,8 @@ $model->email = $user->email;
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     
-<div class="box">
-        <div class="box-body">
+<div class="card">
+        <div class="card-body">
 
     
     
@@ -108,6 +108,7 @@ $model->email = $user->email;
 </div><!-- profile-index -->
 </div>
 
+<br/>
  <div class="form-group">
     <?= Html::submitButton('<span class="fa fa-save"></span>  Save Profile', ['class' => 'btn btn-primary']) ?>
 </div>

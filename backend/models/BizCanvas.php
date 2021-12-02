@@ -60,6 +60,12 @@ class BizCanvas extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    public static function countCanvas($user){
+        return self::find()
+        ->where(['user_id' => $user])
+        ->count();
+    }
+
     public function flashError(){
         if($this->getErrors()){
             foreach($this->getErrors() as $error){

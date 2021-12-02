@@ -1,14 +1,14 @@
 <?php
 use common\widgets\Alert;
 use yii\helpers\Html;
-use backend\assets\HatchniagaAsset;
+use backend\assets\CryptoAsset;
 use backend\assets\FrontLogin;
 use kartik\widgets\ActiveForm;
 
-HatchniagaAsset::register($this);
+CryptoAsset::register($this);
 FrontLogin::register($this);
 
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/hatchniaga');
+$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

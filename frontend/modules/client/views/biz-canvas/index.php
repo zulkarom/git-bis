@@ -31,11 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ');
         ?>
     </p>
+    <br/>
 
 <div class="biz-canvas-index">
 
-    <div class="box">
-      <div class="box-body">
+    <div class="card">
+      <div class="card-body">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,

@@ -244,4 +244,10 @@ class ChatModel extends \yii\db\ActiveRecord
         ksort($out);
         return $out;
     }
+
+    public static function countChat($user){
+        return self::find()
+        ->where(['sender_id' => $user])
+        ->count();
+    }
 }
