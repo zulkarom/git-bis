@@ -202,7 +202,7 @@ class ChatModel extends \yii\db\ActiveRecord
         return $out;
     }
 
-    public static function getPreviousMessages($user, $numberLastMessages, $tid, $first_message_id)
+    public static function getStartMessages($user, $numberLastMessages, $tid, $first_message_id)
     {
         $messages = self::find()
         ->alias('a')
@@ -244,6 +244,76 @@ class ChatModel extends \yii\db\ActiveRecord
         ksort($out);
         return $out;
     }
+	
+	public static function initMessage($user, $topic = false){
+		$limit = 20;
+		if($topic){
+			$messages = ChatModel::find()
+			->alias('a')
+			->select('a.*, s.fullname as sender_name, r.fullname as recipient_name')
+			->joinWith(['sender s', 'recipient r'])
+			->limit($limit)
+				->orFilterWhere(['and',
+					['sender_id' => Yii::$app->user->identity->id],
+					['recipient_id' => $user],
+					['topic_id' => $topic],
+					['is_deleted' => 0],
+				])
+				
+				->orFilterWhere(['and',
+					['sender_id' => $user],
+					['recipient_id' => Yii::$app->user->identity->id],
+					['topic_id' => $topic],
+					['is_deleted' => 0],
+				])
+				
+				->orderBy(['id'=>SORT_DESC])
+				->all();
+		}else{
+			$messages = ChatModel::find()
+			->alias('a')
+			->select('a.*, s.fullname as sender_name, r.fullname as recipient_name')
+			->joinWith(['sender s', 'recipient r', 'chatTopic t'])
+			->limit($limit)
+				->orFilterWhere(['and',
+					['sender_id' => Yii::$app->user->identity->id],
+					['recipient_id' => $user],
+					['t.is_default' => 1],
+					['is_deleted' => 0],
+				])
+				
+				->orFilterWhere(['and',
+					['sender_id' => $user],
+					['recipient_id' => Yii::$app->user->identity->id],
+					['t.is_default' => 1],
+					['is_deleted' => 0],
+				])
+				
+				->orderBy(['id'=>SORT_DESC])
+				->all();
+		}
+		
+        
+        $out=[];
+        foreach ($messages as $message)
+        {
+            $out[]=[
+					'id' => $message->id,
+					'from_id' => $message->sender_id,
+					'to_id' => $message->recipient_id,
+					'msg' => $message->message,
+					"has_dropDown" => true,
+					"has_images" => [],
+					"has_files" => [],
+                    'datetime' => $message->time,
+					"isReplied" => 1
+                ];
+        }
+		$con = [];
+		$con["chats"] = $out;
+        return [$con];
+	}
+	
 
     public static function countChat($user){
         return self::find()

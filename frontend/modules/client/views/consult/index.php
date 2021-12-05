@@ -522,6 +522,7 @@ $web = Yii::getAlias('@web');
 
         </div>
         <!-- JAVASCRIPT -->
+		<script src="<?=$web?>/chat/libs/jquery/jquery.min.js"></script>
         <script src="<?=$web?>/chat/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="<?=$web?>/chat/libs/simplebar/simplebar.min.js"></script>
         <script src="<?=$web?>/chat/libs/node-waves/waves.min.js"></script>
@@ -535,5 +536,6 @@ $web = Yii::getAlias('@web');
 <script src="<?=$web?>/chat/libs/fg-emoji-picker/fgEmojiPicker.js"></script>
 
 <?=$this->render('_index_init_js')?>
+<?=$this->render('_index_init_jquery')?>
  
  

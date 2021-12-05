@@ -121,7 +121,7 @@ class DefaultController extends Controller
     //     {
 
             
-    //         $messages = ChatModel::getPreviousMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
+    //         $messages = ChatModel::getStartMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
     //         $result = json_encode($messages);
     //         return $result;
     //     }

@@ -132,7 +132,6 @@ class DefaultController extends Controller
             
             if ($model->load(Yii::$app->request->post()))
             {
-               // return 'xxxxxxxxx' . $model->recipient_id;
                 if ($post['sendMessage']=='true'){
                     ChatTopic::updateAll(['last_message_send' => new Expression('NOW()')], ['id' => $model->topic_id]);
                     $model->time = time();
@@ -195,7 +194,7 @@ class DefaultController extends Controller
             {
 
                 
-                $messages = ChatModel::getPreviousMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
+                $messages = ChatModel::getStartMessages($model->recipient_id, $this->module->numberLastMessages,$model->topic_id, $model->first_message_id);
                 $result = json_encode($messages);
                 return $result;
 
