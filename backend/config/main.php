@@ -25,8 +25,7 @@ return [
         'chat' => [
             'class' => 'backend\modules\chat\ChatModule',
             'numberLastMessages' => 30,
-        ],
-        
+        ], 
     ],
     'components' => [
         'request' => [
@@ -81,6 +80,7 @@ return [
             'client/*',
             'website/*',
             'bc-category/*',
+            'chat/*',
 
             
         

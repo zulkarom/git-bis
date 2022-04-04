@@ -49,8 +49,14 @@ class Menu_crypto
    
    protected function item1($item){
 	   $active = $this->isItemActive($item) ? 'active' : '';
+	   $blnk = '';
+	   if(array_key_exists('newtab', $item)){
+	       if($item['newtab']){
+	           $blnk = 'target="_blank"';
+	       }
+	   }
 	   return '<li>
-				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
+				   <a href="'.Url::to($item['url']).'" class="'.$active.'" '.$blnk.'>
 				   <div class="nav_icon_small"><img src="'.$item['icon'].'" alt=""></div>
 				   <div class="nav_title">
 				   <span>

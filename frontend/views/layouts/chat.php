@@ -38,8 +38,5 @@ $web = Yii::getAlias('@web');
         <?=$content?>
         <!-- end  layout wrapper -->
 
-
-
-      
     </body>
 </html>

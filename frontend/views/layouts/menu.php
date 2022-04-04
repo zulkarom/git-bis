@@ -3,6 +3,10 @@
 use yii\helpers\Url;
 use common\widgets\Menu_crypto;
 
+/* 
+ * $dirAssests mixed
+ *  */
+
 ?> 
 <!-- <nav class="sidebar dark_sidebar"> -->
 <nav class="sidebar">
@@ -23,7 +27,7 @@ use common\widgets\Menu_crypto;
 
             ['label' => \Yii::t('app', 'My Profile'), 'level' => 1, 'url' => ['/client/profile/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
 
-            ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => []],
+            ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/consult/index'], 'icon' => $dirAssests.'/img/menu-icon/4.svg', 'children' => [], 'newtab' => true],
 
             ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => $dirAssests.'/img/menu-icon/18.svg', 'children' => []],
     
