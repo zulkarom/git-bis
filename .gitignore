@@ -42,3 +42,4 @@ backend/web/
 frontend/config/
 backend/config/
 website/config/
+node_modules/
