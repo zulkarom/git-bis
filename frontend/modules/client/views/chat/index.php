@@ -4,12 +4,15 @@ $web = Yii::getAlias('@web');
 
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
+    $chatUrl = Url::to(['/chat/default/index']);
 }else{
     $userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
+    $chatUrl = Url::to(['/chatExpert/default/index']);
 }
 ?>
 
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
+<input type="hidden" id="chatUrl" value="<?=$chatUrl?>">
 <div class="nk-content p-0">
     <div class="nk-content-inner">
         <div class="nk-content-body">
@@ -73,33 +76,14 @@ if(Yii::$app->user->identity->role == 1){
                         <div class="nk-chat-list">
                             <h6 class="title overline-title-alt">Messages</h6>
                             <ul class="chat-list">
-                                <li class="chat-item">
-                                    
-                                        <div id="current-expert"></div>
-                                        <div class="list-expert"></div>
-                                    
-                                    <div class="chat-actions">
-                                        <div class="dropdown">
-                                            <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <ul class="link-list-opt no-bdr">
-                                                    <li><a href="#">Mute Conversion</a></li>
-                                                    <li><a href="#">Hide Conversion</a></li>
-                                                    <li><a href="#">Delete Conversion</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Mark as Unread</a></li>
-                                                    <li><a href="#">Ignore Messages</a></li>
-                                                    <li><a href="#">Block Messages</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li><!-- .chat-item -->
+                                <div id="current-expert"></div>
+                                <div class="list-expert"></div>
+                                <!-- .chat-item -->
                             </ul><!-- .chat-list -->
                         </div><!-- .nk-chat-list -->
                     </div>
                 </div><!-- .nk-chat-aside -->
-                <div class="nk-chat-body profile-shown">
+                <div id="group-header" class="nk-chat-body profile-shown" style="display:none">
                     <div class="nk-chat-head">
                         <ul class="nk-chat-head-info">
                             <li class="nk-chat-body-close">
@@ -108,10 +92,10 @@ if(Yii::$app->user->identity->role == 1){
                             <li class="nk-chat-head-user">
                                 <div class="user-card">
                                     <div class="user-avatar bg-purple">
-                                        <span>IH</span>
+                                        <img src="" alt="" class="exp-profile">
                                     </div>
                                     <div class="user-info">
-                                        <div class="lead-text">Iliash Hossain</div>
+                                        <div class="lead-text"><span class="exp-name"></span></div>
                                         <div class="sub-text"><span class="d-none d-sm-inline me-1">Active </span> 35m ago</div>
                                     </div>
                                 </div>
@@ -149,7 +133,7 @@ if(Yii::$app->user->identity->role == 1){
                         <div class="chat is-you">
                             <div class="chat-avatar">
                                 <div class="user-avatar bg-purple">
-                                    <span>IH</span>
+                                    <img src="" alt="" class="exp-profile">
                                 </div>
                             </div>
                             <div class="chat-content">
@@ -228,7 +212,7 @@ if(Yii::$app->user->identity->role == 1){
                         <div class="chat is-you">
                             <div class="chat-avatar">
                                 <div class="user-avatar bg-purple">
-                                    <span>IH</span>
+                                    <img src="" alt="" class="exp-profile">
                                 </div>
                             </div>
                             <div class="chat-content">
@@ -282,7 +266,7 @@ if(Yii::$app->user->identity->role == 1){
                         <div class="chat is-you">
                             <div class="chat-avatar">
                                 <div class="user-avatar bg-purple">
-                                    <span>IH</span>
+                                    <img src="" alt="" class="exp-profile">
                                 </div>
                             </div>
                             <div class="chat-content">
@@ -314,7 +298,7 @@ if(Yii::$app->user->identity->role == 1){
                         <div class="chat is-you">
                             <div class="chat-avatar no-meta">
                                 <div class="user-avatar bg-purple">
-                                    <span>IH</span>
+                                    <img src="" alt="" class="exp-profile">
                                 </div>
                             </div>
                             <div class="chat-content">
@@ -343,7 +327,7 @@ if(Yii::$app->user->identity->role == 1){
                         <div class="chat is-you">
                             <div class="chat-avatar">
                                 <div class="user-avatar bg-purple">
-                                    <span>IH</span>
+                                    <img src="" alt="" class="exp-profile">
                                 </div>
                             </div>
                             <div class="chat-content">
@@ -402,7 +386,7 @@ if(Yii::$app->user->identity->role == 1){
                         <div class="chat is-you">
                             <div class="chat-avatar">
                                 <div class="user-avatar bg-purple">
-                                    <span>IH</span>
+                                    <img src="" alt="" class="exp-profile">
                                 </div>
                             </div>
                             <div class="chat-content">
@@ -506,10 +490,10 @@ if(Yii::$app->user->identity->role == 1){
                     <div class="nk-chat-profile visible" data-simplebar>
                         <div class="user-card user-card-s2 my-4">
                             <div class="user-avatar md bg-purple">
-                                <span>IH</span>
+                                <img src="" alt="" class="exp-profile">
                             </div>
                             <div class="user-info">
-                                <h5>Iliash Hossain</h5>
+                                <h5><span class="exp-name"></span></h5>
                                 <span class="sub-text">Active 35m ago</span>
                             </div>
                             <div class="user-card-menu dropdown">

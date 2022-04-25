@@ -174,7 +174,7 @@
                   if(result){
                     var data = JSON.parse(result);
 
-                    console.log(data);
+                    // console.log(data);
                     
                     var str = '';
 
@@ -187,20 +187,29 @@
                       const clEx_profile = data[index].clEx_profile;
                       const clEx_expertise = data[index].clEx_expertise;
                       const unread = data[index].unread;
+                      const topic_id = data[index].id;
+                      const value = data[index].value;
+                      const is_default = data[index].is_default;
 
                       if(unread == 0){
 
-                        str += '<a class="chat-link chat-open current" href="#"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-gray"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">Now</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status delivered"><em class="icon ni ni-check-circle-fill"></em></div></div></div></a>';
 
-                        // str += '<div class="media-list media-list-hover"><div id="" class="send-topic media py-10 px-0 align-items-center" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'"><a class="avatar avatar-lg status-danger" href="#"><img src="'+clEx_profile+'" alt=""></a><div class="media-body"><p class="font-size-16"><a class="hover-primary" href="#">'+clEx_name+'</a></p></div></div></div>';
+                        str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-gray"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">Now</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status delivered"><em class="icon ni ni-check-circle-fill"></em></div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
+
+                       
                       }else{
-                        str += '<a class="chat-link chat-open current" href="#"><div class="chat-media user-avatar bg-purple"><span>IH</span><span class="status dot dot-lg dot-gray"></span></div><div class="chat-info"><div class="chat-from"><div class="name">Iliash Hossain</div><span class="time">Now</span></div><div class="chat-context"><div class="text">You: Please confrim if you got my last messages.</div><div class="status delivered"><em class="icon ni ni-check-circle-fill"></em></div></div></div></a>';
+
+                        str +='<li class="chat-item"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-gray"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">Now</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status delivered"><em class="icon ni ni-check-circle-fill"></em></div></div></div></a><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
                       }
                     }
                     $('.list-expert').html(str);                      
                   }
 
-                  
+                  $('.send-topic').click(function(){
+
+                    getTargetChat($(this), true);
+
+                  });
 
                 }
             });
@@ -210,6 +219,129 @@
         getUserList($(this), true);
 
     };
+
+
+    function getTargetChat(element, init){
+
+    var expert_id = element.attr('data-expert-id');
+    var topic_id = element.attr('data-topic');
+    // var top_name = element.attr('data-topic-name');
+    var user_id = '<?=Yii::$app->user->identity->id?>';
+    var clEx_user_id = element.attr('data-clEx-user-id');
+    var clEx_name = element.attr('data-clEx-name');
+    var clEx_profile = element.attr('data-clEx-profile');
+    alert(clEx_profile);
+
+      if(topic_id){
+
+        var x = document.getElementById('group-header');
+
+        if (x.style.display === 'none') {
+          x.style.display = 'block';
+        }
+
+        $('.exp-name').html(clEx_name);
+        $('.exp-profile').attr('src',clEx_profile);
+      /*if(init){
+
+        var x = document.getElementById('group-msg');
+
+        if (x.style.display === 'none') {
+          x.style.display = 'block';
+        }
+
+        // $('.exp-topic-name').html(top_name);
+
+        $('#current-chat-box').attr('data-exp-id', expert_id);
+        $('#current-chat-box').attr('data-topic', topic_id);
+        $('#current-chat-box').attr('data-topic-name', top_name);
+        $('#current-chat-box').attr('data-clEx-user-id', clEx_user_id);
+      }
+*/
+      var chatUrl = $('#chatUrl').val();
+      $.ajax({
+          url: chatUrl,
+          type: 'POST',
+          data: {
+            id: expert_id, 
+            tid: topic_id,
+            ex_user_id: clEx_user_id
+          },
+          success: function (result) {
+            var data = JSON.parse(result);
+
+            console.log(data);
+            var chatstr = '';
+            var btnsendstr ='';
+            var btnprevstr ='';
+            // var top_name = '';
+
+              
+                for (var key in data) {
+                  var row = data[key];
+                  alert(row['message']);
+                  // top_name = row['topic_name'];
+                  // if(init){
+                  //   chatstr += messageBox(row);
+                  // }
+                }
+
+              /*if(init){
+
+                var dataUrl = '';
+                var loadUrl = '<?=Url::to(['/chat/default/load-message'])?>';
+
+                if('<?=Yii::$app->user->identity->role?>' == 1){
+                  dataUrl = '<?=Url::to(['/chat/default/send-message'])?>';
+                  
+                    
+                }else {
+                  dataUrl = '<?=Url::to(['/chatExpert/default/send-message'])?>';
+                  
+                }
+                             
+
+                btnsendstr = '<input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something..."><div class="d-flex justify-content-between align-items-center "><button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary"><i class="mdi mdi-link"></i></button><button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" type="submit" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><i class="mdi mdi-send"></i></button></div>';
+
+                btnprevstr = '<button type="button" type="submit" id="load-message" class="btn btn-rounded btn-secondary-outline" data-url="'+loadUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'">Load More</button>';
+
+                $('.btn-send-message').html(btnsendstr);
+                $('.btn-previous-message').html(btnprevstr);
+                $('#chat-box').html(chatstr);
+
+                $('#send-message').click(function(){
+                  if($('#chat-message').val()){
+                    sendchat(true);
+                  }
+                });
+                
+
+                $('#load-message').click(function(){
+
+                    loadchat(this,true);
+                });
+
+                $('.delete-msg').click(function(){
+
+                    deletemessage($(this));
+                });
+
+                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+                
+              }
+
+              $('.exp-topic-name').html(top_name);    */
+
+          }
+
+
+      });
+    }
+
+    
+
+}
+
 
    NioApp.coms.docReady.push(NioApp.Chats);
 
