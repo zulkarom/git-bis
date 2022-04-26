@@ -109,7 +109,7 @@ class ChatModel extends \yii\db\ActiveRecord
                     'recipient_id' => $message->recipient_id,
                     'chat_id' => $message->id,
                     'is_read' => $message->is_read,
-                    'topic_name' => $topic->topic,
+                    // 'topic_name' => $topic->topic,
                 ];
         }
         ksort($out);

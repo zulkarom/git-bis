@@ -2,17 +2,29 @@
 use yii\helpers\Url;    
 $web = Yii::getAlias('@web');
 
+$own_id = Yii::$app->user->identity->id;
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
     $chatUrl = Url::to(['/chat/default/index']);
+    $url = Url::to(['/client/profile/profile-image', 'id' => '']);
+    $url2 = Url::to(['/client/profile/expert-image', 'id' => '']);
+    $dataUrl = Url::to(['/chat/default/send-message']);
 }else{
     $userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
     $chatUrl = Url::to(['/chatExpert/default/index']);
+    $url = Url::to(['/expert/profile/profile-image', 'id' => '']);
+    $url2 = Url::to(['/expert/profile/client-image', 'id' => '']);
+    $dataUrl = Url::to(['/chatExpert/default/send-message']);
 }
 ?>
-
+                      
+<input type="hidden" id="own_id" value="<?=$own_id?>">
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
 <input type="hidden" id="chatUrl" value="<?=$chatUrl?>">
+<input type="hidden" id="url" value="<?=$url?>">
+<input type="hidden" id="url2" value="<?=$url2?>">
+<input type="hidden" id="dataUrl" value="<?=$dataUrl?>">
+
 <div class="nk-content p-0">
     <div class="nk-content-inner">
         <div class="nk-content-body">
@@ -83,7 +95,7 @@ if(Yii::$app->user->identity->role == 1){
                         </div><!-- .nk-chat-list -->
                     </div>
                 </div><!-- .nk-chat-aside -->
-                <div id="group-header" class="nk-chat-body profile-shown" style="display:none">
+                <div id="group-header" class="nk-chat-body profile-shown">
                     <div class="nk-chat-head">
                         <ul class="nk-chat-head-info">
                             <li class="nk-chat-body-close">
@@ -130,362 +142,16 @@ if(Yii::$app->user->identity->role == 1){
                         </div><!-- .nk-chat-head-search -->
                     </div><!-- .nk-chat-head -->
                     <div class="nk-chat-panel" data-simplebar>
-                        <div class="chat is-you">
-                            <div class="chat-avatar">
-                                <div class="user-avatar bg-purple">
-                                    <img src="" alt="" class="exp-profile">
-                                </div>
-                            </div>
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> Hello! </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> I found an issues when try to purchase the product. </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li>Iliash Hossain</li>
-                                    <li>29 Apr, 2020 4:28 PM</li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
-                        <div class="chat is-me">
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> Thanks for inform. We just solved the issues. Please check now. </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li>Abu Bin Ishtiyak</li>
-                                    <li>29 Apr, 2020 4:12 PM</li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
-                        <div class="chat is-you">
-                            <div class="chat-avatar">
-                                <div class="user-avatar bg-purple">
-                                    <img src="" alt="" class="exp-profile">
-                                </div>
-                            </div>
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> This is really cool. </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> It’s perfect. Thanks for letting me know. </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li>Iliash Hossain</li>
-                                    <li>29 Apr, 2020 4:28 PM</li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
+                        <div id="current-chat-box"></div>
+                        <div id="chat-box"></div><!-- .chat -->
+                        
                         <div class="chat-sap">
                             <div class="chat-sap-meta"><span>12 May, 2020</span></div>
                         </div><!-- .chat-sap -->
-                        <div class="chat is-you">
-                            <div class="chat-avatar">
-                                <div class="user-avatar bg-purple">
-                                    <img src="" alt="" class="exp-profile">
-                                </div>
-                            </div>
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> Hey, I am facing problem as i can not login into application. Can you help me to reset my password? </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li>3:49 PM</li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
-                        <div class="chat is-you">
-                            <div class="chat-avatar no-meta">
-                                <div class="user-avatar bg-purple">
-                                    <img src="" alt="" class="exp-profile">
-                                </div>
-                            </div>
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> Can you check this urgently? </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- .chat -->
-                        <div class="chat is-you">
-                            <div class="chat-avatar">
-                                <div class="user-avatar bg-purple">
-                                    <img src="" alt="" class="exp-profile">
-                                </div>
-                            </div>
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> really appricate if you look this quickly? </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li>3:54 PM</li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
-                        <div class="chat is-me">
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> Definately. We are happy to help you. </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li>3:55 PM</li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
-                        <div class="chat is-you">
-                            <div class="chat-avatar">
-                                <div class="user-avatar bg-purple">
-                                    <img src="" alt="" class="exp-profile">
-                                </div>
-                            </div>
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> Thank you! Let me know when it done. </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li>3:55 PM</li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
-                        <div class="chat is-me">
-                            <div class="chat-content">
-                                <div class="chat-bubbles">
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> We just reset your account. Please check your email for verification. </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="chat-bubble">
-                                        <div class="chat-msg"> Please confirm if your got email </div>
-                                        <ul class="chat-msg-more">
-                                            <li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li>
-                                            <li>
-                                                <div class="dropdown">
-                                                    <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                    <div class="dropdown-menu dropdown-menu-sm">
-                                                        <ul class="link-list-opt no-bdr">
-                                                            <li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li>
-                                                            <li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <ul class="chat-meta">
-                                    <li><span>Now</span> <em class="icon ni ni-check-circle-fill"></em></li>
-                                </ul>
-                            </div>
-                        </div><!-- .chat -->
+                        
                     </div><!-- .nk-chat-panel -->
-                    <div class="nk-chat-editor">
-                        <div class="nk-chat-editor-upload  ms-n1">
-                            <a href="#" class="btn btn-sm btn-icon btn-trigger text-primary toggle-opt" data-target="chat-upload"><em class="icon ni ni-plus-circle-fill"></em></a>
-                            <div class="chat-upload-option" data-content="chat-upload">
-                                <ul class="">
-                                    <li><a href="#"><em class="icon ni ni-img-fill"></em></a></li>
-                                    <li><a href="#"><em class="icon ni ni-camera-fill"></em></a></li>
-                                    <li><a href="#"><em class="icon ni ni-mic"></em></a></li>
-                                    <li><a href="#"><em class="icon ni ni-grid-sq"></em></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="nk-chat-editor-form">
-                            <div class="form-control-wrap">
-                                <textarea class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea>
-                            </div>
-                        </div>
-                        <ul class="nk-chat-editor-tools g-2">
-                            <li>
-                                <a href="#" class="btn btn-sm btn-icon btn-trigger text-primary"><em class="icon ni ni-happyf-fill"></em></a>
-                            </li>
-                            <li>
-                                <button id= "btn-send" class="btn btn-round btn-primary btn-icon"><em class="icon ni ni-send-alt"></em></button>
-                            </li>
-                        </ul>
+                    <div class="nk-chat-editor btn-send-message">
+                        
                     </div><!-- .nk-chat-editor -->
                     <div class="nk-chat-profile visible" data-simplebar>
                         <div class="user-card user-card-s2 my-4">

@@ -218,130 +218,245 @@
 
         getUserList($(this), true);
 
-    };
+    
 
 
     function getTargetChat(element, init){
+        var expert_id = element.attr('data-expert-id');
+        var topic_id = element.attr('data-topic');
+        // var top_name = element.attr('data-topic-name');
+        var user_id = $('#own_id').val();
+        var clEx_user_id = element.attr('data-clEx-user-id');
+        var clEx_name = element.attr('data-clEx-name');
+        var clEx_profile = element.attr('data-clEx-profile');
 
-    var expert_id = element.attr('data-expert-id');
-    var topic_id = element.attr('data-topic');
-    // var top_name = element.attr('data-topic-name');
-    var user_id = '<?=Yii::$app->user->identity->id?>';
-    var clEx_user_id = element.attr('data-clEx-user-id');
-    var clEx_name = element.attr('data-clEx-name');
-    var clEx_profile = element.attr('data-clEx-profile');
-    alert(clEx_profile);
+        // alert(user_id);
 
-      if(topic_id){
+          if(topic_id){
 
-        var x = document.getElementById('group-header');
+            var x = document.getElementById('group-header');
 
-        if (x.style.display === 'none') {
-          x.style.display = 'block';
+            if (x.style.display === 'none') {
+              x.style.display = 'block';
+            }
+
+            $('.exp-name').html(clEx_name);
+            $('.exp-profile').attr('src',clEx_profile);
+          /*if(init){
+
+            var x = document.getElementById('group-msg');
+
+            if (x.style.display === 'none') {
+              x.style.display = 'block';
+            }
+
+            // $('.exp-topic-name').html(top_name);
+
+            $('#current-chat-box').attr('data-exp-id', expert_id);
+            $('#current-chat-box').attr('data-topic', topic_id);
+            $('#current-chat-box').attr('data-topic-name', top_name);
+            $('#current-chat-box').attr('data-clEx-user-id', clEx_user_id);
+          }
+    */
+          var chatUrl = $('#chatUrl').val();
+          $.ajax({
+              url: chatUrl,
+              type: 'GET',
+              data: {
+                id: expert_id, 
+                tid: topic_id,
+                ex_user_id: clEx_user_id
+              },
+              success: function (result) {
+
+                var data = JSON.parse(result);
+
+                // console.log(data);
+                var chatstr = '';
+                var btnsendstr ='';
+                var btnprevstr ='';
+                // var top_name = '';
+
+                  
+                    for (var key in data) {
+                      var row = data[key];
+                      // alert(row['message']);
+                      // top_name = row['topic_name'];
+                      chatstr += messageBox(row);
+                    }
+
+                    
+
+                    var dataUrl = $('#dataUrl').val();
+
+                    btnsendstr = '<div class="nk-chat-editor-upload  ms-n1"><a href="#" class="btn btn-sm btn-icon btn-trigger text-primary toggle-opt" data-target="chat-upload"><em class="icon ni ni-plus-circle-fill"></em></a><div class="chat-upload-option" data-content="chat-upload"><ul class=""><li><a href="#"><em class="icon ni ni-img-fill"></em></a></li><li><a href="#"><em class="icon ni ni-camera-fill"></em></a></li><li><a href="#"><em class="icon ni ni-mic"></em></a></li><li><a href="#"><em class="icon ni ni-grid-sq"></em></a></li></ul></div></div><div class="nk-chat-editor-form"><div class="form-control-wrap"><textarea id="chat-message" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea></div></div><ul class="nk-chat-editor-tools g-2"><li><a href="#" class="btn btn-sm btn-icon btn-trigger text-primary"><em class="icon ni ni-happyf-fill"></em></a></li><li><button type="submit" class="btn btn-round btn-primary btn-icon" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><em class="icon ni ni-send-alt"></em></button></li></ul>';
+
+                   /* btnsendstr = '<input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something..."><div class="d-flex justify-content-between align-items-center "><button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary"><i class="mdi mdi-link"></i></button><button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" type="submit" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><i class="mdi mdi-send"></i></button></div>';*/
+
+                    $('.btn-send-message').html(btnsendstr);
+                    $('#chat-box').html(chatstr);
+
+                    $('#send-message').click(function(){
+                      if($('#chat-message').val()){
+                        sendchat(true);
+                      }
+                    });
+
+                  /*if(init){
+
+                    var dataUrl = '';
+                    var loadUrl = '<?=Url::to(['/chat/default/load-message'])?>';
+
+                    if('<?=Yii::$app->user->identity->role?>' == 1){
+                      dataUrl = '<?=Url::to(['/chat/default/send-message'])?>';
+                      
+                        
+                    }else {
+                      dataUrl = '<?=Url::to(['/chatExpert/default/send-message'])?>';
+                      
+                    }
+                                 
+
+                    btnsendstr = '<input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something..."><div class="d-flex justify-content-between align-items-center "><button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary"><i class="mdi mdi-link"></i></button><button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" type="submit" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><i class="mdi mdi-send"></i></button></div>';
+
+                    btnprevstr = '<button type="button" type="submit" id="load-message" class="btn btn-rounded btn-secondary-outline" data-url="'+loadUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'">Load More</button>';
+
+                    $('.btn-send-message').html(btnsendstr);
+                    $('.btn-previous-message').html(btnprevstr);
+                    $('#chat-box').html(chatstr);
+
+                    $('#send-message').click(function(){
+                      if($('#chat-message').val()){
+                        sendchat(true);
+                      }
+                    });
+                    
+
+                    $('#load-message').click(function(){
+
+                        loadchat(this,true);
+                    });
+
+                    $('.delete-msg').click(function(){
+
+                        deletemessage($(this));
+                    });
+
+                    $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+                    
+                  }
+
+                  $('.exp-topic-name').html(top_name);    */
+
+              }
+
+
+          });
         }
+    }
 
-        $('.exp-name').html(clEx_name);
-        $('.exp-profile').attr('src',clEx_profile);
-      /*if(init){
+    function messageBox(row){
+      var client = '';
+      var role = '';
+      
+      var read = '';
+      // console.log(read);
 
-        var x = document.getElementById('group-msg');
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+          "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        if (x.style.display === 'none') {
-          x.style.display = 'block';
-        }
+      var dateData = new Date(row['time'] * 1000);
+      var date = ((dateData.getDate() < 10)?'0':'') + dateData.getDate() +' '+(monthNames[dateData.getMonth()]) + ', '+ dateData.getFullYear();
+      var time = ((dateData.getHours() < 10)?'0':'') + dateData.getHours() +':'+ ((dateData.getMinutes() < 10)?'0':'') + dateData.getMinutes() + ' ' +(dateData.getHours() >= 12 ? 'PM' : 'AM');
+      var dd = date + '  ' + time;
 
-        // $('.exp-topic-name').html(top_name);
-
-        $('#current-chat-box').attr('data-exp-id', expert_id);
-        $('#current-chat-box').attr('data-topic', topic_id);
-        $('#current-chat-box').attr('data-topic-name', top_name);
-        $('#current-chat-box').attr('data-clEx-user-id', clEx_user_id);
+      if(row['sender_id'] == $('#own_id').val()){
+          client = true;
+          role = 'profile';
+          
+      }else{
+          client = false;
+          role = 'expert';
       }
-*/
-      var chatUrl = $('#chatUrl').val();
-      $.ajax({
-          url: chatUrl,
-          type: 'POST',
-          data: {
-            id: expert_id, 
-            tid: topic_id,
-            ex_user_id: clEx_user_id
-          },
-          success: function (result) {
-            var data = JSON.parse(result);
+
+      var sender_id = row['sender_id'];
+      var url = $('#url').val() + sender_id;
+      var url2 = $('#url2').val() + sender_id;
+      var str ='';
+
+      if(client){
+
+        str = '<div id="msg-'+row['chat_id']+'" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p class="card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>'+time+'</li></ul></div></div>';
+
+          /*str = '<div id="msg-'+row['chat_id']+'" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">' + row['message']  + '</div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>' + row['sender_name']  + '</li><li>'+dd+'</li></ul></div></div>';*/
+
+          
+          return str;
+
+      }else{ 
+
+          str = '<div id="msg-'+row['chat_id']+'" class="chat is-you"><div class="chat-avatar"><div class="user-avatar"><img src="'+ url2 +'" alt="" class="exp-profile"></div></div><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p class="card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm dropdown-menu-end"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>'+time+'</li></ul></div></div>';
+
+          /*str = '<div id="msg-'+row['chat_id']+'" class="chat is-you"><div class="chat-avatar"><div class="user-avatar"><img src="'+ url2 +'" alt=""></div></div><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm dropdown-menu-end"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div><div class="chat-bubble"><div class="chat-msg"> I found an issues when try to purchase the product. </div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm dropdown-menu-end"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>' + row['sender_name']  + '</li><li>'+dd+'</li></ul></div></div>';*/
+
+
+          
+          return str;
+      }
+    }
+
+    //Send Chat
+function sendchat(sendMessage) {
+
+  var last = $('#chat-box .card-msg').last().attr('id');
+  /*alert(last);*/
+  
+    $.ajax({
+        url: $('#send-message').data('url'),
+        type: 'GET',
+        data: {
+            'sendMessage':sendMessage,
+            'ChatModel[sender_id]': $('#send-message').data('id'),
+            'ChatModel[recipient_id]': $('#send-message').data('recipient'),
+            'ChatModel[topic_id]': $('#send-message').data('topic'),
+            'ChatModel[last_message_id]': last,
+            'ChatModel[message]': $('#chat-message').val()
+        },
+        success: function (data) {
+
+          if(data){
+            var data = JSON.parse(data);
 
             console.log(data);
             var chatstr = '';
-            var btnsendstr ='';
-            var btnprevstr ='';
-            // var top_name = '';
 
-              
-                for (var key in data) {
-                  var row = data[key];
-                  alert(row['message']);
-                  // top_name = row['topic_name'];
-                  // if(init){
-                  //   chatstr += messageBox(row);
-                  // }
-                }
-
-              /*if(init){
-
-                var dataUrl = '';
-                var loadUrl = '<?=Url::to(['/chat/default/load-message'])?>';
-
-                if('<?=Yii::$app->user->identity->role?>' == 1){
-                  dataUrl = '<?=Url::to(['/chat/default/send-message'])?>';
-                  
-                    
-                }else {
-                  dataUrl = '<?=Url::to(['/chatExpert/default/send-message'])?>';
-                  
-                }
-                             
-
-                btnsendstr = '<input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something..."><div class="d-flex justify-content-between align-items-center "><button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary"><i class="mdi mdi-link"></i></button><button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" type="submit" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><i class="mdi mdi-send"></i></button></div>';
-
-                btnprevstr = '<button type="button" type="submit" id="load-message" class="btn btn-rounded btn-secondary-outline" data-url="'+loadUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'">Load More</button>';
-
-                $('.btn-send-message').html(btnsendstr);
-                $('.btn-previous-message').html(btnprevstr);
-                $('#chat-box').html(chatstr);
-
-                $('#send-message').click(function(){
-                  if($('#chat-message').val()){
-                    sendchat(true);
-                  }
-                });
-                
-
-                $('#load-message').click(function(){
-
-                    loadchat(this,true);
-                });
-
-                $('.delete-msg').click(function(){
-
-                    deletemessage($(this));
-                });
-
-                $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
-                
+              for (var key in data) {
+                var row = data[key];
+                // console.log(row);
+                chatstr += messageBox(row);
               }
 
-              $('.exp-topic-name').html(top_name);    */
+            if(sendMessage){
+              $('#chat-message').val('');
+            }
 
+            $('#chat-box').append(chatstr);
+
+            $('.delete-msg').click(function(){
+
+                deletemessage($(this));
+            });
           }
 
-
-      });
-    }
-
-    
-
+          /*if(sendMessage){
+            $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+          }*/
+          
+          
+        }
+    });
 }
-
+}
 
    NioApp.coms.docReady.push(NioApp.Chats);
 
