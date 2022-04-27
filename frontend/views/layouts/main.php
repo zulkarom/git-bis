@@ -7,7 +7,10 @@ use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
+use frontend\assets\AppAsset;
 use yii\bootstrap4\Modal;
+
+AppAsset::register($this);
 
 $web = Yii::getAlias('@web');
 
@@ -30,6 +33,8 @@ $web = Yii::getAlias('@web');
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="<?=$web?>/dlite/assets/css/dashlite.css?ver=3.0.1">
     <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
+    <?= Html::csrfMetaTags() ?>
+    <?php $this->head() ?>
 </head>
 
 <body class="nk-body npc-default has-apps-sidebar has-sidebar ">
@@ -79,9 +84,36 @@ $web = Yii::getAlias('@web');
     <script src="<?=$web?>/dlite/assets/js/scripts.js?ver=3.0.1"></script>
     <script src="<?=$web?>/dlite/assets/js/charts/gd-analytics.js?ver=3.0.1"></script>
     <script src="<?=$web?>/dlite/assets/js/libs/jqvmap.js?ver=3.0.1"></script>
-</body>
 
 
+<?php
+
+
+Modal::begin([
+    'title' => '<h4 id="bc-title"></h4>',
+    'id' =>'bc-modal-canvas',
+    'size' => 'modal-lg',
+]);
+echo '<div id="bc-form"></div>';
+Modal::end();
+
+Modal::begin([
+    'title' => '<h4 id="bc-desc-title"></h4>',
+    'id' =>'bc-modal-canvas-desc',
+    'size' => 'modal-lg',
+]);
+echo '<div id="bc-desc"></div>';
+Modal::end();
+
+Modal::begin([
+        'title' => '<h4>Create Chat Topic</h4>',
+        'id' =>'topic',
+        'size' => 'modal-lg'
+    ]);
+echo '<div id="formTopic"></div>';
+Modal::end();
+
+?>
 
 
 

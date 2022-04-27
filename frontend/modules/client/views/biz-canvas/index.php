@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use backend\assets\CanvasAsset;
 use yii\bootstrap4\Modal;
 use yii\helpers\Url;
-\yii\web\YiiAsset::register($this);
+
 CanvasAsset::register($this);
 
 /* @var $this yii\web\View */
