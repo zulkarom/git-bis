@@ -33,6 +33,7 @@ $web = Yii::getAlias('@web');
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="<?=$web?>/dlite/assets/css/dashlite.css?ver=3.0.1">
     <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
+    <link rel="stylesheet" type="text/css" href="<?=$web?>/dlite/assets/css/libs/fontawesome-icons.css"> 
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
 </head>
@@ -51,7 +52,6 @@ $web = Yii::getAlias('@web');
             <!-- wrap @s -->
             <div class="nk-wrap ">
                 <!-- main header @s -->
-                
                <?=$this->render('header', [    
                     'web' => $web,
                 ]);

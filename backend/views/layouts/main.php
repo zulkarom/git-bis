@@ -7,13 +7,12 @@ use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
-use backend\assets\CryptoAsset;
 use backend\assets\AppAsset;
 use yii\bootstrap4\Modal;
 
 AppAsset::register($this);
-CryptoAsset::register($this);
 
+$web = Yii::getAlias('@web');
 
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
 

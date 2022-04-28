@@ -51,8 +51,6 @@ border-left:#ffffff;
 border-right:#ffffff;
 }
 
-
-
 input[type=radio] {
   display: none;
 }
@@ -134,13 +132,13 @@ div.bc-guide {
 
 
 
-<div class="box" style="overflow-x: scroll;">
-  <div class="box-body">
+<div class="card" style="overflow-x: scroll;">
+  <div class="card-body">
     
     
       <!-- <h1>The Business Model Canvas</h1> -->
       <!-- Canvas -->
-      <table id="bizcanvas" cellspacing="0" border="1">
+      <table id="bizcanvas" class="table table-bordered" cellspacing="0" border="1">
       <tr>
       <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
       
@@ -462,13 +460,13 @@ div.bc-guide {
 
 function addItemLink($model, $cat){
     $category = $model->getCategory($cat)->category_name;
-    return '<a class="bc-add-item" data-title="Add '. $category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/create-item', 'pid' => $model->id, 'cat' => $cat]) . '" >&nbsp<span class="fa fa-plus"></span></a>';
+    return '<a class="bc-add-item" data-title="Add '. $category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/create-item', 'pid' => $model->id, 'cat' => $cat]) . '" >&nbsp<i class="icon ni ni-plus"></i></a>';
     
 }
 
 function itemDesc($model, $cat){
     $category = $model->getCategory($cat)->category_name;
-    return '<a class="bc-cat-desc" data-title="'.$category.' (Guidelines)" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/cat-desc', 'cat' => $cat]) . '" >&nbsp<span class="mdi mdi-lightbulb"></span></a>';
+    return '<a class="bc-cat-desc" data-title="'.$category.' (Guidelines)" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/cat-desc', 'cat' => $cat]) . '" >&nbsp<i class="icon ni ni-bulb"></i></a>';
     
 }
 
