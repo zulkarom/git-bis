@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\ListView;
 use backend\assets\CanvasAsset;
 use yii\bootstrap4\Modal;
 use yii\helpers\Url;
@@ -15,10 +15,8 @@ CanvasAsset::register($this);
 $this->title = 'Business Canvas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
-
     <p>
-     <?php echo Html::button('<span class="fa fa-plus"></span> Create Business Canvas',['value' => Url::to(['/client/biz-canvas/create']), 'class' => 'btn btn-success', 'id' => 'modalBttnPartner']);
+     <?php echo Html::button('Create Business Canvas',['value' => Url::to(['/client/biz-canvas/create']), 'class' => 'btn btn-success', 'id' => 'modalBttnPartner']);
 
             $this->registerJs('
             $(function(){
@@ -37,31 +35,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="card">
       <div class="card-body">
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                //'filterModel' => $searchModel,
-                'columns' => [
-                    ['class' => 'yii\grid\SerialColumn'],
 
-                    [
-                        'label' => 'Title',
-                        'value' => function($model){
-                            return $model->title;
-                        }
-                    ],
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+         'pager' => [
+                'class' => 'yii\bootstrap4\LinkPager',
+            ],
+         
+        
+         'options' => [
+             'class' => 'row g-gs',
+             'id' => false
+             
+         ],
+         'itemOptions' => ['tag' => null],
+            'itemView' => '_list_item',
+        ]) ?>
 
-                    ['class' => 'yii\grid\ActionColumn',
-                        'template' => '{view}',
-                        //'visible' => false,
-                        'buttons'=>[
-                        'view'=>function ($url, $model) {
-                            return Html::a('<span class="fa fa-search"></span> View',['view', 'id' => $model->id],['class'=>'btn btn-primary']);
-                        }
-                        ],
-                
-                    ],
-                ],
-            ]); ?>
         </div>
     </div>
 </div>

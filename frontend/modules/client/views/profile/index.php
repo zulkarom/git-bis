@@ -110,7 +110,7 @@ $model->email = $user->email;
 
 <br/>
  <div class="form-group">
-    <?= Html::submitButton('<span class="fa fa-save"></span>  Save Profile', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton('Save Profile', ['class' => 'btn btn-primary']) ?>
 </div>
             
             

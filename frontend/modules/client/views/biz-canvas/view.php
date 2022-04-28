@@ -24,7 +24,7 @@ width:80%;
 
 .dropdown {
   position: relative;
-  /*display: inline-block;*/
+  display: block;
 }
 
 .dropdown-content {
