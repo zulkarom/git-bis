@@ -123,14 +123,14 @@ class DefaultController extends Controller
             return '';
         }
         
-        $post = Yii::$app->request->post();
-        //return json_encode($post) ;
+        $post = Yii::$app->request->get();
+        // return json_encode($post) ;
 
      
         
             $model = new ChatModel();
             
-            if ($model->load(Yii::$app->request->post()))
+            if ($model->load(Yii::$app->request->get()))
             {
                 if ($post['sendMessage']=='true'){
                     ChatTopic::updateAll(['last_message_send' => new Expression('NOW()')], ['id' => $model->topic_id]);

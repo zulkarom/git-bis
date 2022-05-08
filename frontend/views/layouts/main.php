@@ -92,6 +92,8 @@ $web = Yii::getAlias('@web');
     <script src="<?=$web?>/dlite/assets/js/scripts.js?ver=3.0.1"></script>
     <script src="<?=$web?>/dlite/assets/js/charts/gd-analytics.js?ver=3.0.1"></script>
     <script src="<?=$web?>/dlite/assets/js/libs/jqvmap.js?ver=3.0.1"></script>
+    <script src="<?=$web?>/dlite/assets/js/charts/gd-default.js?ver=3.0.1"></script>
+    <script src="<?=$web?>/dlite/js/example-chart.js?ver=3.0.1"></script>
 
 
 <?php

@@ -31,7 +31,7 @@ class Menu_crypto
 	   foreach($this->items as $item){
 			   switch($item['level']){
 				   case 0:
-				   $html .= '<li class="nav-title">'.$item['label'].'</li>';
+				   $html .= '<li class="nk-menu-heading"><h6 class="overline-title text-primary-alt">'.$item['label'].'</h6></li>';
 				   break;
 				   
 				   case 1:
@@ -46,64 +46,49 @@ class Menu_crypto
 			   
 	return $html;
    }
-   
-   protected function item1($item){
+
+   	protected function item1($item){
 	   $active = $this->isItemActive($item) ? 'active' : '';
-	   $blnk = '';
-	   if(array_key_exists('newtab', $item)){
-	       if($item['newtab']){
-	           $blnk = 'target="_blank"';
-	       }
-	   }
-	   return '<li>
-				   <a href="'.Url::to($item['url']).'" class="'.$active.'" '.$blnk.'>
-				   <div class="nav_icon_small"><img src="'.$item['icon'].'" alt=""></div>
-				   <div class="nav_title">
-				   <span>
-					'.$item['label'].'
-					</span>
-				   </div></a></li>';
-   }
+	   $current = $this->isItemActive($item) ? 'current-page' : '';
+	   return '<li class="nk-menu-item">
+		   			<a href="'.Url::to($item['url']).'" class="nk-menu-link" data-original-title="" title="">
+	                   	<span class="nk-menu-icon"><em class="'.$item['icon'].'"></em></span>
+	                    <span class="nk-menu-text">'.$item['label'].'</span>
+	                </a>
+                </li>
+                ';
+   	}
 
    protected function children($item){
 	   $active = $this->isItemActive($item) ? 'active' : '';
-	   return '<li>
-				   <a href="'.Url::to($item['url']).'" class="'.$active.'">
-				   '.$item['label'].'
-				   </a></li>';
+	   return 	'<li class="nk-menu-item">
+	   				<a href="'.Url::to($item['url']).'" class="nk-menu-link" data-original-title="" title="">
+	   					<span class="nk-menu-text">'.$item['label'].'</span>
+	   				</a>
+				</li>';
    }
-   
+
    protected function item2($item){
-	   $this->tree = false;
-	   $anak = '';
-	   $expand = $this->isItemActive($item) ? 'true' : 'false';
-	   $mm = $this->isItemActive($item) ? 'mm-show' : '';
-	   $active = $this->isItemActive($item) ? 'mm-active' : '';
-	   $children = $item['children'];
-			if($children){
-				foreach($children as $child){
-					$anak .= $this->children($child);
-				}
-			}
-	   
-	   $html =  '<li class="'.$active.'">
-			<a href="#" class="has-arrow '.$active.'" aria-expanded="'.$expand.'">
-				<div class="nav_icon_small"><img src="'.$item['icon'].'" alt=""></div>
-				<div class="nav_title">
-				   <span>
-					'.$item['label'].'
-					</span>
-				</div>
-			</a>
-			<ul class="mm-collapse '.$mm.'">';
-			
-			$html .= $anak;
-						
-                            
-      $html .= '</ul></li>';
-	  return $html;
+   	$active = $this->isItemActive($item) ? 'active' : '';
+   	$display = $this->isItemActive($item) ? 'block' : '';
+   	$anak = '';
+   	$children = $item['children'];
+	if($children){
+		foreach($children as $child){
+			$anak .= $this->children($child);
+		}
+	}
+	   	$html = '<li class="nk-menu-item has-sub '.$active.'">
+	        <a href="#" class="nk-menu-link nk-menu-toggle" data-bs-original-title="" title="">
+	            <span class="nk-menu-icon"><em class="'.$item['icon'].'"></em></span>
+	            <span class="nk-menu-text">'.$item['label'].'</span>
+	        </a>
+	        <ul class="nk-menu-sub" style="display: '.$display.';">';
+	        $html .= $anak; 
+	        $html .= '</ul></li>';
+	return $html;
    }
-   
+      
     protected function isItemActive($item)
     {
 		if(array_key_exists('url', $item)){

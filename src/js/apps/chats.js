@@ -230,7 +230,7 @@
         var clEx_name = element.attr('data-clEx-name');
         var clEx_profile = element.attr('data-clEx-profile');
 
-        // alert(user_id);
+        alert(expert_id);
 
           if(topic_id){
 

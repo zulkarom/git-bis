@@ -6,11 +6,11 @@
                             </div>
                             <div class="nk-header-app-name">
                                 <div class="nk-header-app-logo">
-                                    <em class="icon ni ni-chat-circle bg-info-dim"></em>
+                                    <img src="<?=$web?>/dlite/images/mini-logo.png" width="100%" alt="logo">
                                 </div>
                                 <div class="nk-header-app-info">
-                                    <span class="sub-text">Chat</span>
-                                    <span class="lead-text">NioChats</span>
+                                    <span class="sub-text">Hatchniaga</span>
+                                    <span class="lead-text">Dashboard</span>
                                 </div>
                             </div>
                             <div class="nk-header-tools">
