@@ -37,9 +37,9 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
-        $id = Yii::$app->request->post('id');
-        $tid = Yii::$app->request->post('tid');
-        $ex_user_id = Yii::$app->request->post('ex_user_id');
+        $id = Yii::$app->request->get('id');
+        $tid = Yii::$app->request->get('tid');
+        $ex_user_id = Yii::$app->request->get('ex_user_id');
 
         $expert = Expert::findOne($id);
         $user = Yii::$app->user->identity;

@@ -230,15 +230,20 @@
         var clEx_name = element.attr('data-clEx-name');
         var clEx_profile = element.attr('data-clEx-profile');
 
-        alert(expert_id);
-
+        // alert(topic_id);
+            
           if(topic_id){
 
             var x = document.getElementById('group-header');
+            // var y = document.getElementsByClassName('nk-chat-aside');
+
 
             if (x.style.display === 'none') {
               x.style.display = 'block';
             }
+
+            // y.className += 'hide-aside';
+            x.className += ' show-chat';
 
             $('.exp-name').html(clEx_name);
             $('.exp-profile').attr('src',clEx_profile);
@@ -284,6 +289,8 @@
                       // top_name = row['topic_name'];
                       chatstr += messageBox(row);
                     }
+
+                    // console.log(chatstr);
 
                     
 

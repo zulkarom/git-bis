@@ -5,7 +5,6 @@ use common\widgets\Menu_crypto;
     //Main
     $item_main[] = ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => 'icon ni ni-dashboard'];
 
-    $item_main[] = ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => 'icon ni ni-speed'];
 
     $item_main[] = ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/chat/index'], 'icon' => 'icon ni ni-bitcoin-cash']   ;
 

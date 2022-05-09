@@ -38,7 +38,7 @@ $web = Yii::getAlias('@web');
     <?php $this->head() ?>
 </head>
 
-<body class="nk-body npc-default has-apps-sidebar has-sidebar ">
+<body class="nk-body npc-default has-apps-sidebar has-sidebar">
 <?php $this->beginBody() ?>
 
     <div class="nk-app-root">
@@ -52,14 +52,10 @@ $web = Yii::getAlias('@web');
             <!-- wrap @s -->
             <div class="nk-wrap ">
                 <!-- main header @s -->
-            <div class="nk-header nk-header-fixed is-light">
-            <div class="container-fluid">
                <?=$this->render('header', [    
                     'web' => $web,
                 ]);
                 ?>
-            </div>
-            </div>
                 <!-- main header @e -->
 
                 <!-- sidebar @s -->
@@ -69,12 +65,16 @@ $web = Yii::getAlias('@web');
                 ?>
                 <!-- sidebar @e -->
                 <!-- content @s -->
-            <div class="nk-content ">
-            <div class="container-fluid">
-                <?= Alert::widget() ?>
-                <?=$content?>
-            </div>
-            </div>
+                <div class="nk-content ">
+                <div class="container-fluid">
+                <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <?= Alert::widget() ?>
+                    <?=$content?>
+                </div>
+                </div>
+                </div>
+                </div>
                 <!-- content @e -->
             </div>
             <!-- wrap @e -->

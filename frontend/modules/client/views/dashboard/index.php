@@ -8,8 +8,7 @@ use backend\models\ChatModel;
 $this->title = 'Client Dashboard';
 ?>
 
-<div class="nk-content-inner">
-    <div class="nk-content-body">
+
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
@@ -116,7 +115,6 @@ $this->title = 'Client Dashboard';
                 </div><!-- .col -->
             </div>
         </div><!-- .nk-block -->
-    </div>
-</div>
+    
                     
 

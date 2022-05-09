@@ -7,96 +7,94 @@ use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
-use backend\assets\CryptoAsset;
-use backend\assets\AppAsset;
+use frontend\assets\AppAsset;
+use yii\bootstrap4\Modal;
 
 AppAsset::register($this);
-CryptoAsset::register($this);
 
-
-$dirAssests = Yii::$app->assetManager->getPublishedUrl('@backend/assets/crypto');
-
+$web = Yii::getAlias('@web');
 
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="zxx">
+
+<html lang="zxx" class="js">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- <title>BitCrypto</title> -->
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="<?=$web?>/images/favicon.png">
+    <!-- Page Title  -->
     <title><?= Html::encode($this->title) ?></title>
-
-    <link rel="icon" href="<?= $dirAssests?>/icon/favicon.png" type="image/png">
-
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="<?=$web?>/dlite/assets/css/dashlite.css?ver=3.0.1">
+    <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
+    <link rel="stylesheet" type="text/css" href="<?=$web?>/dlite/assets/css/libs/fontawesome-icons.css"> 
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
-
 </head>
 
-<body class="crm_body_bg">
+<body class="nk-body npc-default has-apps-sidebar has-sidebar">
 <?php $this->beginBody() ?>
 
-
-    <?=$this->render('menu-expert', [    
-        'dirAssests' => $dirAssests,
-    ]);
-    ?>
-
-    <section class="main_content dashboard_part large_header_bg">
-    <!-- menu  -->
-        <?=$this->render('upper_menu_expert', [    
-            'dirAssests' => $dirAssests,
+    <div class="nk-app-root">
+        
+        <?=$this->render('menu-expert', [    
+            'web' => $web,
         ]);
         ?>
-    <!--/ menu  -->
-    
-<div class="main_content_iner overly_inner ">
-    <div class="container-fluid p-0">
-        <div class="row">
-            <div class="col-12">
-                <div class="page_title_box d-flex align-items-center justify-content-between">
-                    <div class="page_title_left">
-                        <h3 class="f_s_30 f_w_700 dark_text"><?= Html::encode($this->title) ?></h3>
-                        
-                    </div>
-                    <ol class="breadcrumb page_bradcam mb-0">
-                        <?php echo
-                             Breadcrumbs::widget(
-                                 [
-                                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                                 ]
-                             ) 
-                        ?>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <?= Alert::widget() ?>
-                <?=$content?>
-            </div>
-        </div>
-    </div>
-</div>
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                <!-- main header @s -->
+               <?=$this->render('header-expert', [    
+                    'web' => $web,
+                ]);
+                ?>
+                <!-- main header @e -->
 
-<!-- footer part -->
-    <?=$this->render('footer', [    
-        'dirAssests' => $dirAssests,
+                <!-- sidebar @s -->
+                <?=$this->render('sidebar-expert', [    
+                    'web' => $web,
+                ]);
+                ?>
+                <!-- sidebar @e -->
+                <!-- content @s -->
+                <div class="nk-content ">
+                <div class="container-fluid">
+                <div class="nk-content-inner">
+                <div class="nk-content-body">
+                    <?= Alert::widget() ?>
+                    <?=$content?>
+                </div>
+                </div>
+                </div>
+                </div>
+                <!-- content @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+    </div>
+    <!-- app-root @e -->
+    <!-- select region modal -->
+    <?=$this->render('country', [    
+        'web' => $web,
     ]);
     ?>
-<!-- end of footer part -->    
-</section>
+    <!-- JavaScript -->
+    <script src="<?=$web?>/dlite/assets/js/bundle.js?ver=3.0.1"></script>
+    <script src="<?=$web?>/dlite/assets/js/scripts.js?ver=3.0.1"></script>
+    <script src="<?=$web?>/dlite/assets/js/charts/gd-analytics.js?ver=3.0.1"></script>
+    <script src="<?=$web?>/dlite/assets/js/libs/jqvmap.js?ver=3.0.1"></script>
+    <script src="<?=$web?>/dlite/assets/js/charts/gd-default.js?ver=3.0.1"></script>
+    <script src="<?=$web?>/dlite/js/example-chart.js?ver=3.0.1"></script>
 
-
-
-<div id="back-top" style="display: none;">
-    <a title="Go to Top" href="#">
-        <i class="ti-angle-up"></i>
-    </a>
-</div>
 
 <?php $this->endBody() ?>
 </body>

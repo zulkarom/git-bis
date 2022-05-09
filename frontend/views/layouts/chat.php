@@ -33,7 +33,7 @@ $web = Yii::getAlias('@web');
     <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
 </head>
 
-<body class="nk-body npc-default has-apps-sidebar has-sidebar ">
+<body class="nk-body npc-apps apps-only has-apps-sidebar npc-apps-chat">
 <?php $this->beginBody() ?>
 
     <div class="nk-app-root">
@@ -54,16 +54,16 @@ $web = Yii::getAlias('@web');
                 ?>
                 <!-- main header @e -->
 
-                <!-- sidebar @s -->
-                <?=$this->render('sidebar', [    
-                    'web' => $web,
-                ]);
-                ?>
-                <!-- sidebar @e -->
-                <!-- content @s -->
-                <?= Alert::widget() ?>
-                <?=$content?>
-                <!-- content @e -->
+                <div class="nk-content p-0">
+                    <div class="nk-content-inner">
+                        <div class="nk-content-body">
+                            <!-- content @s -->
+                            <?= Alert::widget() ?>
+                            <?=$content?>
+                            <!-- content @e -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- wrap @e -->
         </div>
@@ -81,7 +81,6 @@ $web = Yii::getAlias('@web');
     <script src="<?=$web?>/dlite/assets/js/charts/gd-analytics.js?ver=3.0.1&r=<?php echo rand(10,10000)?>"></script>
     <script src="<?=$web?>/dlite/assets/js/libs/jqvmap.js?ver=3.0.1&r=<?php echo rand(10,10000)?>"></script>
     <script src="<?=$web?>/dlite/assets/js/apps/chats.js?r=<?php echo rand(10,10000)?>"></script>
-</body>
 
 
 
