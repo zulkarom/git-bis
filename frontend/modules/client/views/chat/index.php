@@ -139,7 +139,7 @@ if(Yii::$app->user->identity->role == 1){
                 </div>
             </div><!-- .nk-chat-head-search -->
         </div><!-- .nk-chat-head -->
-        <div class="nk-chat-panel" data-simplebar="init">
+        <div class="nk-chat-panel" data-simplebar>
             <div class="chat-sap">
                 
             </div><!-- .chat-sap -->

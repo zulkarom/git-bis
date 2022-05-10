@@ -461,8 +461,9 @@ function sendchat(sendMessage) {
           }
 
           if(sendMessage){
-            $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+            $('.chat-box-one').scrollTop({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
           }
+          
           
           
         }
