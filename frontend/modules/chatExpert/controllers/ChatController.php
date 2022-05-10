@@ -71,6 +71,14 @@ class ChatController extends Controller
                     ->andWhere(['is_read' => 0])
                     ->count();
 
+            $topic = ChatTopic::find()
+                ->where(['client_expert_id' => $clientEx->id])
+                ->andWhere(['client_id' => $clientEx->client_id])
+                ->andWhere(['expert_id' => $clientEx->expert_id])
+                ->andWhere(['is_default' => 1])
+                ->orderBy('last_message_send DESC')
+                ->one();
+
             $data[] = [
                 "client_id" => $clientEx->client_id,
                 "expert_id" => $clientEx->expert_id,
@@ -78,7 +86,10 @@ class ChatController extends Controller
                 "clEx_user_id" => $clientEx->client->user_id,
                 "clEx_name" => $clientEx->client->user->fullname,
                 "clEx_profile" => Url::to(['/expert/profile/client-image', 'id' => $clientEx->client->user->id]),
-                "unread" => $countChat
+                "unread" => $countChat,
+                "id" => $topic->id,
+                "value" => $topic->topic,
+                "is_default" => $topic->is_default,
             ];
         }
         return json_encode($data);

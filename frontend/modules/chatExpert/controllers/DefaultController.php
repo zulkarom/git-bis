@@ -37,9 +37,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $id = Yii::$app->request->post('id');
-        $tid = Yii::$app->request->post('tid');
-        $cuser_id = Yii::$app->request->post('cuser_id');
+        $id = Yii::$app->request->get('id');
+        $tid = Yii::$app->request->get('tid');
+        $cuser_id = Yii::$app->request->get('cuser_id');
 
         $client = Client::findOne($id);
         $topicModel = ChatTopic::findOne($tid);
@@ -58,12 +58,12 @@ class DefaultController extends Controller
             return '';
         }
         
-        $post = Yii::$app->request->post();
+        $post = Yii::$app->request->get();
         //return json_encode($post) ;
 
         $model = new ChatModel();
         
-        if ($model->load(Yii::$app->request->post()))
+        if ($model->load(Yii::$app->request->get()))
         {
            // return 'xxxxxxxxx' . $model->recipient_id;
             if ($post['sendMessage']=='true'){

@@ -234,6 +234,8 @@
             
           if(topic_id){
 
+            if(init){
+
             var x = document.getElementById('group-header');
             // var y = document.getElementsByClassName('nk-chat-aside');
 
@@ -247,6 +249,7 @@
 
             $('.exp-name').html(clEx_name);
             $('.exp-profile').attr('src',clEx_profile);
+
           /*if(init){
 
             var x = document.getElementById('group-msg');
@@ -255,14 +258,16 @@
               x.style.display = 'block';
             }
 
+            x.className += ' show-chat';*/
+
             // $('.exp-topic-name').html(top_name);
 
             $('#current-chat-box').attr('data-exp-id', expert_id);
             $('#current-chat-box').attr('data-topic', topic_id);
-            $('#current-chat-box').attr('data-topic-name', top_name);
+            // $('#current-chat-box').attr('data-topic-name', top_name);
             $('#current-chat-box').attr('data-clEx-user-id', clEx_user_id);
           }
-    */
+    
           var chatUrl = $('#chatUrl').val();
           $.ajax({
               url: chatUrl,
@@ -455,14 +460,23 @@ function sendchat(sendMessage) {
             });
           }
 
-          /*if(sendMessage){
+          if(sendMessage){
             $('.chat-box-one').slimScroll({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
-          }*/
+          }
           
           
         }
     });
 }
+
+setInterval(function () { 
+  
+  // sendchat($('#current-chat-box'), false);
+  // getTopic($('#current-topic'), false);
+  getTargetChat($('#current-chat-box'), false);
+  /*refreshchat($('#current-chat-box'), false);
+  getUserList($('#current-expert'), false);*/
+  }, 5000 );
 }
 
    NioApp.coms.docReady.push(NioApp.Chats);

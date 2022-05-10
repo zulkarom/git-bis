@@ -3,10 +3,10 @@ use yii\helpers\Url;
 use common\widgets\Menu_crypto;
 
     //Main
-    $item_main[] = ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => 'icon ni ni-dashboard'];
+    $item_main[] = ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/expert/dashboard/index'], 'icon' => 'icon ni ni-dashboard'];
 
 
-    $item_main[] = ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/chat/index'], 'icon' => 'icon ni ni-bitcoin-cash']   ;
+    $item_main[] = ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/expert/chat/index'], 'icon' => 'icon ni ni-bitcoin-cash']   ;
 
     $items[] =  ['label' => 'Main', 'level' => 0];
     foreach($item_main as $item){
@@ -27,7 +27,7 @@ use common\widgets\Menu_crypto;
     }*/
 
     //Profile
-    $item_profile[] = ['label' => \Yii::t('app', 'Edit Profile'), 'level' => 1, 'url' => ['/client/profile/index'], 'icon' => 'icon ni ni-dashboard'];
+    $item_profile[] = ['label' => \Yii::t('app', 'Edit Profile'), 'level' => 1, 'url' => ['/expert/profile/index'], 'icon' => 'icon ni ni-dashboard'];
 
     $item_profile[] = ['label' => \Yii::t('app', 'Log Out'), 'level' => 1, 'url' => ['/site/logout', 'data-method' => 'post'], 'icon' => 'icon ni ni-speed'];
 
