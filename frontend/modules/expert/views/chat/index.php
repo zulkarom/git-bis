@@ -3,6 +3,10 @@ use yii\helpers\Url;
 $web = Yii::getAlias('@web');
 
 $own_id = Yii::$app->user->identity->id;
+$loadUrl = Url::to(['/chat/default/load-message']);
+$deleteUrl = Url::to(['/chat/default/delete-message']);
+$refreshUrl = Url::to(['/chat/default/refresh-message']);
+
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
     $chatUrl = Url::to(['/chat/default/index']);
@@ -24,6 +28,9 @@ if(Yii::$app->user->identity->role == 1){
 <input type="hidden" id="url" value="<?=$url?>">
 <input type="hidden" id="url2" value="<?=$url2?>">
 <input type="hidden" id="dataUrl" value="<?=$dataUrl?>">
+<input type="hidden" id="loadUrl" value="<?=$loadUrl?>">
+<input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
+<input type="hidden" id="refreshUrl" value="<?=$refreshUrl?>">
 
 
 <div class="nk-chat">
@@ -139,7 +146,10 @@ if(Yii::$app->user->identity->role == 1){
                 </div>
             </div><!-- .nk-chat-head-search -->
         </div><!-- .nk-chat-head -->
-        <div class="nk-chat-panel" data-simplebar="init">
+        <div class="nk-chat-panel" data-simplebar>
+            <div class="btn-previous-message" align="center">
+              
+            </div>
             <div class="chat-sap">
                 
             </div><!-- .chat-sap -->

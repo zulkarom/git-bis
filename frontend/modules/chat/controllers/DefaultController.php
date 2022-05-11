@@ -43,6 +43,7 @@ class DefaultController extends Controller
 
         $expert = Expert::findOne($id);
         $user = Yii::$app->user->identity;
+        
 
         ChatModel::updateAll(['is_read' => 1], ['topic_id' => $tid, 'recipient_id' => $user]);
         $messages = ChatModel::getMessages($ex_user_id, $this->module->numberLastMessages, $tid);
@@ -157,12 +158,12 @@ class DefaultController extends Controller
         if (Yii::$app->user->isGuest){
             return '';
         }
-        $post = Yii::$app->request->post();
+        $post = Yii::$app->request->get();
         //return json_encode($post) ;
 
             $model = new ChatModel();
             
-            if ($model->load(Yii::$app->request->post()))
+            if ($model->load(Yii::$app->request->get()))
             {
 
                 $topic = ChatTopic::findOne($model->topic_id);
@@ -185,12 +186,12 @@ class DefaultController extends Controller
         if (Yii::$app->user->isGuest){
             return '';
         }
-        $post = Yii::$app->request->post();
+        $post = Yii::$app->request->get();
         //return json_encode($post) ;
 
             $model = new ChatModel();
             
-            if ($model->load(Yii::$app->request->post()))
+            if ($model->load(Yii::$app->request->get()))
             {
 
                 
@@ -206,7 +207,7 @@ class DefaultController extends Controller
     public function actionDeleteMessage()
     {
 
-        $chat_id = Yii::$app->request->post('cid');
+        $chat_id = Yii::$app->request->get('cid');
 
         $model = ChatModel::findOne($chat_id);
 

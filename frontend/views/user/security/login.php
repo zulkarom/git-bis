@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use common\models\Common;
 use dektrium\user\widgets\Connect;
 
-$this->title = 'Sign In Form by Hatchniaga';
+$this->title = 'Login | Hatchniaga';
 $this->params['breadcrumbs'][] = $this->title;
 $web = Yii::getAlias('@web');
 ?>
@@ -55,7 +55,7 @@ $web = Yii::getAlias('@web');
                         <?= $form
                             ->field($model, 'login')
                             ->label(false)
-                            ->textInput(['placeholder' => 'Enter your email address or username', 'class' => 'form-control form-control-lg']) 
+                            ->textInput(['placeholder' => 'Enter your email address', 'class' => 'form-control form-control-lg']) 
                          ?>
                        
                     </div>
@@ -82,7 +82,7 @@ $web = Yii::getAlias('@web');
                 </div>
             
             <?php ActiveForm::end(); ?>
-            <div class="form-note-s2 pt-4"> New on our platform? <a href="html/pages/auths/auth-register.html">Create an account</a>
+            <div class="form-note-s2 pt-4"> New on our platform? <?= Html::a('Create an account', ['/user/registration/register']) ?>
             </div>
             <div class="text-center pt-4 pb-3">
                 <h6 class="overline-title overline-title-sap"><span>OR</span></h6>

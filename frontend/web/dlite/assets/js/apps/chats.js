@@ -298,14 +298,18 @@
                     // console.log(chatstr);
 
                     
-
+                    if(init){
                     var dataUrl = $('#dataUrl').val();
+                    var loadUrl = $('#loadUrl').val();
 
                     btnsendstr = '<div class="nk-chat-editor-upload  ms-n1"><a href="#" class="btn btn-sm btn-icon btn-trigger text-primary toggle-opt" data-target="chat-upload"><em class="icon ni ni-plus-circle-fill"></em></a><div class="chat-upload-option" data-content="chat-upload"><ul class=""><li><a href="#"><em class="icon ni ni-img-fill"></em></a></li><li><a href="#"><em class="icon ni ni-camera-fill"></em></a></li><li><a href="#"><em class="icon ni ni-mic"></em></a></li><li><a href="#"><em class="icon ni ni-grid-sq"></em></a></li></ul></div></div><div class="nk-chat-editor-form"><div class="form-control-wrap"><textarea id="chat-message" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea></div></div><ul class="nk-chat-editor-tools g-2"><li><a href="#" class="btn btn-sm btn-icon btn-trigger text-primary"><em class="icon ni ni-happyf-fill"></em></a></li><li><button type="submit" class="btn btn-round btn-primary btn-icon" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><em class="icon ni ni-send-alt"></em></button></li></ul>';
 
                    /* btnsendstr = '<input class="form-control b-0 py-10" type="text" id="chat-message" placeholder="Say something..."><div class="d-flex justify-content-between align-items-center "><button type="button" class="waves-effect waves-circle btn btn-circle mr-10 btn-outline-primary"><i class="mdi mdi-link"></i></button><button type="button" class="waves-effect waves-circle btn btn-circle btn-primary" type="submit" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><i class="mdi mdi-send"></i></button></div>';*/
 
+                   btnprevstr = '<button type="button" type="submit" id="load-message" class="btn btn-rounded btn-secondary-outline" data-url="'+loadUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'">Load More</button>';
+
                     $('.btn-send-message').html(btnsendstr);
+                    $('.btn-previous-message').html(btnprevstr);
                     $('#chat-box').html(chatstr);
 
                     $('#send-message').click(function(){
@@ -314,10 +318,23 @@
                       }
                     });
 
+                    $('#load-message').click(function(){
+
+                        loadchat(this,true);
+                    });
+
+                    $('.delete-msg').click(function(){
+
+                        deletemessage($(this));
+                    });
+
+                    $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+                }
+
                   /*if(init){
 
                     var dataUrl = '';
-                    var loadUrl = '<?=Url::to(['/chat/default/load-message'])?>';
+                    
 
                     if('<?=Yii::$app->user->identity->role?>' == 1){
                       dataUrl = '<?=Url::to(['/chat/default/send-message'])?>';
@@ -398,20 +415,13 @@
 
       if(client){
 
-        str = '<div id="msg-'+row['chat_id']+'" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p class="card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>'+time+'</li></ul></div></div>';
-
-          /*str = '<div id="msg-'+row['chat_id']+'" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">' + row['message']  + '</div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>' + row['sender_name']  + '</li><li>'+dd+'</li></ul></div></div>';*/
-
+        str = '<div id="msg-'+row['chat_id']+'" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p class="card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a data-chat="'+row['chat_id']+'" class="delete-msg" href="javascript:void(0);"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>'+time+'</li></ul></div></div>';
           
           return str;
 
       }else{ 
 
-          str = '<div id="msg-'+row['chat_id']+'" class="chat is-you"><div class="chat-avatar"><div class="user-avatar"><img src="'+ url2 +'" alt="" class="exp-profile"></div></div><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p class="card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm dropdown-menu-end"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>'+time+'</li></ul></div></div>';
-
-          /*str = '<div id="msg-'+row['chat_id']+'" class="chat is-you"><div class="chat-avatar"><div class="user-avatar"><img src="'+ url2 +'" alt=""></div></div><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm dropdown-menu-end"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div><div class="chat-bubble"><div class="chat-msg"> I found an issues when try to purchase the product. </div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm dropdown-menu-end"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a href="#"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>' + row['sender_name']  + '</li><li>'+dd+'</li></ul></div></div>';*/
-
-
+          str = '<div id="msg-'+row['chat_id']+'" class="chat is-you"><div class="chat-avatar"><div class="user-avatar"><img src="'+ url2 +'" alt="" class="exp-profile"></div></div><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p class="card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li></ul></ul></div></div><ul class="chat-meta"><li>'+time+'</li></ul></div></div>';
           
           return str;
       }
@@ -461,7 +471,8 @@ function sendchat(sendMessage) {
           }
 
           if(sendMessage){
-            $('.chat-box-one').scrollTop({ scrollTo: $('.chat-box-one')[0].scrollHeight + 'px' });
+           
+            $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
           }
           
           
@@ -470,13 +481,165 @@ function sendchat(sendMessage) {
     });
 }
 
+//Load Previous Chat
+function loadchat(button,loadMessage) {
+
+var first = $('#chat-box .card-msg').first().attr('id');
+// alert(first);
+
+    $.ajax({
+        url: $('#load-message').data('url'),
+        type: 'GET',
+        data: {
+            'loadMessage':loadMessage,
+            'ChatModel[sender_id]': $('#load-message').data('id'),
+            'ChatModel[recipient_id]': $('#load-message').data('recipient'),
+            'ChatModel[topic_id]': $('#load-message').data('topic'),
+            'ChatModel[first_message_id]': first,
+        },
+        success: function (data) {
+          // console.log(data);
+        var data = JSON.parse(data);
+          var chatstr = '';
+
+           for (var key in data) {
+              var row = data[key];
+              // console.log(row);
+              chatstr += messageBox(row);
+            }
+          $('#chat-box').prepend(chatstr);
+
+          $('.delete-msg').click(function(){
+
+              deletemessage($(this));
+          });
+        }
+    });
+  
+  
+}
+
+// Delete Message
+function deletemessage(element){
+
+  var chat_id = element.data('chat');
+
+  $.ajax({
+      url: $('#deleteUrl').val(),
+      type: 'GET',
+      data: {
+        cid: chat_id
+      },
+      success: function (result) {
+        console.log('Delete Success');
+        $('#msg-'+result).empty();
+        $('#msg-'+result).remove();
+      }
+  });
+
+}
+
+//Refresh Chat
+function refreshchat(element, refreshMessage) {
+
+  var last = $('#chat-box .card-msg').last().attr('id');
+  // alert(last);
+
+  var sender_id = element.attr('data-id');
+  var recipient_id = element.attr('data-recipient');
+  var topic_id = element.attr('data-topic');
+
+
+  if(topic_id){
+
+    if(refreshMessage){
+      $('#current-chat-box').attr('data-id', sender_id);
+      $('#current-chat-box').attr('data-recipient', recipient_id);
+      $('#current-chat-box').attr('data-topic', topic_id);
+    }
+
+  
+    
+    $.ajax({
+        url: $('#refreshUrl').val(),
+        type: 'GET',
+        data: {
+            'refreshMessage':refreshMessage,
+            'ChatModel[sender_id]': sender_id,
+            'ChatModel[recipient_id]': recipient_id,
+            'ChatModel[topic_id]': topic_id,
+            'ChatModel[last_message_id]': last,
+        },
+        success: function (data) {
+
+          if (data) {
+
+            if(data == "topic_deleted"){
+
+                var x = document.getElementById('group-header');
+
+                if (x.style.display === 'block') {
+                  x.style.display = 'none';
+                }
+
+                var y = document.getElementById('group-msg');
+
+                if (y.style.display === 'block') {
+                  y.style.display = 'none';
+                }
+
+                var z = document.getElementById('scroll-msj');
+
+                if (z.style.display === 'block') {
+                  z.style.display = 'none';
+                }
+            
+                // $('#group-header').hide();
+                // $('#group-msg').hide();
+                // $('.chat-box-one').hide();
+
+            }else{
+
+              var data = JSON.parse(data);           
+
+              // console.log(data);
+              var chatstr = '';
+              var i = 0;
+                for (var key in data) {
+                  var row = data[key];
+                  // console.log(row);
+                  if(row['is_deleted'] != 0){
+                    $('#msg-'+row['is_deleted']).empty();
+                  }else{
+                    chatstr += messageBox(row);
+                    i = 1;
+                  }
+                }
+
+              $('#chat-box').append(chatstr);
+
+              if(i == 1){
+                $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+              }
+            }
+            
+          }
+
+          
+                   
+        }
+    });
+  }
+}
+
+
 setInterval(function () { 
   
   // sendchat($('#current-chat-box'), false);
   // getTopic($('#current-topic'), false);
   getTargetChat($('#current-chat-box'), false);
-  /*refreshchat($('#current-chat-box'), false);
-  getUserList($('#current-expert'), false);*/
+  refreshchat($('#current-chat-box'), false);
+  // getUserList($('#current-expert'), false);
   }, 5000 );
 }
 
