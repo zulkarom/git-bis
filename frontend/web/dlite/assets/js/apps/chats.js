@@ -177,6 +177,7 @@
                     // console.log(data);
                     
                     var str = '';
+                    var str_unread = '';
 
                     for (let index = 0; index < data.length; ++index) {
                       const client_id = data[index].client_id;
@@ -192,15 +193,12 @@
                       const is_default = data[index].is_default;
 
                       if(unread == 0){
-
-
-                        str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-gray"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">Now</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status delivered"><em class="icon ni ni-check-circle-fill"></em></div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
-
-                       
-                      }else{
-
-                        str +='<li class="chat-item"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-gray"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">Now</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status delivered"><em class="icon ni ni-check-circle-fill"></em></div></div></div></a><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
+                        str_unread = '<em class="icon ni ni-bullet-fill"></em>';
                       }
+
+                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
+
+
                     }
                     $('.list-expert').html(str);                      
                   }
@@ -210,6 +208,20 @@
                     getTargetChat($(this), true);
 
                   });
+
+                  $('.a-topic').click(function(){
+
+                    $('#a-topic').addClass('active');
+
+                    $('#a-expert').removeClass('active');
+
+                    // $('#panel-topic').addClass('active');
+                    // $('#panel-expert').removeClass('active');
+
+                    // getTopic($(this), true);
+
+                  });
+
 
                 }
             });

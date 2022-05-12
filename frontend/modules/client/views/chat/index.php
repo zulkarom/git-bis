@@ -37,70 +37,47 @@ if(Yii::$app->user->identity->role == 1){
     <div class="nk-chat-aside ">
         <div class="nk-chat-aside-head">
             <div class="nk-chat-aside-user">
-                <div class="dropdown">
-                    <a href="#" class="dropdown-toggle dropdown-indicator" data-bs-toggle="dropdown">
-                        <div class="user-avatar">
-                            <img src="<?=$web?>/dlite/images/avatar/b-sm.jpg" alt="">
-                        </div>
-                        <div class="title">Chats</div>
-                    </a>
-                    <div class="dropdown-menu">
-                        <ul class="link-list-opt no-bdr">
-                            <li><a href="html/apps/chats-contacts.html"><span>Contacts</span></a></li>
-                            <li><a href="html/apps/chats-channels.html"><span>Channels</span></a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><span>Help</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!-- .nk-chat-aside-user -->
-            <ul class="nk-chat-aside-tools g-2">
-                <li>
-                    <div class="dropdown">
-                        <a href="#" class="btn btn-round btn-icon btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                            <em class="icon ni ni-setting-alt-fill"></em>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <ul class="link-list-opt no-bdr">
-                                <li><a href="#"><span>Settings</span></a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><span>Message Requests</span></a></li>
-                                <li><a href="#"><span>Archives Chats</span></a></li>
-                                <li><a href="#"><span>Unread Chats</span></a></li>
-                                <li><a href="#"><span>Group Chats</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" class="btn btn-round btn-icon btn-light">
-                        <em class="icon ni ni-edit-alt-fill"></em>
-                    </a>
-                </li>
-            </ul><!-- .nk-chat-aside-tools -->
+                
+                <ul class="nav nav-tabs mt-n3">
+                    <li class="nav-item">
+                        <a id="a-expert" class="nav-link active" data-bs-toggle="tab" href="#tabItem1">Experts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="a-topic" class="nav-link" data-bs-toggle="tab" href="#tabItem2">Topics</a>
+                    </li>
+                </ul>
+                
+            </div>
         </div><!-- .nk-chat-aside-head -->
-        <div class="nk-chat-aside-body" data-simplebar>
-            <div class="nk-chat-aside-search">
-                <div class="form-group">
-                    <div class="form-control-wrap">
-                        <div class="form-icon form-icon-left">
-                            <em class="icon ni ni-search"></em>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabItem1">
+                <div class="nk-chat-aside-body" data-simplebar>
+                    <div class="nk-chat-aside-search">
+                        <div class="form-group">
+                            <div class="form-control-wrap">
+                                <div class="form-icon form-icon-left">
+                                    <em class="icon ni ni-search"></em>
+                                </div>
+                                <input type="text" class="form-control form-round" id="default-03" placeholder="Search by name">
+                            </div>
                         </div>
-                        <input type="text" class="form-control form-round" id="default-03" placeholder="Search by name">
                     </div>
+                    <div class="nk-chat-list">
+                        <h6 class="title overline-title-alt">Messages</h6>
+                        <ul class="chat-list">
+                            <div id="current-expert"></div>
+                            <div class="list-expert"></div>
+                            <!-- .chat-item -->
+                        </ul><!-- .chat-list -->
+                    </div><!-- .nk-chat-list -->
                 </div>
             </div>
-            <div class="nk-chat-list">
-                <h6 class="title overline-title-alt">Messages</h6>
-                <ul class="chat-list">
-                    <div id="current-expert"></div>
-                    <div class="list-expert"></div>
-                    <!-- .chat-item -->
-                </ul><!-- .chat-list -->
-            </div><!-- .nk-chat-list -->
+            <div class="tab-pane" id="tabItem2">
+            </div>
         </div>
+        
     </div><!-- .nk-chat-aside -->
-    <div id="group-header" class="nk-chat-body profile-shown">
+    <div id="group-header" class="nk-chat-body profile-shown" >
         <div class="nk-chat-head">
             <ul class="nk-chat-head-info">
                 <li class="nk-chat-body-close">
