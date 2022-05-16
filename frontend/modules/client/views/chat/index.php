@@ -9,12 +9,14 @@ $refreshUrl = Url::to(['/chat/default/refresh-message']);
 
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
+    $topicUrl = Url::to(['/chat/chat-test/get-list-topics']);
     $chatUrl = Url::to(['/chat/default/index']);
     $url = Url::to(['/client/profile/profile-image', 'id' => '']);
     $url2 = Url::to(['/client/profile/expert-image', 'id' => '']);
     $dataUrl = Url::to(['/chat/default/send-message']);
 }else{
     $userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
+    $topicUrl = Url::to(['/chatExpert/chat/get-list-topics']);
     $chatUrl = Url::to(['/chatExpert/default/index']);
     $url = Url::to(['/expert/profile/profile-image', 'id' => '']);
     $url2 = Url::to(['/expert/profile/client-image', 'id' => '']);
@@ -24,6 +26,7 @@ if(Yii::$app->user->identity->role == 1){
                       
 <input type="hidden" id="own_id" value="<?=$own_id?>">
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
+<input type="hidden" id="topicUrl" value="<?=$topicUrl?>">
 <input type="hidden" id="chatUrl" value="<?=$chatUrl?>">
 <input type="hidden" id="url" value="<?=$url?>">
 <input type="hidden" id="url2" value="<?=$url2?>">
@@ -73,6 +76,34 @@ if(Yii::$app->user->identity->role == 1){
                 </div>
             </div>
             <div class="tab-pane" id="tabItem2">
+                <div class="nk-chat-aside-body" data-simplebar>
+                    <div class="nk-chat-aside-search">
+                        <div class="form-group">
+                            <div class="form-control-wrap">
+                                <div class="form-icon form-icon-left">
+                                    <em class="icon ni ni-search"></em>
+                                </div>
+                                <input type="text" class="form-control form-round" id="default-03" placeholder="Search by name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-chat-aside-panel nk-chat-fav">
+                        <h6 class="title overline-title-alt">Topics</h6>
+                        <ul class="fav-list">
+                            <li class="new-topic">
+                                
+                            </li>
+                        </ul><!-- .fav-list -->
+                    </div>
+                    <div class="nk-chat-list">
+                        <h6 class="title overline-title-alt">Messages</h6>
+                        <ul class="chat-list">
+                            <div id="current-topic"></div>
+                            <div class="list-topic"></div>
+                            <!-- .chat-item -->
+                        </ul><!-- .chat-list -->
+                    </div><!-- .nk-chat-list -->
+                </div>
             </div>
         </div>
         

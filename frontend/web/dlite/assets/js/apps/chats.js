@@ -230,6 +230,83 @@
 
         getUserList($(this), true);
 
+        function getTopic(element, init){
+
+            var topicUrl = $('#topicUrl').val();
+          
+
+            $.ajax({
+                url: topicUrl,
+                type: 'GET',
+                data: {},
+                success: function (result) {
+
+                  // console.log(result);
+
+                  if(result){
+                    var data = JSON.parse(result);
+
+                    // console.log(data);
+                    
+                    var str = '';
+                    var str_unread = '';
+
+                    for (let index = 0; index < data.length; ++index) {
+                      const client_id = data[index].client_id;
+                      const expert_id = data[index].expert_id;
+                      const client_expert_id = data[index].client_expert_id;
+                      const clEx_user_id = data[index].clEx_user_id;
+                      const clEx_name = data[index].clEx_name;
+                      const clEx_profile = data[index].clEx_profile;
+                      const clEx_expertise = data[index].clEx_expertise;
+                      const unread = data[index].unread;
+                      const topic_id = data[index].id;
+                      const topic_name = data[index].topic_name;
+                      const value = data[index].value;
+                      const is_default = data[index].is_default;
+
+                      if(unread == 0){
+                        str_unread = '<em class="icon ni ni-bullet-fill"></em>';
+                      }
+
+                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+topic_name+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
+
+
+                    }
+                    $('.list-topic').html(str);                      
+                  }
+
+                  var topicStr = '<button id="btn-topic" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round"><em class="icon ni ni-plus"></em></button><div class="modal fade" id="createTopicModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalLongTitle">Create Topic</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="form-row"><div class="form-group col-md-12"><label for="inputTopic">Topic</label><input type="text" class="form-control" id="inputTopic"></div></div><button id="submit-topic" type="submit" class="btn btn-primary" data-expert="" data-client="" data-client-expert="" data-clEx-user-id="">Save</button></div></div></div>';
+
+                  $('.new-topic').html(topicStr);
+
+                  $('.send-topic').click(function(){
+
+                    getTargetChat($(this), true);
+
+                  });
+
+                  /*$('.a-topic').click(function(){
+
+                    $('#a-topic').addClass('active');
+
+                    $('#a-expert').removeClass('active');
+
+                    // $('#panel-topic').addClass('active');
+                    // $('#panel-expert').removeClass('active');
+
+                    // getTopic($(this), true);
+
+                  });*/
+
+
+                }
+            });
+
+        }
+
+        getTopic($(this), true);
+
     
 
 
