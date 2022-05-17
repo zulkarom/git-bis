@@ -5,6 +5,7 @@ namespace backend\models;
 use Yii;
 use common\models\User;
 use common\models\Common;
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "expert".
  *
@@ -55,6 +56,13 @@ class Expert extends \yii\db\ActiveRecord
             'expert_type' => 'Expert Type',
             'profile_file' => 'Profile File',
         ];
+    }
+
+    public function getExpert()
+    {
+        $get = self::find()->joinWith('user')->all();
+        $result = ArrayHelper::map($get, 'id', 'expert_type');
+        return $result;
     }
 
     public function expertType(){

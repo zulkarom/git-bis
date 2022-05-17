@@ -1,11 +1,18 @@
 <?php
+use yii\helpers\Html;;
 use yii\helpers\Url;    
+use yii\bootstrap4\Modal;
+use kartik\select2\Select2;
+use backend\models\Expert;
+use yii\helpers\ArrayHelper;
+
 $web = Yii::getAlias('@web');
 
 $own_id = Yii::$app->user->identity->id;
 $loadUrl = Url::to(['/chat/default/load-message']);
 $deleteUrl = Url::to(['/chat/default/delete-message']);
 $refreshUrl = Url::to(['/chat/default/refresh-message']);
+$createUrl = Url::to(['/chat/default/create-topic']);
 
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
@@ -34,6 +41,7 @@ if(Yii::$app->user->identity->role == 1){
 <input type="hidden" id="loadUrl" value="<?=$loadUrl?>">
 <input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
 <input type="hidden" id="refreshUrl" value="<?=$refreshUrl?>">
+<input type="hidden" id="createUrl" value="<?=$createUrl?>">
 
 
 <div class="nk-chat">
@@ -261,4 +269,35 @@ if(Yii::$app->user->identity->role == 1){
         </div><!-- .nk-chat-profile -->
     </div><!-- .nk-chat-body -->
 </div><!-- .nk-chat -->
-        
+
+<div class="modal fade" id="modalDefault">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Create Topic</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputTopic">Topic</label>
+                        <input type="text" class="form-control" id="inputTopic">
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <!-- <label for="inputExpert">Expert</label> -->
+                        <label for="inputTopic">Expert</label>
+                        <?= Html::dropDownList('id', null,
+                            ArrayHelper::map(Expert::find()->joinWith('user')->all(),'id', 'user.fullname'), ['class'=>'form-control', 'id' => 'exp-id', 'prompt' => 'Please Select' ]) ?>
+
+                    </div>
+                    <br/>
+
+                </div>
+                <button id="submit-topic" type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

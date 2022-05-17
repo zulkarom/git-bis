@@ -269,16 +269,21 @@
                         str_unread = '<em class="icon ni ni-bullet-fill"></em>';
                       }
 
-                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+topic_name+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
+                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+topic_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_name+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Update Conversion</a></li><li><a href="#">Delete Conversion</a></li></ul></div></div></div></li>';
 
 
                     }
                     $('.list-topic').html(str);                      
                   }
 
-                  var topicStr = '<button id="btn-topic" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round"><em class="icon ni ni-plus"></em></button><div class="modal fade" id="createTopicModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="exampleModalLongTitle">Create Topic</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="form-row"><div class="form-group col-md-12"><label for="inputTopic">Topic</label><input type="text" class="form-control" id="inputTopic"></div></div><button id="submit-topic" type="submit" class="btn btn-primary" data-expert="" data-client="" data-client-expert="" data-clEx-user-id="">Save</button></div></div></div>';
+                  var topicStr = '<button id="btn-topic" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round" data-bs-toggle="modal" data-bs-target="#modalDefault"><em class="icon ni ni-plus"></em></button>';
 
                   $('.new-topic').html(topicStr);
+
+                   $('#submit-topic').click(function(){
+
+                      createtopic(this,true);
+                  });
 
                   $('.send-topic').click(function(){
 
@@ -306,6 +311,75 @@
         }
 
         getTopic($(this), true);
+
+
+
+        function createtopic(element,submitTopic) {
+
+            // alert($('#exp-id').val());
+            var createUrl = $('#createUrl').val();
+
+            $.ajax({
+                url: createUrl,
+                type: 'GET',
+                data: {
+                    'submitTopic':submitTopic,
+                    'ChatTopic[expert_id]': $('#exp-id').val(),
+                    'ChatTopic[topic]': $('#inputTopic').val()
+                },
+                success: function (data) {
+                  
+                  /*var data = JSON.parse(data);
+                  console.log(data);
+                  var str = '';
+
+                  for (var key in data) {
+                    var row = data[key];
+                    var element_id = row['topic_id'];
+                    // console.log(row);
+
+                    str += '<div class="media-list media-list-hover"><div id="topic-'+row['topic_id']+'" class="media py-10 px-0 align-items-center topic-chat" data-topic="'+row['topic_id']+'" data-topic-name="'+row['topic_name']+'" data-exp-id="'+row['expert_id']+'" data-clEx-user-id="'+row['expert_user_id']+'"><div class="media-body"><div class="row"><div class="col-10"><p class="font-size-16 test"><a id="atopic-'+row['topic_id']+'" class="hover-primary" href="#">'+row['topic_name']+'</a></p></div><div class="col-2" align="right"><div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp<span class="mdi mdi-dots-vertical"></span></a><div class="dropdown-content" aria-labelledby="dropdownMenuButton"><a data-topic="'+row['topic_id']+'" class="delete-topic dropdown-item" href="#">Delete</a><a class="update-topic dropdown-item" href="#" data-topic ="'+row['topic_id']+'"><span style="display:none">' +row['topic_name']+'</span>Update</a></div></div></div></div></div></div>';
+
+                     str += '<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+row['topic_id']+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+row['topic_name']+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_name+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Update Conversion</a></li><li><a href="#">Delete Conversion</a></li></ul></div></div></div></li>';
+                    
+                  }
+                  $('.topic-name').append(str);
+
+                  $('.delete-topic').click(function(){
+                      deletetopic($(this));
+                  });
+                  
+
+                  $('#inputTopic').val('');
+                  $('.topic-chat').click(function(){
+                      getTargetChat($(this), true);
+                  });
+                  $('#createTopicModalLong').modal('hide');
+
+                  $( '.update-topic').click(function(){
+                        var topName = $(this).children().text();
+                        var topic_id = $(this).attr('data-topic');
+                        $('#inputUpdtTopic').val(topName);
+                        $('#submit-updt-topic').attr('data-topic',topic_id);
+                        $('#updateModalTopic').modal('show');
+                    
+                    });
+
+                    $('#submit-updt-topic').click(function(){
+
+                        updatetopic($(this));
+
+                    });
+
+
+
+                  getTargetChat($('#topic-'+element_id), true);
+
+                  console.log($('#topic-'+element_id));*/
+
+                }
+            });
+    }
 
     
 

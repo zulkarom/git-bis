@@ -9,6 +9,7 @@ use backend\models\Expert;
 use yii\filters\AccessControl;
 use backend\models\ChatTopic;
 use yii\db\Expression;
+use backend\models\ClientExpert;
 /**
  * Default controller for the `chat` module
  */
@@ -54,21 +55,25 @@ class DefaultController extends Controller
 
     public function actionCreateTopic()
     {
-        if (Yii::$app->user->isGuest){
-            return '';
-        }
 
-        $post = Yii::$app->request->post();
-        // return json_encode($post) ;
+        $post = Yii::$app->request->get();
+        $chatTopic = Yii::$app->request->get('ChatTopic');
+       
+        $expert_id = $chatTopic['expert_id'];
+        $client_id = Yii::$app->user->identity->client->id;
 
         $model = new ChatTopic();
+        $cl_exp = ClientExpert::find()->where(['expert_id' => $expert_id, 'client_id' => $client_id])->one();
+        // return json_encode($cl_exp->id);
         
-        if ($model->load(Yii::$app->request->post()))
+        if ($model->load(Yii::$app->request->get()))
         {
 
             if ($post['submitTopic']=='true'){
 
                 $model->topic = $model->topic;
+                $model->client_id = $client_id;
+                $model->client_expert_id = $cl_exp->id;
 
                 if(!$model->save()){
                     return json_encode($model->errors);
@@ -77,9 +82,9 @@ class DefaultController extends Controller
             
             $data = ChatTopic::getTopic($model->id);
 
-            // echo "<pre>";
-            // print_r($data);
-            // die();
+            /*echo "<pre>";
+            print_r($data);
+            die();*/
             $result = json_encode($data);
             return $result;
         }
