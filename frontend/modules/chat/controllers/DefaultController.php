@@ -92,14 +92,11 @@ class DefaultController extends Controller
 
     public function actionUpdateTopic()
     {
-        if (Yii::$app->user->isGuest){
-            return '';
-        }
-
-        $post = Yii::$app->request->post();
+        $post = Yii::$app->request->get();
         // return json_encode($post) ;
-        $tid = Yii::$app->request->post('tid');
-        $topic_name = Yii::$app->request->post('topic_name');
+        $tid = Yii::$app->request->get('tid');
+        $topic_name = Yii::$app->request->get('topic_name');
+        $expert_id = Yii::$app->request->get('expert_id');
 
         $model = ChatTopic::findOne($tid);
         $model->topic = $topic_name;
@@ -113,7 +110,7 @@ class DefaultController extends Controller
 
    public function actionDeleteTopic()
     {
-        $tid = Yii::$app->request->post('tid');
+        $tid = Yii::$app->request->get('tid');
 
         ChatModel::deleteAll(['topic_id' => $tid]);
         $model = ChatTopic::findOne($tid);

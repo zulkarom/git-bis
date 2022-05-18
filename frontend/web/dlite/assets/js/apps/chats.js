@@ -196,7 +196,7 @@
                         str_unread = '<em class="icon ni ni-bullet-fill"></em>';
                       }
 
-                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Mute Conversion</a></li><li><a href="#">Hide Conversion</a></li><li><a href="#">Delete Conversion</a></li><li class="divider"></li><li><a href="#">Mark as Unread</a></li><li><a href="#">Ignore Messages</a></li><li><a href="#">Block Messages</a></li></ul></div></div></div></li>';
+                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'" data-clEx-expertise="'+clEx_expertise+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div></li>';
 
 
                     }
@@ -269,7 +269,7 @@
                         str_unread = '<em class="icon ni ni-bullet-fill"></em>';
                       }
 
-                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+topic_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_name+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Update Conversion</a></li><li><a href="#">Delete Conversion</a></li></ul></div></div></div></li>';
+                      str +='<li class="chat-item" id="topic-'+topic_id+'"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-topic-name="'+topic_name+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+topic_name+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_name+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Update Topic</a></li><li><a data-topic="'+topic_id+'" class="delete-topic" href="javascript:void(0);">Delete Topic</a></li></ul></div></div></div></li>';
 
 
                     }
@@ -290,6 +290,10 @@
                     getTargetChat($(this), true);
 
                   });
+
+                  $('.delete-topic').click(function(){
+                        deletetopic($(this));
+                    });
 
                   /*$('.a-topic').click(function(){
 
@@ -329,21 +333,20 @@
                 },
                 success: function (data) {
                   
-                  /*var data = JSON.parse(data);
+                  var data = JSON.parse(data);
                   console.log(data);
                   var str = '';
+                  var str_unread = '';
 
                   for (var key in data) {
                     var row = data[key];
                     var element_id = row['topic_id'];
                     // console.log(row);
 
-                    str += '<div class="media-list media-list-hover"><div id="topic-'+row['topic_id']+'" class="media py-10 px-0 align-items-center topic-chat" data-topic="'+row['topic_id']+'" data-topic-name="'+row['topic_name']+'" data-exp-id="'+row['expert_id']+'" data-clEx-user-id="'+row['expert_user_id']+'"><div class="media-body"><div class="row"><div class="col-10"><p class="font-size-16 test"><a id="atopic-'+row['topic_id']+'" class="hover-primary" href="#">'+row['topic_name']+'</a></p></div><div class="col-2" align="right"><div class="dropdown"><a id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp<span class="mdi mdi-dots-vertical"></span></a><div class="dropdown-content" aria-labelledby="dropdownMenuButton"><a data-topic="'+row['topic_id']+'" class="delete-topic dropdown-item" href="#">Delete</a><a class="update-topic dropdown-item" href="#" data-topic ="'+row['topic_id']+'"><span style="display:none">' +row['topic_name']+'</span>Update</a></div></div></div></div></div></div>';
-
-                     str += '<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+row['topic_id']+'" data-clEx-profile="'+clEx_profile+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+row['topic_name']+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+clEx_name+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Update Conversion</a></li><li><a href="#">Delete Conversion</a></li></ul></div></div></div></li>';
+                     str += '<li class="chat-item" id="topic-'+row['topic_id']+'"><div class="send-topic" data-client="'+row['client_id']+'" data-expert-id="'+row['expert_id']+'" data-client-expert-id="'+row['client_expert_id']+'" data-clEx-user-id="'+row['expert_user_id']+'" data-clEx-name="'+row['clEx_name']+'" data-clEx-profile="'+row['clEx_profile']+'" data-topic="'+row['topic_id']+'" data-topic-name="'+row['topic_name']+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+row['clEx_profile']+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+row['topic_name']+'</div><span class="time">4:49 AM</span></div><div class="chat-context"><div class="text">'+row['clEx_name']+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a href="#">Update Conversion</a></li><li><a data-topic="'+row['topic_id']+'" class="delete-topic" href="javascript:void(0);">Delete Topic</a></li></ul></div></div></div></li>';
                     
                   }
-                  $('.topic-name').append(str);
+                  $('.list-topic').prepend(str);
 
                   $('.delete-topic').click(function(){
                       deletetopic($(this));
@@ -351,35 +354,105 @@
                   
 
                   $('#inputTopic').val('');
-                  $('.topic-chat').click(function(){
+                  $('.send-topic').click(function(){
                       getTargetChat($(this), true);
                   });
-                  $('#createTopicModalLong').modal('hide');
+                  $('#modalDefault').modal('hide');
 
-                  $( '.update-topic').click(function(){
+                  /*$( '.update-topic').click(function(){
                         var topName = $(this).children().text();
                         var topic_id = $(this).attr('data-topic');
                         $('#inputUpdtTopic').val(topName);
                         $('#submit-updt-topic').attr('data-topic',topic_id);
                         $('#updateModalTopic').modal('show');
                     
-                    });
+                    });*/
 
-                    $('#submit-updt-topic').click(function(){
+                    /*$('#submit-updt-topic').click(function(){
 
                         updatetopic($(this));
 
-                    });
+                    });*/
 
 
 
                   getTargetChat($('#topic-'+element_id), true);
 
-                  console.log($('#topic-'+element_id));*/
+                  console.log($('#topic-'+element_id));
 
                 }
             });
     }
+
+    //Update Topic
+function updatetopic(element){
+
+  var topic_id = element.attr('data-topic');
+  var updateUrl = $('#updateUrl').val();
+
+  $('#updateModalTopic').modal('hide');
+
+  $.ajax({
+    url: updateUrl,
+    type: 'GET',
+    data: {
+      tid: topic_id,
+      topic_name: $('#inputUpdtTopic').val(),
+      expert_id: $('#up-exp-id').val(),
+    },
+    success: function (result) {
+
+      $('#inputUpdtTopic').val(result);
+      $('#pre-topic-'+topic_id).text(result);
+      $('.exp-topic-name').html(result);
+    }
+  });
+}
+
+    //Delete Topic
+function deletetopic(element){
+
+    var topic_id = element.data('topic');
+    var deleteUrl = $('#deleteUrl').val();
+
+  if(confirm('Are you sure to delete this topic? All related messages will also be deleted')){
+    $.ajax({
+      url: deleteUrl,
+      type: 'GET',
+      data: {
+        tid: topic_id
+      },
+      success: function (result) {
+        
+            console.log('Delete Success');
+            $('#topic-'+result).remove();
+            // $('.btn-send-message').html('');
+            // $('.btn-previous-message').html('');
+            // $('#chat-box').html('');
+            // $('.exp-topic-name').html('');
+
+            // var x = document.getElementById('group-header');
+
+            // if (x.style.display === 'block') {
+            //   x.style.display = 'none';
+            // }
+
+            // var y = document.getElementById('group-msg');
+
+            // if (y.style.display === 'block') {
+            //   y.style.display = 'none';
+            // }
+
+            // var z = document.getElementById('scroll-msj');
+
+            // if (z.style.display === 'block') {
+            //   z.style.display = 'none';
+            // }
+      }
+    });
+  }
+
+}
 
     
 
@@ -387,11 +460,12 @@
     function getTargetChat(element, init){
         var expert_id = element.attr('data-expert-id');
         var topic_id = element.attr('data-topic');
-        // var top_name = element.attr('data-topic-name');
+        var top_name = element.attr('data-topic-name');
         var user_id = $('#own_id').val();
         var clEx_user_id = element.attr('data-clEx-user-id');
         var clEx_name = element.attr('data-clEx-name');
         var clEx_profile = element.attr('data-clEx-profile');
+        var clEx_expertise = element.attr('data-clEx-expertise');
 
         // alert(topic_id);
             
@@ -410,7 +484,15 @@
             // y.className += 'hide-aside';
             x.className += ' show-chat';
 
-            $('.exp-name').html(clEx_name);
+            if($('#a-topic').hasClass('active')){
+                $('.lead-name').html(top_name);
+                $('.sub-name').html(clEx_name);
+
+            }else if($('#a-expert').hasClass('active')){
+                $('.lead-name').html(clEx_name);
+                $('.sub-name').html(clEx_expertise);
+            }
+            
             $('.exp-profile').attr('src',clEx_profile);
 
           /*if(init){

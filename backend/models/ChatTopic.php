@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use yii\helpers\Url;
 /**
  * This is the model class for table "chat_topic".
  *
@@ -77,7 +77,10 @@ class ChatTopic extends \yii\db\ActiveRecord
         $out[$model->id]=[
             'client_id' => $model->client_id,
             'expert_id' => $model->expert_id,
+            'client_expert_id' => $model->client_expert_id,
             'expert_user_id' => $model->expert->user_id,
+            'clEx_name' => $model->expert->user->fullname,
+            "clEx_profile" => Url::to(['/client/profile/expert-image', 'id' => $model->expert->user->id]),
             'topic_name' => $model->topic,
             'topic_id' => $model->id,
         ];

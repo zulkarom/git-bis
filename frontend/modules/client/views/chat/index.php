@@ -13,6 +13,8 @@ $loadUrl = Url::to(['/chat/default/load-message']);
 $deleteUrl = Url::to(['/chat/default/delete-message']);
 $refreshUrl = Url::to(['/chat/default/refresh-message']);
 $createUrl = Url::to(['/chat/default/create-topic']);
+$deleteUrl = Url::to(['/chat/default/delete-topic']);
+$updateUrl = Url::to(['/chat/default/update-topic']);
 
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
@@ -42,7 +44,8 @@ if(Yii::$app->user->identity->role == 1){
 <input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
 <input type="hidden" id="refreshUrl" value="<?=$refreshUrl?>">
 <input type="hidden" id="createUrl" value="<?=$createUrl?>">
-
+<input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
+<input type="hidden" id="updateUrl" value="<?=$updateUrl?>">
 
 <div class="nk-chat">
     <div class="nk-chat-aside ">
@@ -128,8 +131,8 @@ if(Yii::$app->user->identity->role == 1){
                             <img src="" alt="" class="exp-profile">
                         </div>
                         <div class="user-info">
-                            <div class="lead-text"><span class="exp-name"></span></div>
-                            <div class="sub-text"><span class="d-none d-sm-inline me-1">Active </span> 35m ago</div>
+                            <div class="lead-text"><span class="lead-name"></span></div>
+                            <div class="sub-text"><span class="sub-name d-none d-sm-inline me-1"></span></div>
                         </div>
                     </div>
                 </li>
@@ -301,3 +304,37 @@ if(Yii::$app->user->identity->role == 1){
         </div>
     </div>
 </div>
+
+<!-- <div class="modal fade" id="updateModalTopic">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Update Topic</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputTopic">Topic</label>
+                        <input type="text" class="form-control" id="inputUpdtTopic">
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label for="inputExpert">Expert</label>
+                        <label for="inputTopic">Expert</label>
+                         
+                        /*Html::dropDownList('id', null,
+                            ArrayHelper::map(Expert::find()->joinWith('user')->all(),'id', 'user.fullname'), ['class'=>'form-control', 'id' => 'up-exp-id', 'prompt' => 'Please Select' ]) */
+                            
+
+                    </div>
+                    <br/>
+
+                </div>
+                <button id="submit-updt-topic" type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div> -->
