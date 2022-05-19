@@ -56,6 +56,8 @@ class ChatTestController extends Controller
 
         $data = [];
 
+        $today_date = date('d F Y');
+
          foreach($model as $clientEx) {
 
             $countChat = ChatModel::find()
@@ -72,6 +74,14 @@ class ChatTestController extends Controller
                 ->orderBy('last_message_send DESC')
                 ->one();
 
+            $last_send = date('d F Y', strtotime($topic->last_message_send));
+
+            if($today_date == $last_send){
+                $datetime = date('h:i A', strtotime($topic->last_message_send));
+            }else{
+                $datetime = date('j M');
+            }
+
             $data[] = [
                 "client_id" => $clientEx->client_id,
                 "expert_id" => $clientEx->expert_id,
@@ -84,6 +94,7 @@ class ChatTestController extends Controller
                 "id" => $topic->id,
                 "value" => $topic->topic,
                 "is_default" => $topic->is_default,
+                "datetime" => $datetime,
             ];
         }
         return json_encode($data);
@@ -100,6 +111,8 @@ class ChatTestController extends Controller
 
         $data = [];
 
+        $today_date = date('d F Y');
+
         if($topics){
             foreach($topics as $topic) {
 
@@ -109,6 +122,13 @@ class ChatTestController extends Controller
                         ->andWhere(['is_read' => 0])
                         ->count();
 
+                $last_send = date('d F Y', strtotime($topic->last_message_send));
+
+                if($today_date == $last_send){
+                    $datetime = date('h:i A', strtotime($topic->last_message_send));
+                }else{
+                    $datetime = date('j M');
+                }
 
                 $data[] = [
                     "id" => $topic->id,
@@ -122,6 +142,7 @@ class ChatTestController extends Controller
                     "clEx_user_id" => $topic->expert->user_id,
                     "clEx_name" => $topic->expert->user->fullname,
                     "clEx_expertise" => $topic->expert->expertText,
+                    "datetime" => $datetime,
                     "clEx_profile" => Url::to(['/client/profile/expert-image', 'id' => $topic->expert->user->id]),
                 ];
             }  

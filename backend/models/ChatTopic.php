@@ -83,6 +83,7 @@ class ChatTopic extends \yii\db\ActiveRecord
             "clEx_profile" => Url::to(['/client/profile/expert-image', 'id' => $model->expert->user->id]),
             'topic_name' => $model->topic,
             'topic_id' => $model->id,
+            'datetime' => 'Now',
         ];
         ksort($out);
         return $out;

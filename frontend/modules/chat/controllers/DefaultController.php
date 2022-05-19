@@ -96,8 +96,7 @@ class DefaultController extends Controller
         // return json_encode($post) ;
         $tid = Yii::$app->request->get('tid');
         $topic_name = Yii::$app->request->get('topic_name');
-        $expert_id = Yii::$app->request->get('expert_id');
-
+       
         $model = ChatTopic::findOne($tid);
         $model->topic = $topic_name;
 
@@ -210,7 +209,7 @@ class DefaultController extends Controller
     {
 
         $chat_id = Yii::$app->request->get('cid');
-
+        
         $model = ChatModel::findOne($chat_id);
 
         $new = new ChatModel();

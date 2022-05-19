@@ -1,20 +1,31 @@
 <?php
+use yii\helpers\Html;;
 use yii\helpers\Url;    
+use yii\bootstrap4\Modal;
+use kartik\select2\Select2;
+use backend\models\Expert;
+use yii\helpers\ArrayHelper;
+
 $web = Yii::getAlias('@web');
 
 $own_id = Yii::$app->user->identity->id;
 $loadUrl = Url::to(['/chat/default/load-message']);
 $deleteUrl = Url::to(['/chat/default/delete-message']);
 $refreshUrl = Url::to(['/chat/default/refresh-message']);
+$createUrl = Url::to(['/chat/default/create-topic']);
+$deleteUrl = Url::to(['/chat/default/delete-topic']);
+$updateUrl = Url::to(['/chat/default/update-topic']);
 
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
+    $topicUrl = Url::to(['/chat/chat-test/get-list-topics']);
     $chatUrl = Url::to(['/chat/default/index']);
     $url = Url::to(['/client/profile/profile-image', 'id' => '']);
     $url2 = Url::to(['/client/profile/expert-image', 'id' => '']);
     $dataUrl = Url::to(['/chat/default/send-message']);
 }else{
     $userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
+    $topicUrl = Url::to(['/chatExpert/chat/get-list-topics']);
     $chatUrl = Url::to(['/chatExpert/default/index']);
     $url = Url::to(['/expert/profile/profile-image', 'id' => '']);
     $url2 = Url::to(['/expert/profile/client-image', 'id' => '']);
@@ -24,6 +35,7 @@ if(Yii::$app->user->identity->role == 1){
                       
 <input type="hidden" id="own_id" value="<?=$own_id?>">
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
+<input type="hidden" id="topicUrl" value="<?=$topicUrl?>">
 <input type="hidden" id="chatUrl" value="<?=$chatUrl?>">
 <input type="hidden" id="url" value="<?=$url?>">
 <input type="hidden" id="url2" value="<?=$url2?>">
@@ -31,76 +43,75 @@ if(Yii::$app->user->identity->role == 1){
 <input type="hidden" id="loadUrl" value="<?=$loadUrl?>">
 <input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
 <input type="hidden" id="refreshUrl" value="<?=$refreshUrl?>">
-
+<input type="hidden" id="createUrl" value="<?=$createUrl?>">
+<input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
+<input type="hidden" id="updateUrl" value="<?=$updateUrl?>">
 
 <div class="nk-chat">
     <div class="nk-chat-aside ">
         <div class="nk-chat-aside-head">
             <div class="nk-chat-aside-user">
-                <div class="dropdown">
-                    <a href="#" class="dropdown-toggle dropdown-indicator" data-bs-toggle="dropdown">
-                        <div class="user-avatar">
-                            <img src="<?=$web?>/dlite/images/avatar/b-sm.jpg" alt="">
-                        </div>
-                        <div class="title">Chats</div>
-                    </a>
-                    <div class="dropdown-menu">
-                        <ul class="link-list-opt no-bdr">
-                            <li><a href="html/apps/chats-contacts.html"><span>Contacts</span></a></li>
-                            <li><a href="html/apps/chats-channels.html"><span>Channels</span></a></li>
-                            <li class="divider"></li>
-                            <li><a href="#"><span>Help</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!-- .nk-chat-aside-user -->
-            <ul class="nk-chat-aside-tools g-2">
-                <li>
-                    <div class="dropdown">
-                        <a href="#" class="btn btn-round btn-icon btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                            <em class="icon ni ni-setting-alt-fill"></em>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <ul class="link-list-opt no-bdr">
-                                <li><a href="#"><span>Settings</span></a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><span>Message Requests</span></a></li>
-                                <li><a href="#"><span>Archives Chats</span></a></li>
-                                <li><a href="#"><span>Unread Chats</span></a></li>
-                                <li><a href="#"><span>Group Chats</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" class="btn btn-round btn-icon btn-light">
-                        <em class="icon ni ni-edit-alt-fill"></em>
-                    </a>
-                </li>
-            </ul><!-- .nk-chat-aside-tools -->
+                
+                <ul class="nav nav-tabs mt-n3">
+                    <li class="nav-item">
+                        <a id="a-expert" class="nav-link active" data-bs-toggle="tab" href="#tabItem1">Experts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="a-topic" class="nav-link" data-bs-toggle="tab" href="#tabItem2">Topics</a>
+                    </li>
+                </ul>
+                
+            </div>
         </div><!-- .nk-chat-aside-head -->
-        <div class="nk-chat-aside-body" data-simplebar>
-            <div class="nk-chat-aside-search">
-                <div class="form-group">
-                    <div class="form-control-wrap">
-                        <div class="form-icon form-icon-left">
-                            <em class="icon ni ni-search"></em>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabItem1">
+                <div class="nk-chat-aside-body" data-simplebar>
+                    <div class="nk-chat-aside-search">
+                        <div class="form-group">
+                            <div class="form-control-wrap">
+                                <div class="form-icon form-icon-left">
+                                    <em class="icon ni ni-search"></em>
+                                </div>
+                                <input type="text" class="form-control form-round" id="default-03" placeholder="Search by name">
+                            </div>
                         </div>
-                        <input type="text" class="form-control form-round" id="default-03" placeholder="Search by name">
                     </div>
+                    <div class="nk-chat-list">
+                        <h6 class="title overline-title-alt">Messages</h6>
+                        <ul class="chat-list">
+                            <div id="current-expert"></div>
+                            <div class="list-expert"></div>
+                            <!-- .chat-item -->
+                        </ul><!-- .chat-list -->
+                    </div><!-- .nk-chat-list -->
                 </div>
             </div>
-            <div class="nk-chat-list">
-                <h6 class="title overline-title-alt">Messages</h6>
-                <ul class="chat-list">
-                    <div id="current-expert"></div>
-                    <div class="list-expert"></div>
-                    <!-- .chat-item -->
-                </ul><!-- .chat-list -->
-            </div><!-- .nk-chat-list -->
+            <div class="tab-pane" id="tabItem2">
+                <div class="nk-chat-aside-body" data-simplebar>
+                    <div class="nk-chat-aside-search">
+                        <div class="form-group">
+                            <div class="form-control-wrap">
+                                <div class="form-icon form-icon-left">
+                                    <em class="icon ni ni-search"></em>
+                                </div>
+                                <input type="text" class="form-control form-round" id="default-03" placeholder="Search by name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-chat-list">
+                        <h6 class="title overline-title-alt">Messages</h6>
+                        <ul class="chat-list">
+                            <div id="current-topic"></div>
+                            <div class="list-topic"></div>
+                            <!-- .chat-item -->
+                        </ul><!-- .chat-list -->
+                    </div><!-- .nk-chat-list -->
+                </div>
+            </div>
         </div>
+        
     </div><!-- .nk-chat-aside -->
-    <div id="group-header" class="nk-chat-body profile-shown">
+    <div id="group-header" class="nk-chat-body profile-shown" >
         <div class="nk-chat-head">
             <ul class="nk-chat-head-info">
                 <li class="nk-chat-body-close">
@@ -112,8 +123,8 @@ if(Yii::$app->user->identity->role == 1){
                             <img src="" alt="" class="exp-profile">
                         </div>
                         <div class="user-info">
-                            <div class="lead-text"><span class="exp-name"></span></div>
-                            <div class="sub-text"><span class="d-none d-sm-inline me-1">Active </span> 35m ago</div>
+                            <div class="lead-text"><span class="lead-name"></span></div>
+                            <div class="sub-text"><span class="sub-name d-none d-sm-inline me-1"></span></div>
                         </div>
                     </div>
                 </li>
@@ -253,4 +264,3 @@ if(Yii::$app->user->identity->role == 1){
         </div><!-- .nk-chat-profile -->
     </div><!-- .nk-chat-body -->
 </div><!-- .nk-chat -->
-        

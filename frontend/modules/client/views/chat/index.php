@@ -305,7 +305,7 @@ if(Yii::$app->user->identity->role == 1){
     </div>
 </div>
 
-<!-- <div class="modal fade" id="updateModalTopic">
+<div class="modal fade" id="updateModalTopic">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -321,15 +321,7 @@ if(Yii::$app->user->identity->role == 1){
                         <input type="text" class="form-control" id="inputUpdtTopic">
                     </div>
 
-                    <div class="form-group col-md-12">
-                        <label for="inputExpert">Expert</label>
-                        <label for="inputTopic">Expert</label>
-                         
-                        /*Html::dropDownList('id', null,
-                            ArrayHelper::map(Expert::find()->joinWith('user')->all(),'id', 'user.fullname'), ['class'=>'form-control', 'id' => 'up-exp-id', 'prompt' => 'Please Select' ]) */
-                            
-
-                    </div>
+                    
                     <br/>
 
                 </div>
@@ -337,4 +329,4 @@ if(Yii::$app->user->identity->role == 1){
             </div>
         </div>
     </div>
-</div> -->
+</div>
