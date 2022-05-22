@@ -10,27 +10,19 @@ $web = Yii::getAlias('@web');
 
 $own_id = Yii::$app->user->identity->id;
 $loadUrl = Url::to(['/chat/default/load-message']);
-$deleteUrl = Url::to(['/chat/default/delete-message']);
+$deleteMsgUrl = Url::to(['/chat/default/delete-message']);
 $refreshUrl = Url::to(['/chat/default/refresh-message']);
 $createUrl = Url::to(['/chat/default/create-topic']);
 $deleteUrl = Url::to(['/chat/default/delete-topic']);
 $updateUrl = Url::to(['/chat/default/update-topic']);
 
-if(Yii::$app->user->identity->role == 1){
-    $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
-    $topicUrl = Url::to(['/chat/chat-test/get-list-topics']);
-    $chatUrl = Url::to(['/chat/default/index']);
-    $url = Url::to(['/client/profile/profile-image', 'id' => '']);
-    $url2 = Url::to(['/client/profile/expert-image', 'id' => '']);
-    $dataUrl = Url::to(['/chat/default/send-message']);
-}else{
-    $userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
-    $topicUrl = Url::to(['/chatExpert/chat/get-list-topics']);
-    $chatUrl = Url::to(['/chatExpert/default/index']);
-    $url = Url::to(['/expert/profile/profile-image', 'id' => '']);
-    $url2 = Url::to(['/expert/profile/client-image', 'id' => '']);
-    $dataUrl = Url::to(['/chatExpert/default/send-message']);
-}
+
+$userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
+$topicUrl = Url::to(['/chatExpert/chat/get-list-topics']);
+$chatUrl = Url::to(['/chatExpert/default/index']);
+$url = Url::to(['/expert/profile/profile-image', 'id' => '']);
+$url2 = Url::to(['/expert/profile/client-image', 'id' => '']);
+$dataUrl = Url::to(['/chatExpert/default/send-message']);
 ?>
                       
 <input type="hidden" id="own_id" value="<?=$own_id?>">
@@ -44,7 +36,7 @@ if(Yii::$app->user->identity->role == 1){
 <input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
 <input type="hidden" id="refreshUrl" value="<?=$refreshUrl?>">
 <input type="hidden" id="createUrl" value="<?=$createUrl?>">
-<input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
+<input type="hidden" id="deleteMsgUrl" value="<?=$deleteMsgUrl?>">
 <input type="hidden" id="updateUrl" value="<?=$updateUrl?>">
 
 <div class="nk-chat">

@@ -10,7 +10,7 @@ $web = Yii::getAlias('@web');
 
 $own_id = Yii::$app->user->identity->id;
 $loadUrl = Url::to(['/chat/default/load-message']);
-$deleteUrl = Url::to(['/chat/default/delete-message']);
+$deleteMsgUrl = Url::to(['/chat/default/delete-message']);
 $refreshUrl = Url::to(['/chat/default/refresh-message']);
 $createUrl = Url::to(['/chat/default/create-topic']);
 $deleteUrl = Url::to(['/chat/default/delete-topic']);
@@ -41,10 +41,10 @@ if(Yii::$app->user->identity->role == 1){
 <input type="hidden" id="url2" value="<?=$url2?>">
 <input type="hidden" id="dataUrl" value="<?=$dataUrl?>">
 <input type="hidden" id="loadUrl" value="<?=$loadUrl?>">
-<input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
 <input type="hidden" id="refreshUrl" value="<?=$refreshUrl?>">
 <input type="hidden" id="createUrl" value="<?=$createUrl?>">
 <input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
+<input type="hidden" id="deleteMsgUrl" value="<?=$deleteMsgUrl?>">
 <input type="hidden" id="updateUrl" value="<?=$updateUrl?>">
 
 <div class="nk-chat">

@@ -741,8 +741,8 @@ function sendchat(sendMessage) {
 //Load Previous Chat
 function loadchat(button,loadMessage) {
 
-var first = $('#chat-box .card-msg').first().attr('id');
-// alert(first);
+    var first = $('#chat-box .card-msg').first().attr('id');
+    // alert(first);
 
     $.ajax({
         url: $('#load-message').data('url'),
@@ -771,9 +771,7 @@ var first = $('#chat-box .card-msg').first().attr('id');
               deletemessage($(this));
           });
         }
-    });
-  
-  
+    });  
 }
 
 // Delete Message
@@ -781,12 +779,12 @@ function deletemessage(element){
 
   var chat_id = element.data('chat');
 
-  var deleteUrl = $('#deleteUrl').val();
+  var deleteMsgUrl = $('#deleteMsgUrl').val();
 
-  /*alert(chat_id);*/
+  alert(chat_id);
 
   $.ajax({
-      url: $('#deleteUrl').val(),
+      url: deleteMsgUrl,
       type: 'GET',
       data: {
         cid: chat_id

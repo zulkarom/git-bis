@@ -53,50 +53,13 @@
 
                   var topicStr = '<button id="btn-topic" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round" data-bs-toggle="modal" data-bs-target="#modalDefault"><em class="icon ni ni-plus"></em></button>';
 
-                  $('.new-topic').html(topicStr);
-
-                   $('#submit-topic').click(function(){
-
-                      createtopic(this,true);
-                  });
+                 
 
                   $('.send-topic').click(function(){
 
                     getTargetChat($(this), true);
 
                   });
-
-                  $('.delete-topic').click(function(){
-                        deletetopic($(this));
-                    });
-
-                  $( '.update-topic').click(function(){
-                        var topName = $(this).children().text();
-                        var expName = $(this).children().eq(1).text();
-                        var topic_id = $(this).attr('data-topic');
-                        $('#inputUpdtTopic').val(topName);
-                        $('#up-exp-id').val(expName);
-                        $('#submit-updt-topic').attr('data-topic',topic_id);
-                        $('#updateModalTopic').modal('show');
-                    
-                    });
-
-                  $('#submit-updt-topic').click(function(){
-                        updatetopic($(this));
-                    });
-
-                  /*$('.a-topic').click(function(){
-
-                    $('#a-topic').addClass('active');
-
-                    $('#a-expert').removeClass('active');
-
-                    // $('#panel-topic').addClass('active');
-                    // $('#panel-expert').removeClass('active');
-
-                    // getTopic($(this), true);
-
-                  });*/
 
 
                 }

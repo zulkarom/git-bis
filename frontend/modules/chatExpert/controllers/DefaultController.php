@@ -41,6 +41,7 @@ class DefaultController extends Controller
         $tid = Yii::$app->request->get('tid');
         $cuser_id = Yii::$app->request->get('cuser_id');
 
+
         $client = Client::findOne($id);
         $topicModel = ChatTopic::findOne($tid);
         $user = Yii::$app->user->identity;
