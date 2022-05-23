@@ -574,14 +574,16 @@ function deletetopic(element){
                 var btnsendstr ='';
                 var btnprevstr ='';
                 // var top_name = '';
-
+                var prev_date;
                   
                     for (var key in data) {
                       var row = data[key];
-                      // alert(row['message']);
+                     
+                      
                       // top_name = row['topic_name'];
 
-                      chatstr += messageBox(row);
+                      chatstr += messageBox(row,prev_date);
+                      prev_date = row['date'];
                     }
 
                     // console.log(chatstr);
@@ -626,7 +628,7 @@ function deletetopic(element){
         }
     }
 
-    function messageBox(row){
+    function messageBox(row,prev_date){
       var client = '';
       var role = '';
       
@@ -638,13 +640,10 @@ function deletetopic(element){
 
       var dateData = new Date(row['time'] * 1000);
       var date = ((dateData.getDate() < 10)?'0':'') + dateData.getDate() +' '+(monthNames[dateData.getMonth()]) + ', '+ dateData.getFullYear();
-      var time = ((dateData.getHours() < 10)?'0':'') + dateData.getHours() +':'+ ((dateData.getMinutes() < 10)?'0':'') + dateData.getMinutes() + ' ' +(dateData.getHours() >= 12 ? 'PM' : 'AM');
+      var hours = dateData.getHours() % 12;
+      var time = ((hours < 10)?'0':'') + hours +':'+ ((dateData.getMinutes() < 10)?'0':'') + dateData.getMinutes() + ' ' +(hours >= 12 ? 'PM' : 'AM');
       var dd = date + '  ' + time;
-
-      /*var int_cur_date = Date.parse(new Date());*/
       
-
-
 
       if(row['sender_id'] == $('#own_id').val()){
           client = true;
@@ -660,18 +659,13 @@ function deletetopic(element){
       var url2 = $('#url2').val() + sender_id;
       var str ='';
 
-      /*if(int_cur_date == (row['time'] * 1000)){
+      if( prev_date != (row['date'])){
 
-        str += '<div class="chat-sap"><div class="chat-sap-meta"><span>12 May, 2020</span></div></div>';
+        str += '<div class="chat-sap"><div class="chat-sap-meta"><span>'+row['date']+'</span></div></div>';
       }
-
-      console.log(int_cur_date);
-      console.log(row['time'] * 1000);*/
+      
 
       if(client){
-
-
-
         str += '<div id="msg-'+row['chat_id']+'" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg"><p class="card-msg" id="'+row['chat_id']+'">' + row['message']  + '</p></div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li><li><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-sm"><ul class="link-list-opt no-bdr"><li class="d-sm-none"><a href="#"><em class="icon ni ni-reply-fill"></em> Reply</a></li><li><a href="#"><em class="icon ni ni-pen-alt-fill"></em> Edit</a></li><li><a data-chat="'+row['chat_id']+'" class="delete-msg" href="javascript:void(0);"><em class="icon ni ni-trash-fill"></em> Remove</a></li></ul></div></div></li></ul></div></div><ul class="chat-meta"><li>'+time+'</li></ul></div></div>';
           
           return str;
@@ -758,12 +752,14 @@ function loadchat(button,loadMessage) {
           // console.log(data);
         var data = JSON.parse(data);
           var chatstr = '';
-
-           for (var key in data) {
+          var prev_date;
+                  
+            for (var key in data) {
               var row = data[key];
-              // console.log(row);
-              chatstr += messageBox(row);
+              chatstr += messageBox(row,prev_date);
+              prev_date = row['date'];
             }
+
           $('#chat-box').prepend(chatstr);
 
           $('.delete-msg').click(function(){

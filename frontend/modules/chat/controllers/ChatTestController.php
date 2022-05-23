@@ -79,7 +79,7 @@ class ChatTestController extends Controller
             if($today_date == $last_send){
                 $datetime = date('h:i A', strtotime($topic->last_message_send));
             }else{
-                $datetime = date('j M');
+                $datetime = date('j M', strtotime($topic->last_message_send));
             }
 
             $data[] = [
@@ -127,7 +127,7 @@ class ChatTestController extends Controller
                 if($today_date == $last_send){
                     $datetime = date('h:i A', strtotime($topic->last_message_send));
                 }else{
-                    $datetime = date('j M');
+                    $datetime = date('j M', strtotime($topic->last_message_send));
                 }
 
                 $data[] = [
