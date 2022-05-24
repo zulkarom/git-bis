@@ -15,6 +15,7 @@ $refreshUrl = Url::to(['/chat/default/refresh-message']);
 $createUrl = Url::to(['/chat/default/create-topic']);
 $deleteUrl = Url::to(['/chat/default/delete-topic']);
 $updateUrl = Url::to(['/chat/default/update-topic']);
+$role = Yii::$app->user->identity->role;
 
 if(Yii::$app->user->identity->role == 1){
     $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
@@ -34,6 +35,7 @@ if(Yii::$app->user->identity->role == 1){
 ?>
                       
 <input type="hidden" id="own_id" value="<?=$own_id?>">
+<input type="hidden" id="role" value="<?=$role?>">
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
 <input type="hidden" id="topicUrl" value="<?=$topicUrl?>">
 <input type="hidden" id="chatUrl" value="<?=$chatUrl?>">

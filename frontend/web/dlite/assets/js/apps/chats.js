@@ -409,10 +409,16 @@
             str_unread = '<em class="icon ni ni-bullet-fill"></em>';
           }
 
-        str ='<li class="chat-item" id="topic-'+row['topic_id']+'"><div class="send-topic" data-client="'+row['client_id']+'" data-expert-id="'+row['expert_id']+'" data-client-expert-id="'+row['client_expert_id']+'" data-clEx-user-id="'+row['clEx_user_id']+'" data-clEx-name="'+row['clEx_name']+'" data-clEx-profile="'+row['clEx_profile']+'" data-topic="'+row['topic_id']+'" data-topic-name="'+row['topic_name']+'" data-clEx-profile="'+row['clEx_profile']+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+row['clEx_profile']+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div id="pre-topic-'+row['topic_id']+'" class="name">'+row['topic_name']+'</div><span class="time">'+row['datetime']+'</span></div><div class="chat-context"><div class="text">'+row['clEx_name']+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div><div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr">';
+        
+        str ='<li class="chat-item" id="topic-'+row['topic_id']+'"><div class="send-topic" data-client="'+row['client_id']+'" data-expert-id="'+row['expert_id']+'" data-client-expert-id="'+row['client_expert_id']+'" data-clEx-user-id="'+row['clEx_user_id']+'" data-clEx-name="'+row['clEx_name']+'" data-clEx-profile="'+row['clEx_profile']+'" data-topic="'+row['topic_id']+'" data-topic-name="'+row['topic_name']+'" data-clEx-profile="'+row['clEx_profile']+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+row['clEx_profile']+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div id="pre-topic-'+row['topic_id']+'" class="name">'+row['topic_name']+'</div><span class="time">'+row['datetime']+'</span></div><div class="chat-context"><div class="text">'+row['clEx_name']+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div>';
 
-        // Btnn Update/Delete
-         str += '<li><a data-topic="'+row['topic_id']+'" class="update-topic" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#updateModalTopic"><span style="display:none">' + row['topic_name'] + '</span><span style="display:none">' + row['expert_id'] + '</span>Update Topic</a></li><li><a data-topic="'+row['topic_id']+'" class="delete-topic" href="javascript:void(0);">Delete Topic</a></li></ul></div></div></div></li>';
+        if($('#role').val() == 1){
+            // Btnn Update/Delete
+         str += '<div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a data-topic="'+row['topic_id']+'" class="update-topic" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#updateModalTopic"><span style="display:none">' + row['topic_name'] + '</span><span style="display:none">' + row['expert_id'] + '</span>Update Topic</a></li><li><a data-topic="'+row['topic_id']+'" class="delete-topic" href="javascript:void(0);">Delete Topic</a></li></ul></div></div></div>';
+
+        }
+        
+         str +='</li>';
 
         return str;
 
@@ -456,7 +462,7 @@ function deletetopic(element){
     var topic_id = element.data('topic');
     var deleteUrl = $('#deleteUrl').val();
 
-    alert(topic_id);
+    /*alert(topic_id);*/
 
   if(confirm('Are you sure to delete this topic? All related messages will also be deleted')){
     $.ajax({
@@ -777,7 +783,7 @@ function deletemessage(element){
 
   var deleteMsgUrl = $('#deleteMsgUrl').val();
 
-  alert(chat_id);
+  /*alert(chat_id);*/
 
   $.ajax({
       url: deleteMsgUrl,

@@ -172,8 +172,8 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
                     <img src="" alt="" class="exp-profile">
                 </div>
                 <div class="user-info">
-                    <h5><span class="exp-name"></span></h5>
-                    <span class="sub-text">Active 35m ago</span>
+                    <h5><span class="lead-name"></span></h5>
+                    <span class="sub-name"></span>
                 </div>
                 <div class="user-card-menu dropdown">
                     <a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
