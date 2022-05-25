@@ -278,14 +278,16 @@
                     $('.list-topic').html(str);                      
                   }
 
-                  var topicStr = '<button id="btn-topic" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round" data-bs-toggle="modal" data-bs-target="#modalDefault"><em class="icon ni ni-plus"></em></button>';
+                    if(init){
+                      var topicStr = '<button id="btn-topic" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round" data-bs-toggle="modal" data-bs-target="#modalDefault"><em class="icon ni ni-plus"></em></button>';
 
-                  $('.new-topic').html(topicStr);
+                      $('.new-topic').html(topicStr);
 
-                   $('#submit-topic').click(function(){
+                       $('#submit-topic').click(function(){
 
-                      createtopic(this,true);
-                  });
+                          createtopic(this,true);
+                      });
+                   }
 
                   $('.send-topic').click(function(){
 
@@ -298,11 +300,13 @@
                     });
 
                   $( '.update-topic').click(function(){
+
                         var topName = $(this).children().text();
-                        var expName = $(this).children().eq(1).text();
+                        // alert(topName);
+                        // var expName = $(this).children().eq(1).text();
                         var topic_id = $(this).attr('data-topic');
                         $('#inputUpdtTopic').val(topName);
-                        $('#up-exp-id').val(expName);
+                        // $('#up-exp-id').val(expName);
                         $('#submit-updt-topic').attr('data-topic',topic_id);
                         $('#updateModalTopic').modal('show');
                     
@@ -378,10 +382,10 @@
 
                   $( '.update-topic').click(function(){
                         var topName = $(this).children().text();
-                        var expName = $(this).children().eq(1).text();
+                        // var expName = $(this).children().eq(1).text();
                         var topic_id = $(this).attr('data-topic');
                         $('#inputUpdtTopic').val(topName);
-                        $('#up-exp-id').val(expName);
+                        // $('#up-exp-id').val(expName);
                         $('#submit-updt-topic').attr('data-topic',topic_id);
                         $('#updateModalTopic').modal('show');
                     
@@ -395,7 +399,7 @@
 
                   getTargetChat($('#topic-'+element_id), true);
 
-                  console.log($('#topic-'+element_id));
+                  // console.log($('#topic-'+element_id));
 
                 }
             });
@@ -414,7 +418,7 @@
 
         if($('#role').val() == 1){
             // Btnn Update/Delete
-         str += '<div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a data-topic="'+row['topic_id']+'" class="update-topic" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#updateModalTopic"><span style="display:none">' + row['topic_name'] + '</span><span style="display:none">' + row['expert_id'] + '</span>Update Topic</a></li><li><a data-topic="'+row['topic_id']+'" class="delete-topic" href="javascript:void(0);">Delete Topic</a></li></ul></div></div></div>';
+         str += '<div class="chat-actions"><div class="dropdown"><a href="#" class="btn btn-icon btn-sm btn-trigger dropdown-toggle" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-end"><ul class="link-list-opt no-bdr"><li><a data-topic="'+row['topic_id']+'" class="update-topic" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#updateModalTopic"><span style="display:none">' + row['topic_name'] + '</span>Update Topic</a></li><li><a data-topic="'+row['topic_id']+'" class="delete-topic" href="javascript:void(0);">Delete Topic</a></li></ul></div></div></div>';
 
         }
         
@@ -438,7 +442,7 @@ function updatetopic(element){
     data: {
       tid: topic_id,
       topic_name: $('#inputUpdtTopic').val(),
-      expert_id: $('#up-exp-id').val(),
+      // expert_id: $('#up-exp-id').val(),
     },
     success: function (result) {
         console.log(result);
