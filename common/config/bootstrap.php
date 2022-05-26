@@ -5,3 +5,5 @@ Yii::setAlias('@frontend', dirname(dirname(__DIR__)) . '/frontend');
 Yii::setAlias('@backend', dirname(dirname(__DIR__)) . '/backend');
 Yii::setAlias('@console', dirname(dirname(__DIR__)) . '/console');
 Yii::setAlias('@uploaded', dirname(dirname(__DIR__)) . '/uploaded');
+Yii::setAlias('@b-hatch', dirname(dirname(__DIR__)) . '/b-hatch');
+Yii::setAlias('@b-hatch-admin', dirname(dirname(__DIR__)) . '/b-hatch-admin');

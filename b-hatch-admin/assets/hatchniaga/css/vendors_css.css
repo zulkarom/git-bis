@@ -1,0 +1,14 @@
+/****************************/
+/** Imports Plugin css **/
+/****************************/
+@import url(../assets/vendor_components/bootstrap/dist/css/bootstrap.css);
+@import url(../assets/vendor_components/morris.js/morris.css);
+@import url(../assets/vendor_components/flexslider/flexslider.css);
+@import url(../assets/vendor_components/lightbox-master/dist/ekko-lightbox.css);
+@import url(../assets/vendor_components/sweetalert/sweetalert.css);
+@import url(../assets/vendor_components/select2/dist/css/select2.min.css);
+@import url(../assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.css);
+@import url(../assets/vendor_components/nestable/nestable.css);
+@import url(../assets/vendor_components/weather-icons/weather-icons.css);
+
+/*# sourceMappingURL=vendors_css.css.map */
