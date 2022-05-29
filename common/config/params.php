@@ -8,4 +8,7 @@ return [
     'user.passwordMinLength' => 8,
     'bsVersion' => '4.x',
     'appName' => 'Hatchniaga',
+    'logoTop' => 'logo-top.png',
+    'logoBig' => 'logo-big.png',
+
 ];

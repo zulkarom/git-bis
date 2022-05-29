@@ -18,7 +18,7 @@ $intro = Introduction::findOne(1);
    <head>
       <meta charset="utf-8"/>
 
-      <title>Hatchniaga | Online Incubation Platform</title>
+      <title><?=Yii::$app->params['appName']?> | Online Incubation Platform</title>
       <link rel = "icon" href ="<?= $dirAssests?>/icon/favicon.png" 
         type = "image/x-icon"> 
 
@@ -132,7 +132,7 @@ div.d {
     
     
        <div class="row-section padding-tb-xxl homepage-first-row">
-         <img src="<?= $dirAssests?>/pictures/logo-big.png" alt="" class="heading" width="700"><br/>
+         <img src="<?= $dirAssests?>/pictures/<?=Yii::$app->params['logoBig']?>" alt="" class="heading" width="700"><br/>
          
          <h2 class="heading-2"><?=Html::encode($intro->title_content)?><br/></h2>
          <p class="paragraph font-size-small text-grey text-center"><?=Html::encode($intro->intro_content)?><br/></p>

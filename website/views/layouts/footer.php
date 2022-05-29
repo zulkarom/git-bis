@@ -2,7 +2,7 @@
          <div class="container">
             <div class="title-with-doubleborder doubleborder-light w-row">
               <div class="column-2 w-col w-col-4 w-col-stack">
-               <h3 class="text-white">Hatchniaga</h3>
+               <h3 class="text-white"><?=Yii::$app->params['appName']?></h3>
                   <p class="big text-white">U1-19, FLEXIS, ONE SOUTH, <br />SERI KEMBANGAN
                   <br />43300 Selangor, Malaysia<br/>
                 </p>

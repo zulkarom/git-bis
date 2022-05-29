@@ -18,7 +18,7 @@ $intro = Introduction::findOne(1);
    <head>
       <meta charset="utf-8"/>
 
-      <title>Hatchniaga | Online Incubation Platform</title>
+      <title><?=Yii::$app->params['appName']?> | Online Incubation Platform</title>
       <link rel = "icon" href ="<?= $dirAssests?>/icon/favicon.png" 
         type = "image/x-icon"> 
 
