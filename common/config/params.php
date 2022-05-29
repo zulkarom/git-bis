@@ -7,6 +7,5 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,
     'bsVersion' => '4.x',
-    'bhatchadmin' => 'http://localhost/training/git-bis/b-hatch-admin/web',
-    'bhatch' => 'http://localhost/training/git-bis/b-hatch/web'
+    'appName' => 'Hatchniaga',
 ];

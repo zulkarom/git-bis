@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use common\models\Common;
 use dektrium\user\widgets\Connect;
 
-$this->title = 'Login | Hatchniaga';
+$this->title = 'Login | '.Yii::$app->params['appName'];
 $this->params['breadcrumbs'][] = $this->title;
 $web = Yii::getAlias('@web');
 ?>
@@ -27,7 +27,7 @@ $web = Yii::getAlias('@web');
                 <div class="nk-block-head-content">
                     <h5 class="nk-block-title">Sign-In</h5>
                     <div class="nk-block-des">
-                        <p>Access the Hatchniaga panel using your email and passcode.</p>
+                        <p>Access the <?=Yii::$app->params['appName']?> panel using your email and passcode.</p>
                     </div>
                 </div>
             </div><!-- .nk-block-head -->
@@ -141,7 +141,7 @@ $web = Yii::getAlias('@web');
                 </ul><!-- .nav -->
             </div>
             <div class="mt-3">
-                <p>&copy; 2022 Hatchniaga. All Rights Reserved.</p>
+                <p>&copy; 2022 <?=Yii::$app->params['appName']?>. All Rights Reserved.</p>
             </div>
         </div><!-- .nk-block -->
     </div><!-- .nk-split-content -->
@@ -154,7 +154,7 @@ $web = Yii::getAlias('@web');
                             <img class="round" src="<?=$web?>/dlite/images/slides/promo-a.png" srcset="<?=$web?>/dlite/images/slides/promo-a2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
-                            <h4>Hatchniaga</h4>
+                            <h4><?=Yii::$app->params['appName']?></h4>
                             <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                         </div>
                     </div>
@@ -165,7 +165,7 @@ $web = Yii::getAlias('@web');
                             <img class="round" src="<?=$web?>/dlite/images/slides/promo-b.png" srcset="<?=$web?>/dlite/images/slides/promo-b2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
-                            <h4>Hatchniaga</h4>
+                            <h4><?=Yii::$app->params['appName']?></h4>
                             <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                         </div>
                     </div>
@@ -176,7 +176,7 @@ $web = Yii::getAlias('@web');
                             <img class="round" src="<?=$web?>/dlite/images/slides/promo-c.png" srcset="<?=$web?>/dlite/images/slides/promo-c2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
-                            <h4>Hatchniaga</h4>
+                            <h4><?=Yii::$app->params['appName']?></h4>
                             <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                         </div>
                     </div>
