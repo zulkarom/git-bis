@@ -37,11 +37,14 @@ phpunit.phar
 # vagrant runtime
 /.vagrant
 
-# ignore generated files
-backend/web/
-b-hatch/web/
-b-hatch-admin/web/
-frontend/config/
-backend/config/
-website/config/
-node_modules/
+# config
+/common/config
+/frontend/config
+/backend/config
+/website/config
+/node_modules
+
+# web
+/backend/web
+/frontend/web
+/website/web
