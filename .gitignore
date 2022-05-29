@@ -43,7 +43,5 @@ b-hatch/web/
 b-hatch-admin/web/
 frontend/config/
 backend/config/
-b-hatch/config/
-b-hatch-admin/config/
 website/config/
 node_modules/
