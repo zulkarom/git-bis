@@ -9,7 +9,7 @@
                 <img src="<?=$web?>/dlite/images/mini-logo.png" width="100%" alt="logo">
             </div>
             <div class="nk-header-app-info">
-                <span class="sub-text">Hatchniaga</span>
+                <span class="sub-text"><?=Yii::$app->params['appName']?></span>
                 <span class="lead-text">Dashboard</span>
             </div>
         </div>
