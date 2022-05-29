@@ -14,7 +14,7 @@
 
                <div class="column-2 w-col w-col-4 w-col-stack">
                 <div class="d">
-                  <p class="big text-white center">If you have a question or comment regarding Hatchniaga or one of our companies, please get in touch.<br/></p>
+                  <p class="big text-white center">If you have a question or comment regarding <?=Yii::$app->params['appName']?> or one of our companies, please get in touch.<br/></p>
                 </div>
                   <div class="contact_btn"><a href="">Get in touch</a></div>
                   

@@ -38,6 +38,12 @@ phpunit.phar
 /.vagrant
 
 # config
+
+/common/config
+/backend/config
+/frontend/config
+/website/config
+
 common/config/
 frontend/config/
 backend/config/
