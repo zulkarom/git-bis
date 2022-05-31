@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2022 at 09:38 AM
+-- Generation Time: May 31, 2022 at 11:04 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -513,7 +513,7 @@ CREATE TABLE `web_intro` (
 --
 
 INSERT INTO `web_intro` (`id`, `title`, `title_content`, `title_button`, `intro_content`, `logo_header_url`, `logo_intro_url`) VALUES
-(1, 'B-HATCH', 'Online Incubation Platform', 'LEARN MORE', 'B-Hatch an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.', '', '');
+(1, 'B-HATCH', 'Online Incubation Platform', 'LEARN MORE', 'BisnesHatch an online incubation platform for students who are looking for a starting-point for their business. The students are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via BisnesHatch enterprise.', '', '');
 
 -- --------------------------------------------------------
 
@@ -562,9 +562,9 @@ CREATE TABLE `web_section` (
 --
 
 INSERT INTO `web_section` (`id`, `title`, `content`, `image_url`) VALUES
-(1, 'Startup', 'B-Hatch assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.', ''),
-(2, 'Investors', 'B-Hatch connect with investment opportunities in Malaysia.', 'pic2.jpeg'),
-(3, 'Ecosystem', ' B-Hatch create an entrepreneurial ecosystem focused on growing and sustaining the business and community.', 'pic3.jpeg');
+(1, 'Enterprise', 'Help students develop, launch and manage an actual business', ''),
+(2, 'Community', 'Connect students with university and community.', 'pic2.jpeg'),
+(3, 'Ecosystem', 'Create a university entrepreneurial ecosystem focusing on growing and sustaining an enterprise.', 'pic3.jpeg');
 
 --
 -- Indexes for dumped tables
