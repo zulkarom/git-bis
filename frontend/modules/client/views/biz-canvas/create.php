@@ -14,6 +14,8 @@ use kartik\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput()->label('<b>Title</b>') ?>
 
+    <?= $form->field($model, 'description')->textarea(['rows' => 6])->label('<b>Description</b>') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save Canvas', ['class' => 'btn btn-success']) ?>
     </div>

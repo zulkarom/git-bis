@@ -27,9 +27,9 @@ class BizCanvas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'created_at'], 'required'],
+            [['user_id', 'created_at', 'title'], 'required'],
             [['user_id'], 'integer'],
-            [['title'], 'string'],
+            [['title', 'description'], 'string'],
             [['created_at'], 'safe'],
         ];
     }

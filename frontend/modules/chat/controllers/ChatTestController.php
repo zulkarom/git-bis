@@ -90,6 +90,8 @@ class ChatTestController extends Controller
                 "clEx_name" => $clientEx->expert->user->fullname,
                 "clEx_expertise" => $clientEx->expert->expertText,
                 "clEx_profile" => Url::to(['/client/profile/expert-image', 'id' => $clientEx->expert->user->id]),
+                "clEx_company" => $clientEx->expert->biz_name,
+                "clEx_company_detail" => $clientEx->expert->biz_description,
                 "unread" => $countChat,
                 "id" => $topic->id,
                 "value" => $topic->topic,

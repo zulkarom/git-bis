@@ -188,13 +188,13 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
             <div class="chat-profile">
                 <div class="chat-profile-group">
                     <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-options">
-                        <h6 class="title overline-title">Options</h6>
+                        <h6 class="title overline-title">Company Details</h6>
                         <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
                     </a>
                     <div class="chat-profile-body collapse show" id="chat-options">
                         <div class="chat-profile-body-inner">
                             <ul class="chat-profile-options">
-                                <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-edit-alt"></em><span class="lead-text">Nickname</span></a></li>
+                                <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-edit-alt"></em><span class="company-name"></span></a></li>
                                 <li><a class="chat-option-link chat-search-toggle" href="#"><em class="icon icon-circle bg-light ni ni-search"></em><span class="lead-text">Search In Conversation</span></a></li>
                                 <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-circle-fill"></em><span class="lead-text">Change Theme</span></a></li>
                             </ul>

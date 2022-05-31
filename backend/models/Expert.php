@@ -32,13 +32,19 @@ class Expert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fullname', 'email', 'personal_updated_at'], 'required', 'on' => 'insert'],
+            [['fullname', 'email', 'personal_updated_at', 'biz_phone', 'biz_name'], 'required', 'on' => 'insert'],
 
-            [['expert_type', 'personal_updated_at'], 'required', 'on' => 'admin_update'],
+            [['expert_type', 'personal_updated_at', 'biz_phone', 'biz_name'], 'required', 'on' => 'admin_update'],
 
             ['email', 'email'],
 
+            [['biz_phone'], 'string', 'max' => 50],
+
             ['profile_file', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+
+            [['biz_name'], 'string', 'max' => 225],
+
+            [['biz_description'], 'string'],
 
             [['user_id', 'expert_type'], 'integer'],
             [['fullname', 'email'], 'string', 'max' => 225],

@@ -178,6 +178,7 @@
                     
                     var str = '';
                     var str_unread = '';
+                    var type;
 
                     for (let index = 0; index < data.length; ++index) {
                       const client_id = data[index].client_id;
@@ -186,6 +187,8 @@
                       const clEx_user_id = data[index].clEx_user_id;
                       const clEx_name = data[index].clEx_name;
                       const clEx_profile = data[index].clEx_profile;
+                      const clEx_company = data[index].clEx_company;
+                      const clEx_company_detail = data[index].clEx_company_detail;
                       const clEx_expertise = data[index].clEx_expertise;
                       const unread = data[index].unread;
                       const topic_id = data[index].id;
@@ -193,11 +196,18 @@
                       const is_default = data[index].is_default;
                       const datetime = data[index].datetime;
 
+
                       if(unread != 0){
                         str_unread = '<em class="icon ni ni-bullet-fill"></em>';
                       }
 
-                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'" data-clEx-expertise="'+clEx_expertise+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">'+datetime+'</span></div><div class="chat-context"><div class="text">'+clEx_expertise+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div></li>';
+                      if($('#role').val() == 1){
+                            type = clEx_expertise;
+                      }else{
+                            type = clEx_company;
+                      }
+
+                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-clEx-company="'+clEx_company+'" data-clEx-company-detail="'+clEx_company_detail+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'" data-clEx-expertise="'+clEx_expertise+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">'+datetime+'</span></div><div class="chat-context"><div class="text">'+type+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div></li>';
 
 
                     }
@@ -278,6 +288,7 @@
                     $('.list-topic').html(str);                      
                   }
 
+                if($('#role').val() == 1){
                     if(init){
                       var topicStr = '<button id="btn-topic" class="btn btn-lg btn-icon btn-outline-light btn-white btn-round" data-bs-toggle="modal" data-bs-target="#modalDefault"><em class="icon ni ni-plus"></em></button>';
 
@@ -288,6 +299,7 @@
                           createtopic(this,true);
                       });
                    }
+                }
 
                   $('.send-topic').click(function(){
 
@@ -518,9 +530,9 @@ function deletetopic(element){
         var clEx_user_id = element.attr('data-clEx-user-id');
         var clEx_name = element.attr('data-clEx-name');
         var clEx_profile = element.attr('data-clEx-profile');
+        var clEx_company = element.attr('data-clEx-company');
+        var clEx_company_detail = element.attr('data-clEx-company-detail');
         var clEx_expertise = element.attr('data-clEx-expertise');
-
-        // alert(topic_id);
             
           if(topic_id){
 
@@ -542,11 +554,18 @@ function deletetopic(element){
                 $('.sub-name').html(clEx_name);
 
             }else if($('#a-expert').hasClass('active')){
+
                 $('.lead-name').html(clEx_name);
-                $('.sub-name').html(clEx_expertise);
+                if($('#role').val() == 1){
+                    $('.sub-name').html(clEx_expertise);
+                }else{
+                    $('.sub-name').html(clEx_company);
+                }
             }
             
             $('.exp-profile').attr('src',clEx_profile);
+            $('.company-name').html(clEx_company);
+            $('.company-detail').html(clEx_company_detail);
 
           /*if(init){
 

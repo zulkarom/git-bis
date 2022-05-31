@@ -129,8 +129,8 @@ div.bc-guide {
 
 </style>
 
-
-
+<h5><?=$model->title?></h5>
+<p><?=$model->description?></p>
 
 <div class="card" style="overflow-x: scroll;">
   <div class="card-body">

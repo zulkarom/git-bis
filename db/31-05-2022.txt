@@ -1,0 +1,3 @@
+ALTER TABLE `bc_biz_canvas` ADD `description` TEXT NOT NULL AFTER `title`;
+ALTER TABLE `expert` ADD `biz_name` VARCHAR(225) NOT NULL AFTER `expert_type`, ADD `biz_description` TEXT NOT NULL AFTER `biz_name`;
+ALTER TABLE `expert` ADD `biz_phone` VARCHAR(50) NOT NULL AFTER `biz_name`;

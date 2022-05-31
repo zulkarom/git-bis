@@ -97,10 +97,11 @@ class BizCanvasController extends Controller
             if(!$model->save()){
                 $model->flashError();
             }
+            Yii::$app->session->addFlash('success', "Biz Canvas created");
             return $this->redirect(['index', 'id' => $model->id]);
         }
 
-        return $this->renderAjax('create', [
+        return $this->render('create', [
             'model' => $model,
         ]);
     }

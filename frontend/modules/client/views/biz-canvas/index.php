@@ -16,18 +16,7 @@ $this->title = 'Business Canvas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
     <p>
-     <?php echo Html::button('Create Business Canvas',['value' => Url::to(['/client/biz-canvas/create']), 'class' => 'btn btn-success', 'id' => 'modalBttnPartner']);
-
-            $this->registerJs('
-            $(function(){
-              $("#modalBttnPartner").click(function(){
-                  $("#createPartner").modal("show")
-                    .find("#formCreatePartner")
-                    .load($(this).attr("value"));
-              });
-            });
-            ');
-        ?>
+        <?= Html::a('Create Business Canvas', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <br/>
 

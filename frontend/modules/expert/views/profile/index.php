@@ -17,18 +17,27 @@ $this->title = "My Profile";
 ?>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     
-<div class="white_card card_height_100 mb_30">
-    <div class="white_card_header">
+<div class="card">
+        <div class="card-body">
         <div class="profile-index">
 
     
     
 
     <div class="row">
-<div class="col-md-5"><?= $form->field($model, 'fullname')->textInput(['value' => $model->user->fullname])->label('Client Name')?></div>
+<div class="col-md-6"><?= $form->field($model, 'fullname')->textInput(['value' => $model->user->fullname])->label('Name')?></div>
 
 <div class="col-md-3">
 <?= $form->field($model, 'email')->textInput(['value' => $model->user->email]) ?>
+ </div>
+
+</div>
+
+<div class="row">
+<div class="col-md-6"><?= $form->field($model, 'biz_name')->textInput()?></div>
+
+<div class="col-md-3">
+<?= $form->field($model, 'biz_phone')->textInput() ?>
  </div>
 
 </div>
@@ -52,8 +61,9 @@ $this->title = "My Profile";
 </div>
 </div>
 
+<br/>
  <div class="form-group">
-    <?= Html::submitButton('<span class="fa fa-save"></span>  Save Profile', ['class' => 'btn btn-primary']) ?>
+    <?= Html::submitButton('Save Profile', ['class' => 'btn btn-primary']) ?>
 </div>
             
             
