@@ -221,41 +221,35 @@ if(Yii::$app->user->identity->role == 1){
                 </div><!-- .chat-profile-group -->
                 <div class="chat-profile-group">
                     <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-settings">
-                        <h6 class="title overline-title">Settings</h6>
+                        <h6 class="title overline-title">Biz Canvas</h6>
                         <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
                     </a>
                     <div class="chat-profile-body collapse show" id="chat-settings">
                         <div class="chat-profile-body-inner">
                             <ul class="chat-profile-settings">
-                                <li>
-                                    <div class="custom-control custom-control-sm custom-switch">
-                                        <input type="checkbox" class="custom-control-input" checked="" id="chat-notification-enable">
-                                        <label class="custom-control-label" for="chat-notification-enable">Notifications</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a class="chat-option-link" href="#">
-                                        <em class="icon icon-circle bg-light ni ni-bell-off-fill"></em>
-                                        <div>
-                                            <span class="lead-text">Ignore Messages</span>
-                                            <span class="sub-text">You won’t be notified when message you.</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="chat-option-link" href="#">
-                                        <em class="icon icon-circle bg-light ni ni-alert-fill"></em>
-                                        <div>
-                                            <span class="lead-text">Something Wrong</span>
-                                            <span class="sub-text">Give feedback and report conversion.</span>
-                                        </div>
-                                    </a>
-                                </li>
+                                
+                                <?php
+                                if($model){
+                                    foreach($model as $biz){
+                                        echo '<li>
+                                                <a class="chat-option-link" href="'.Url::to(['/client/biz-canvas/view', 'id' => $biz->id]).'" target="_blank">
+                                                    <em class="icon icon-circle bg-light ni ni-circle-fill"></em>
+                                                    <div>
+                                                        <span class="lead-text">'.$biz->title.'</span>
+                                                        <span class="sub-text">'.$biz->description.'</span>
+                                                    </div>
+                                                </a>
+                                            </li>';
+                                    }
+                                }
+                                
+                                ?>
+                               
                             </ul>
                         </div>
                     </div>
                 </div><!-- .chat-profile-group -->
-                <div class="chat-profile-group">
+                <!-- <div class="chat-profile-group">
                     <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-photos">
                         <h6 class="title overline-title">Shared Photos</h6>
                         <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
@@ -269,7 +263,7 @@ if(Yii::$app->user->identity->role == 1){
                             </ul>
                         </div>
                     </div>
-                </div><!-- .chat-profile-group -->
+                </div> --><!-- .chat-profile-group -->
             </div> <!-- .chat-profile -->
         </div><!-- .nk-chat-profile -->
     </div><!-- .nk-chat-body -->
