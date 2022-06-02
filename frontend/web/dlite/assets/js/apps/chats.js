@@ -782,9 +782,9 @@ function sendchat(sendMessage) {
                 chatstr += messageBox(row);
               }
 
-            if(sendMessage){
-              $('#chat-message').val('');
-            }
+            // if(sendMessage){
+            //   $('#chat-message').val('');
+            // }
 
             $('#loading').remove();
 

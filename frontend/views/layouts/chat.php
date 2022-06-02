@@ -8,6 +8,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Modal;
+use frontend\assets\HatchniagaAsset;
+
+HatchniagaAsset::register($this);
 
 
 $web = Yii::getAlias('@web');
@@ -29,8 +32,8 @@ $web = Yii::getAlias('@web');
     <!-- Page Title  -->
     <title><?= Html::encode($this->title) ?></title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="<?=$web?>/dlite/assets/css/dashlite.css?ver=3.0.1">
-    <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
+    <?= Html::csrfMetaTags() ?>
+    <?php $this->head() ?>
 </head>
 
 <body class="nk-body npc-apps apps-only has-apps-sidebar npc-apps-chat no-touch nk-nio-theme has-sidebar chat-profile-autohide">
@@ -92,12 +95,7 @@ $web = Yii::getAlias('@web');
         'web' => $web,
     ]);
     ?>
-    <!-- JavaScript -->
-    <script src="<?=$web?>/dlite/assets/js/bundle.js?ver=3.0.1&r=<?php echo rand(10,10000)?>"></script>
-    <script src="<?=$web?>/dlite/assets/js/scripts.js?ver=3.0.1&r=<?php echo rand(10,10000)?>"></script>
-    <script src="<?=$web?>/dlite/assets/js/charts/gd-analytics.js?ver=3.0.1&r=<?php echo rand(10,10000)?>"></script>
-    <script src="<?=$web?>/dlite/assets/js/libs/jqvmap.js?ver=3.0.1&r=<?php echo rand(10,10000)?>"></script>
-    <script src="<?=$web?>/dlite/assets/js/apps/chats.js?r=<?php echo rand(10,10000)?>"></script>
+    
 
 
 
