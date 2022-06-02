@@ -64,7 +64,7 @@ if(Yii::$app->user->identity->role == 1){
                 </ul>
                 
             </div>
-        </div><!-- .nk-chat-aside-head -->
+        </div><!-s- .nk-chat-aside-head -->
         <div class="tab-content">
             <div class="tab-pane active" id="tabItem1">
                 <div class="nk-chat-aside-body" data-simplebar>

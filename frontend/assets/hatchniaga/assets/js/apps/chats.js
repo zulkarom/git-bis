@@ -492,7 +492,13 @@ function deletetopic(element){
         
             console.log('Delete Success');
             $('#topic-'+result).remove();
-            // $('.btn-send-message').html('');
+            // $('#btn-send-message').remove();
+            $('.btn-send-message').html('');
+            $('.lead-name').html('');
+            $('.sub-name').html('');
+            $('.company-name').html('');
+            $('.company-detail').html('');
+            $('.exp-profile').attr('src', '');
             // $('.btn-previous-message').html('');
             // $('#chat-box').html('');
             // $('.exp-topic-name').html('');
@@ -623,7 +629,7 @@ function deletetopic(element){
                     var dataUrl = $('#dataUrl').val();
                     var loadUrl = $('#loadUrl').val();
 
-                    btnsendstr = '<div class="nk-chat-editor-upload  ms-n1"><a href="#" class="btn btn-sm btn-icon btn-trigger text-primary toggle-opt" data-target="chat-upload"><em class="icon ni ni-plus-circle-fill"></em></a><div class="chat-upload-option" data-content="chat-upload"><ul class=""><li><a href="#"><em class="icon ni ni-img-fill"></em></a></li><li><a href="#"><em class="icon ni ni-camera-fill"></em></a></li><li><a href="#"><em class="icon ni ni-mic"></em></a></li><li><a href="#"><em class="icon ni ni-grid-sq"></em></a></li></ul></div></div><div class="nk-chat-editor-form"><div class="form-control-wrap"><textarea id="chat-message" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea></div></div><ul class="nk-chat-editor-tools g-2"><li><a href="#" class="btn btn-sm btn-icon btn-trigger text-primary"><em class="icon ni ni-happyf-fill"></em></a></li><li><button type="submit" class="btn btn-round btn-primary btn-icon" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><em class="icon ni ni-send-alt"></em></button></li></ul>';
+                    btnsendstr = '<div class="nk-chat-editor-form"><div class="form-control-wrap"><textarea id="chat-message" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea></div></div><ul class="nk-chat-editor-tools g-2"><li><button type="submit" class="btn btn-round btn-primary btn-icon" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><em class="icon ni ni-send-alt"></em></button></li></ul>';
 
 
                    btnprevstr = '<button type="button" type="submit" id="load-message" class="btn btn-rounded btn-secondary-outline" data-url="'+loadUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'">Load More</button>';
@@ -708,7 +714,7 @@ function deletetopic(element){
       var dateData = new Date(row['time'] * 1000);
       var date = ((dateData.getDate() < 10)?'0':'') + dateData.getDate() +' '+(monthNames[dateData.getMonth()]) + ', '+ dateData.getFullYear();
       var hours = dateData.getHours() % 12;
-      var time = ((hours < 10)?'0':'') + hours +':'+ ((dateData.getMinutes() < 10)?'0':'') + dateData.getMinutes() + ' ' +(hours >= 12 ? 'PM' : 'AM');
+      var time = ((hours < 10)?'0':'') + hours +':'+ ((dateData.getMinutes() < 10)?'0':'') + dateData.getMinutes() + ' ' +(hours >= 12 ? 'AM' : 'PM');
       var dd = date + '  ' + time;
       
 
@@ -754,8 +760,9 @@ function sendchat(sendMessage) {
 
     $('#chat-message').val('');
 
-    $('#chat-box').append('<div id="loading" class="chat is-me"><ul class="chat-meta"><li>Loading...</li></ul></div>');
-    
+     $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+
+    $('#chat-box').append('<div id="loading" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">...</div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li></ul></div></div></div></div>');
   
     $.ajax({
         url: $('#send-message').data('url'),

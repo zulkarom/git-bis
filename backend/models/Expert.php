@@ -32,9 +32,9 @@ class Expert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fullname', 'email', 'personal_updated_at', 'biz_phone', 'biz_name'], 'required', 'on' => 'insert'],
+            [['fullname', 'email', 'personal_updated_at', 'biz_phone'], 'required', 'on' => 'insert'],
 
-            [['expert_type', 'personal_updated_at', 'biz_phone', 'biz_name'], 'required', 'on' => 'admin_update'],
+            [['expert_type', 'personal_updated_at', 'biz_phone'], 'required', 'on' => 'admin_update'],
 
             ['email', 'email'],
 

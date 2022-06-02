@@ -42,6 +42,10 @@ $this->title = "My Profile";
 
 </div>
 
+<div class="row">
+<div class="col-md-9"><?= $form->field($model, 'biz_description')->textArea(['row' => 2])->label('Description')?></div>
+
+</div>
 
    
 

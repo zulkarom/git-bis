@@ -50,7 +50,7 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
                 
                 <ul class="nav nav-tabs mt-n3">
                     <li class="nav-item">
-                        <a id="a-expert" class="nav-link active" data-bs-toggle="tab" href="#tabItem1">Experts</a>
+                        <a id="a-expert" class="nav-link active" data-bs-toggle="tab" href="#tabItem1">Clients</a>
                     </li>
                     <li class="nav-item">
                         <a id="a-topic" class="nav-link" data-bs-toggle="tab" href="#tabItem2">Topics</a>
@@ -192,7 +192,7 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
             <div class="chat-profile">
                 <div class="chat-profile-group">
                     <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-options">
-                        <h6 class="title overline-title">Company Details</h6>
+                        <h6 class="title overline-title">Client Details</h6>
                         <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
                     </a>
                     <div class="chat-profile-body collapse show" id="chat-options">
