@@ -33,15 +33,21 @@ $web = Yii::getAlias('@web');
     <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
 </head>
 
-<body class="nk-body npc-apps apps-only has-apps-sidebar npc-apps-chat">
+<body class="nk-body npc-apps apps-only has-apps-sidebar npc-apps-chat no-touch nk-nio-theme has-sidebar chat-profile-autohide">
 <?php $this->beginBody() ?>
 
     <div class="nk-app-root">
-        
-        <?=$this->render('menu', [    
+
+        <?php if(Yii::$app->user->identity->role == 1){
+            echo $this->render('menu', [    
             'web' => $web,
-        ]);
-        ?>
+            ]);
+        }else{
+            echo $this->render('menu-expert', [    
+            'web' => $web,
+            ]);
+        }?>
+        
         <!-- main @s -->
         <div class="nk-main ">
             <!-- wrap @s -->
@@ -53,6 +59,17 @@ $web = Yii::getAlias('@web');
                 ]);
                 ?>
                 <!-- main header @e -->
+
+
+                <?php if(Yii::$app->user->identity->role == 1){
+                    echo $this->render('sidebar', [    
+                        'web' => $web,
+                    ]);
+                }else{
+                    echo $this->render('sidebar-expert', [    
+                        'web' => $web,
+                    ]);
+                }?>
 
                 <div class="nk-content p-0">
                     <div class="nk-content-inner">

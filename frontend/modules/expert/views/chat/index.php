@@ -20,6 +20,8 @@ $updateUrl = Url::to(['/chat/default/update-topic']);
 $userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
 $topicUrl = Url::to(['/chatExpert/chat/get-list-topics']);
 $chatUrl = Url::to(['/chatExpert/default/index']);
+$canvasUrl = Url::to(['/chatExpert/chat/get-biz-canvas']);
+$canvasLinkUrl = Url::to(['/expert/biz-canvas/view', 'id' => '']);
 $url = Url::to(['/expert/profile/profile-image', 'id' => '']);
 $url2 = Url::to(['/expert/profile/client-image', 'id' => '']);
 $dataUrl = Url::to(['/chatExpert/default/send-message']);
@@ -29,6 +31,8 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
 <input type="hidden" id="topicUrl" value="<?=$topicUrl?>">
 <input type="hidden" id="chatUrl" value="<?=$chatUrl?>">
+<input type="hidden" id="canvasUrl" value="<?=$canvasUrl?>">
+<input type="hidden" id="canvasLinkUrl" value="<?=$canvasLinkUrl?>">
 <input type="hidden" id="url" value="<?=$url?>">
 <input type="hidden" id="url2" value="<?=$url2?>">
 <input type="hidden" id="dataUrl" value="<?=$dataUrl?>">
@@ -203,55 +207,18 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
                 </div><!-- .chat-profile-group -->
                 <div class="chat-profile-group">
                     <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-settings">
-                        <h6 class="title overline-title">Settings</h6>
+                        <h6 class="title overline-title">Biz Canvas</h6>
                         <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
                     </a>
                     <div class="chat-profile-body collapse show" id="chat-settings">
                         <div class="chat-profile-body-inner">
                             <ul class="chat-profile-settings">
-                                <li>
-                                    <div class="custom-control custom-control-sm custom-switch">
-                                        <input type="checkbox" class="custom-control-input" checked="" id="chat-notification-enable">
-                                        <label class="custom-control-label" for="chat-notification-enable">Notifications</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a class="chat-option-link" href="#">
-                                        <em class="icon icon-circle bg-light ni ni-bell-off-fill"></em>
-                                        <div>
-                                            <span class="lead-text">Ignore Messages</span>
-                                            <span class="sub-text">You won’t be notified when message you.</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="chat-option-link" href="#">
-                                        <em class="icon icon-circle bg-light ni ni-alert-fill"></em>
-                                        <div>
-                                            <span class="lead-text">Something Wrong</span>
-                                            <span class="sub-text">Give feedback and report conversion.</span>
-                                        </div>
-                                    </a>
-                                </li>
+                                <div class="biz-canvas"></div>
                             </ul>
                         </div>
                     </div>
                 </div><!-- .chat-profile-group -->
-                <div class="chat-profile-group">
-                    <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-photos">
-                        <h6 class="title overline-title">Shared Photos</h6>
-                        <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
-                    </a>
-                    <div class="chat-profile-body collapse show" id="chat-photos">
-                        <div class="chat-profile-body-inner">
-                            <ul class="chat-profile-media">
-                                <li><a href="#"><img src="<?=$web?>/dlite/images/slides/slide-a.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="<?=$web?>/dlite/images/slides/slide-b.jpg" alt=""></a></li>
-                                <li><a href="#"><img src="<?=$web?>/dlite/images/slides/slide-c.jpg" alt=""></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- .chat-profile-group -->
+                <!-- .chat-profile-group -->
             </div> <!-- .chat-profile -->
         </div><!-- .nk-chat-profile -->
     </div><!-- .nk-chat-body -->

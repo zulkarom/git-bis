@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
+use backend\models\BizCanvas;
 
 /**
  * BizCanvasController implements the CRUD actions for BizCanvas model.
@@ -33,7 +34,10 @@ class ChatController extends Controller
 
     public function actionIndex()
     {
+        $model =  BizCanvas::find()->where(['user_id' => Yii::$app->user->identity->id])->all();
+
         return $this->render('index', [
+            'model' => $model,
         ]);
     }
 

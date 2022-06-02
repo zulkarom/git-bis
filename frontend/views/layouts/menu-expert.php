@@ -23,18 +23,18 @@ use yii\helpers\Html;
                             <!-- Menu -->
                             <ul class="nk-menu apps-menu">
                                 <li class="nk-menu-item">
-                                    <a href="<?=Url::to(['/client/dashboard/index'])?>" class="nk-menu-link" title="Dashboard">
+                                    <a href="<?=Url::to(['/expert/dashboard/index'])?>" class="nk-menu-link" title="Dashboard">
                                         <span class="nk-menu-icon"><em class="icon ni ni-template"></em></span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-hr"></li>
                                 <li class="nk-menu-item">
-                                    <a href="html/index.html" class="nk-menu-link" title="Analytics Dashboard">
+                                    <a href="<?=Url::to(['/expert/biz-canvas/index'])?>" class="nk-menu-link" title="Biz">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
                                     </a>
                                 </li>
                                 <li class="nk-menu-item">
-                                    <a href="<?=Url::to(['/client/chat'])?>" class="nk-menu-link" title="Chats">
+                                    <a href="<?=Url::to(['/expert/chat'])?>" class="nk-menu-link" title="Chats">
                                         <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
                                     </a>
                                 </li>

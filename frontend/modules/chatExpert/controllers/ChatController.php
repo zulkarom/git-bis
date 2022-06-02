@@ -13,6 +13,7 @@ use backend\models\ClientExpert;
 use backend\modules\expert\models\Expert;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use backend\models\BizCanvas;
 /**
  * ChatTopicController implements the CRUD actions for ChatTopic model.
  */
@@ -158,55 +159,30 @@ class ChatController extends Controller
         return json_encode($data);
     }
 
-    public function actionGetTopics(){
+    public function actionGetBizCanvas()
+    {
 
-        $client_id = Yii::$app->request->post('client_id');
-        $expert_id = Yii::$app->request->post('expert_id');
-        $client_expert_id = Yii::$app->request->post('client_expert_id');
+        $cid = Yii::$app->request->get('cl_user_id');
 
-        // $topics  = ArrayHelper::map(ChatTopic::find()
-        //     ->where(['client_id' => $client_id])
-        //     ->andWhere(['expert_id' => $expert_id])
-        //     ->orderBy('id DESC')
-        //     ->all(), 'id', 'topic');
-
-        $topics = ChatTopic::find()
-                ->where(['client_expert_id' => $client_expert_id])
-                ->where(['client_id' => $client_id])
-                ->andWhere(['expert_id' => $expert_id])
-                ->orderBy('last_message_send DESC')
+        $canvas = BizCanvas::find()
+                ->andWhere(['user_id' => $cid])
                 ->all();
 
         $data = [];
 
-        if($topics){
-            foreach($topics as $topic) {
 
-                $countChat = ChatModel::find()
-                        ->where(['topic_id' => $topic->id])
-                        ->andWhere(['recipient_id' => $topic->expert->user_id])
-                        ->andWhere(['is_read' => 0])
-                        ->count();
-
+        if($canvas){
+            foreach($canvas as $cav) {
 
                 $data[] = [
-                    "id" => $topic->id,
-                    "value" => $topic->topic,
-                    "is_default" => $topic->is_default,
-                    "unread" => $countChat
+                    "id" => $cav->id,
+                    "title" => $cav->title,
+                    "description" => $cav->description,
                 ];
-            }    
-        }else{
-            $topic = new ChatTopic();
-            $topic->topic = "Default";
-            $topic->is_default = 1;
-            $topic->client_id = $client_id;
-            $topic->expert_id = $expert_id;
-            $topic->client_expert_id = $client_expert_id;
-            $topic->save();
+            }  
         }
+
         return json_encode($data);
-        
     }
 
    

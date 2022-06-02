@@ -211,6 +211,15 @@ class BizCanvasController extends Controller
         return $this->redirect(['view', 'id' => $pid]);
     }
 
+    public function actionBizCanvasdf($id){
+
+        $model = $this->findModel($id);
+        $pdf = new pdf_canvas;
+        $pdf->inv = $model;
+        $pdf->totalPayment = $model->totalInvoicePayments;
+        $pdf->generatePdf();
+    }
+
     /**
      * Finds the BizCanvas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

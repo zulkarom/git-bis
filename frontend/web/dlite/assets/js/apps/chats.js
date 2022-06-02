@@ -217,6 +217,7 @@
                   $('.send-topic').click(function(){
 
                     getTargetChat($(this), true);
+                    getCanvas($(this), true);
 
                   });
 
@@ -655,6 +656,43 @@ function deletetopic(element){
 
           });
         }
+    }
+
+    function getCanvas(element, init){
+        
+        var clEx_user_id = element.attr('data-clEx-user-id');
+            
+          var canvasUrl = $('#canvasUrl').val();
+          
+          $.ajax({
+              url: canvasUrl,
+              type: 'GET',
+              data: {
+                cl_user_id: clEx_user_id
+              },
+              success: function (result) {
+
+                var data = JSON.parse(result);
+                var str = '';
+
+                for (let index = 0; index < data.length; ++index) {
+                      const id = data[index].id;
+                      const title = data[index].title;
+                      const description = data[index].description;
+
+                      var canvasLinkUrl = $('#canvasLinkUrl').val() + id;
+
+                    
+                      str += '<li><a class="chat-option-link" href="'+canvasLinkUrl+'" target="_blank"><em class="icon icon-circle bg-light ni ni-circle-fill"></em><div><span class="lead-text">'+title+'</span><span class="sub-text">'+description+'</span></div></a></li>';
+
+                }
+
+                $('.biz-canvas').html(str);
+
+
+            }
+
+        });
     }
 
     function messageBox(row,prev_date){
