@@ -38,7 +38,7 @@ $web = Yii::getAlias('@web');
     <?php $this->head() ?>
 </head>
 
-<body class="nk-body npc-default has-apps-sidebar has-sidebar">
+<body class="nk-body npc-default has-apps-sidebar has-sidebar no-touch nk-nio-theme">
 <?php $this->beginBody() ?>
 
     <div class="nk-app-root">
