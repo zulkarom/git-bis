@@ -206,7 +206,7 @@ if(Yii::$app->user->identity->role == 1){
             <div class="chat-profile">
                 <div class="chat-profile-group">
                     <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-options">
-                        <h6 class="title overline-title">Company Details</h6>
+                        <h6 class="title overline-title">Expert Details</h6>
                         <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
                     </a>
                     <div class="chat-profile-body collapse show" id="chat-options">

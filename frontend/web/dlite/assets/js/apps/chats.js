@@ -748,8 +748,14 @@ function deletetopic(element){
     //Send Chat
 function sendchat(sendMessage) {
 
-  var last = $('#chat-box .card-msg').last().attr('id');
-  /*alert(last);*/
+    var last = $('#chat-box .card-msg').last().attr('id');
+    /*alert(last);*/
+    var msg = $('#chat-message').val();
+
+    $('#chat-message').val('');
+
+    $('#chat-box').append('<div id="loading" class="chat is-me"><ul class="chat-meta"><li>Loading...</li></ul></div>');
+    
   
     $.ajax({
         url: $('#send-message').data('url'),
@@ -760,7 +766,7 @@ function sendchat(sendMessage) {
             'ChatModel[recipient_id]': $('#send-message').data('recipient'),
             'ChatModel[topic_id]': $('#send-message').data('topic'),
             'ChatModel[last_message_id]': last,
-            'ChatModel[message]': $('#chat-message').val()
+            'ChatModel[message]': msg
         },
         success: function (data) {
 
@@ -779,6 +785,8 @@ function sendchat(sendMessage) {
             if(sendMessage){
               $('#chat-message').val('');
             }
+
+            $('#loading').remove();
 
             $('#chat-box').append(chatstr);
 
