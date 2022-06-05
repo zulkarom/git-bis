@@ -638,11 +638,13 @@ function deletetopic(element){
                     $('.btn-previous-message').html(btnprevstr);
                     $('#chat-box').html(chatstr);
 
-                    $('#send-message').click(function(){
-                      if($('#chat-message').val()){
-                        sendchat(true);
-                      }
-                    });
+                    if(init){
+                        $('#send-message').click(function(){
+                          if($('#chat-message').val()){
+                            sendchat(true);
+                          }
+                        });
+                    }
 
                     $('#load-message').click(function(){
 
@@ -974,7 +976,6 @@ function refreshchat(element, refreshMessage) {
 
 setInterval(function () { 
   
-  // sendchat($('#current-chat-box'), false);
   getTopic($('#current-topic'), false);
   getTargetChat($('#current-chat-box'), false);
   refreshchat($('#current-chat-box'), false);
