@@ -101,7 +101,7 @@ class ChatModel extends \yii\db\ActiveRecord
         foreach ($messages as $message)
         {
             $out[$message->id]=[
-                    'time' => $message->time,
+                    'time' => date('h:i A', $message->time),
                     'date' => date('j M, Y', $message->time),
                     'sender_name' => $message->sender_name,
                     'recipient_name' => $message->recipient_name,
@@ -144,7 +144,7 @@ class ChatModel extends \yii\db\ActiveRecord
         foreach ($messages as $message)
         {
             $out[$message->id]=[
-                    'time' => $message->time,
+                    'time' => date('h:i A', $message->time),
                     'sender_name' => $message->sender_name,
                     'recipient_name' => $message->recipient_name,
                     'message' => $message->message,
@@ -188,7 +188,7 @@ class ChatModel extends \yii\db\ActiveRecord
         foreach ($messages as $message)
         {
             $out[$message->id]=[
-                    'time' => $message->time,
+                    'time' => date('h:i A', $message->time),
                     'sender_name' => $message->sender_name,
                     'recipient_name' => $message->recipient_name,
                     'message' => $message->message,
@@ -233,7 +233,7 @@ class ChatModel extends \yii\db\ActiveRecord
         foreach ($messages as $message)
         {
             $out[$message->id]=[
-                    'time' => $message->time,
+                    'time' => date('h:i A', $message->time),
                     'date' => date('j M, Y', $message->time),
                     'sender_name' => $message->sender_name,
                     'recipient_name' => $message->recipient_name,

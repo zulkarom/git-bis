@@ -121,6 +121,8 @@ class DefaultController extends Controller
 
     public function actionSendMessage()
     {
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+
         if (Yii::$app->user->isGuest){
             return '';
         }
@@ -156,6 +158,7 @@ class DefaultController extends Controller
 
     public function actionRefreshMessage()
     {
+        
         if (Yii::$app->user->isGuest){
             return '';
         }
