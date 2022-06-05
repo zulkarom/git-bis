@@ -5,6 +5,7 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'timeZone' => 'Asia/Kuala_Lumpur',
     'components' => [
         // 'assetManager' => [
         //     'assetMap' => [

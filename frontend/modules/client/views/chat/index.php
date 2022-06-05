@@ -140,20 +140,9 @@ if(Yii::$app->user->identity->role == 1){
                 </li>
             </ul>
             <ul class="nk-chat-head-tools">
-                <li><a href="javascript:void(0)" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-call-fill"></em></a></li>
-                <li><a href="javascript:void(0)" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-video-fill"></em></a></li>
-                <li class="d-none d-sm-block">
-                    <div class="dropdown">
-                        <a href="javascript:void(0)" class="dropdown-toggle btn btn-icon btn-trigger text-primary"><em class="icon ni ni-setting-fill"></em></a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <ul class="link-list-opt no-bdr">
-                                <li><a class="dropdown-item" href="#"><em class="icon ni ni-archive"></em><span>Make as Archive</span></a></li>
-                                <li><a class="dropdown-item" href="#"><em class="icon ni ni-cross-c"></em><span>Remove Conversion</span></a></li>
-                                <li><a class="dropdown-item" href="#"><em class="icon ni ni-setting"></em><span>More Options</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+                
+                
+                
                 <li class="me-n1 me-md-n2"><a href="#" class="btn btn-icon btn-trigger text-primary chat-profile-toggle"><em class="icon ni ni-alert-circle-fill"></em></a></li>
             </ul>
             <div class="nk-chat-head-search">

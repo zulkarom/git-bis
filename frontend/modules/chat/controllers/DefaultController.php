@@ -121,7 +121,7 @@ class DefaultController extends Controller
 
     public function actionSendMessage()
     {
-        date_default_timezone_set("Asia/Kuala_Lumpur");
+        
 
         if (Yii::$app->user->isGuest){
             return '';
@@ -136,6 +136,7 @@ class DefaultController extends Controller
             
             if ($model->load(Yii::$app->request->get()))
             {
+                date_default_timezone_set("Asia/Kuala_Lumpur");
                 if ($post['sendMessage']=='true'){
                     ChatTopic::updateAll(['last_message_send' => new Expression('NOW()')], ['id' => $model->topic_id]);
                     $model->time = time();
@@ -158,7 +159,7 @@ class DefaultController extends Controller
 
     public function actionRefreshMessage()
     {
-        
+
         if (Yii::$app->user->isGuest){
             return '';
         }

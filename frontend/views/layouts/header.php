@@ -237,65 +237,27 @@ use yii\helpers\Url;
                         <div class="dropdown-body">
                             <ul class="list-apps">
                                 <li>
-                                    <a href="html/index.html">
+                                    <a href="<?=Url::to(['/client/dashboard/index'])?>">
                                         <span class="list-apps-media"><em class="icon ni ni-dashlite bg-primary text-white"></em></span>
                                         <span class="list-apps-title">Dashboard</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="html/apps/chats.html">
+                                    <a href="<?=Url::to(['/client/profile/index'])?>">
                                         <span class="list-apps-media"><em class="icon ni ni-chat-circle bg-info-dim"></em></span>
-                                        <span class="list-apps-title">Chats</span>
+                                        <span class="list-apps-title">Profile</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="html/apps/mailbox.html">
+                                    <a href="<?=Url::to(['/client/biz-canvas/index'])?>">
                                         <span class="list-apps-media"><em class="icon ni ni-inbox bg-purple-dim"></em></span>
-                                        <span class="list-apps-title">Mailbox</span>
+                                        <span class="list-apps-title">Biz Canvas</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="html/apps/messages.html">
+                                    <a href="<?=Url::to(['/client/chat/index'])?>">
                                         <span class="list-apps-media"><em class="icon ni ni-chat bg-success-dim"></em></span>
-                                        <span class="list-apps-title">Messages</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="html/apps/file-manager.html">
-                                        <span class="list-apps-media"><em class="icon ni ni-folder bg-purple-dim"></em></span>
-                                        <span class="list-apps-title">File Manager</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="html/components.html">
-                                        <span class="list-apps-media"><em class="icon ni ni-layers bg-secondary-dim"></em></span>
-                                        <span class="list-apps-title">Components</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="list-apps">
-                                <li>
-                                    <a href="/demo2/ecommerce/index.html">
-                                        <span class="list-apps-media"><em class="icon ni ni-cart bg-danger-dim"></em></span>
-                                        <span class="list-apps-title">Ecommerce Panel</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/demo4/subscription/index.html">
-                                        <span class="list-apps-media"><em class="icon ni ni-calendar-booking bg-primary-dim"></em></span>
-                                        <span class="list-apps-title">Subscription Panel</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/demo5/crypto/index.html">
-                                        <span class="list-apps-media"><em class="icon ni ni-bitcoin-cash bg-warning-dim"></em></span>
-                                        <span class="list-apps-title">Crypto Wallet Panel</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/demo6/invest/index.html">
-                                        <span class="list-apps-media"><em class="icon ni ni-invest bg-blue-dim"></em></span>
-                                        <span class="list-apps-title">HYIP Invest Panel</span>
+                                        <span class="list-apps-title">Consultation</span>
                                     </a>
                                 </li>
                             </ul>

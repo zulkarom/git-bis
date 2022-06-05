@@ -58,10 +58,15 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchni
             <div class="nk-wrap ">
                 <!-- main header @s -->
                 
-               <?=$this->render('chat_header', [    
+                <?php if(Yii::$app->user->identity->role == 1){
+                    echo $this->render('header', [    
                     'web' => $web,
-                ]);
-                ?>
+                    ]);
+                }else{
+                    echo $this->render('header-expert', [    
+                    'web' => $web,
+                    ]);
+                }?>
                 <!-- main header @e -->
 
 
