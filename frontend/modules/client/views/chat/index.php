@@ -140,11 +140,11 @@ if(Yii::$app->user->identity->role == 1){
                 </li>
             </ul>
             <ul class="nk-chat-head-tools">
-                <li><a href="#" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-call-fill"></em></a></li>
-                <li><a href="#" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-video-fill"></em></a></li>
+                <li><a href="javascript:void(0)" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-call-fill"></em></a></li>
+                <li><a href="javascript:void(0)" class="btn btn-icon btn-trigger text-primary"><em class="icon ni ni-video-fill"></em></a></li>
                 <li class="d-none d-sm-block">
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-icon btn-trigger text-primary" data-bs-toggle="dropdown"><em class="icon ni ni-setting-fill"></em></a>
+                        <a href="javascript:void(0)" class="dropdown-toggle btn btn-icon btn-trigger text-primary"><em class="icon ni ni-setting-fill"></em></a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <ul class="link-list-opt no-bdr">
                                 <li><a class="dropdown-item" href="#"><em class="icon ni ni-archive"></em><span>Make as Archive</span></a></li>

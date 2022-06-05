@@ -132,6 +132,8 @@ div.bc-guide {
 <h5><?=$model->title?></h5>
 <p><?=$model->description?></p>
 
+ <?= Html::a('PDF', ['generate-pdf', 'id' => $model->id], ['class' => 'btn btn-danger']) ?>
+
 <div class="card" style="overflow-x: scroll;">
   <div class="card-body">
     

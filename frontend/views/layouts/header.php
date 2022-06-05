@@ -23,36 +23,14 @@ use yii\helpers\Url;
                 <!-- Menu -->
                 <ul class="nk-menu nk-menu-main">
                     <li class="nk-menu-item">
-                        <a href="html/index.html" class="nk-menu-link">
+                        <a href="javascript:void(0)" class="nk-menu-link">
                             <span class="nk-menu-text">Overview</span>
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="html/components.html" class="nk-menu-link">
+                        <a href="javascript:void(0)" class="nk-menu-link">
                             <span class="nk-menu-text">Components</span>
                         </a>
-                    </li>
-                    <li class="nk-menu-item has-sub">
-                        <a href="#" class="nk-menu-link nk-menu-toggle">
-                            <span class="nk-menu-text">Use-Case Panel</span>
-                        </a>
-                        <ul class="nk-menu-sub">
-                            <li class="nk-menu-item">
-                                <a href="/demo2/ecommerce/index.html" class="nk-menu-link"><span class="nk-menu-text">eCommerce Panel</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="/demo3/apps/file-manager.html" class="nk-menu-link"><span class="nk-menu-text">File Manangement Panel</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="/demo4/subscription/index.html" class="nk-menu-link"><span class="nk-menu-text">Subscription Panel</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="/demo5/crypto/index.html" class="nk-menu-link"><span class="nk-menu-text">Crypto Buy Sell Panel</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="/demo6/invest/index.html" class="nk-menu-link"><span class="nk-menu-text">HYIP Investment Panel</span></a>
-                            </li>
-                        </ul><!-- .nk-menu-sub -->
                     </li><!-- .nk-menu-item -->
                 </ul>
                 <!-- Menu -->
@@ -61,10 +39,10 @@ use yii\helpers\Url;
         <div class="nk-header-tools">
             <ul class="nk-quick-nav">
                 <li class="dropdown hide-mb-sm">
-                    <a data-bs-toggle="modal" href="#region" class="nk-quick-nav-icon"><em class="icon ni ni-globe"></em></a>
+                    <a data-bs-toggle="modal" href="javascript:void(0)" class="nk-quick-nav-icon"><em class="icon ni ni-globe"></em></a>
                 </li>
                 <li class="dropdown chats-dropdown hide-mb-sm">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon" >
                         <div class="icon-status icon-status-na"><em class="icon ni ni-comments"></em></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
@@ -198,7 +176,7 @@ use yii\helpers\Url;
                     </div>
                 </li>
                 <li class="dropdown notification-dropdown">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
@@ -325,7 +303,7 @@ use yii\helpers\Url;
                     </div>
                 </li>
                 <li class="dropdown language-dropdown d-none d-sm-block me-n1">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="quick-icon border border-light">
                             <img class="icon" src="<?=$web?>/dlite/images/flags/english-sq.png" alt="">
                         </div>

@@ -21,10 +21,10 @@ use yii\helpers\Url;
         <div class="nk-header-tools">
             <ul class="nk-quick-nav">
                 <li class="dropdown hide-mb-sm">
-                    <a data-bs-toggle="modal" href="#region" class="nk-quick-nav-icon"><em class="icon ni ni-globe"></em></a>
+                    <a data-bs-toggle="modal" href="javascript:void(0)" class="nk-quick-nav-icon"><em class="icon ni ni-globe"></em></a>
                 </li>
                 <li class="dropdown chats-dropdown hide-mb-sm">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="icon-status icon-status-na"><em class="icon ni ni-comments"></em></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
@@ -158,7 +158,7 @@ use yii\helpers\Url;
                     </div>
                 </li>
                 <li class="dropdown notification-dropdown">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end">
@@ -212,7 +212,7 @@ use yii\helpers\Url;
                     </div>
                 </li>
                 <li class="dropdown list-apps-dropdown d-lg-none">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="icon-status icon-status-na"><em class="icon ni ni-menu-circled"></em></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
@@ -285,7 +285,7 @@ use yii\helpers\Url;
                     </div>
                 </li>
                 <li class="dropdown language-dropdown d-none d-sm-block me-n1">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="quick-icon border border-light">
                             <img class="icon" src="<?=$web?>/dlite/images/flags/english-sq.png" alt="">
                         </div>

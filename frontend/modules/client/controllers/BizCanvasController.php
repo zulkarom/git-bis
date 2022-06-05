@@ -5,6 +5,7 @@ namespace frontend\modules\client\controllers;
 use Yii;
 use backend\models\BizCanvas;
 use frontend\modules\client\models\BizCanvasSearch;
+use frontend\modules\client\models\pdf\pdf_canvas;
 use backend\models\BcKeyParner;
 use backend\models\BcBrainstorm;
 use backend\models\BcChannel;
@@ -211,12 +212,11 @@ class BizCanvasController extends Controller
         return $this->redirect(['view', 'id' => $pid]);
     }
 
-    public function actionBizCanvasdf($id){
+    public function actionGeneratePdf($id){
 
         $model = $this->findModel($id);
         $pdf = new pdf_canvas;
-        $pdf->inv = $model;
-        $pdf->totalPayment = $model->totalInvoicePayments;
+        $pdf->model = $model;
         $pdf->generatePdf();
     }
 

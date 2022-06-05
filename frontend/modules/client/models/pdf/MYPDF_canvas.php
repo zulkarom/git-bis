@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models\BizCanvas;
+namespace frontend\modules\client\models\pdf;
 
 use Yii;
 

@@ -4,8 +4,8 @@ namespace frontend\models\user;
 //use dektrium\user\models\User;
 use Yii;
 use dektrium\user\models\RegistrationForm as BaseRegistrationForm;
-use backend\modules\client\models\Client;
-use backend\modules\expert\models\Expert;
+use backend\models\Client;
+use backend\models\Expert;
 
 /**
  * Signup form

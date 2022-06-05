@@ -29,7 +29,8 @@
         "slavkovrn/yii2-chat": "*",
         "2amigos/yii2-tinymce-widget": "~1.1",
         "conquer/momentjs": "*",
-        "richardfan1126/yii2-js-register": "*"
+        "richardfan1126/yii2-js-register": "*",
+        "tecnickcom/tcpdf": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

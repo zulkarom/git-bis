@@ -760,9 +760,11 @@ function sendchat(sendMessage) {
 
     $('#chat-message').val('');
 
+    $('#chat-box').append('<div id="loading" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">...</div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li></ul></div></div></div></div>');
+
      $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
 
-    $('#chat-box').append('<div id="loading" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">...</div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li></ul></div></div></div></div>');
+    
   
     $.ajax({
         url: $('#send-message').data('url'),
