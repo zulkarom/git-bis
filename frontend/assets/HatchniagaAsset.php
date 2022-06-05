@@ -25,7 +25,7 @@ class HatchniagaAsset extends AssetBundle
         'assets/js/scripts.js',
         'assets/js/charts/gd-analytics.js',
         'assets/js/libs/jqvmap.js',
-        'assets/js/apps/chats.js',
+        'assets/js/apps/chats.js?r='.rand(100,1000),
     ];
 
     public $depends = [

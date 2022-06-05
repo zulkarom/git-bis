@@ -656,7 +656,7 @@ function deletetopic(element){
                         deletemessage($(this));
                     });
 
-                    $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+                    scrollTop();
                 }
 
               }
@@ -753,7 +753,15 @@ function deletetopic(element){
       }
     }
 
-    //Send Chat
+
+function scrollTop(){
+    $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+}
+
+function chatloading(){
+    $('#chat-box').append('<div id="loading" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">...</div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li></ul></div></div></div></div>');
+}
+
 function sendchat(sendMessage) {
 
     var last = $('#chat-box .card-msg').last().attr('id');
@@ -762,9 +770,10 @@ function sendchat(sendMessage) {
 
     $('#chat-message').val('');
 
-    $('#chat-box').append('<div id="loading" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">...</div><ul class="chat-msg-more"><li class="d-none d-sm-block"><a href="#" class="btn btn-icon btn-sm btn-trigger"><em class="icon ni ni-reply-fill"></em></a></li></ul></div></div></div></div>');
+    chatloading();
+    scrollTop();
 
-     $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+     
 
     
   
@@ -808,8 +817,7 @@ function sendchat(sendMessage) {
           }
 
           if(sendMessage){
-           
-            $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+            scrollTop();
           }
           
           
@@ -960,7 +968,7 @@ function refreshchat(element, refreshMessage) {
               $('#chat-box').append(chatstr);
 
               if(i == 1){
-                $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
+                scrollTop();
               }
             }
             
