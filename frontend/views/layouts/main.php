@@ -2,20 +2,19 @@
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-
 use common\widgets\Alert;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\bootstrap4\Breadcrumbs;
 use frontend\assets\AppAsset;
 use yii\bootstrap4\Modal;
+use yii\helpers\Html;
 
 AppAsset::register($this);
 
 $web = Yii::getAlias('@web');
 
 ?>
-<?php $this->beginPage() ?>
+<?php
+
+$this->beginPage()?>
 <!DOCTYPE html>
 
 <html lang="zxx" class="js">
@@ -29,47 +28,42 @@ $web = Yii::getAlias('@web');
     <!-- Fav Icon  -->
     <link rel="shortcut icon" href="<?=$web?>/images/favicon.png">
     <!-- Page Title  -->
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?=Html::encode($this->title)?></title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="<?=$web?>/dlite/assets/css/dashlite.css?ver=3.0.1">
     <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
-    <link rel="stylesheet" type="text/css" href="<?=$web?>/dlite/assets/css/libs/fontawesome-icons.css"> 
-    <?= Html::csrfMetaTags() ?>
-    <?php $this->head() ?>
+    <link rel="stylesheet" type="text/css" href="<?=$web?>/dlite/assets/css/libs/fontawesome-icons.css">
+    <?=Html::csrfMetaTags()?>
+    <?php
+
+    $this->head()?>
 </head>
 
 <body class="nk-body npc-default has-apps-sidebar has-sidebar">
-<?php $this->beginBody() ?>
+<?php
+
+$this->beginBody()?>
 
     <div class="nk-app-root">
-        
-        <?=$this->render('menu', [    
-            'web' => $web,
-        ]);
-        ?>
+
+        <?=$this->render('menu', ['web' => $web]);?>
         <!-- main @s -->
         <div class="nk-main ">
             <!-- wrap @s -->
             <div class="nk-wrap ">
                 <!-- main header @s -->
-               <?=$this->render('header', [    
-                    'web' => $web,
-                ]);
-                ?>
+               <?=$this->render('header', ['web' => $web]);?>
                 <!-- main header @e -->
 
                 <!-- sidebar @s -->
-                <?=$this->render('sidebar', [    
-                    'web' => $web,
-                ]);
-                ?>
+                <?=$this->render('sidebar', ['web' => $web]);?>
                 <!-- sidebar @e -->
                 <!-- content @s -->
                 <div class="nk-content ">
                 <div class="container-fluid">
                 <div class="nk-content-inner">
                 <div class="nk-content-body">
-                    <?= Alert::widget() ?>
+                    <?=Alert::widget()?>
                     <?=$content?>
                 </div>
                 </div>
@@ -83,10 +77,7 @@ $web = Yii::getAlias('@web');
     </div>
     <!-- app-root @e -->
     <!-- select region modal -->
-    <?=$this->render('country', [    
-        'web' => $web,
-    ]);
-    ?>
+    <?=$this->render('country', ['web' => $web]);?>
     <!-- JavaScript -->
     <script src="<?=$web?>/dlite/assets/js/bundle.js?ver=3.0.1"></script>
     <script src="<?=$web?>/dlite/assets/js/scripts.js?ver=3.0.1"></script>
@@ -98,28 +89,27 @@ $web = Yii::getAlias('@web');
 
 <?php
 
-
 Modal::begin([
     'title' => '<h4 id="bc-title"></h4>',
-    'id' =>'bc-modal-canvas',
-    'size' => 'modal-lg',
+    'id' => 'bc-modal-canvas',
+    'size' => 'modal-lg'
 ]);
 echo '<div id="bc-form"></div>';
 Modal::end();
 
 Modal::begin([
     'title' => '<h4 id="bc-desc-title"></h4>',
-    'id' =>'bc-modal-canvas-desc',
-    'size' => 'modal-lg',
+    'id' => 'bc-modal-canvas-desc',
+    'size' => 'modal-lg'
 ]);
 echo '<div id="bc-desc"></div>';
 Modal::end();
 
 Modal::begin([
-        'title' => '<h4>Create Chat Topic</h4>',
-        'id' =>'topic',
-        'size' => 'modal-lg'
-    ]);
+    'title' => '<h4>Create Chat Topic</h4>',
+    'id' => 'topic',
+    'size' => 'modal-lg'
+]);
 echo '<div id="formTopic"></div>';
 Modal::end();
 
@@ -127,7 +117,11 @@ Modal::end();
 
 
 
-<?php $this->endBody() ?>
+<?php
+
+$this->endBody()?>
 </body>
 </html>
-<?php $this->endPage() ?>
+<?php
+
+$this->endPage()?>
