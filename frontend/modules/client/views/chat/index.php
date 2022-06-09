@@ -1,39 +1,77 @@
 <?php
-use yii\helpers\Html;;
-use yii\helpers\Url;    
-use yii\bootstrap4\Modal;
-use kartik\select2\Select2;
-use backend\models\Expert;
+use backend\modules\expert\models\Expert;
+use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 
 $web = Yii::getAlias('@web');
 
 $own_id = Yii::$app->user->identity->id;
-$loadUrl = Url::to(['/chat/default/load-message']);
-$deleteMsgUrl = Url::to(['/chat/default/delete-message']);
-$refreshUrl = Url::to(['/chat/default/refresh-message']);
-$createUrl = Url::to(['/chat/default/create-topic']);
-$deleteUrl = Url::to(['/chat/default/delete-topic']);
-$updateUrl = Url::to(['/chat/default/update-topic']);
+$loadUrl = Url::to([
+    '/chat/default/load-message'
+]);
+$deleteMsgUrl = Url::to([
+    '/chat/default/delete-message'
+]);
+$refreshUrl = Url::to([
+    '/chat/default/refresh-message'
+]);
+$createUrl = Url::to([
+    '/chat/default/create-topic'
+]);
+$deleteUrl = Url::to([
+    '/chat/default/delete-topic'
+]);
+$updateUrl = Url::to([
+    '/chat/default/update-topic'
+]);
 $role = Yii::$app->user->identity->role;
 
-if(Yii::$app->user->identity->role == 1){
-    $userUrl = Url::to(['/chat/chat-test/get-list-experts']);
-    $topicUrl = Url::to(['/chat/chat-test/get-list-topics']);
-    $chatUrl = Url::to(['/chat/default/index']);
-    $url = Url::to(['/client/profile/profile-image', 'id' => '']);
-    $url2 = Url::to(['/client/profile/expert-image', 'id' => '']);
-    $dataUrl = Url::to(['/chat/default/send-message']);
-}else{
-    $userUrl = Url::to(['/chatExpert/chat/get-list-clients']);
-    $topicUrl = Url::to(['/chatExpert/chat/get-list-topics']);
-    $chatUrl = Url::to(['/chatExpert/default/index']);
-    $url = Url::to(['/expert/profile/profile-image', 'id' => '']);
-    $url2 = Url::to(['/expert/profile/client-image', 'id' => '']);
-    $dataUrl = Url::to(['/chatExpert/default/send-message']);
+if (Yii::$app->user->identity->role == 1) {
+    $userUrl = Url::to([
+        '/chat/chat-test/get-list-experts'
+    ]);
+    $topicUrl = Url::to([
+        '/chat/chat-test/get-list-topics'
+    ]);
+    $chatUrl = Url::to([
+        '/chat/default/index'
+    ]);
+    $url = Url::to([
+        '/client/profile/profile-image',
+        'id' => ''
+    ]);
+    $url2 = Url::to([
+        '/client/profile/expert-image',
+        'id' => ''
+    ]);
+    $dataUrl = Url::to([
+        '/chat/default/send-message'
+    ]);
+} else {
+    $userUrl = Url::to([
+        '/chatExpert/chat/get-list-clients'
+    ]);
+    $topicUrl = Url::to([
+        '/chatExpert/chat/get-list-topics'
+    ]);
+    $chatUrl = Url::to([
+        '/chatExpert/default/index'
+    ]);
+    $url = Url::to([
+        '/expert/profile/profile-image',
+        'id' => ''
+    ]);
+    $url2 = Url::to([
+        '/expert/profile/client-image',
+        'id' => ''
+    ]);
+    $dataUrl = Url::to([
+        '/chatExpert/default/send-message'
+    ]);
 }
 ?>
-                      
+
 <input type="hidden" id="own_id" value="<?=$own_id?>">
 <input type="hidden" id="role" value="<?=$role?>">
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
@@ -53,7 +91,7 @@ if(Yii::$app->user->identity->role == 1){
     <div class="nk-chat-aside ">
         <div class="nk-chat-aside-head">
             <div class="nk-chat-aside-user">
-                
+
                 <ul class="nav nav-tabs mt-n3">
                     <li class="nav-item">
                         <a id="a-expert" class="nav-link active" data-bs-toggle="tab" href="#tabItem1">Experts</a>
@@ -62,7 +100,7 @@ if(Yii::$app->user->identity->role == 1){
                         <a id="a-topic" class="nav-link" data-bs-toggle="tab" href="#tabItem2">Topics</a>
                     </li>
                 </ul>
-                
+
             </div>
         </div><!-s- .nk-chat-aside-head -->
         <div class="tab-content">
@@ -104,7 +142,7 @@ if(Yii::$app->user->identity->role == 1){
                         <h6 class="title overline-title-alt">Topics</h6>
                         <ul class="fav-list">
                             <li class="new-topic">
-                                
+
                             </li>
                         </ul><!-- .fav-list -->
                     </div>
@@ -119,7 +157,7 @@ if(Yii::$app->user->identity->role == 1){
                 </div>
             </div>
         </div>
-        
+
     </div><!-- .nk-chat-aside -->
     <div id="group-header" class="nk-chat-body profile-shown" >
         <div class="nk-chat-head">
@@ -140,9 +178,9 @@ if(Yii::$app->user->identity->role == 1){
                 </li>
             </ul>
             <ul class="nk-chat-head-tools">
-                
-                
-                
+
+
+
                 <li class="me-n1 me-md-n2"><a href="#" class="btn btn-icon btn-trigger text-primary chat-profile-toggle"><em class="icon ni ni-alert-circle-fill"></em></a></li>
             </ul>
             <div class="nk-chat-head-search">
@@ -158,20 +196,20 @@ if(Yii::$app->user->identity->role == 1){
         </div><!-- .nk-chat-head -->
         <div class="nk-chat-panel" data-simplebar>
             <div class="btn-previous-message" align="center">
-              
+
             </div>
             <div class="chat-sap">
-                
+
             </div><!-- .chat-sap -->
 
             <div id="current-chat-box"></div>
             <div id="chat-box"></div><!-- .chat -->
-            
-            
-            
+
+
+
         </div><!-- .nk-chat-panel -->
         <div class="nk-chat-editor btn-send-message">
-            
+
         </div><!-- .nk-chat-editor -->
         <div class="nk-chat-profile visible" data-simplebar>
             <div class="user-card user-card-s2 my-4">
@@ -216,24 +254,27 @@ if(Yii::$app->user->identity->role == 1){
                     <div class="chat-profile-body collapse show" id="chat-settings">
                         <div class="chat-profile-body-inner">
                             <ul class="chat-profile-settings">
-                                
+
                                 <?php
-                                if($model){
-                                    foreach($model as $biz){
+                                if ($model) {
+                                    foreach ($model as $biz) {
                                         echo '<li>
-                                                <a class="chat-option-link" href="'.Url::to(['/client/biz-canvas/view', 'id' => $biz->id]).'" target="_blank">
+                                                <a class="chat-option-link" href="' . Url::to([
+                                            '/client/biz-canvas/view',
+                                            'id' => $biz->id
+                                        ]) . '" target="_blank">
                                                     <em class="icon icon-circle bg-light ni ni-circle-fill"></em>
                                                     <div>
-                                                        <span class="lead-text">'.$biz->title.'</span>
-                                                        <span class="sub-text">'.$biz->description.'</span>
+                                                        <span class="lead-text">' . $biz->title . '</span>
+                                                        <span class="sub-text">' . $biz->description . '</span>
                                                     </div>
                                                 </a>
                                             </li>';
                                     }
                                 }
-                                
+
                                 ?>
-                               
+
                             </ul>
                         </div>
                     </div>
@@ -277,8 +318,20 @@ if(Yii::$app->user->identity->role == 1){
                     <div class="form-group col-md-12">
                         <!-- <label for="inputExpert">Expert</label> -->
                         <label for="inputTopic">Expert</label>
-                        <?= Html::dropDownList('id', null,
-                            ArrayHelper::map(Expert::find()->joinWith('user')->all(),'id', 'user.fullname'), ['class'=>'form-control', 'id' => 'exp-id', 'prompt' => 'Please Select' ]) ?>
+                        <?php
+
+                        echo Html::dropDownList('id', null, ArrayHelper::map(Expert::find()->joinWith([
+                            'user u',
+                            'clientExpert e'
+                        ])
+                            ->where([
+                            'e.client_id' => Yii::$app->user->identity->client->id
+                        ])
+                            ->all(), 'id', 'u.fullname'), [
+                            'class' => 'form-control',
+                            'id' => 'exp-id',
+                            'prompt' => 'Please Select'
+                        ])?>
 
                     </div>
                     <br/>
@@ -306,7 +359,7 @@ if(Yii::$app->user->identity->role == 1){
                         <input type="text" class="form-control" id="inputUpdtTopic">
                     </div>
 
-                    
+
                     <br/>
 
                 </div>
