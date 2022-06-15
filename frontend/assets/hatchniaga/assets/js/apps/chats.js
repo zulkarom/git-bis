@@ -763,6 +763,7 @@ function sendchat(sendMessage) {
     /*alert(last);*/
     var msg = $('#chat-message').val();
 
+    $('#chat-message').focus();
     $('#chat-message').val('');
 
     chatloading();
