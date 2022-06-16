@@ -1,7 +1,6 @@
 <?php
 use backend\modules\expert\models\Expert;
 use yii\bootstrap\Html;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 
 $web = Yii::getAlias('@web');
@@ -70,6 +69,7 @@ if (Yii::$app->user->identity->role == 1) {
         '/chatExpert/default/send-message'
     ]);
 }
+
 ?>
 
 <input type="hidden" id="own_id" value="<?=$own_id?>">
@@ -86,6 +86,7 @@ if (Yii::$app->user->identity->role == 1) {
 <input type="hidden" id="deleteUrl" value="<?=$deleteUrl?>">
 <input type="hidden" id="deleteMsgUrl" value="<?=$deleteMsgUrl?>">
 <input type="hidden" id="updateUrl" value="<?=$updateUrl?>">
+
 
 <div class="nk-chat">
     <div class="nk-chat-aside ">
@@ -320,14 +321,7 @@ if (Yii::$app->user->identity->role == 1) {
                         <label for="inputTopic">Expert</label>
                         <?php
 
-                        echo Html::dropDownList('id', null, ArrayHelper::map(Expert::find()->joinWith([
-                            'user u',
-                            'clientExpert e'
-                        ])
-                            ->where([
-                            'e.client_id' => Yii::$app->user->identity->client->id
-                        ])
-                            ->all(), 'id', 'u.fullname'), [
+                        echo Html::dropDownList('id', null, Expert::listExpertByClient(Yii::$app->user->identity->client->id), [
                             'class' => 'form-control',
                             'id' => 'exp-id',
                             'prompt' => 'Please Select'
