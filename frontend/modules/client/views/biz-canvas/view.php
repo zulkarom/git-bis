@@ -40,10 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
       <!-- <h1>The Business Model Canvas</h1> -->
       <!-- Canvas -->
       <table id="bizcanvas" class="table table-bordered" cellspacing="0" border="1">
-      <!-- <tr>
+      <tr>
       <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
       
-      </tr> -->
+      </tr>
 
   
         <!-- Upper part -->
