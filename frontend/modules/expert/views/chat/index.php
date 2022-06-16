@@ -28,6 +28,7 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
 ?>
                       
 <input type="hidden" id="own_id" value="<?=$own_id?>">
+<input type="hidden" id="role" value="2">
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
 <input type="hidden" id="topicUrl" value="<?=$topicUrl?>">
 <input type="hidden" id="chatUrl" value="<?=$chatUrl?>">
@@ -50,7 +51,7 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
                 
                 <ul class="nav nav-tabs mt-n3">
                     <li class="nav-item">
-                        <a id="a-expert" class="nav-link active" data-bs-toggle="tab" href="#tabItem1">Clients</a>
+                        <a id="a-expert" class="nav-link active" data-bs-toggle="tab" href="#tabItem1">Mentees</a>
                     </li>
                     <li class="nav-item">
                         <a id="a-topic" class="nav-link" data-bs-toggle="tab" href="#tabItem2">Topics</a>
@@ -107,8 +108,8 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
         </div>
         
     </div><!-- .nk-chat-aside -->
-    <div id="group-header" class="nk-chat-body profile-shown" >
-        <div class="nk-chat-head">
+    <div id="group-header" class="nk-chat-body" >
+        <div class="nk-chat-head" style="display:none;">
             <ul class="nk-chat-head-info">
                 <li class="nk-chat-body-close">
                     <a href="javascript:void(0)" class="btn btn-icon btn-trigger nk-chat-hide ms-n1"><em class="icon ni ni-arrow-left"></em></a>
@@ -148,6 +149,10 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
             </div><!-- .chat-sap -->
 
             <div id="current-chat-box"></div>
+            <div align="center" class="welcome"><b>Welcome Hatchniaga Consultation </b>
+            <br />
+            <i>Choose a mentee or a topic to get started</i>
+            </div>
             <div id="chat-box"></div><!-- .chat -->
             
             
@@ -156,7 +161,7 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
         <div class="nk-chat-editor btn-send-message">
             
         </div><!-- .nk-chat-editor -->
-        <div class="nk-chat-profile visible" data-simplebar>
+        <div class="nk-chat-profile" style="display:none" data-simplebar>
             <div class="user-card user-card-s2 my-4">
                 <div class="user-avatar md bg-purple">
                     <img src="" alt="" class="exp-profile">
