@@ -797,7 +797,7 @@ function scrollTop(){
 
 function chatloading(text){
 
-    $('#chat-box').append('<div class="loading-msg" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg" style="background-color:#ffffff;color:#000000">'+text+'</div></div><ul class="chat-meta"><li>Sending...</li></ul></div></div></div>');
+    $('#chat-box').append('<div class="chat is-me loading-msg-text"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg" style="background-color:#ffffff;color:#000000">'+text+'</div></div><ul class="chat-meta"><li>Sending...</li></ul></div></div></div>');
 }
 
 function sendchat(sendMessage) {
@@ -1000,7 +1000,7 @@ function refreshchat(element, refreshMessage) {
                     i = 1;
                   }
                 }
-              $('.loading-msg').remove();
+              $('.loading-msg-text').remove();
               $('#chat-box').append(chatstr);
 
               if(i == 1){
