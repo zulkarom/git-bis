@@ -9,19 +9,17 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
 
-     public $sourcePath = '@frontend/assets/hatchniaga/';
+    public $basePath = '@webroot';
 
-    public $css = [
-        // 'css/bootstrap.min.css',
-        'assets/css/dashlite.css',
-        'assets/css/theme.css', 
-        'assets/css/libs/fontawesome-icons.css',     
+    public $baseUrl = '@web';
+
+    public $css = [ // 'css/site.css',
     ];
 
     public $js = [];
 
     public $depends = [
-        'yii\bootstrap4\BootstrapAsset',
+        'yii\web\YiiAsset'
         // 'yii\bootstrap4\BootstrapAsset',
     ];
 }

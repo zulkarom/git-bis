@@ -47,10 +47,12 @@ class pdf_canvas{
 		// set image scale factor
 		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
-		/*$tagvs = array(
-		    'div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n' => 0))
+		$tagvs = array(
+		    'span' => array(0 => array('h' => 1, 'n' => 2), 1 => array('h' => 1, 'n' => 2))
 		);
-		$pdf->setHtmlVSpace($tagvs);*/
+		$pdf->setHtmlVSpace($tagvs);
+
+
 
 		// set some language-dependent strings (optional)
 		if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
@@ -59,7 +61,14 @@ class pdf_canvas{
 		}
 		$pdf->AddPage("L");
 		// ---------------------------------------------------------
+    //style
 		$html = '<style>'.file_get_contents($this->web.'/assets/canvas/css/canvas.css').'</style>';
+
+
+    $html .= '<div align="center"><img src="dlite/images/logo-top.png" width="170" /><br />
+    <span style="font-size:18px"><b>' . $this->model->user->client->biz_name .'</b></span></div><br />';
+
+
 		$html .= '<table id="bizcanvas" class="table" cellspacing="0" border="2">
       
 
@@ -69,9 +78,8 @@ class pdf_canvas{
           <td colspan="2" rowspan="2">
             
             <div class="titlebc">   Key Partners</div>
-            
-            <p>
-            <div class ="row">';
+            <br />
+            ';
 
               if($this->model->itemsByCategory(1)){
                   foreach($this->model->itemsByCategory(1) as $partner){
@@ -80,8 +88,8 @@ class pdf_canvas{
  
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+            
             <br />
             
           </td>
@@ -89,40 +97,37 @@ class pdf_canvas{
 
               <div class="titlebc">  Key Activities</div>
 
-            <p>
-            <div class ="row">';
+            <br />';
               if($this->model->itemsByCategory(2)){
                   foreach($this->model->itemsByCategory(2) as $activity){
                     $html .= $this->stickynote($activity, $this->model->id);
  
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+           
             
           </td>
           <td colspan="2" rowspan="2">
 
               <div class="titlebc">  Value Proposition</div>
  
-            <p>
-             <div class ="row">';
+            <br />';
               if($this->model->itemsByCategory(3)){
                   foreach($this->model->itemsByCategory(3) as $proposition){
                     $html .= $this->stickynote($proposition, $this->model->id);
                     
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+            
             
           </td>
           <td colspan="2">
 
               <div class="titlebc">  Customer Relationship</div>
 
-            <p>
-            <div class ="row">';
+            <br />';
               if($this->model->itemsByCategory(4)){
                   foreach($this->model->itemsByCategory(4) as $relationship){
                     $html .= $this->stickynote($relationship, $this->model->id);
@@ -130,16 +135,15 @@ class pdf_canvas{
   
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+           
             
           </td>
           <td colspan="2" rowspan="2">
 
               <div class="titlebc">  Customers Segments</div>
     
-            <p>
-            <div class ="row">';
+            <br />';
               if($this->model->itemsByCategory(5)){
                   foreach($this->model->itemsByCategory(5) as $segment){
                     
@@ -147,8 +151,8 @@ class pdf_canvas{
 
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+            
             
           </td>
         </tr>
@@ -159,8 +163,7 @@ class pdf_canvas{
             
               <div class="titlebc">  Key Resources</div>
             
-            <p>
-            <div class ="row">';
+            <br />';
               if($this->model->itemsByCategory(6)){
                   foreach($this->model->itemsByCategory(6) as $resource){
                     
@@ -169,16 +172,15 @@ class pdf_canvas{
      
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+            
             
           </td>
           <td colspan="2">
             
               <div class="titlebc">  Channels</div>
             
-            <p>
-             <div class ="row">';
+            <br />';
               if($this->model->itemsByCategory(7)){
                   foreach($this->model->itemsByCategory(7) as $channel){
                     
@@ -186,8 +188,8 @@ class pdf_canvas{
                     
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+            
            
           </td>
         </tr>
@@ -196,8 +198,7 @@ class pdf_canvas{
             
               <div class="titlebc">  Cost Structure </div>
            
-            <p>
-            <div class ="row">';
+            <br />';
               if($this->model->itemsByCategory(8)){
                   foreach($this->model->itemsByCategory(8) as $structure){
                     
@@ -205,23 +206,22 @@ class pdf_canvas{
                     
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+            
             
           </td>
           <td colspan="5">
             
               <div class="titlebc">  Revenue Streams </div>
            
-            <p>
-            <div class="row">';
+            <br />';
               if($this->model->itemsByCategory(9)){
                   foreach($this->model->itemsByCategory(9) as $revenue){
                     $html .= $this->stickynote($revenue,  $this->model->id, 6);
                 }
               }
-              $html .= '</div>
-            </p>
+              $html .= '
+            
             
           </td>
         </tr>
@@ -244,18 +244,32 @@ EOD;
 
 	private function stickynote($element, $pid, $col = 12){
 	    $item = $element->category->category_key;
-	    $html = '<div class="col-md-'.$col.'"><div class="dropdown" style="margin-bottom:7px">
-	                  <div class = "note '.$element->color.'">';
-	    if($element->title){
-	        $html .= '<p style="font-size:12px; color:#000000;border-bottom:1px solid rgba(0, 0, 0, 0.07);">'.Html::encode($element->title).'</p>';
-	    }
-	 
-	$html .= '<p style="font-size:11px; color:#000000;">'. nl2br(Html::encode($element->description)).'</p>
+      if($element->color == 'red'){
+        $bgcolor = '#fca18e';
+      }else if($element->color == 'yellow'){
+        $bgcolor = '#fef993';
+      }else if($element->color == 'green'){
+        $bgcolor = '#d1eb9c';
+      }else if($element->color == 'blue'){
+        $bgcolor = '#bad9f9';
+      }else if($element->color == 'grey'){
+        $bgcolor = '#c0c0c0';
+      }
 
-	</div>
-	         </div>
-	</div>
-	                  ';
+      $html = '<table class="table" cellspacing="4" border="0">';
+                if($element->title){
+                  $html .='<tr>
+                    <td bgcolor="'.$bgcolor.'"><div><span style="font-size:12px; color:#000000;">'.Html::encode($element->title).'</span></div>
+                    </td>
+                  </tr>';
+                }
+                $html .= '<tr>
+                  <td bgcolor="'.$bgcolor.'">
+                    <div><span style="font-size:11px; color:#000000;">'.nl2br(Html::encode($element->description)).'</span></div>
+                  </td>
+                </tr>
+                </table>';
+
 	    return $html;
 	}
 }
