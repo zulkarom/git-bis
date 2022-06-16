@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\client\controllers;
+namespace frontend\modules\expert\controllers;
 
 use Yii;
 use backend\models\BizCanvas;
@@ -27,7 +27,7 @@ use backend\models\BcCategory;
  */
 class BizCanvasController extends Controller
 {
-    public $layout = '//main';
+    public $layout = '//main-expert';
     /**
      * {@inheritdoc}
      */
@@ -217,9 +217,7 @@ class BizCanvasController extends Controller
         $model = $this->findModel($id);
         $pdf = new pdf_canvas;
         $pdf->model = $model;
-        $pdf->web = Yii::getAlias('@backend');
         $pdf->generatePdf();
-        exit();
     }
 
     /**

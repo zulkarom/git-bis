@@ -1,10 +1,5 @@
 <?php
-use backend\models\Expert;
-use backend\models\BizCanvas;
-use backend\models\ChatTopic;
-use backend\models\ChatModel;
 /* @var $this yii\web\View */
-
 $this->title = 'Client Dashboard';
 ?>
 
@@ -12,7 +7,7 @@ $this->title = 'Client Dashboard';
         <div class="nk-block-head nk-block-head-sm">
             <div class="nk-block-between">
                 <div class="nk-block-head-content">
-                    <h3 class="nk-block-title page-title">Website Analytics</h3>
+                    <h3 class="nk-block-title page-title">Business Analytics</h3>
                     <div class="nk-block-des text-soft">
                         <p>Welcome to Analytics Dashboard.</p>
                     </div>
@@ -26,7 +21,7 @@ $this->title = 'Client Dashboard';
                         <div class="card-inner">
                             <div class="card-title-group align-start mb-0">
                                 <div class="card-title">
-                                    <h6 class="title">Total Biz Canvas</h6>
+                                    <h6 class="title">Total Business Canvas</h6>
                                 </div>
                                 <div class="card-tools">
                                     <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Total Deposited" aria-label="Total Deposited"></em>
@@ -60,7 +55,7 @@ $this->title = 'Client Dashboard';
                         <div class="card-inner">
                             <div class="card-title-group align-start mb-0">
                                 <div class="card-title">
-                                    <h6 class="title">Total Biz Plan</h6>
+                                    <h6 class="title">Total Business Plan</h6>
                                 </div>
                                 <div class="card-tools">
                                     <em class="card-hint icon ni ni-help-fill" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Total Withdraw" aria-label="Total Withdraw"></em>
@@ -69,7 +64,7 @@ $this->title = 'Client Dashboard';
                             <div class="card-amount">
                                 <span class="amount"> 598
                                 </span>
-                                <span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>1.93%</span>
+                                <span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>1.93%</span>
                             </div>
                             <div class="invest-data">
                                 <div class="invest-data-amount g-2">
@@ -115,6 +110,6 @@ $this->title = 'Client Dashboard';
                 </div><!-- .col -->
             </div>
         </div><!-- .nk-block -->
-    
-                    
+
+
 

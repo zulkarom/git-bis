@@ -16,22 +16,123 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <style type="text/css">
+hr {
+bottom-top:0px;
+bottom-bottom:0px;
+width:80%;
+}
 
+.dropdown {
+  position: relative;
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  /*min-width: 300px;*/
+  box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+  cursor: pointer;
+  padding: 6px 2px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+a {
+   margin:0 auto;    
+   display:block;
+}
+#bizcanvas th{
+border-left:#ffffff;
+border-right:#ffffff;
+}
+
+input[type=radio] {
+  display: none;
+}
+input[type=radio]:checked + label span {
+  transform: scale(1.25);
+}
+input[type=radio]:checked + label .red {
+  border: 2px solid #711313;
+}
+
+input[type=radio]:checked + label .yellow {
+  border: 2px solid #816102;
+}
+input[type=radio]:checked + label .grey {
+  border: 2px solid #505a0b;
+}
+input[type=radio]:checked + label .green {
+  border: 2px solid #0e4e1d;
+}
+input[type=radio]:checked + label .blue {
+  border: 2px solid #103f62;
+}
+
+label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  
+}
+label:hover span {
+  transform: scale(1.25);
+}
+label span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+  border: 1px solid #c0c0c0;
+}
+label span.red {
+  background: #fca18e;
+}
+
+label span.yellow {
+  background: #fef993;
+}
+label span.grey {
+  background: #c0c0c0;
+}
+label span.green {
+  background: #d1eb9c;
+}
+
+label span.blue {
+  background: #bad9f9;
+}
+
+.titlebc{
+font-weight:bold;
+margin-bottom:6px;
+}
+
+#bizcanvas tr td{
+position:relative;
+}
+
+div.bc-guide {
+  position: absolute;
+  bottom: 0px;
+  width:100%;
+  padding-right:15px;
+  text-align:right;
+} 
 
 </style>
 
+<h5><?=$model->title?></h5>
+<p><?=$model->description?></p>
 
-  <div class="row">
-    <div class="col-8">
-      <h5><?=$model->title?></h5>
-      <p><?=$model->description?></p>
-    </div>
-     <div class="col-4" align="right">
-      <p><?= Html::a('<em class="icon ni ni-download"></em> PDF', ['generate-pdf', 'id' => $model->id], ['class' => 'btn btn-danger', 'target' => '_blank']) ?></p>
-    </div>
-  </div>
-  <br/>
- 
+ <?= Html::a('PDF', ['generate-pdf', 'id' => $model->id], ['class' => 'btn btn-danger']) ?>
 
 <div class="card" style="overflow-x: scroll;">
   <div class="card-body">
@@ -361,7 +462,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 function addItemLink($model, $cat){
     $category = $model->getCategory($cat)->category_name;
-    return '<a class="bc-add-item" data-title="Add '. $category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/create-item', 'pid' => $model->id, 'cat' => $cat]) . '" >&nbsp<i class="icon ni ni-plus"></i></a>';
+    return '<a class="bc-add-item" data-title="Add '. $category.'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/create-item', 'pid' => $model->id, 'cat' => $cat]) . '" ></a>';
     
 }
 
@@ -382,12 +483,7 @@ function stickynote($element, $pid, $col = 12){
 $html .= '<p style="font-size:11px; color:#000000;">'. nl2br(Html::encode($element->description)).'</p>
 
 </div>
-        <div class="dropdown-content">
-        <a class="bc-update-item" data-title="Update '.$element->category->category_name .'" href="javascript:void(0)" value="' . Url::to(['/client/biz-canvas/update-item', 'id' => $element->id, 'pid' => $pid, 'cat' => $element->category_id]) . '" >
-        <span class="note-edit-button">&nbsp<b>EDIT</b></span></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-        <a href="' . Url::to(['/client/biz-canvas/delete-item', 'id' => $element->id, 'pid' => $pid, 'cat' => $element->category_id]) . '" >
-<span class="note-edit-button"><b><font color ="red">X</font></b>&nbsp</span></a>
-        </div> </div>
+         </div>
 </div>
                   ';
     return $html;

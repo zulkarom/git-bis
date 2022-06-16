@@ -1,28 +1,42 @@
 <?php
-
 namespace frontend\modules\client\models;
 
+use backend\models\BizCanvas;
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\BizCanvas;
 
 /**
  * BizCanvasSearch represents the model behind the search form of `backend\models\BizCanvas`.
  */
 class BizCanvasSearch extends BizCanvas
 {
+
     /**
+     *
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['created_at'], 'safe'],
+            [
+                [
+                    'id',
+                    'user_id'
+                ],
+                'integer'
+            ],
+            [
+                [
+                    'created_at'
+                ],
+                'safe'
+            ]
         ];
     }
 
     /**
+     *
      * {@inheritdoc}
      */
     public function scenarios()
@@ -40,17 +54,19 @@ class BizCanvasSearch extends BizCanvas
      */
     public function search($params)
     {
-        $query = BizCanvas::find();
+        $query = BizCanvas::find()->where([
+            'user_id' => Yii::$app->user->identity->id
+        ]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query
         ]);
 
         $this->load($params);
 
-        if (!$this->validate()) {
+        if (! $this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
@@ -60,7 +76,7 @@ class BizCanvasSearch extends BizCanvas
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at
         ]);
 
         return $dataProvider;

@@ -30,7 +30,7 @@ class BizCanvas extends \yii\db\ActiveRecord
             [['user_id', 'created_at', 'title'], 'required'],
             [['user_id'], 'integer'],
             [['title', 'description'], 'string'],
-            [['created_at'], 'safe'],
+            [['created_at', 'comment'], 'safe'],
         ];
     }
 

@@ -54,7 +54,7 @@ $web = Yii::getAlias('@web');
                                     <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                     <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                 </a>
-                                <?=$form->field($model, 'password')->label(false)->passwordInput(['placeholder' => 'Enter your passcode','class' => 'form-control form-control-lg'])?>
+                                <?=$form->field($model, 'password')->label(false)->passwordInput(['placeholder' => 'Enter your password','class' => 'form-control form-control-lg'])?>
                             </div>
                         </div>
                         <div class="form-group">
@@ -64,7 +64,7 @@ $web = Yii::getAlias('@web');
                                     <em class="passcode-icon icon-show icon ni ni-eye"></em>
                                     <em class="passcode-icon icon-hide icon ni ni-eye-off"></em>
                                 </a>
-                                <?=$form->field($model, 'password_repeat')->label(false)->passwordInput(['placeholder' => 'Repeat your passcode','class' => 'form-control form-control-lg'])?>
+                                <?=$form->field($model, 'password_repeat')->label(false)->passwordInput(['placeholder' => 'Repeat your password','class' => 'form-control form-control-lg'])?>
                             </div>
                         </div><!-- .form-group -->
                 <div class="form-group">

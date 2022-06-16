@@ -3,14 +3,13 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 use common\widgets\Alert;
-use frontend\assets\AppAsset;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
+use frontend\assets\HatchniagaAsset;
 
-AppAsset::register($this);
-
+HatchniagaAsset::register($this);
+$dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchniaga');
 $web = Yii::getAlias('@web');
-
 ?>
 <?php
 
@@ -26,17 +25,12 @@ $this->beginPage()?>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="<?=$web?>/images/favicon.png">
+    <link rel="shortcut icon" href="<?=$dirAssests?>/icon/favicon.png">
     <!-- Page Title  -->
-    <title><?=Html::encode($this->title)?></title>
+    <title><?= Html::encode($this->title) ?></title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="<?=$web?>/dlite/assets/css/dashlite.css?ver=3.0.1">
-    <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
-    <link rel="stylesheet" type="text/css" href="<?=$web?>/dlite/assets/css/libs/fontawesome-icons.css">
-    <?=Html::csrfMetaTags()?>
-    <?php
-
-    $this->head()?>
+    <?= Html::csrfMetaTags() ?>
+    <?php $this->head() ?>
 </head>
 
 <body class="nk-body npc-default has-apps-sidebar has-sidebar">
@@ -79,12 +73,6 @@ $this->beginBody()?>
     <!-- select region modal -->
     <?=$this->render('country', ['web' => $web]);?>
     <!-- JavaScript -->
-    <script src="<?=$web?>/dlite/assets/js/bundle.js?ver=3.0.1"></script>
-    <script src="<?=$web?>/dlite/assets/js/scripts.js?ver=3.0.1"></script>
-    <script src="<?=$web?>/dlite/assets/js/charts/gd-analytics.js?ver=3.0.1"></script>
-    <script src="<?=$web?>/dlite/assets/js/libs/jqvmap.js?ver=3.0.1"></script>
-    <script src="<?=$web?>/dlite/assets/js/charts/gd-default.js?ver=3.0.1"></script>
-    <script src="<?=$web?>/dlite/js/example-chart.js?ver=3.0.1"></script>
 
 
 <?php

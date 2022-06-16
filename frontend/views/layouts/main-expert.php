@@ -96,6 +96,26 @@ $web = Yii::getAlias('@web');
     <script src="<?=$web?>/dlite/js/example-chart.js?ver=3.0.1"></script>
 
 
+<?php
+
+Modal::begin([
+    'title' => '<h4 id="bc-title"></h4>',
+    'id' => 'bc-modal-canvas',
+    'size' => 'modal-lg'
+]);
+echo '<div id="bc-form"></div>';
+Modal::end();
+
+Modal::begin([
+    'title' => '<h4 id="bc-desc-title"></h4>',
+    'id' => 'bc-modal-canvas-desc',
+    'size' => 'modal-lg'
+]);
+echo '<div id="bc-desc"></div>';
+Modal::end();
+
+?>
+
 <?php $this->endBody() ?>
 </body>
 </html>
