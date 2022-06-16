@@ -1,12 +1,14 @@
 <?php
 namespace backend\modules\client\controllers;
 
+use backend\models\ChatTopic;
 use backend\models\Client;
 use backend\models\ClientExpert;
 use backend\modules\client\models\ClientSearch;
 use common\models\User;
 use frontend\models\UploadFile;
 use Yii;
+use yii\db\Expression;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -188,6 +190,17 @@ class ClientController extends Controller
                 $model->client_id = $cid;
 
                 if ($model->save()) {
+                    // create default topic
+
+                    $topic = new ChatTopic();
+                    $topic->topic = 'Default';
+                    $topic->is_default = 1;
+                    $topic->expert_id = $model->expert_id;
+                    $topic->client_id = $model->client_id;
+                    $topic->client_expert_id = $model->id;
+                    $topic->last_message_send = new Expression("NOW()");
+                    $topic->save();
+
                     Yii::$app->session->addFlash('success', "Expert Assign");
                 } else {
                     $model->flashError();
