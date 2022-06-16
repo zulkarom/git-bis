@@ -20,15 +20,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </style>
 
-<h5><?=$model->title?></h5>
-<p><?=$model->description?></p>
+
   <div class="row">
-    <div class="col-4">
-    </div>
-     <div class="col-4">
+    <div class="col-8">
+      <h5><?=$model->title?></h5>
+      <p><?=$model->description?></p>
     </div>
      <div class="col-4" align="right">
-      <?= Html::a('PDF', ['generate-pdf', 'id' => $model->id], ['class' => 'btn btn-danger']) ?>
+      <p><?= Html::a('<em class="icon ni ni-download"></em> PDF', ['generate-pdf', 'id' => $model->id], ['class' => 'btn btn-danger', 'target' => '_blank']) ?></p>
     </div>
   </div>
   <br/>

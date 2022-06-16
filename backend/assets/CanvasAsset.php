@@ -18,5 +18,10 @@ class CanvasAsset extends AssetBundle
         
     ];
 
+    public $depends = [
+        'frontend\assets\HatchniagaAsset',
+        
+    ];
+
    
 }
