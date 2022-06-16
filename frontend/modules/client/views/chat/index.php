@@ -72,6 +72,32 @@ if (Yii::$app->user->identity->role == 1) {
 
 ?>
 
+<style type="text/css">
+   .center {
+     margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+</style>
+
 <input type="hidden" id="own_id" value="<?=$own_id?>">
 <input type="hidden" id="role" value="<?=$role?>">
 <input type="hidden" id="userUrl" value="<?=$userUrl?>">
@@ -160,7 +186,14 @@ if (Yii::$app->user->identity->role == 1) {
         </div>
 
     </div><!-- .nk-chat-aside -->
-    <div id="group-header" class="nk-chat-body profile-shown" >
+    <div id="group-main" class="nk-chat-main" style="display:block;">
+        <div class="center">
+            <center><p><b><font size="6px">HATCHNIAGA CONSULTATION</font></b><br/>
+            <font size="4px">Choose the expert to get started.</font></p>
+            </center>
+        </div>
+    </div>
+    <div id="group-header" class="nk-chat-body profile-shown" style="display:none;">
         <div class="nk-chat-head">
             <ul class="nk-chat-head-info">
                 <li class="nk-chat-body-close">
@@ -360,5 +393,13 @@ if (Yii::$app->user->identity->role == 1) {
                 <button id="submit-updt-topic" type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="modalSpinner" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+            <div class="center">
+                <div class="loader"></div>
+            </div>
     </div>
 </div>

@@ -159,6 +159,11 @@
 
         function getUserList(element, init){
 
+            if(init){
+                $('#modalSpinner').modal({backdrop: 'static', keyboard: false})  
+                $('#modalSpinner').modal('show');
+            }
+
 
           var userUrl = $('#userUrl').val();
           
@@ -214,6 +219,14 @@
                     $('.list-expert').html(str);                      
                   }
 
+
+
+                  if($('#modalSpinner').modal('hide')){
+                    
+                  }
+                  
+
+                    
                   $('.send-topic').click(function(){
 
                     getTargetChat($(this), true);
@@ -530,6 +543,13 @@ function deletetopic(element){
 
 
     function getTargetChat(element, init){
+
+        var x = document.getElementById('group-main');
+        var y = document.getElementById('group-header');
+        if (y.style.display === 'none') {
+            y.style.display = 'block';
+            x.style.display = 'none';
+        
         var expert_id = element.attr('data-expert-id');
         var topic_id = element.attr('data-topic');
         var top_name = element.attr('data-topic-name');
