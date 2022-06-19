@@ -10,11 +10,15 @@ use yii\helpers\Url;
         </div>
         <div class="nk-header-app-name">
             <div class="nk-header-app-logo">
-                <img src="<?=$web?>/dlite/images/mini-logo.png" width="100%" alt="logo">
+                <a href="<?=Url::to(['/client/dashboard/index'])?>">
+                    <img src="<?=$web?>/dlite/images/mini-logo.png" width="100%" alt="logo">
+                </a>
             </div>
             <div class="nk-header-app-info">
-                <span class="sub-text"><?=Yii::$app->params['appName']?></span>
-                <span class="lead-text">Dashboard</span>
+                <a href="<?=Url::to(['/client/dashboard/index'])?>">
+                    <span class="sub-text"><?=Yii::$app->params['appName']?></span>
+                    <span class="lead-text">Dashboard</span>
+                </a>
             </div>
         </div>
         <div class="nk-header-menu is-light">

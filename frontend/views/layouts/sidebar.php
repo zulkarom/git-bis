@@ -1,13 +1,13 @@
 <?php
 use yii\helpers\Url;
-use common\widgets\Menu_crypto;
+use common\widgets\Menu_hatchniaga;
 
     //Main
-    $item_main[] = ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => 'icon ni ni-dashboard'];
+    $item_main[] = ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => 'icon ni ni-template'];
 
-    $item_main[] = ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => 'icon ni ni-speed'];
+    $item_main[] = ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => 'icon ni ni-dashboard'];
 
-    $item_main[] = ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/chat/index'], 'icon' => 'icon ni ni-bitcoin-cash']   ;
+    $item_main[] = ['label' => \Yii::t('app', 'Consultation'), 'level' => 1, 'url' => ['/client/chat/index'], 'icon' => 'icon ni ni-chat-circle']   ;
 
     $items[] =  ['label' => 'Main', 'level' => 0];
     foreach($item_main as $item){
@@ -28,9 +28,9 @@ use common\widgets\Menu_crypto;
     }*/
 
     //Profile
-    $item_profile[] = ['label' => \Yii::t('app', 'Edit Profile'), 'level' => 1, 'url' => ['/client/profile/index'], 'icon' => 'icon ni ni-dashboard'];
+    $item_profile[] = ['label' => \Yii::t('app', 'Edit Profile'), 'level' => 1, 'url' => ['/client/profile/index'], 'icon' => 'icon ni ni-user'];
 
-    $item_profile[] = ['label' => \Yii::t('app', 'Log Out'), 'level' => 1, 'url' => ['/site/logout', 'data-method' => 'post'], 'icon' => 'icon ni ni-speed'];
+    $item_profile[] = ['label' => \Yii::t('app', 'Log Out'), 'level' => 1, 'url' => ['/site/logout', 'data-method' => 'post'], 'icon' => 'icon ni ni-signout'];
 
     $items[] =  ['label' => 'PROFILE', 'level' => 0];
     foreach($item_profile as $item){
@@ -45,7 +45,7 @@ use common\widgets\Menu_crypto;
 
 
 
-                            <?=Menu_crypto::widget($items)?>
+                            <?=Menu_hatchniaga::widget($items)?>
                                                      
                         </ul><!-- .nk-menu -->
                     </div>

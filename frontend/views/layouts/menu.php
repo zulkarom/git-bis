@@ -11,7 +11,7 @@ use yii\helpers\Html;
 ?> 
 <div class="nk-apps-sidebar is-dark">
             <div class="nk-apps-brand">
-                <a href="html/index.html" class="logo-link">
+                <a href="<?=Url::to(['/client/dashboard/index'])?>" class="logo-link">
                     <img class="logo-light logo-img" src="<?=$web?>/dlite/images/mini-logo.png" srcset="<?=$web?>/dlite/images/logo-small2x.png 2x" alt="logo">
                     <img class="logo-dark logo-img" src="<?=$web?>/dlite/images/logo-dark-small.png" srcset="<?=$web?>/dlite/images/logo-dark-small2x.png 2x" alt="logo-dark">
                 </a>
@@ -34,28 +34,16 @@ use yii\helpers\Html;
                                     </a>
                                 </li>
                                 <li class="nk-menu-item">
-                                    <a href="<?=Url::to(['/client/chat'])?>" class="nk-menu-link" title="Chats">
+                                    <a href="<?=Url::to(['/client/chat'])?>" class="nk-menu-link" title="Consultation">
                                         <span class="nk-menu-icon"><em class="icon ni ni-chat-circle"></em></span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="nk-sidebar-footer">
-                            <ul class="nk-menu nk-menu-md">
-                                <li class="nk-menu-item">
-                                    <a href="#" class="nk-menu-link" title="Settings">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-setting"></em></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
-                        <a href="#" class="toggle" data-target="profileDD">
-                            <div class="user-avatar">
-                                <span>AB</span>
-                            </div>
-                        </a>
+                       
                         <div class="dropdown-menu dropdown-menu-md m-1 nk-sidebar-profile-dropdown" data-content="profileDD">
                             <div class="dropdown-inner user-card-wrap d-none d-md-block">
                                 <div class="user-card">

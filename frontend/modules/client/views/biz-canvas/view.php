@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </style>
 
-
+<div style="padding-left:12px">
   <div class="row">
     <div class="col-8">
       <h5><?=$model->title?></h5>
@@ -356,6 +356,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
   </div>
+</div>
 
 <?php
 

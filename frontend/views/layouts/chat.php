@@ -80,7 +80,15 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchni
                     ]);
                 }?>
 
-                <div class="nk-content p-0">
+                <?php 
+                    if(Yii::$app->controller->id == 'chat'){
+                        $c = 'p-0';
+                    }else{
+                        $c='';
+                    }
+                ?>
+
+                <div class="nk-content <?=$c?>">
                     <div class="nk-content-inner">
                         <div class="nk-content-body">
                             <!-- content @s -->

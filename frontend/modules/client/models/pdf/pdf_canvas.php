@@ -69,7 +69,7 @@ class pdf_canvas{
     <span style="font-size:18px"><b>' . $this->model->user->client->biz_name .'</b></span></div><br />';
 
 
-		$html .= '<table id="bizcanvas" class="table" cellspacing="0" border="2">
+		$html .= '<table cellpadding="6" cellspacing="0" border="2">
       
 
   
@@ -256,18 +256,19 @@ EOD;
         $bgcolor = '#c0c0c0';
       }
 
-      $html = '<table class="table" cellspacing="4" border="0">';
+      $html = '<table border="0" cellpadding="1">';
                 if($element->title){
                   $html .='<tr>
-                    <td bgcolor="'.$bgcolor.'"><div><span style="font-size:12px; color:#000000;">'.Html::encode($element->title).'</span></div>
+                    <td bgcolor="'.$bgcolor.'" style="font-size:12px; color:#000000;border-bottom:1px solid #CCCCCC">'.Html::encode($element->title).'
                     </td>
                   </tr>';
                 }
                 $html .= '<tr>
-                  <td bgcolor="'.$bgcolor.'">
-                    <div><span style="font-size:11px; color:#000000;">'.nl2br(Html::encode($element->description)).'</span></div>
+                  <td bgcolor="'.$bgcolor.'" style="font-size:11px; color:#000000;">
+                    '.nl2br($element->description).'
                   </td>
                 </tr>
+                <tr style="line-height:4px"><td></td></tr>
                 </table>';
 
 	    return $html;

@@ -27,7 +27,7 @@ use backend\models\BcCategory;
  */
 class BizCanvasController extends Controller
 {
-    public $layout = '//main';
+    public $layout = '//chat';
     /**
      * {@inheritdoc}
      */
