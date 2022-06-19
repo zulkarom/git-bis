@@ -39902,6 +39902,11 @@ button.close {
   background: #fff;
   z-index: 100;
 }
+
+.nk-chat-main {
+  display: block;
+}
+
 .nk-chat-profile-overlay {
   position: fixed;
   top: 0;
@@ -39972,6 +39977,7 @@ button.close {
   .nk-chat-body-close {
     display: none;
   }
+  
 }
 @media (max-width: 859px) {
   .nk-chat-body.show-chat {

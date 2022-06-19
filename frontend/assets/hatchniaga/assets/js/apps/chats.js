@@ -12,6 +12,7 @@
         $chat_hide       = $('.nk-chat-hide'),
         $search_toggle   = $('.chat-search-toggle'),
         $chat_search     = $('.nk-chat-head-search'),
+        role			 = $('#role'),
 
         olay_profile     = 'nk-chat-profile-overlay',
         shown_profile    = 'profile-shown',
@@ -44,6 +45,7 @@
             $chat_body.removeClass(shown_profile);
             if(inbody===true) $body.removeClass('chat-'+shown_profile);
         }
+        
 
         function profile_overlay(){
             var overlay = '.' + olay_profile;
@@ -58,6 +60,7 @@
                 chat_autohide();
             })
         }
+        
 
         function search_show(){
             $search_toggle.on('click', function(e){
@@ -126,11 +129,12 @@
         profile_trigger();
         
         function chat_on_init () {
-            if(NioApp.Win.width >= info_break){
+            /*if(NioApp.Win.width >= info_break){
                 profile_show();
             } else {
                 profile_hide();
-            }
+            }*/
+            profile_hide();
             chat_autohide();
         }
         chat_on_init();
@@ -158,6 +162,11 @@
 
 
         function getUserList(element, init){
+
+            /*if(init){
+                $('#modalSpinner').modal({backdrop: 'static', keyboard: false})  
+                $('#modalSpinner').modal('show');
+            }*/
 
 
           var userUrl = $('#userUrl').val();
@@ -214,8 +223,16 @@
                     $('.list-expert').html(str);                      
                   }
 
-                  $('.send-topic').click(function(){
 
+
+                  /*if($('#modalSpinner').modal('hide')){
+                    
+                  }*/
+                  
+
+                    
+                  $('.send-topic').click(function(){
+					chatBoxLoading();
                     getTargetChat($(this), true);
                     getCanvas($(this), true);
 
@@ -368,7 +385,7 @@
                 success: function (data) {
                   
                   var data = JSON.parse(data);
-                  console.log(data);
+                  //console.log(data);
                   var str = '';
                   var str_unread = '';
 
@@ -458,7 +475,7 @@ function updatetopic(element){
       // expert_id: $('#up-exp-id').val(),
     },
     success: function (result) {
-        console.log(result);
+        //console.log(result);
       $('#inputUpdtTopic').val(result);
       $('#pre-topic-'+topic_id).text(result);
 
@@ -490,7 +507,7 @@ function deletetopic(element){
       },
       success: function (result) {
         
-            console.log('Delete Success');
+           // console.log('Delete Success');
             $('#topic-'+result).remove();
             // $('#btn-send-message').remove();
             $('.btn-send-message').html('');
@@ -527,9 +544,17 @@ function deletetopic(element){
 }
 
     
-
+	function chatBoxLoading(){
+		$('.chat-box').html('<div align="center">Loading...</div>');
+	}
 
     function getTargetChat(element, init){
+		
+        /*var y = document.getElementById('group-header');
+        if (y.style.display === 'none') {
+            y.style.display = 'block';
+        }*/
+		
         var expert_id = element.attr('data-expert-id');
         var topic_id = element.attr('data-topic');
         var top_name = element.attr('data-topic-name');
@@ -547,11 +572,15 @@ function deletetopic(element){
 
             var x = document.getElementById('group-header');
             // var y = document.getElementsByClassName('nk-chat-aside');
-
-
-            if (x.style.display === 'none') {
-              x.style.display = 'block';
+  			$(".welcome").hide();
+            $(".nk-chat-head").show();
+            $('.nk-chat-profile').show();
+            if(NioApp.Win.width >= info_break){
+                profile_show();
+            } else {
+                profile_hide();
             }
+
 
             // y.className += 'hide-aside';
             x.className += ' show-chat';
@@ -626,14 +655,15 @@ function deletetopic(element){
 
                     
                     if(init){
+					
                     var dataUrl = $('#dataUrl').val();
                     var loadUrl = $('#loadUrl').val();
 
                     btnsendstr = '<div class="nk-chat-editor-form"><div class="form-control-wrap"><textarea id="chat-message" class="form-control form-control-simple no-resize" rows="1" id="default-textarea" placeholder="Type your message..."></textarea></div></div><ul class="nk-chat-editor-tools g-2"><li><button type="submit" class="btn btn-round btn-primary btn-icon" id="send-message" data-url="'+dataUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'"><em class="icon ni ni-send-alt"></em></button></li></ul>';
 
 
-                   btnprevstr = '<button type="button" type="submit" id="load-message" class="btn btn-rounded btn-secondary-outline" data-url="'+loadUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'">Load More</button>';
-
+                   btnprevstr = '<button type="button" type="submit" id="load-message" class="btn btn-rounded btn-secondary-outline" data-url="'+loadUrl+'" data-id="'+user_id+'" data-recipient="'+clEx_user_id+'" data-topic="'+topic_id+'">Load Previous</button>';
+					
                     $('.btn-send-message').html(btnsendstr);
                     $('.btn-previous-message').html(btnprevstr);
                     $('#chat-box').html(chatstr);
@@ -644,6 +674,15 @@ function deletetopic(element){
                             sendchat(true);
                           }
                         });
+                        $('#chat-message').keypress(function(event){
+						  var keycode = (event.keyCode ? event.keyCode : event.which);
+						  if(keycode == '13'){
+						    if($('#chat-message').val().trim()){
+                            sendchat(true);
+                          } 
+                          return false;
+						  }
+						});
                     }
 
                     $('#load-message').click(function(){
@@ -667,8 +706,8 @@ function deletetopic(element){
     }
 
     function getCanvas(element, init){
-        
-        var clEx_user_id = element.attr('data-clEx-user-id');
+        if(role == 2){
+		var clEx_user_id = element.attr('data-clEx-user-id');
             
           var canvasUrl = $('#canvasUrl').val();
           
@@ -701,6 +740,9 @@ function deletetopic(element){
             }
 
         });
+	
+}
+        
     }
 
 
@@ -753,8 +795,9 @@ function scrollTop(){
     $(".nk-chat-panel .simplebar-content-wrapper").scrollTop($(".nk-chat-panel .simplebar-content-wrapper").prop("scrollHeight"));
 }
 
-function chatloading(){
-    $('#chat-box').append('<div id="loading" class="chat is-me"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg">...</div></div></div></div></div>');
+function chatloading(text){
+
+    $('#chat-box').append('<div class="chat is-me loading-msg-text"><div class="chat-content"><div class="chat-bubbles"><div class="chat-bubble"><div class="chat-msg" style="background-color:#ffffff;color:#000000">'+text+'</div></div><ul class="chat-meta"><li>Sending...</li></ul></div></div></div>');
 }
 
 function sendchat(sendMessage) {
@@ -766,13 +809,9 @@ function sendchat(sendMessage) {
     $('#chat-message').focus();
     $('#chat-message').val('');
 
-    chatloading();
+    chatloading(msg);
     scrollTop();
 
-     
-
-    
-  
     $.ajax({
         url: $('#send-message').data('url'),
         type: 'GET',
@@ -877,7 +916,7 @@ function deletemessage(element){
         cid: chat_id
       },
       success: function (result) {
-        console.log('Delete Success');
+       // console.log('Delete Success');
         $('#msg-'+result).empty();
         $('#msg-'+result).remove();
       }
@@ -961,7 +1000,7 @@ function refreshchat(element, refreshMessage) {
                     i = 1;
                   }
                 }
-              $('#loading').remove();
+              $('.loading-msg-text').remove();
               $('#chat-box').append(chatstr);
 
               if(i == 1){
@@ -979,15 +1018,17 @@ function refreshchat(element, refreshMessage) {
 }
 
 
-setInterval(function () { 
+setInterval(function(){
   
   getTopic($('#current-topic'), false);
   // getTargetChat($('#current-chat-box'), false);
   refreshchat($('#current-chat-box'), false);
   getUserList($('#current-expert'), false);
-  }, 5000 );
+}, 5000);
+  
+  
 }
 
-   NioApp.coms.docReady.push(NioApp.Chats);
+NioApp.coms.docReady.push(NioApp.Chats);
 
 })(NioApp, jQuery);

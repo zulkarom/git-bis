@@ -29,7 +29,7 @@ use yii\helpers\Html;
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-hr"></li>
                                 <li class="nk-menu-item">
-                                    <a href="<?=Url::to(['/client/biz-canvas/index'])?>" class="nk-menu-link" title="Biz Canvas">
+                                    <a href="<?=Url::to(['/client/biz-canvas/index'])?>" class="nk-menu-link" title="Business Canvas">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
                                     </a>
                                 </li>

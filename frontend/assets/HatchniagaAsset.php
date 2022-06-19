@@ -26,7 +26,7 @@ class HatchniagaAsset extends AssetBundle
         'assets/js/scripts.js',
         'assets/js/charts/gd-analytics.js',
         'assets/js/libs/jqvmap.js',
-        'assets/js/apps/chats.js?r=123',
+        'assets/js/apps/chats.js?v=5',
         'assets/js/charts/gd-default.js',
         'js/example-chart.js'
     ];
