@@ -13,19 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="client-view">
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-    <br/>
-<div class="white_card card_height_100 mb_30">
-<div class="white_card_header">
+<div class="row">
+    <div class="col-md-6"><div class="card">
+<div class="card-body">
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -57,11 +47,22 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-</div>
-</div>
+<p>
+        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+    <br/>
 
-<div class="card">
-        <div class="card-header"><b>Assign Clients</b></div>
+</div>
+</div></div>
+    <div class="col-md-6"><div class="card">
+        <div class="card-header"><b>List of Mentees</b></div>
         <div class="card-body">
              <table class="table">
                 <thead>
@@ -90,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <br/>
 
                 <p>
-                    <?php echo Html::button('Assign', ['value' => Url::to(['/expert/expert/assign','cid' => $model->id]), 'class' => 'btn btn-success btn-sm', 'id' => 'modalBttnAssignEx']);
+                    <?php echo Html::button('Assign', ['value' => Url::to(['/expert/expert/assign','cid' => $model->id]), 'class' => 'btn btn-primary', 'id' => 'modalBttnAssignEx']);
 
                     $this->registerJs('
                     $(function(){
@@ -107,4 +108,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 </p>
         </div>
     </div>
+</div></div>
 </div>
+
+
+
+
+
