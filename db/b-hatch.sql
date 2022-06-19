@@ -3,12 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2022 at 05:43 AM
+-- Generation Time: Jun 19, 2022 at 11:18 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -81,6 +82,7 @@ CREATE TABLE `auth_rule` (
 CREATE TABLE `bc_biz_canvas` (
   `id` int(11) NOT NULL,
   `title` varchar(225) NOT NULL,
+  `description` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -89,10 +91,8 @@ CREATE TABLE `bc_biz_canvas` (
 -- Dumping data for table `bc_biz_canvas`
 --
 
-INSERT INTO `bc_biz_canvas` (`id`, `title`, `user_id`, `created_at`) VALUES
-(4, 'Business Canvas', 7, '2021-08-04 11:24:46'),
-(5, 'testing', 7, '2021-08-05 01:19:34'),
-(6, 'dfgdfgdfgdfg', 7, '2021-12-02 16:09:48');
+INSERT INTO `bc_biz_canvas` (`id`, `title`, `description`, `user_id`, `created_at`) VALUES
+(11, 'ZAHIRAH FASHION', '', 7, '2022-06-19 11:15:16');
 
 -- --------------------------------------------------------
 
@@ -144,9 +144,51 @@ CREATE TABLE `bc_item` (
 --
 
 INSERT INTO `bc_item` (`id`, `biz_canvas_id`, `category_id`, `title`, `description`, `color`) VALUES
-(17, 5, 1, 'testing 123456', 'sdfsdfsdfsd', 'yellow'),
-(20, 4, 10, '', 'dfgfdgdgf', 'yellow'),
-(21, 4, 1, 'dsfgsdfsdfsdf', 'hhh', 'green');
+(38, 11, 1, '', 'Providers', 'blue'),
+(39, 11, 1, '', 'Holding company (Inditex)', 'green'),
+(40, 11, 2, '', 'Design Manufacturing', 'yellow'),
+(41, 11, 2, '', 'Retail Process (point of sale & 3rd party management)', 'red'),
+(42, 11, 2, '', 'Distribution channels and logistics', 'grey'),
+(43, 11, 6, '', 'Stock', 'blue'),
+(44, 11, 6, '', 'Large network of stores', 'green'),
+(45, 11, 6, '', 'Strong brand', 'yellow'),
+(46, 11, 6, '', 'Logistics and supply chain infrastructure', 'grey'),
+(47, 11, 3, '', 'Flagship store experience', 'grey'),
+(48, 11, 3, '', 'Accessories', 'green'),
+(49, 11, 3, '', 'Great eCommerce experience', 'blue'),
+(50, 11, 3, '', 'Fashionable clothes', 'yellow'),
+(51, 11, 3, '', 'Fast-fashion', 'red'),
+(52, 11, 4, '', 'Salesperson at store', 'red'),
+(53, 11, 4, '', 'Brand through social media', 'green'),
+(54, 11, 4, '', 'Sentimental attachment to clothing/accessories', 'blue'),
+(55, 11, 5, '', 'Men', 'grey'),
+(56, 11, 5, '', 'Women', 'yellow'),
+(57, 11, 5, '', 'Children', 'red'),
+(58, 11, 7, '', 'Direct store', 'yellow'),
+(59, 11, 7, '', 'Online', 'green'),
+(60, 11, 7, '', 'Social media', 'grey'),
+(61, 11, 8, '', 'Fixed (rent, payroll, etc.)', 'blue'),
+(62, 11, 8, '', 'Variables associated with sale of goods', 'yellow'),
+(63, 11, 9, '', 'Sales of clothing and accessories', 'red'),
+(64, 11, 1, '', 'Fabric Dealer', 'red'),
+(65, 11, 1, '', 'Tie ups with local brand', 'grey'),
+(67, 11, 1, '', 'Raw material', 'yellow'),
+(68, 11, 1, '', 'Contrators', 'red'),
+(69, 11, 8, '', 'Manufacture cost', 'red'),
+(70, 11, 8, '', 'Raw material', 'green'),
+(71, 11, 8, '', 'Fabric buying cost', 'grey'),
+(72, 11, 8, '', 'Bank loan & interest', 'blue'),
+(73, 11, 9, '', 'Target on jeans and jersey fabric', 'blue'),
+(74, 11, 9, '', 'Promoting weavers with their beautiful skill', 'green'),
+(75, 11, 9, '', 'Comfortable and affordable clothes', 'grey'),
+(76, 11, 5, '', 'College students', 'green'),
+(77, 11, 5, '', 'Local community', 'blue'),
+(78, 11, 10, '', 'Historical Record', 'blue'),
+(79, 11, 10, '', 'Economical Factors', 'green'),
+(80, 11, 10, '', 'Personal Apperance', 'yellow'),
+(81, 11, 10, '', 'Lifestyle & Culture', 'red'),
+(82, 11, 10, '', 'Trends of Fashion', 'grey'),
+(83, 11, 10, '', 'Confidence & Self Image', 'red');
 
 -- --------------------------------------------------------
 
@@ -165,6 +207,24 @@ CREATE TABLE `chat` (
   `is_read` tinyint(1) NOT NULL DEFAULT 0,
   `is_deleted` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`id`, `topic_id`, `sender_id`, `recipient_id`, `time`, `rfc822`, `message`, `is_read`, `is_deleted`) VALUES
+(1, 258, 10, 7, 1655615822, 'Sun, 19 Jun 22 13:17:02 +0800', 'Hello!', 1, 0),
+(2, 258, 10, 7, 1655615840, 'Sun, 19 Jun 22 13:17:20 +0800', 'Hey, I am facing problem as i can not login into application. Can you help me to reset my password?', 1, 0),
+(3, 258, 10, 7, 1655615848, 'Sun, 19 Jun 22 13:17:28 +0800', '\nCan you check this urgently?', 1, 0),
+(4, 258, 10, 7, 1655615860, 'Sun, 19 Jun 22 13:17:40 +0800', 'really appricate if you look this quickly?', 1, 0),
+(5, 258, 7, 10, 1655615877, 'Sun, 19 Jun 22 13:17:57 +0800', 'Definately. We are happy to help you.', 1, 0),
+(6, 258, 10, 7, 1655615887, 'Sun, 19 Jun 22 13:18:07 +0800', 'Thank you! Let me know when it done.', 1, 0),
+(7, 258, 7, 10, 1655615913, 'Sun, 19 Jun 22 13:18:33 +0800', 'We just reset your account. Please check your email for verification.', 1, 0),
+(8, 258, 7, 10, 1655615921, 'Sun, 19 Jun 22 13:18:41 +0800', 'Please confirm if your got email', 1, 0),
+(9, 258, 10, 7, 1655615956, 'Sun, 19 Jun 22 13:19:16 +0800', 'Thank you for your help.', 1, 0),
+(10, 258, 10, 7, 1655615976, 'Sun, 19 Jun 22 13:19:36 +0800', 'Really appreciate', 1, 0),
+(11, 258, 7, 10, 1655615986, 'Sun, 19 Jun 22 13:19:46 +0800', 'You are most welcome', 1, 0),
+(12, 258, 7, 10, 1655621859, 'Sun, 19 Jun 22 14:57:39 +0800', 'test 123', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -187,8 +247,11 @@ CREATE TABLE `chat_topic` (
 --
 
 INSERT INTO `chat_topic` (`id`, `topic`, `client_expert_id`, `client_id`, `expert_id`, `is_default`, `last_message_send`) VALUES
-(256, 'Default', 5, 5, 1, 1, '2022-05-23 15:30:29'),
-(258, 'Default', 6, 5, 2, 1, '2022-05-29 13:08:58');
+(256, 'Default', 5, 5, 1, 1, '2022-06-05 12:00:48'),
+(258, 'Default', 6, 5, 2, 1, '2022-06-19 14:57:38'),
+(465, '01258', 5, 5, 1, 0, '2022-06-19 08:50:44'),
+(473, 'gvgv', 6, 5, 2, 0, '2022-06-19 08:51:04'),
+(474, 'ddfgdf', 6, 5, 2, 0, '2022-06-19 08:51:16');
 
 -- --------------------------------------------------------
 
@@ -219,7 +282,8 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `user_id`, `client_type`, `biz_name`, `biz_address`, `biz_phone`, `biz_fax`, `biz_email`, `biz_type`, `biz_main_activity`, `biz_date_execution`, `biz_reg_no`, `biz_capital`, `profile_file`, `personal_updated_at`) VALUES
-(5, 7, 0, 'Fiqram Cooperation Sdn Bhd', 'No 123 Jalan Meranti Chabang Empat 16210\r\nTumpat\r\nKelantan', '0176250556', '0914588520', 'fiqramcooperation@gmail.com', 'Information Technology', 'Software Development', '2021-08-03', 'KT0406247-U', 50, '619da6fa54e7e.jpg', '2022-04-28 17:01:31');
+(5, 7, 0, 'Fiqram Cooperation Sdn Bhd', 'No 123 Jalan Meranti Chabang Empat 16210\r\nTumpat\r\nKelantan', '0176250556', '0914588520', 'fiqramcooperation@gmail.com', 'Information Technology', 'Software Development', '2021-08-03', 'KT0406247-U', 50, '619da6fa54e7e.jpg', '2022-04-28 17:01:31'),
+(7, 14, 0, '', '', '', '', '', '', '', '0000-00-00', '', 0, '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -240,7 +304,7 @@ CREATE TABLE `client_exper` (
 
 INSERT INTO `client_exper` (`id`, `client_id`, `expert_id`, `last_message`) VALUES
 (5, 5, 1, '2022-05-11 14:12:13'),
-(6, 5, 2, '2022-05-25 14:37:38');
+(6, 5, 2, '2022-06-19 13:19:36');
 
 -- --------------------------------------------------------
 
@@ -252,6 +316,9 @@ CREATE TABLE `expert` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `expert_type` tinyint(2) NOT NULL,
+  `biz_name` varchar(225) NOT NULL,
+  `biz_phone` varchar(50) NOT NULL,
+  `biz_description` text NOT NULL,
   `profile_file` text DEFAULT NULL,
   `personal_updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -260,9 +327,9 @@ CREATE TABLE `expert` (
 -- Dumping data for table `expert`
 --
 
-INSERT INTO `expert` (`id`, `user_id`, `expert_type`, `profile_file`, `personal_updated_at`) VALUES
-(1, 9, 20, '6189f221d7438.png', '2021-11-09 11:59:29'),
-(2, 10, 20, '615bbd2d83f64.jpg', '2021-10-05 10:49:17');
+INSERT INTO `expert` (`id`, `user_id`, `expert_type`, `biz_name`, `biz_phone`, `biz_description`, `profile_file`, `personal_updated_at`) VALUES
+(1, 9, 20, '', '', '', '6189f221d7438.png', '2021-11-09 11:59:29'),
+(2, 10, 20, 'Edusage Network', '0176850558', 'Event, Conference & Scholar\'s Services', '615bbd2d83f64.jpg', '2022-06-19 14:18:24');
 
 -- --------------------------------------------------------
 
@@ -326,7 +393,8 @@ INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gra
 (9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -409,12 +477,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `fullname`, `email`, `role`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `status`, `password_reset_token`) VALUES
-(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1653799143, 10, ''),
+(7, 'iqramrafien21@gmail.com', 'Ahmad Albab Bin Jidark', 'iqramrafien21@gmail.com', 1, '$2y$13$5jwVMf2PeCPvVfS3tTRFq.XVCcA9sVyVdX/zr4SqjQSk.OQAedSfq', '_qKjxhFAFD_HQ4PfyY9VdqYNVRmFTN0j', 1624467684, NULL, NULL, '::1', 1624467474, 1630987255, 0, 1655619746, 10, ''),
 (8, 'superadmin', 'Superadmin', '', 0, '$2y$10$G2CqfuUqiTshvYmzFbh/seDgLVXbHRvUrb8fu.8UxCHgyaF9vd3pG', '', NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 10, ''),
 (9, 'iqramrafien@gmail.com', 'Fakhrul Iqram', 'iqramrafien@gmail.com', 2, '$2y$13$lh6AznZexBZVMp9YfH3Eu.aReWILMfAQKzKjfDgooyeitXFRAdFbm', '4INfZI_L_M2RuMxQEYDbfVDKtIwDNiPe', NULL, NULL, NULL, '::1', 1624484446, 1631030643, 0, 1652249401, 10, ''),
-(10, 'haikal@gmail.com', 'Ahmad Khusyairi', 'haikal@gmail.com', 2, '$2y$10$E4zM.GJUgKZFjMn7h2Id9uukq7QX8c20m84WzxhIo5NEmBI9jPUAK', '5VEOQvyjcxb6RKXvYQJmWSfR-yIcpIlJ', NULL, NULL, NULL, '::1', 1633402074, 1633402074, 0, 1653452319, 10, ''),
+(10, 'haikal@gmail.com', 'Ahmad Khusyairi', 'haikal@gmail.com', 2, '$2y$10$E4zM.GJUgKZFjMn7h2Id9uukq7QX8c20m84WzxhIo5NEmBI9jPUAK', '5VEOQvyjcxb6RKXvYQJmWSfR-yIcpIlJ', NULL, NULL, NULL, '::1', 1633402074, 1633402074, 0, 1655615798, 10, ''),
 (11, 'mohdali@gmail.com', 'Mohd Ali Bin Abu', 'mohdali@gmail.com', 2, '$2y$10$CQsQ7C8o233xWqpSciUCref3OTxhU4kKJ6EWsTIiKCzdpjW2fg.3q', 'DO4IhG6vE4WXGcVXyQQ4Zx827WBgIX0t', 1635734141, NULL, NULL, '::1', 1635734098, 1635734098, 0, 1635734190, 10, ''),
-(12, 'iqramrafien08@gmail.com', 'Iqram Haikal', 'iqramrafien08@gmail.com', 1, '$2y$10$OFszL5JTXM1WeGzl3uPcwOhAIDcTQx9ZISDqjk8obF5gkqRAMvWiO', 'aBFtmVrnuv5vZsfWcHYG_mkCJ7DRCP_b', NULL, NULL, NULL, '::1', 1652249208, 1652249208, 0, NULL, 10, '');
+(12, 'iqramrafien08@gmail.com', 'Iqram Haikal', 'iqramrafien08@gmail.com', 1, '$2y$10$OFszL5JTXM1WeGzl3uPcwOhAIDcTQx9ZISDqjk8obF5gkqRAMvWiO', 'aBFtmVrnuv5vZsfWcHYG_mkCJ7DRCP_b', NULL, NULL, NULL, '::1', 1652249208, 1652249208, 0, NULL, 10, ''),
+(14, 'sitiasmida_999@yahoo.com', 'Asmida', 'sitiasmida_999@yahoo.com', 1, '$2y$10$G9whOtKpo3oMtBpdssLVAOE7csBOjY.ORrKfMteqTtyF0DWkzr97S', 'aUnMYAesnAEy-pFQkbI97j7dQ0UOoG5R', 1654391379, NULL, NULL, '::1', 1654391329, 1654391329, 0, NULL, 10, '');
 
 -- --------------------------------------------------------
 
@@ -437,7 +506,7 @@ CREATE TABLE `web_intro` (
 --
 
 INSERT INTO `web_intro` (`id`, `title`, `title_content`, `title_button`, `intro_content`, `logo_header_url`, `logo_intro_url`) VALUES
-(1, 'B-HATCH', 'Online Incubation Platform', 'LEARN MORE', 'BisnesHatch an online incubation platform for students who are looking for a starting-point for their business. The students are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via BisnesHatch enterprise.', '', '');
+(1, 'HATCHNIAGA', 'Online Incubation Platform', 'LEARN MORE', 'Hatchniaga an online incubation platform for entrepreneurs who are looking for a starting-point for their business. The entrepreneurs are able to transform indigenous ideas into a rapidly growing companies providing products and services to the market via our online incubation platform.', '', '');
 
 -- --------------------------------------------------------
 
@@ -486,9 +555,9 @@ CREATE TABLE `web_section` (
 --
 
 INSERT INTO `web_section` (`id`, `title`, `content`, `image_url`) VALUES
-(1, 'Enterprise', 'Help students develop, launch and manage an actual business', ''),
-(2, 'Community', 'Connect students with university and community.', 'pic2.jpeg'),
-(3, 'Ecosystem', 'Create a university entrepreneurial ecosystem focusing on growing and sustaining an enterprise.', 'pic3.jpeg');
+(1, 'Startup', 'Hatchniaga assist entrepreneurs build companies from scratch and help start-up to grow and consolidate their business.', ''),
+(2, 'Investors', 'Hatchniaga connect with investment opportunities in Malaysia.', 'pic2.jpeg'),
+(3, 'Ecosystem', ' Hatchniaga create an entrepreneurial ecosystem focused on growing and sustaining the business and community.', 'pic3.jpeg');
 
 --
 -- Indexes for dumped tables
@@ -641,7 +710,7 @@ ALTER TABLE `web_section`
 -- AUTO_INCREMENT for table `bc_biz_canvas`
 --
 ALTER TABLE `bc_biz_canvas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `bc_category`
@@ -653,25 +722,25 @@ ALTER TABLE `bc_category`
 -- AUTO_INCREMENT for table `bc_item`
 --
 ALTER TABLE `bc_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `chat_topic`
 --
 ALTER TABLE `chat_topic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=466;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=475;
 
 --
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `client_exper`
@@ -701,7 +770,7 @@ ALTER TABLE `social_account`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `web_intro`
