@@ -27,7 +27,7 @@ use backend\models\BcCategory;
  */
 class BizCanvasController extends Controller
 {
-    public $layout = '//chat';
+    public $layout = '//main';
     /**
      * {@inheritdoc}
      */
@@ -52,6 +52,9 @@ class BizCanvasController extends Controller
      */
     public function actionIndex()
     {
+
+        $this->layout = '//main';
+
         $model = new BizCanvas();
 
         $searchModel = new BizCanvasSearch();
@@ -72,6 +75,7 @@ class BizCanvasController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = '//chat';
         $model = $this->findModel($id);
         //print_r($model->itemsByCategory(1));
         //die();
