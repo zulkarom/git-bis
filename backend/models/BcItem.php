@@ -53,7 +53,7 @@ class BcItem extends \yii\db\ActiveRecord
             'biz_canvas_id' => 'Biz Canvas ID',
             'category_id' => 'Category ID',
             'title' => 'Title',
-            'description' => 'Description',
+            'description' => 'Content',
             'color' => 'Color',
         ];
     }

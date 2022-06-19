@@ -377,10 +377,10 @@ function stickynote($element, $pid, $col = 12){
     $html = '<div class="col-md-'.$col.'"><div class="dropdown" style="margin-bottom:7px">
                   <div class = "note '.$element->color.'">';
     if($element->title){
-        $html .= '<p style="font-size:12px; color:#000000;border-bottom:1px solid rgba(0, 0, 0, 0.07);">'.Html::encode($element->title).'</p>';
+        $html .= '<p style="font-size:14px; color:#000000;border-bottom:1px solid rgba(0, 0, 0, 0.07);">'.Html::encode($element->title).'</p>';
     }
  
-$html .= '<p style="font-size:11px; color:#000000;">'. nl2br(Html::encode($element->description)).'</p>
+$html .= '<p style="font-size:13px; color:#000000;">'. nl2br(Html::encode($element->description)).'</p>
 
 </div>
         <div class="dropdown-content">

@@ -303,7 +303,7 @@ use yii\helpers\Url;
          <div data-collapse="small" data-animation="default" data-duration="400" data-no-scroll="1" data-doc-height="1" role="banner" class="navbar w-nav">
             <div class="container container-header w-container">
                <a href="" aria-current="page" class="brand w-nav-brand w--current">
-                  <div class="html-embed w-embed"><img src="<?= $dirAssests?>/logo/<?=Yii::$app->params['logoTop']?>" alt="" class="heading" width="220" ></div>
+                  <div class="html-embed w-embed"><img src="<?= $dirAssests?>/logo/logo-top<?=Yii::$app->params['extension']?>.png" alt="" class="heading" width="220" ></div>
                </a>
                <nav role="navigation" class="nav-menu w-nav-menu">
                   <a href="<?php echo Url::to(['/'])?>" class="mobile-nav-link w-nav-link">HOME</a>
