@@ -11,7 +11,7 @@ use yii\helpers\Url;
         </div>
         <div class="nk-header-app-name">
             <div class="nk-header-app-logo">
-                <img src="<?=$web?>/dlite/images/mini-logo.png" width="100%" alt="logo">
+                <img src="<?= $dirAssests?>/logo/mini-logo<?=Yii::$app->params['extension']?>.png" width="100%" alt="logo">
             </div>
             <div class="nk-header-app-info">
                 <span class="sub-text"><?=Yii::$app->params['appName']?></span>
