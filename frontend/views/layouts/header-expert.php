@@ -12,7 +12,7 @@ use yii\helpers\Url;
         <div class="nk-header-app-name">
             <div class="nk-header-app-logo">
                 <a href="<?=Url::to(['/expert/dashboard/index'])?>">
-                    <img src="<?= $dirAssests?>/logo/mini-logo.png" width="100%" alt="logo">
+                    <img src="<?= $dirAssests?>/logo/mini-logo<?=Yii::$app->params['extension']?>.png" width="100%" alt="logo">
                 </a>
             </div>
             <div class="nk-header-app-info">
