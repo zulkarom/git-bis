@@ -44,11 +44,11 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchni
 
         <?php if(Yii::$app->user->identity->role == 1){
             echo $this->render('menu', [    
-            'web' => $web,
+            'dirAssests' => $dirAssests,
             ]);
         }else{
             echo $this->render('menu-expert', [    
-            'web' => $web,
+            'dirAssests' => $dirAssests,
             ]);
         }?>
         
@@ -60,11 +60,11 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchni
                 
                 <?php if(Yii::$app->user->identity->role == 1){
                     echo $this->render('header', [    
-                    'web' => $web,
+                    'dirAssests' => $dirAssests,
                     ]);
                 }else{
                     echo $this->render('header-expert', [    
-                    'web' => $web,
+                    'dirAssests' => $dirAssests,
                     ]);
                 }?>
                 <!-- main header @e -->
@@ -72,11 +72,11 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchni
 
                 <?php if(Yii::$app->user->identity->role == 1){
                     echo $this->render('sidebar', [    
-                        'web' => $web,
+                        'dirAssests' => $dirAssests,
                     ]);
                 }else{
                     echo $this->render('sidebar-expert', [    
-                        'web' => $web,
+                        'dirAssests' => $dirAssests,
                     ]);
                 }?>
 
@@ -106,7 +106,7 @@ $dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchni
     <!-- app-root @e -->
     <!-- select region modal -->
     <?=$this->render('country', [    
-        'web' => $web,
+        'dirAssests' => $dirAssests,
     ]);
     ?>
     

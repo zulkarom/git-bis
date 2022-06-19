@@ -132,7 +132,7 @@ div.d {
     
     
        <div class="row-section padding-tb-xxl homepage-first-row">
-         <img src="<?= $dirAssests?>/logo/<?=Yii::$app->params['logoBig']?>" alt="" class="heading" width="700"><br/>
+         <img src="<?= $dirAssests?>/logo/logo-big<?=Yii::$app->params['extension']?>.png" alt="" class="heading" width="700"><br/>
          
          <h2 class="heading-2"><?=Html::encode($intro->title_content)?><br/></h2>
          <p class="paragraph font-size-small text-grey text-center"><?=Html::encode($intro->intro_content)?><br/></p>

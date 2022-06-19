@@ -40,17 +40,17 @@ $this->beginBody()?>
 
     <div class="nk-app-root">
 
-        <?=$this->render('menu', ['web' => $web]);?>
+        <?=$this->render('menu', ['dirAssests' => $dirAssests]);?>
         <!-- main @s -->
         <div class="nk-main ">
             <!-- wrap @s -->
             <div class="nk-wrap ">
                 <!-- main header @s -->
-               <?=$this->render('header', ['web' => $web]);?>
+               <?=$this->render('header', ['dirAssests' => $dirAssests]);?>
                 <!-- main header @e -->
 
                 <!-- sidebar @s -->
-                <?=$this->render('sidebar', ['web' => $web]);?>
+                <?=$this->render('sidebar', ['dirAssests' => $dirAssests]);?>
                 <!-- sidebar @e -->
                 <!-- content @s -->
                 <div class="nk-content ">
@@ -71,7 +71,7 @@ $this->beginBody()?>
     </div>
     <!-- app-root @e -->
     <!-- select region modal -->
-    <?=$this->render('country', ['web' => $web]);?>
+    <?=$this->render('country', ['dirAssests' => $dirAssests]);?>
     <!-- JavaScript -->
 
 

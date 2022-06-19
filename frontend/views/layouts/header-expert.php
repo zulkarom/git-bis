@@ -12,7 +12,7 @@ use yii\helpers\Url;
         <div class="nk-header-app-name">
             <div class="nk-header-app-logo">
                 <a href="<?=Url::to(['/expert/dashboard/index'])?>">
-                    <img src="<?=$web?>/dlite/images/mini-logo.png" width="100%" alt="logo">
+                    <img src="<?= $dirAssests?>/logo/mini-logo.png" width="100%" alt="logo">
                 </a>
             </div>
             <div class="nk-header-app-info">
@@ -100,7 +100,7 @@ use yii\helpers\Url;
                                 <li class="chat-item">
                                     <a class="chat-link" href="html/apps/chats.html">
                                         <div class="chat-media user-avatar">
-                                            <img src="<?=$web?>/dlite/images/avatar/b-sm.jpg" alt="">
+                                            <img src="<?= $dirAssests?>/images/avatar/b-sm.jpg" alt="">
                                         </div>
                                         <div class="chat-info">
                                             <div class="chat-from">
@@ -117,7 +117,7 @@ use yii\helpers\Url;
                                     <a class="chat-link" href="html/apps/chats.html">
                                         <div class="chat-media user-avatar user-avatar-multiple">
                                             <div class="user-avatar">
-                                                <img src="<?=$web?>/dlite/images/avatar/c-sm.jpg" alt="">
+                                                <img src="<?= $dirAssests?>/images/avatar/c-sm.jpg" alt="">
                                             </div>
                                             <div class="user-avatar">
                                                 <span>AB</span>
@@ -140,7 +140,7 @@ use yii\helpers\Url;
                                 <li class="chat-item">
                                     <a class="chat-link" href="html/apps/chats.html">
                                         <div class="chat-media user-avatar">
-                                            <img src="<?=$web?>/dlite/images/avatar/a-sm.jpg" alt="">
+                                            <img src="<?= $dirAssests?>/images/avatar/a-sm.jpg" alt="">
                                             <span class="status dot dot-lg dot-success"></span>
                                         </div>
                                         <div class="chat-info">
@@ -272,32 +272,32 @@ use yii\helpers\Url;
                 <li class="dropdown language-dropdown d-none d-sm-block me-n1">
                     <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="quick-icon border border-light">
-                            <img class="icon" src="<?=$web?>/dlite/images/flags/english-sq.png" alt="">
+                            <img class="icon" src="<?= $dirAssests?>/images/flags/english-sq.png" alt="">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-s1">
                         <ul class="language-list">
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/english.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/english.png" alt="" class="language-flag">
                                     <span class="language-name">English</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/spanish.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/spanish.png" alt="" class="language-flag">
                                     <span class="language-name">Español</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/french.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/french.png" alt="" class="language-flag">
                                     <span class="language-name">Français</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/turkey.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/turkey.png" alt="" class="language-flag">
                                     <span class="language-name">Türkçe</span>
                                 </a>
                             </li>

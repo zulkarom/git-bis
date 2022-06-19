@@ -11,7 +11,7 @@ use yii\helpers\Url;
         <div class="nk-header-app-name">
             <div class="nk-header-app-logo">
                 <a href="<?=Url::to(['/client/dashboard/index'])?>">
-                    <img src="<?=$web?>/dlite/images/mini-logo.png" width="100%" alt="logo">
+                    <img src="<?= $dirAssests?>/logo/mini-logo.png" width="100%" alt="logo">
                 </a>
             </div>
             <div class="nk-header-app-info">
@@ -87,32 +87,32 @@ use yii\helpers\Url;
                 <li class="dropdown language-dropdown d-none d-sm-block me-n1">
                     <a href="javascript:void(0)" class="dropdown-toggle nk-quick-nav-icon">
                         <div class="quick-icon border border-light">
-                            <img class="icon" src="<?=$web?>/dlite/images/flags/english-sq.png" alt="">
+                            <img class="icon" src="<?= $dirAssests?>/images/flags/english-sq.png" alt="">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-s1">
                         <ul class="language-list">
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/english.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/english.png" alt="" class="language-flag">
                                     <span class="language-name">English</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/spanish.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/spanish.png" alt="" class="language-flag">
                                     <span class="language-name">Español</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/french.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/french.png" alt="" class="language-flag">
                                     <span class="language-name">Français</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="language-item">
-                                    <img src="<?=$web?>/dlite/images/flags/turkey.png" alt="" class="language-flag">
+                                    <img src="<?= $dirAssests?>/images/flags/turkey.png" alt="" class="language-flag">
                                     <span class="language-name">Türkçe</span>
                                 </a>
                             </li>

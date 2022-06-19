@@ -42,7 +42,7 @@ $web = Yii::getAlias('@web');
     <div class="nk-app-root">
         
         <?=$this->render('menu-expert', [    
-            'web' => $web,
+            'dirAssests' => $dirAssests,
         ]);
         ?>
         <!-- main @s -->
@@ -51,14 +51,14 @@ $web = Yii::getAlias('@web');
             <div class="nk-wrap ">
                 <!-- main header @s -->
                <?=$this->render('header-expert', [    
-                    'web' => $web,
+                    'dirAssests' => $dirAssests,
                 ]);
                 ?>
                 <!-- main header @e -->
 
                 <!-- sidebar @s -->
                 <?=$this->render('sidebar-expert', [    
-                    'web' => $web,
+                    'dirAssests' => $dirAssests,
                 ]);
                 ?>
                 <!-- sidebar @e -->
@@ -82,7 +82,7 @@ $web = Yii::getAlias('@web');
     <!-- app-root @e -->
     <!-- select region modal -->
     <?=$this->render('country', [    
-        'web' => $web,
+        'dirAssests' => $dirAssests,
     ]);
     ?>
     <!-- JavaScript -->

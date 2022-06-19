@@ -12,8 +12,8 @@ use yii\helpers\Html;
 <div class="nk-apps-sidebar is-dark">
             <div class="nk-apps-brand">
                 <a href="<?=Url::to(['/client/dashboard/index'])?>" class="logo-link">
-                    <img class="logo-light logo-img" src="<?=$web?>/dlite/images/mini-logo.png" srcset="<?=$web?>/dlite/images/logo-small2x.png 2x" alt="logo">
-                    <img class="logo-dark logo-img" src="<?=$web?>/dlite/images/logo-dark-small.png" srcset="<?=$web?>/dlite/images/logo-dark-small2x.png 2x" alt="logo-dark">
+                    <img class="logo-light logo-img" src="<?= $dirAssests?>/logo/mini-logo.png" srcset="<?= $dirAssests?>/logo/logo-small2x.png 2x" alt="logo">
+                    <img class="logo-dark logo-img" src="<?= $dirAssests?>/logo/logo-dark-small.png" srcset="<?= $dirAssests?>/logo/logo-dark-small2x.png 2x" alt="logo-dark">
                 </a>
             </div>
             <div class="nk-sidebar-element">
