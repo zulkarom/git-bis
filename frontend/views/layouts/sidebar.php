@@ -3,7 +3,7 @@ use yii\helpers\Url;
 use common\widgets\Menu_hatchniaga;
 
     //Main
-    $item_main[] = ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => 'icon ni ni-template'];
+    $item_main[] = ['label' => \Yii::t('app', 'Dashboard'), 'level' => 1, 'url' => ['/client/dashboard/index'], 'icon' => 'icon ni ni-pie'];
 
     $item_main[] = ['label' => \Yii::t('app', 'Business Canvas'), 'level' => 1, 'url' => ['/client/biz-canvas/index'], 'icon' => 'icon ni ni-dashboard'];
 

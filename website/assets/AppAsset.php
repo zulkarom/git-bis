@@ -9,7 +9,7 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $sourcePath = '@website/views/myassets';
+    public $sourcePath = '@website/assets/hatchniagaAsset';
 
     public $css = [
         

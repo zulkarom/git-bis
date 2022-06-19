@@ -24,7 +24,7 @@ use yii\helpers\Html;
                             <ul class="nk-menu apps-menu">
                                 <li class="nk-menu-item">
                                     <a href="<?=Url::to(['/client/dashboard/index'])?>" class="nk-menu-link" title="Dashboard">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-template"></em></span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-pie"></em></span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-hr"></li>

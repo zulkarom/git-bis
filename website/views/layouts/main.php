@@ -5,7 +5,7 @@ use backend\modules\website\models\Section;
 use backend\modules\website\models\Introduction;
 
 AppAsset::register($this);
-$dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/views/myassets');
+$dirAssests=Yii::$app->assetManager->getPublishedUrl('@website/assets/hatchniagaAsset');
 
 $section = Section::find()->all();
 $intro = Introduction::findOne(1);
@@ -132,7 +132,7 @@ div.d {
     
     
        <div class="row-section padding-tb-xxl homepage-first-row">
-         <img src="<?= $dirAssests?>/pictures/<?=Yii::$app->params['logoBig']?>" alt="" class="heading" width="700"><br/>
+         <img src="<?= $dirAssests?>/logo/<?=Yii::$app->params['logoBig']?>" alt="" class="heading" width="700"><br/>
          
          <h2 class="heading-2"><?=Html::encode($intro->title_content)?><br/></h2>
          <p class="paragraph font-size-small text-grey text-center"><?=Html::encode($intro->intro_content)?><br/></p>
