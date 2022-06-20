@@ -27,7 +27,7 @@ $this->beginPage()?>
     <!-- <title>BitCrypto</title> -->
     <title><?=Html::encode($this->title)?></title>
 
-    <link rel="icon" href="<?=$dirAssests?>/icon/favicon.png" type="image/png">
+    <link rel="icon" href="<?= $dirAssests?>/logo/mini-logo<?=Yii::$app->params['extension']?>.png" type="image/png">
 
     <?=Html::csrfMetaTags()?>
     <?php

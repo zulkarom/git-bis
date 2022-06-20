@@ -7,8 +7,8 @@ use common\widgets\Menu_crypto;
 <!-- <nav class="sidebar dark_sidebar"> -->
 <nav class="sidebar">
     <div class="logo d-flex justify-content-between">
-        <a class="large_logo" href="index.html"><img src="<?= $dirAssests?>/pictures/logo-top.png" alt=""></a>
-        <a class="small_logo" href="index.html"><img src="<?= $dirAssests?>/pictures/mini-logo.png" alt=""></a>
+        <a class="large_logo" href="index.html"><img src="<?= $dirAssests?>/logo/logo-top<?=Yii::$app->params['extension']?>.png" alt=""></a>
+        <a class="small_logo" href="index.html"><img src="<?= $dirAssests?>/logo/mini-logo<?=Yii::$app->params['extension']?>.png" alt=""></a>
         <div class="sidebar_close_icon d-lg-none">
             <i class="ti-close"></i>
         </div>
