@@ -65,7 +65,7 @@ class pdf_canvas{
 		$html = '<style>'.file_get_contents($this->web.'/assets/canvas/css/canvas.css').'</style>';
 
 
-    $html .= '<div align="center"><img src="dlite/images/logo-top.png" width="170" /><br />
+    $html .= '<div align="center"><img src="'.$dirAssests.'/logo/logo-top'.Yii::$app->params['extension'].'.png" width="170" /><br />
     <span style="font-size:18px"><b>' . $this->model->user->client->biz_name .'</b></span></div><br />';
 
 
