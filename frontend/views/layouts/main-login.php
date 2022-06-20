@@ -76,7 +76,7 @@ $this->beginBody()?>
                 </ul><!-- nav -->
             </div>
             <div class="mt-3">
-                <p>&copy; 2022 Hatchniaga. All Rights Reserved.</p>
+                <p>&copy; 2022 <?=Yii::$app->params['appName']?>. All Rights Reserved.</p>
             </div>
         </div><!-- nk-block -->
     </div><!-- nk-split-content -->
@@ -89,7 +89,7 @@ $this->beginBody()?>
                             <img class="round" src="<?=$dirAssests?>/images/slides/promo-a.png" srcset="<?=$dirAssests?>/images/slides/promo-a2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
-                            <h4>Hatchniaga</h4>
+                            <h4><?=Yii::$app->params['appName']?></h4>
                             <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ $this->beginBody()?>
                             <img class="round" src="<?=$dirAssests?>/images/slides/promo-b.png" srcset="<?=$dirAssests?>/images/slides/promo-b2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
-                            <h4>Hatchniaga</h4>
+                            <h4><?=Yii::$app->params['appName']?></h4>
                             <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ $this->beginBody()?>
                             <img class="round" src="<?=$dirAssests?>/images/slides/promo-c.png" srcset="<?=$dirAssests?>/images/slides/promo-c2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
-                            <h4>Hatchniaga</h4>
+                            <h4><?=Yii::$app->params['appName']?></h4>
                             <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
                         </div>
                     </div>
