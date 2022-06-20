@@ -35,7 +35,7 @@ h2 {
             <div class="signup-content">
 
                 <?php $form = ActiveForm::begin(); ?>
-                <center><img src="<?= $directoryAsset ?>/pictures/logo-top.png" title="Bisnet" class="img-responsive " style="width:55%;margin:auto"></center>
+                <center><img src="<?= $dirAssests?>/logo/logo-top<?=Yii::$app->params['extension']?>.png" title="Bisnet" class="img-responsive " style="width:55%;margin:auto"></center>
                     <h2 class="form-title">Admin Login</h2>
                         <?= $form
                             ->field($model, 'username')
