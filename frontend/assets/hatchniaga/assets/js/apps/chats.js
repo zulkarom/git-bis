@@ -706,7 +706,7 @@ function deletetopic(element){
     }
 
     function getCanvas(element, init){
-        if(role == 2){
+        if(role.val() == 2){
 		var clEx_user_id = element.attr('data-clEx-user-id');
             
           var canvasUrl = $('#canvasUrl').val();
