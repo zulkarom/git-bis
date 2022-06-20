@@ -149,7 +149,7 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
             </div><!-- .chat-sap -->
 
             <div id="current-chat-box"></div>
-            <div align="center" class="welcome"><b>Welcome Hatchniaga Consultation </b>
+            <div align="center" class="welcome"><b>Welcome to "<?=Yii::$app->params['appName']?>" Consultation </b>
             <br />
             <i>Choose a mentee or a topic to get started</i>
             </div>

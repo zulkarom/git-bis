@@ -3,7 +3,7 @@ use common\models\Common;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
 
-$this->title = 'Registration | Hatchniaga';
+$this->title = 'Registration | '. Yii::$app->params['appName'];
 $web = Yii::getAlias('@web');
 ?>
 
@@ -11,7 +11,7 @@ $web = Yii::getAlias('@web');
                 <div class="nk-block-head-content">
                     <h5 class="nk-block-title">Register</h5>
                     <div class="nk-block-des">
-                        <p>Create New Hatchniaga Account</p>
+                        <p>Create New "<?=Yii::$app->params['appName']?>" Account</p>
                     </div>
                 </div>
             </div><!-- .nk-block-head -->

@@ -19,7 +19,7 @@ $intro = Introduction::findOne(1);
       <meta charset="utf-8"/>
 
       <title><?=Yii::$app->params['appName']?> | Online Incubation Platform</title>
-      <link rel = "icon" href ="<?= $dirAssests?>/icon/favicon.png" 
+      <link rel = "icon" href ="<?= $dirAssests?>/logo/mini-logo<?=Yii::$app->params['extension']?>.png" 
         type = "image/x-icon"> 
 
       <meta content="width=device-width, initial-scale=1" name="viewport"/>

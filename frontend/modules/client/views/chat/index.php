@@ -206,7 +206,7 @@ if (Yii::$app->user->identity->role == 1) {
             </div><!-- .chat-sap -->
 
             <div id="current-chat-box"></div>
-            <div align="center" class="welcome"><b>Welcome Hatchniaga Consultation </b>
+            <div align="center" class="welcome"><b>Welcome to "<?=Yii::$app->params['appName']?>" Consultation </b>
             <br />
             <i>Choose an expert or a topic to get started</i>
             </div>
