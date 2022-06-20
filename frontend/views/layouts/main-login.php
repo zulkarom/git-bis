@@ -1,8 +1,12 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
+use frontend\assets\HatchniagaAsset;
 
-$web = Yii::getAlias('@web');
+HatchniagaAsset::register($this);
+
+// $web = Yii::getAlias('@web');
+$dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchniaga');
 ?>
 <?php
 
@@ -16,13 +20,10 @@ $this->beginPage()?>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="<?=$web?>/dlite/images/mini-logo.png">
+    <link rel="shortcut icon" href="<?=$dirAssests?>/logo/mini-logo<?=Yii::$app->params['extension']?>.png">
     <!-- Page Title  -->
     <title><?=Html::encode($this->title)?></title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="<?=$web?>/dlite/assets/css/dashlite.css?ver=3.0.1">
-    <link id="skin-default" rel="stylesheet" href="<?=$web?>/dlite/assets/css/theme.css?ver=3.0.1">
-
     <?php
 
     $this->head()?>
@@ -50,8 +51,8 @@ $this->beginBody()?>
         <div class="nk-block nk-block-middle nk-auth-body">
             <div class="brand-logo pb-5">
                 <a href="<?=Url::to(['/user/security/login'])?>" class="logo-link">
-                    <img class="logo-light logo-img logo-img-lg" src="<?=$web?>/dlite/images/logo-top.png" srcset="<?=$web?>/dlite/images/logo2x.png 2x" alt="logo">
-                    <img class="logo-dark logo-img logo-img-lg" src="<?=$web?>/dlite/images/logo-top.png" srcset="<?=$web?>/dlite/images/logo-dark2x.png 2x" alt="logo-dark">
+                    <img class="logo-light logo-img logo-img-lg" src="<?=$dirAssests?>/logo/logo-top<?=Yii::$app->params['extension']?>.png" srcset="<?=$dirAssests?>/logo/logo2x<?=Yii::$app->params['extension']?>.png 2x" alt="logo">
+                    <img class="logo-dark logo-img logo-img-lg" src="<?=$dirAssests?>/logo/logo-top<?=Yii::$app->params['extension']?>.png" srcset="<?=$dirAssests?>/logo/logo-dark2x<?=Yii::$app->params['extension']?>.png 2x" alt="logo-dark">
                 </a>
             </div>
 
@@ -85,7 +86,7 @@ $this->beginBody()?>
                 <div class="slider-item">
                     <div class="nk-feature nk-feature-center">
                         <div class="nk-feature-img">
-                            <img class="round" src="<?=$web?>/dlite/images/slides/promo-a.png" srcset="<?=$web?>/dlite/images/slides/promo-a2x.png 2x" alt="">
+                            <img class="round" src="<?=$dirAssests?>/images/slides/promo-a.png" srcset="<?=$dirAssests?>/images/slides/promo-a2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
                             <h4>Hatchniaga</h4>
@@ -96,7 +97,7 @@ $this->beginBody()?>
                 <div class="slider-item">
                     <div class="nk-feature nk-feature-center">
                         <div class="nk-feature-img">
-                            <img class="round" src="<?=$web?>/dlite/images/slides/promo-b.png" srcset="<?=$web?>/dlite/images/slides/promo-b2x.png 2x" alt="">
+                            <img class="round" src="<?=$dirAssests?>/images/slides/promo-b.png" srcset="<?=$dirAssests?>/images/slides/promo-b2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
                             <h4>Hatchniaga</h4>
@@ -107,7 +108,7 @@ $this->beginBody()?>
                 <div class="slider-item">
                     <div class="nk-feature nk-feature-center">
                         <div class="nk-feature-img">
-                            <img class="round" src="<?=$web?>/dlite/images/slides/promo-c.png" srcset="<?=$web?>/dlite/images/slides/promo-c2x.png 2x" alt="">
+                            <img class="round" src="<?=$dirAssests?>/images/slides/promo-c.png" srcset="<?=$dirAssests?>/images/slides/promo-c2x.png 2x" alt="">
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
                             <h4>Hatchniaga</h4>
@@ -142,10 +143,6 @@ $this->beginBody()?>
             </div>
         </div>
     </div>
-
-    <!-- JavaScript -->
-    <script src="<?=$web?>/dlite/assets/js/bundle.js?ver=3.0.1"></script>
-    <script src="<?=$web?>/dlite/assets/js/scripts.js?ver=3.0.1"></script>
 
 <?php
 
