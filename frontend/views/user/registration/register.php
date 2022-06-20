@@ -11,7 +11,7 @@ $web = Yii::getAlias('@web');
                 <div class="nk-block-head-content">
                     <h5 class="nk-block-title">Register</h5>
                     <div class="nk-block-des">
-                        <p>Create New "<?=Yii::$app->params['appName']?>" Account</p>
+                        <p>Create New <?=Yii::$app->params['appName']?> Account</p>
                     </div>
                 </div>
             </div><!-- .nk-block-head -->

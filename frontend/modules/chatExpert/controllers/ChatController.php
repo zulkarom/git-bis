@@ -98,6 +98,8 @@ class ChatController extends Controller
                 "clEx_name" => $clientEx->client->user->fullname,
                 "clEx_profile" => Url::to(['/expert/profile/client-image', 'id' => $clientEx->client->user->id]),
                 "clEx_company" => $clientEx->client->biz_name,
+                "clEx_company_type" => $clientEx->client->biz_type,
+                "clEx_company_address" => $clientEx->client->biz_address,
                 "unread" => $countChat,
                 "id" => $topic->id,
                 "value" => $topic->topic,

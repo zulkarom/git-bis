@@ -246,8 +246,9 @@ if (Yii::$app->user->identity->role == 1) {
                     <div class="chat-profile-body collapse show" id="chat-options">
                         <div class="chat-profile-body-inner">
                             <ul class="chat-profile-options">
-                                <li><div class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-edit-alt"></em><span class="company-name"></span></div></li>
-                                <li><div class="chat-option-link chat-search-toggle"><em class="icon icon-circle bg-light ni ni-search"></em><span class="company-detail"></span></div></li>
+                                
+                                <li><div class="row"><div class="col-2"><em class="icon icon-circle bg-light ni ni-edit-alt"></em></div><div class="col-10"><span class="company-name"></span></div></div></li>
+                                <li><div class="row"><div class="col-2"><em class="icon icon-circle bg-light ni ni-search"></em></div><div class="col-10"><span class="company-detail"></span></div></div></li>
                                 <!-- <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-circle-fill"></em><span class="lead-text">Change Theme</span></a></li> -->
                             </ul>
                         </div>
@@ -270,11 +271,15 @@ if (Yii::$app->user->identity->role == 1) {
                                             '/client/biz-canvas/view',
                                             'id' => $biz->id
                                         ]) . '" target="_blank">
-                                                    <em class="icon icon-circle bg-light ni ni-circle-fill"></em>
-                                                    <div>
+                                                <div class="row">
+                                                    <div class="col-2">
+                                                        <em class="icon icon-circle bg-light ni ni-circle-fill"></em>
+                                                    </div>
+                                                    <div class="col-10">
                                                         <span class="lead-text">' . $biz->title . '</span>
                                                         <span class="sub-text">' . $biz->description . '</span>
                                                     </div>
+                                                </div>
                                                 </a>
                                             </li>';
                                     }

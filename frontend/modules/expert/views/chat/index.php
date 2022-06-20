@@ -149,7 +149,7 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
             </div><!-- .chat-sap -->
 
             <div id="current-chat-box"></div>
-            <div align="center" class="welcome"><b>Welcome to "<?=Yii::$app->params['appName']?>" Consultation </b>
+            <div align="center" class="welcome"><b>Welcome to <?=Yii::$app->params['appName']?> Consultation </b>
             <br />
             <i>Choose a mentee or a topic to get started</i>
             </div>
@@ -189,16 +189,16 @@ $dataUrl = Url::to(['/chatExpert/default/send-message']);
                     <div class="chat-profile-body collapse show" id="chat-options">
                         <div class="chat-profile-body-inner">
                             <ul class="chat-profile-options">
-                                <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-edit-alt"></em><span class="company-name"></span></a></li>
-                                <li><a class="chat-option-link chat-search-toggle" href="#"><em class="icon icon-circle bg-light ni ni-search"></em><span class="lead-text">Search In Conversation</span></a></li>
-                                <li><a class="chat-option-link" href="#"><em class="icon icon-circle bg-light ni ni-circle-fill"></em><span class="lead-text">Change Theme</span></a></li>
+                                <li><div class="row"><div class="col-2"><em class="icon icon-circle bg-light ni ni-edit-alt"></em></div><div class="col-10"><span class="company-name"></span></div></div></li>
+                                <li><div class="row"><div class="col-2"><em class="icon icon-circle bg-light ni ni-search"></em></div><div class="col-10"><span class="company-type"></span></div></div></li>
+                                <li><div class="row"><div class="col-2"><em class="icon icon-circle bg-light ni ni-circle-fill"></em></div><div class="col-10"><span class="company-address"></span></div></div></li>
                             </ul>
                         </div>
                     </div>
                 </div><!-- .chat-profile-group -->
                 <div class="chat-profile-group">
                     <a href="#" class="chat-profile-head" data-bs-toggle="collapse" data-bs-target="#chat-settings">
-                        <h6 class="title overline-title">Biz Canvas</h6>
+                        <h6 class="title overline-title">Business Canvas</h6>
                         <span class="indicator-icon"><em class="icon ni ni-chevron-down"></em></span>
                     </a>
                     <div class="chat-profile-body collapse show" id="chat-settings">

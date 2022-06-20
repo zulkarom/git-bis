@@ -198,6 +198,10 @@
                       const clEx_profile = data[index].clEx_profile;
                       const clEx_company = data[index].clEx_company;
                       const clEx_company_detail = data[index].clEx_company_detail;
+
+                      const clEx_company_type = data[index].clEx_company_type;
+                      const clEx_company_address = data[index].clEx_company_address;
+
                       const clEx_expertise = data[index].clEx_expertise;
                       const unread = data[index].unread;
                       const topic_id = data[index].id;
@@ -216,7 +220,7 @@
                             type = clEx_company;
                       }
 
-                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-clEx-company="'+clEx_company+'" data-clEx-company-detail="'+clEx_company_detail+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'" data-clEx-expertise="'+clEx_expertise+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">'+datetime+'</span></div><div class="chat-context"><div class="text">'+type+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div></li>';
+                      str +='<li class="chat-item"><div class="send-topic" data-client="'+client_id+'" data-expert-id="'+expert_id+'" data-client-expert-id="'+client_expert_id+'" data-clEx-user-id="'+clEx_user_id+'" data-clEx-name="'+clEx_name+'" data-clEx-profile="'+clEx_profile+'" data-clEx-company="'+clEx_company+'" data-clEx-company-detail="'+clEx_company_detail+'" data-clEx-company-type="'+clEx_company_type+'" data-clEx-company-address="'+clEx_company_address+'" data-topic="'+topic_id+'" data-clEx-profile="'+clEx_profile+'" data-clEx-expertise="'+clEx_expertise+'"><a class="chat-link chat-open current" href="javascript:void(0)"><div class="chat-media user-avatar"><img src="'+clEx_profile+'" alt=""><span class="status dot dot-lg dot-success"></span></div><div class="chat-info"><div class="chat-from"><div class="name">'+clEx_name+'</div><span class="time">'+datetime+'</span></div><div class="chat-context"><div class="text">'+type+'</div><div class="status unread">'+str_unread+'</div></div></div></a></div></li>';
 
 
                     }
@@ -564,6 +568,8 @@ function deletetopic(element){
         var clEx_profile = element.attr('data-clEx-profile');
         var clEx_company = element.attr('data-clEx-company');
         var clEx_company_detail = element.attr('data-clEx-company-detail');
+        var clEx_company_type = element.attr('data-clEx-company-type');
+        var clEx_company_address = element.attr('data-clEx-company-address');
         var clEx_expertise = element.attr('data-clEx-expertise');
             
           if(topic_id){
@@ -601,6 +607,8 @@ function deletetopic(element){
             
             $('.exp-profile').attr('src',clEx_profile);
             $('.company-name').html(clEx_company);
+            $('.company-type').html(clEx_company_type);
+            $('.company-address').html(clEx_company_address);
             $('.company-detail').html(clEx_company_detail);
 
           /*if(init){
@@ -730,7 +738,7 @@ function deletetopic(element){
                       var canvasLinkUrl = $('#canvasLinkUrl').val() + id;
 
                     
-                      str += '<li><a class="chat-option-link" href="'+canvasLinkUrl+'" target="_blank"><em class="icon icon-circle bg-light ni ni-circle-fill"></em><div><span class="lead-text">'+title+'</span><span class="sub-text">'+description+'</span></div></a></li>';
+                      str += '<li><a class="chat-option-link" href="'+canvasLinkUrl+'" target="_blank"><div class="row"><div class="col-2"><em class="icon icon-circle bg-light ni ni-circle-fill"></em></div><div class="col-10"><span class="lead-text">'+title+'</span><span class="sub-text">'+description+'</span></div></div></a></li>';
 
                 }
 
