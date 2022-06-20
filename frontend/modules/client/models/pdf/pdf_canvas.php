@@ -17,8 +17,8 @@ class pdf_canvas{
 		$pdf = new MYPDF_canvas(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
-		$pdf->SetAuthor('HATCHNIAGA');
-		$pdf->SetTitle('HATCHNIAGA :: BIZ CANVAS');
+		$pdf->SetAuthor(Yii::$app->params['appName']);
+		$pdf->SetTitle(Yii::$app->params['appName'].' :: BIZ CANVAS');
 		$pdf->SetSubject('BIZ CANVAS');
 		$pdf->SetKeywords('');
 
