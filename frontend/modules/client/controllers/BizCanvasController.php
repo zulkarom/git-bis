@@ -222,6 +222,7 @@ class BizCanvasController extends Controller
         $pdf = new pdf_canvas;
         $pdf->model = $model;
         $pdf->web = Yii::getAlias('@backend');
+        $pdf->dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchniaga');
         $pdf->generatePdf();
         exit();
     }

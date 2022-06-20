@@ -8,11 +8,11 @@ use frontend\modules\client\models\pdf\MYPDF_canvas;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-
 class pdf_canvas{
 	public $model;
 	public $type = 'I';
 	public $web;
+  public $dirAssests;
 	public function generatePdf(){
 		$pdf = new MYPDF_canvas(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		// set document information
@@ -65,7 +65,7 @@ class pdf_canvas{
 		$html = '<style>'.file_get_contents($this->web.'/assets/canvas/css/canvas.css').'</style>';
 
 
-    $html .= '<div align="center"><img src="'.$dirAssests.'/logo/logo-top'.Yii::$app->params['extension'].'.png" width="170" /><br />
+    $html .= '<div align="center"><img src="'.$this->dirAssests.'/logo/logo-top'.Yii::$app->params['extension'].'.png" width="170" /><br />
     <span style="font-size:18px"><b>' . $this->model->user->client->biz_name .'</b></span></div><br />';
 
 
