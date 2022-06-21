@@ -9,8 +9,10 @@ use yii\helpers\Url;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Modal;
 use frontend\assets\HatchniagaAsset;
+use frontend\assets\ChatAsset;
 
 HatchniagaAsset::register($this);
+ChatAsset::register($this);
 
 
 $web = Yii::getAlias('@web');

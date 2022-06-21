@@ -11,10 +11,10 @@ use yii\web\AssetBundle;
 
 class ChatAsset extends AssetBundle
 {
-    public $sourcePath = '@frontend/web/';
+    public $sourcePath = '@frontend/assets/hatchniaga/';
     public $js = [
 
-        'dlite/assets/js/apps/chat.js',
+        'assets/js/apps/chats.js?v=5',
         
     ];
 
