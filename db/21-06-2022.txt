@@ -1,0 +1,1 @@
+ALTER TABLE `client` ADD `biz_description` TEXT NOT NULL AFTER `biz_capital`;
