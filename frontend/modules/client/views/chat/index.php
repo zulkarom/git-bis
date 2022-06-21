@@ -2,6 +2,9 @@
 use backend\modules\expert\models\Expert;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
+use frontend\assets\HatchniagaAsset2;
+
+HatchniagaAsset2::register($this);
 
 $web = Yii::getAlias('@web');
 

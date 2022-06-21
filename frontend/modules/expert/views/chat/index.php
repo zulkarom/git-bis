@@ -5,6 +5,9 @@ use yii\bootstrap4\Modal;
 use kartik\select2\Select2;
 use backend\models\Expert;
 use yii\helpers\ArrayHelper;
+use frontend\assets\HatchniagaAsset2;
+
+HatchniagaAsset2::register($this);
 
 $web = Yii::getAlias('@web');
 

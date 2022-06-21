@@ -87,9 +87,14 @@ $model->email = $user->email;
 </div>
 
 <div class="row">
-    <div class="col-md-8">
-        <?= $form->field($model, 'biz_address')->textArea(['rows' => '3']) ?>
+    <div class="col-md-6">
+        <?= $form->field($model, 'biz_address')->textArea(['rows' => '2']) ?>
     </div>
+
+<div class="col-md-6"><?= $form->field($model, 'biz_description')->textArea(['row' => 2])->label('Business Description')?>
+    
+</div>
+
 </div>
    
 

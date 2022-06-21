@@ -32,6 +32,7 @@ class Client extends \yii\db\ActiveRecord
 
     public $fullname;
     public $email;
+    public $file_controller;
     /**
      * {@inheritdoc}
      */
@@ -57,6 +58,7 @@ class Client extends \yii\db\ActiveRecord
             [['biz_date_execution', 'personal_updated_at'], 'safe'],
             [['biz_name', 'biz_address', 'biz_email', 'biz_type', 'biz_main_activity', 'biz_reg_no'], 'string', 'max' => 225],
             [['biz_phone', 'biz_fax'], 'string', 'max' => 50],
+            [['biz_description'], 'string'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

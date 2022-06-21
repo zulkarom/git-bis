@@ -5,6 +5,7 @@ use frontend\assets\HatchniagaAsset;
 
 HatchniagaAsset::register($this);
 
+
 // $web = Yii::getAlias('@web');
 $dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchniaga');
 ?>

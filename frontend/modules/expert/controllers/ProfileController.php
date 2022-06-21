@@ -15,7 +15,7 @@ use yii\web\NotFoundHttpException;
 
 class ProfileController extends \yii\web\Controller
 {
-	public $layout = "//main-expert";
+	public $layout = "//main-profile";
 	
 	public function behaviors()
 	{
