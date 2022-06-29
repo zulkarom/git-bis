@@ -181,6 +181,8 @@ div.d {
         ?>
         <!-- Services -->
 
+      <?php if(Yii::$app->params['appId'] == 1){?>
+
       
             <em class="text-light-grey font-small"></em><br/>
          </p>
@@ -196,6 +198,10 @@ div.d {
 
         ]);
         ?>
+
+
+<?php } ?>
+
         <!-- Map -->
       
         

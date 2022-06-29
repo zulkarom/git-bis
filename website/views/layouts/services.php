@@ -1,8 +1,13 @@
 <div class="container container-horizontal">
          <div class="row text-center">
             <div class="col-xs-12">
-                <div class="title-with-doubleborder"></div>               
+                <div class="title-with-doubleborder"></div>    
+                <?php if(Yii::$app->params['appId'] == 1){?>
                     <h2 class="text-bold">OUR SERVICES</h2>
+                <?php }else{ ?>  
+                    <h2 class="text-bold">ENTERPRISE CREATION</h2>
+                    <?php } ?>
+                    
                     
                         <div class="col-sm-8 col-sm-offset-2">
                             <p class="big">The process in building and scaling companies from scratch to success</p>

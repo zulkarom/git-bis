@@ -11,7 +11,16 @@ $portfolio = Portfolio::find()
          <div class="container-layout padding-tb-xl margin-auto">
             <div class="title-with-doubleborder"></div>
             <div class="margin-b-xl"> 
-               <h2 class="text-bold">PORTFOLIO COMPANIES</h2>
+               
+
+               <?php if(Yii::$app->params['appId'] == 1){?>
+                  <h2 class="text-bold">PORTFOLIO COMPANIES</h2>
+                <?php }else{ ?>  
+                  <h2 class="text-bold">ENTERPRISE PORTFOLIO</h2>
+                    <?php } ?>
+
+
+
             </div>
             
 

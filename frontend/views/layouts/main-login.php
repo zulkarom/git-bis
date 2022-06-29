@@ -91,7 +91,7 @@ $this->beginBody()?>
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
                             <h4><?=Yii::$app->params['appName']?></h4>
-                            <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                            <p><?=Yii::$app->params['appName']?> is an enterprise incubation platform for a starting-point for their business.</p>
                         </div>
                     </div>
                 </div><!-- .slider-item -->
@@ -102,7 +102,7 @@ $this->beginBody()?>
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
                             <h4><?=Yii::$app->params['appName']?></h4>
-                            <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                            <p><?=Yii::$app->params['appName']?> is an enterprise incubation platform for a starting-point for their business.</p>
                         </div>
                     </div>
                 </div><!-- .slider-item -->
@@ -113,7 +113,7 @@ $this->beginBody()?>
                         </div>
                         <div class="nk-feature-content py-4 p-sm-5">
                             <h4><?=Yii::$app->params['appName']?></h4>
-                            <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                            <p><?=Yii::$app->params['appName']?> is an enterprise incubation platform for a starting-point for their business.</p>
                         </div>
                     </div>
                 </div><!-- .slider-item -->
