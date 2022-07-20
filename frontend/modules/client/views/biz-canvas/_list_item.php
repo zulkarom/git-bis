@@ -16,7 +16,14 @@ $web = Yii::getAlias('@web');
                     <li style="color:#8094ae"><?=$model->user->fullname?></li>
                 </ul>
                 <h5 class="product-title"><?=$model->title?></h5>
-                <div class="product-price text-primary h5"><small class="text-muted fs-13px"><?=date("d F Y",strtotime($model->created_at))?></small></div>
+                <div class="product-price text-primary h5" style="margin-top:10px"><small class="text-muted fs-13px"><?=date("d F Y",strtotime($model->created_at))?></small></div>
+
+                <div class="bc-action-btn" style="margin-top:10px">
+                <a href="<?=Url::to(['update','id' => $model->id])?>" class="btn btn-dim btn-warning"><i class="icon ni ni-edit"></i></a> 
+                <a href="<?=Url::to(['delete','id' => $model->id])?>" data-confirm="Are you sure to delete this business canvas?" class="btn btn-dim btn-danger"><i class="icon ni ni-trash"></i></a>
+              </div>
+
+
             </div>
         </div>
       </a>
