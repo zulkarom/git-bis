@@ -129,11 +129,16 @@ div.bc-guide {
 
 </style>
 
-<h5><?=$model->title?></h5>
-<p><?=$model->description?></p>
-
- <?= Html::a('PDF', ['generate-pdf', 'id' => $model->id], ['class' => 'btn btn-danger']) ?>
-
+<div class="row">
+    <div class="col-8">
+      <h5><?=$model->title?></h5>
+      <p><?=$model->description?></p>
+    </div>
+     <div class="col-4" align="right">
+      <p><?= Html::a('<em class="icon ni ni-download"></em> PDF', ['generate-pdf', 'id' => $model->id], ['class' => 'btn btn-danger', 'target' => '_blank']) ?></p>
+    </div>
+  </div>
+  <br/>
 <div class="card" style="overflow-x: scroll;">
   <div class="card-body">
     

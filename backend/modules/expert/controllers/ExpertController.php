@@ -139,10 +139,9 @@ class ExpertController extends Controller
     public function actionAssign($cid)
     {
         $model = new ClientExpert();
-
         if ($model->load(Yii::$app->request->post())) {
 
-            $check = ClientExpert::find()->where(['client_id' => $model->client_id])->one();
+            $check = ClientExpert::find()->where(['client_id' => $model->client_id, 'expert_id' => $cid])->one();
             if($check){
                 Yii::$app->session->addFlash('warning', "Client Already Exist");
             }else{

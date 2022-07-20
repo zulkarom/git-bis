@@ -72,6 +72,7 @@ class BizCanvasController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = '//chat';
         $model = $this->findModel($id);
         //print_r($model->itemsByCategory(1));
         //die();
@@ -217,7 +218,10 @@ class BizCanvasController extends Controller
         $model = $this->findModel($id);
         $pdf = new pdf_canvas;
         $pdf->model = $model;
+        $pdf->web = Yii::getAlias('@backend');
+        $pdf->dirAssests = Yii::$app->assetManager->getPublishedUrl('@frontend/assets/hatchniaga');
         $pdf->generatePdf();
+        exit();
     }
 
     /**

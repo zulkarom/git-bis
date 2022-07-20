@@ -75,9 +75,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $i = 1;
                     if($clientExpert){
                         foreach ($clientExpert as $clientEx) {
+                                $name = $clientEx->client ? $clientEx->client->user->fullname: '';
                                 echo'<tr>
                                     <td>'.$i.'</td>
-                                    <td>'.$clientEx->client->user->fullname.'</td>
+                                    <td>'. $name .'</td>
                                     <td><a href="' . Url::to(['/expert/expert/assign-delete', 'id' => $clientEx->id, 'cid' => $model->id]) . '" data-confirm="Are you sure to remove this client from this expert?"><span class="fa fa-trash fa-xs"></span></a></td>
 
                                 </tr>';

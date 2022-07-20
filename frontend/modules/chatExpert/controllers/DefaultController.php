@@ -81,11 +81,12 @@ class DefaultController extends Controller
                 ], [
                     'id' => $model->topic_id
                 ]);
-                ClientExpert::updateAll([
+              /*   ClientExpert::updateAll([
                     'last_message' => new Expression('NOW()')
                 ], [
-                    'id' => $model->chatTopic->client_expert_id
-                ]);
+                    'client_id' => $model->chatTopic->client_id,
+                    'expert_id' => $model->chatTopic->expert_id,
+                ]); */
 
                 $model->time = time();
                 $model->rfc822 = date(DATE_RFC822, $model->time);

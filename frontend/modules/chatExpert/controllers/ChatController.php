@@ -14,6 +14,8 @@ use backend\modules\expert\models\Expert;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use backend\models\BizCanvas;
+use yii\db\Expression;
+
 /**
  * ChatTopicController implements the CRUD actions for ChatTopic model.
  */
@@ -75,12 +77,20 @@ class ChatController extends Controller
                     ->count();
 
             $topic = ChatTopic::find()
-                ->where(['client_expert_id' => $clientEx->id])
-                ->andWhere(['client_id' => $clientEx->client_id])
+                ->where(['client_id' => $clientEx->client_id])
                 ->andWhere(['expert_id' => $clientEx->expert_id])
                 ->andWhere(['is_default' => 1])
                 ->orderBy('last_message_send DESC')
                 ->one();
+            if($topic === null){
+                $topic = new ChatTopic();
+                $topic->expert_id = $clientEx->expert_id;
+                $topic->client_id = $clientEx->client_id;
+                $topic->is_default = 1;
+                $topic->last_message_send = new Expression('NOW()');
+                $topic->save();
+
+            }
 
             $last_send = date('d F Y', strtotime($topic->last_message_send));
 

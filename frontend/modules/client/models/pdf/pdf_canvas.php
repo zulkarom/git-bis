@@ -62,10 +62,10 @@ class pdf_canvas{
 		$pdf->AddPage("L");
 		// ---------------------------------------------------------
     //style
-		$html = '<style>'.file_get_contents($this->web.'/assets/canvas/css/canvas.css').'</style>';
+		//$html = '<style>'.file_get_contents($this->web.'/assets/canvas/css/canvas.css').'</style>';
 
 
-    $html .= '<div align="center"><img src="'.$this->dirAssests.'/logo/logo-top'.Yii::$app->params['extension'].'.png" width="170" /><br />
+    $html = '<div align="center"><img src="'.$this->dirAssests.'/logo/logo-top'.Yii::$app->params['extension'].'.png" width="170" /><br />
     <span style="font-size:18px"><b>' . $this->model->user->client->biz_name .'</b></span></div><br />';
 
 
