@@ -66,7 +66,7 @@ class pdf_canvas{
 
 
     $html = '<div align="center"><img src="'.$this->dirAssests.'/logo/logo-top'.Yii::$app->params['extension'].'.png" width="170" /><br />
-    <span style="font-size:18px"><b>' . $this->model->user->client->biz_name .'</b></span></div><br />';
+    <span style="font-size:18px"><b>' . $this->model->title .'</b></span></div><br />';
 
 
 		$html .= '<table cellpadding="6" cellspacing="0" border="2">
